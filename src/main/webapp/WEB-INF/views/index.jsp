@@ -32,6 +32,7 @@
 			<td class="indexMenu"><a href="board.go">BOARD1</a></td>
 			<td class="indexMenu"><a href="#">BOARD2</a></td>
 			<td class="indexMenu"><a href="#">BOARD3</a></td>
+			<td class="indexMenu"><a href="riot.go">Riot Games</a></td>
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
