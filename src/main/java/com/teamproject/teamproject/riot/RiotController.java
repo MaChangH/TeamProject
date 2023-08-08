@@ -13,25 +13,28 @@ import com.teamproject.teamproject.member.MemberDAO;
 @Controller
 public class RiotController {
 	@Autowired
-	MemberDAO mDAO;
-	BoardDAO bDAO;
-	RiotDAO rDAO;
+	private MemberDAO mDAO;
+	@Autowired
+	private BoardDAO bDAO;
+	@Autowired
+	private RiotDAO rDAO;
+	
+	
 	@RequestMapping(value = "/riot.go", method = RequestMethod.GET)
-	public String RiotGo(HttpServletRequest req) {
+	public String goRiot(HttpServletRequest req) {
 		mDAO.loginCheck(req);
+		bDAO.bannerEvent(req);
 		req.setAttribute("cp", "riot_board/riot.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "/riot.summoners", method = RequestMethod.GET)
-	public String RiotSummonersSearch(HttpServletRequest req) {
+	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		rDAO.getUserName(req);
-		// rDAO 에서 닉네임 입력하면 띄어쓰기 %20으로 바뀐 상태로 나와야함.
-		// 각자의 아이디마다 페이지가 하나 있는거
-		
-		
-		
+		bDAO.bannerEvent(req);
+		rDAO.getSN(req); // 이놈이 지금까지 null 이라서 500 에러가 나옴.  아 아니 그러면 rDAO 가 안나와야지 왜 나오고 지랄임.사람헷갈리게
 		req.setAttribute("cp", "riot_board/riotSummoner.jsp");
 		return "index";
 	}
+	
+	
 }

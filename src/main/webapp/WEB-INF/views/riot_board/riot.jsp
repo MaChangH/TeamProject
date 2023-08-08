@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action  = 'riot.summoners'>
-		<input placeholder = "소환사명" name = 'summonerName' id = 'summonerName'>
+		<input placeholder = "소환사명" name ="SN">
 		<button>검색</button>
 	</form>
 </body>

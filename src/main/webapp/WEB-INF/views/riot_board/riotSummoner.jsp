@@ -8,5 +8,6 @@
 </head>
 <body>
 	hi
+	${SN_input }
 </body>
 </html>
