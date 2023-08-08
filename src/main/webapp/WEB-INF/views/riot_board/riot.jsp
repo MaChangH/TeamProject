@@ -8,11 +8,7 @@
 </head>
 <body>
 	<form action  = 'riot.summoners'>
-<<<<<<< HEAD
 		<input placeholder = "소환사명" name ="SN">
-=======
-		<input placeholder = "소환사명" name = "SN" id = 'summonerName'>
->>>>>>> feature/parshing
 		<button>검색</button>
 	</form>
 </body>
