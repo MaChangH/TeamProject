@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.teamproject.teamproject.board.BoardDAO;
 import com.teamproject.teamproject.member.MemberDAO;
+import com.teamproject.teamproject.riot.RiotDAO;
 
 @Controller
 public class RiotController {
+	
+	
 	@Autowired
 	private MemberDAO mDAO;
 	@Autowired
