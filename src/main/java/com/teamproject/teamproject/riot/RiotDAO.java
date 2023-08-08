@@ -11,8 +11,8 @@ public class RiotDAO {
 	String username1 = "";
 	// username 을 jsp 에서 가지고오면 되지 검색버튼 누르면
 	public void getUserName(HttpServletRequest req) {
-		String username = req.getParameter("summonerName");
-		System.out.println(username);
+		
+		
 	}
 	// 띄어쓰기로 검색했을 때 url : hide%20on%20bush
 	// 플레이어 이름으로 전적검색 ( 매치 기록 / 매치 정보 )  
