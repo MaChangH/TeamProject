@@ -62,6 +62,11 @@
 				<jsp:include page="banner/leftBanner.jsp" />
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<jsp:include page="banner/weather.jsp" />
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

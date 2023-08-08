@@ -325,13 +325,5 @@ public class BoardDAO {
 	}
 	
 	
-	// 오늘, 금주 핫 게시글 가져오는 method
-	public void bannerEvent(HttpServletRequest req) {
-		List<Board> boards1 = ss.getMapper(BoardMapper.class).todayHot();
-		List<Board> boards2 = ss.getMapper(BoardMapper.class).thisWeekHot();
-		req.setAttribute("todayHot", boards1);
-		req.setAttribute("thisWeekHot", boards2);
-	}
-	
 	
 }

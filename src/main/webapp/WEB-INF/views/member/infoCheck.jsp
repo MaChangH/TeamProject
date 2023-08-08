@@ -11,7 +11,7 @@
 	<form action="member.info.go" method="POST">
 		<tr>
 			<td>
-				<input placeholder="ID" maxlength="20" name="tp_m_id" autocomplete="off">
+				<input placeholder="ID" maxlength="20" name="tp_m_id" autocomplete="off" readonly="readonly" value="${sessionScope.loginMember.tp_m_id }">
 			</td>
 		</tr>
 		<tr>

@@ -28,7 +28,7 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@192.168.35.109:1521:xe" />
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<beans:property name="username" value="yang" />
 		<beans:property name="password" value="4971" />
 	</beans:bean>
