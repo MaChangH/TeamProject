@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.teamproject.teamproject.TokenMaker;
+import com.teamproject.teamproject.banner.BannerDAO;
 import com.teamproject.teamproject.member.Member;
 import com.teamproject.teamproject.member.MemberDAO;
 
@@ -23,11 +24,15 @@ import com.teamproject.teamproject.member.MemberDAO;
 		@Autowired
 		private MemberDAO mDAO;
 		
+		@Autowired
+		private BannerDAO baDAO;
+		
 		// BOARD버튼 클릭시 요청 페이지
 		@RequestMapping(value = "/board.go", method = RequestMethod.GET)
 		public String goBoard(HttpServletRequest req) {
 			mDAO.loginCheck(req);
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			bDAO.countAllBoard();
 			bDAO.searchClear(req);
 			bDAO.getBoardMsg(1, req);
@@ -43,7 +48,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		@RequestMapping(value = "/board.page", method = RequestMethod.GET)
 		public String goBoardPage(HttpServletRequest req) {
 			mDAO.loginCheck(req);
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			bDAO.countAllBoard();
 			int p = Integer.parseInt(req.getParameter("p"));
 			bDAO.getBoardMsg(p, req);
@@ -57,7 +63,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		@RequestMapping(value = "/board.view", method = RequestMethod.GET)
 		public String boardViewPage(HttpServletRequest req, Reply r) {
 			mDAO.loginCheck(req);
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = Integer.parseInt(req.getParameter("tp_b_no"));
 			bDAO.viewBoard(tp_b_no, req);
 			bDAO.getReply(req);
@@ -70,7 +77,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		@RequestMapping(value = "/board.search", method = RequestMethod.GET)
 		public String searchBoard(HttpServletRequest req) {
 			mDAO.loginCheck(req);
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			bDAO.searchBoard(req);
 			bDAO.getBoardMsg(1, req);
 			TokenMaker.makeToken(req);
@@ -81,7 +89,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 글쓰기 버튼 눌렀을 때 글쓰기 페이지로 이동하는 method
 		@RequestMapping(value = "/board.write.go", method = RequestMethod.GET)
 		public String boardWritePage(HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			if (mDAO.loginCheck(req)) {
 				TokenMaker.makeToken(req);
 				req.setAttribute("cp", "board/boardWrite.jsp");			
@@ -96,7 +105,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 작성 버튼 눌렀을 때 board로 돌아가는 method
 		@RequestMapping(value = "/board.write", method = RequestMethod.POST)
 		public String writeSave(Board b, HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			mDAO.loginCheck(req);
 			bDAO.writeBoard(b, req);
 			bDAO.searchClear(req);
@@ -109,7 +119,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 삭제 버튼 눌렀을 때 게시글 삭제 후 board로 돌아가는 method
 		@RequestMapping(value = "/board.delete", method = RequestMethod.POST)
 		public String boardDelete(HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			if (mDAO.loginCheck(req)) {
 				int tp_b_no = Integer.parseInt(req.getParameter("tp_b_no"));
 				bDAO.deleteBoard(tp_b_no, req);
@@ -127,7 +138,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 수정 버튼 눌렀을 때 boardUpdate.jsp로 이동
 		@RequestMapping(value = "/board.update.go", method = RequestMethod.POST)
 		public String boardUpdateGo(HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			if (mDAO.loginCheck(req)) {
 				int tp_b_no = Integer.parseInt(req.getParameter("tp_b_no"));
 				bDAO.viewBoard(tp_b_no, req);
@@ -144,7 +156,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 내용 입력 후 수정하면 해당 board로 다시 돌아오는 method
 		@RequestMapping(value = "/board.update", method = RequestMethod.POST)
 		public String boardUpdate(Board b, HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = (Integer) req.getSession().getAttribute("boardNo");
 			if (mDAO.loginCheck(req)) {
 				bDAO.updateBoard(b, req);
@@ -163,7 +176,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		
 		@RequestMapping(value = "/board.like.go", method = RequestMethod.GET)
 		public String boardLike(Board b, HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = (Integer) req.getSession().getAttribute("boardNo");
 			Member m = (Member) req.getSession().getAttribute("loginMember");
 			String tp_m_id = m.getTp_m_id();
@@ -192,7 +206,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 댓글 작성하는 method
 		@RequestMapping(value = "/reply.write", method = RequestMethod.POST)
 		public String writeReply(HttpServletRequest req, Reply r) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = (Integer) req.getSession().getAttribute("boardNo");
 			mDAO.loginCheck(req);
 			bDAO.writeReply(tp_b_no, req, r);
@@ -206,7 +221,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 댓글 삭제하는 method
 		@RequestMapping(value = "/reply.delete", method = RequestMethod.POST)
 		public String replyDelete(HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = (Integer) req.getSession().getAttribute("boardNo");
 			int tp_r_no = Integer.parseInt(req.getParameter("tp_r_no"));
 			if (mDAO.loginCheck(req)) {
@@ -226,7 +242,8 @@ import com.teamproject.teamproject.member.MemberDAO;
 		// 댓글 수정하는 method
 		@RequestMapping(value = "/reply.update", method = RequestMethod.POST)
 		public String replyUpdate(Reply r, HttpServletRequest req) {
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			int tp_b_no = (Integer) req.getSession().getAttribute("boardNo");
 			BigDecimal tp_r_no = new BigDecimal(Integer.parseInt(req.getParameter("tp_r_no")));
 			String tp_r_text = req.getParameter("tp_r_text");
