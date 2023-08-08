@@ -9,11 +9,28 @@ public class RiotDAO {
 	// op.gg 는 api키를 하나가지고 돌려쓸 수 없을건데 어떻게 하는거지 ?
 	String api_key = "RGAPI-ff1bd468-e545-46a3-95eb-3834d987e15f";
 	String username1 = "";
-	// username 을 jsp 에서 가지고오면 되지 검색버튼 누르면
-	public void getUserName(HttpServletRequest req) {
-		
-		
+	
+	// SN 가지고왔는데 null 아니면 true null 이면 false
+	public boolean sNTrueFalse(HttpServletRequest req) {
+		String name = req.getParameter("SN");
+		System.out.println(name);
+		if (name != null) {
+			return true;
+		}
+		return false;
 	}
+	
+	public void getSummonerName(HttpServletRequest req) {
+		String name = req.getParameter("SN");
+		System.out.println(name);
+	}
+	// username 을 jsp 에서 가지고오면 되지 검색버튼 누르면
+//	public void getUserName(HttpServletRequest req) {
+//		// jsp에 있는 input name summonerName 을 일로 가지고 오고 
+//		String username = req.getParameter("summonerName");
+//		// 그러면 자동완성 써서 getParameter 말고 getAttribute 써서 이게 null 이 계속 나왔던거임???? 
+//		System.out.println(username);
+//	}
 	// 띄어쓰기로 검색했을 때 url : hide%20on%20bush
 	// 플레이어 이름으로 전적검색 ( 매치 기록 / 매치 정보 )  
 	// 검색창에 띄어쓰기가 있으면 %20 로 변경-> url 에 들어갈거고 거기서 id 를 파싱해 오면 될듯.
