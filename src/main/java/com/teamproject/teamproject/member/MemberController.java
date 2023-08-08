@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.teamproject.teamproject.banner.BannerDAO;
 import com.teamproject.teamproject.board.BoardDAO;
 
 @Controller
@@ -18,6 +19,9 @@ public class MemberController {
 	
 	@Autowired
 	private BoardDAO bDAO;
+	
+	@Autowired
+	private BannerDAO baDAO; 
 	
 	@RequestMapping(value = "/member.id.check", method = RequestMethod.GET, produces="application/JSON; charset=UTF-8")
 	public @ResponseBody Members memberIdCheck(Member m) {
@@ -31,57 +35,63 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		if (!mDAO.loginCheck(req)) {
 			req.setAttribute("cp", "member/join.jsp");
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.join", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		mDAO.join(m, req);
 		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		mDAO.login(m, req);
 		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
 	public String memberLogout(Member m, HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		mDAO.logout(req);
 		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.infoCheck.go", method = RequestMethod.GET)
 	public String memberInfoCheckGo(HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		if (mDAO.loginCheck(req)) {
 			req.setAttribute("cp", "member/infoCheck.jsp");
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.info.go", method = RequestMethod.POST)
 	public String memberInfoGo(HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		if (mDAO.infoCheck(req)) {
 			mDAO.infoAddr(req);
 			req.setAttribute("cp", "member/info.jsp");
@@ -93,36 +103,39 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.bye", method = RequestMethod.GET)
 	public String memberBye(HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		if (mDAO.loginCheck(req)) {
 			mDAO.bye(req);
 			mDAO.loginCheck(req);
 		}
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.update.go", method = RequestMethod.POST)
 	public String memberUpdateGo(Member m, HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		if (mDAO.loginCheck(req)) {
 			mDAO.infoAddr(req);
 			req.setAttribute("cp", "member/infoUpdate.jsp");
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/member.update", method = RequestMethod.POST)
 	public String memberUpdate(Member m, HttpServletRequest req) {
-		bDAO.bannerEvent(req);
 		if (mDAO.loginCheck(req)) {
 			mDAO.update(m, req);
 			req.setAttribute("cp", "home.jsp");
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		return "index";
 	}
 	

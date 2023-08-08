@@ -10,6 +10,11 @@ public class RiotDAO {
 		String name = req.getParameter("SN");
 		System.out.println(name);
 		req.setAttribute("SN_input", name);
+		/* 
+		 * 1. 여기안에서 띄어쓰기는 %20 으로 바꾸고 URL 에 넣기
+		 * 2.  내가 원하는 데이터가 어떤 파라미터가 필요한지 정리해놓기.
+		 * 3. SUMMONER로 검색하는 데이터가 어떤건지 찾고
+		 */
 	}
 	// op.gg 는 api키를 하나가지고 돌려쓸 수 없을건데 어떻게 하는거지 ?
 	String api_key = "RGAPI-ff1bd468-e545-46a3-95eb-3834d987e15f";
