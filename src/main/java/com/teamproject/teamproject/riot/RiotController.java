@@ -25,6 +25,7 @@ public class RiotController {
 	@RequestMapping(value = "/riot.summoners", method = RequestMethod.GET)
 	public String RiotSummonersSearch(HttpServletRequest req) {
 		mDAO.loginCheck(req);
+		rDAO.getUserName(req);
 		// rDAO 에서 닉네임 입력하면 띄어쓰기 %20으로 바뀐 상태로 나와야함.
 		// 각자의 아이디마다 페이지가 하나 있는거
 		

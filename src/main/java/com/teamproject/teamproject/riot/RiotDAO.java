@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 public class RiotDAO {
 	// op.gg 는 api키를 하나가지고 돌려쓸 수 없을건데 어떻게 하는거지 ?
 	String api_key = "RGAPI-ff1bd468-e545-46a3-95eb-3834d987e15f";
+	String username1 = "";
 	// username 을 jsp 에서 가지고오면 되지 검색버튼 누르면
-	String username = "k";
+	public void getUserName(HttpServletRequest req) {
+		String username = req.getParameter("summonerName");
+		System.out.println(username);
+	}
 	// 띄어쓰기로 검색했을 때 url : hide%20on%20bush
 	// 플레이어 이름으로 전적검색 ( 매치 기록 / 매치 정보 )  
 	// 검색창에 띄어쓰기가 있으면 %20 로 변경-> url 에 들어갈거고 거기서 id 를 파싱해 오면 될듯.
@@ -22,7 +26,7 @@ public class RiotDAO {
 	// MATCH-V5  : 매치 id가지고오기 (puuid 사용)
 	
 	public void searchGameID() {
-		String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username + "?api_key="+ api_key;
+		String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username1 + "?api_key="+ api_key;
 	}
 	
 	public void matchSearchWithNickName(HttpServletRequest req) {
