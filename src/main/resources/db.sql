@@ -12,10 +12,6 @@ create table tp_board (
 
 create sequence tp_board_seq;
 
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '트기', '안녕안녕', '진짜 안녕안녕 나는 지수야', sysdate);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '테스트1', '테스트용 글', '테스트용 게시글의 내용', sysdate);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '테스트a', 'test', 'text for test', sysdate);
-
 insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 1 ,1,1)
 
 drop table tp_board cascade constraint purge
