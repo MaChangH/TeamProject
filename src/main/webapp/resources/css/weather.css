@@ -22,9 +22,8 @@
 	width: 120px;
 	height: 120px;
 	z-index: -1;
-	transform: translate(-50%, -50%);
-	left: 65%;
-	top: 85%;
+	left: 30%;
+	bottom: 10px;
 }
 
 #weatherTemp {
