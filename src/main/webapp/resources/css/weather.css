@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#weatherTbl {
+	border: 2px solid black;
+	border-radius: 20px;
+	width: 180px;
+	height: 120px;
+	overflow: hidden;
+}
+
+#weatherTitle {
+	font-size: 15pt;
+	font-weight: 900;
+}
+
+#weatherResultTbl {
+	overflow: hidden;
+}
+
+#weatherImg {
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	z-index: -1;
+	transform: translate(-50%, -50%);
+	left: 65%;
+	top: 85%;
+}
+
+#weatherTemp {
+	font-size: 25pt;
+	font-weight: 900;
+}
