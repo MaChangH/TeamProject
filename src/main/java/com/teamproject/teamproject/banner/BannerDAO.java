@@ -61,8 +61,8 @@ public class BannerDAO {
 				hour = String.format("%02d", nowHour) + "00";
 			}
 
-			System.out.println(nowMinute);
-			System.out.println(hour);
+//			System.out.println(nowMinute);
+//			System.out.println(hour);
 
 			// 회원가입 당시 입력한 주소를 기준으로 예보지점 X, Y 좌표 얻기위함
 			String city1 = null;

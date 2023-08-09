@@ -17,6 +17,7 @@
 <script type="text/javascript" src="resources/js/teamValidChecker.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
+<script type="text/javascript" src="resources/js/riot.js"></script>
 </head>
 <body>
 	<%-- 타이틀 및 메뉴 --%>

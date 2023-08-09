@@ -6,25 +6,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RiotDAO {
-	public void getSN(HttpServletRequest req) {
+	
+	String api_key = "RGAPI-e854d293-6175-4008-8a8c-840757bb5fcb";
+	String username1 = "";
+	
+	public String get_SummonerName(HttpServletRequest req) {
 		String name = req.getParameter("SN");
-		System.out.println(name);
 		req.setAttribute("SN_input", name);
+		String nameforURL = req.getParameter("SN");
+		nameforURL = nameforURL.replace(" ", "%20");
+//		System.out.println(nameforURL);
+		return nameforURL;
 		/* 
-		 * 1. 여기안에서 띄어쓰기는 %20 으로 바꾸고 URL 에 넣기
+		 * 1. 여기안에서 띄어쓰기는 %20 으로 바꾸고 URL 에 넣기 완
 		 * 2.  내가 원하는 데이터가 어떤 파라미터가 필요한지 정리해놓기.
 		 * 3. SUMMONER로 검색하는 데이터가 어떤건지 찾고
 		 */
 	}
-	// op.gg 는 api키를 하나가지고 돌려쓸 수 없을건데 어떻게 하는거지 ?
-	String api_key = "RGAPI-ff1bd468-e545-46a3-95eb-3834d987e15f";
-	String username1 = "";
 	
-	
-	public void getSummonerName(HttpServletRequest req) {
-		String name = req.getParameter("SN");
-		System.out.println(name);
-	}
 	// username 을 jsp 에서 가지고오면 되지 검색버튼 누르면
 //	public void getUserName(HttpServletRequest req) {
 //		// jsp에 있는 input name summonerName 을 일로 가지고 오고 
@@ -43,8 +42,22 @@ public class RiotDAO {
 	// league v4 (sumonerID) -> 최근전적
 	// MATCH-V5  : 매치 id가지고오기 (puuid 사용)
 	
-	public void searchGameID() {
-		String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + username1 + "?api_key="+ api_key;
+	public void get_Id_AccoutId_Puuid(String SNforURL, HttpServletRequest req) {
+		
+		String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SNforURL + "?api_key="+ api_key;
+		req.setAttribute("SNinfoURL", url);
+		System.out.println("SNifo 값 :" + url);
+		// status 객체안에 message 가 "Forbidden" , "status_code" 가 403 => 
+		
+		
+//		try {
+//			if ( url == url) {
+//				// 파싱해서 나온게 값이 
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println(url);
 	}
 	
 	public void matchSearchWithNickName(HttpServletRequest req) {
