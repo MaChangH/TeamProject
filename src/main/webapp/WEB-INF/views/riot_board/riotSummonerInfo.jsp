@@ -8,14 +8,17 @@
 </head>
 <body>
 	<div id = "SNinput">
-		<form action  = 'riot.summoners' name = SNinputForm>
-				<input placeholder = "소환사명" name ="SN" id = "SN_url" >
+		<form action  = 'riot.summoners' name = SN_Form >
+				<input placeholder = "소환사명" name ="SN" >
+				<input type = "hidden" value ="${SNinfoURL}" readonly='readonly' id = 'k'>
+				
 				<button>검색</button>
-			<input type = "hidden" name = ${SNinfoURL }>
 			</form>
-			
 	</div>
+		
+		
 		<br><br>
+		
 	HI 
 	<br>
 	

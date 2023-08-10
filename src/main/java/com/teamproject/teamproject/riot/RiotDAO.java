@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RiotDAO {
 	
-	String api_key = "RGAPI-e854d293-6175-4008-8a8c-840757bb5fcb";
+	String api_key = "RGAPI-ca457642-f2e7-46ab-b81a-80d6b75f9fb1";
 	String username1 = "";
 	
 	public String get_SummonerName(HttpServletRequest req) {
