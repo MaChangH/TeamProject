@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+#bJTitle {
+	font-size: 20pt;
+	font-weight: 900;
+}
+
+#bJSpace {
+	position: relative;
+	border: 5px solid #701d1d;
+	border-radius: 20px;
+	background-color: green;
+	width: 640px;
+	height: 480px;
+	margin-left: 300px;
+	margin-right: 300px;
+	overflow: hidden;
+}
+
+#bJRuleTbl {
+	position: absolute;
+	border: 2px solid black;
+	background-color: white;
+	border-radius: 10px;
+	width: 85%;
+	height: 75%;
+	opacity: 0%;
+	display: none;
+	left: 50%;
+	top: 50%;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+	z-index: 15;
+}
+
+#bJRuleTitle {
+	font-size: 25pt;
+	font-weight: 900;
+	height: 100px;
+}
+
+.bJRule {
+	padding-left: 10px;
+	font-weight: 900;
+	height: 25px;
+}
+
+.bJBtn {
+	border: none;
+	border-radius: 10px;
+	background-color: #f87e2e;
+	font-size: 20pt;
+	font-weight: 900;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+	width: 150px;
+	z-index: 10;
+}
+
+.bJBtn:hover {
+	cursor: pointer;
+	background-color: #aa4806;
+}
+
+#bJStartBtn {
+	position: absolute;
+	top: 65%;
+	left: 50%;
+}
+
+#bJRuleBtn {
+	position: absolute;
+	top: 80%;
+	left: 50%;
+}
+
+#bJCardDeck {
+	position: absolute;
+	display: none;
+	opacity: 0%;
+	left: 10%;
+	top: 240px;
+	border: 2px solid black;
+	border-bottom: 25px solid black;
+	border-radius: 5px;
+	width: 75px;
+	height: 100px;
+	cursor: pointer;
+	align-items: center;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+}
+
+#bJCardDeckText {
+	color: white;
+	font-size: 20pt;
+	font-weight: 900;
+	text-shadow: red 1px 1px 2px, red 0px 0px 2px, red -1px -1px 2px;
+}
+
+.bJCardBack {
+	background-color: #fff;
+  	background-image: linear-gradient(-45deg, rgba(0,0,0,.5) 25%, transparent 25%, transparent 50%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.5) 75%, transparent 75%, transparent 100%), linear-gradient(45deg, rgba(0,0,0,.5) 25%, transparent 25%, transparent 50%,  rgba(0,0,0,.5) 50%, rgba(0,0,0,.5) 75%, transparent 75%, transparent 100%);
+ 	background-size: 8px 8px;
+}
+
+.bJCard {
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: white;
+	width: 75px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+	font-size: 15pt;
+	font-weight: 900;
+}
+
+#bJStandBtn {
+	position: absolute;
+	display: none;
+	opacity: 0%;
+	left: 80%;
+	top: 420px;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+}
+
+#bJRestartBtn {
+	position: absolute;
+	display: none;
+	opacity: 0%;
+	left: 50%;
+	top: 65%;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+}
+
+#bJRuleCloseBtn {
+	position: absolute;
+	left: 50%;
+	top: 90%;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+}
+
+.bJResult {
+	position: absolute;
+	display: none;
+	opacity: 0%;
+	color: white;
+	font-size: 25pt;
+	font-weight: 900;
+	width: 640px;
+	height: 200px;
+	background-color: #00000045;
+	padding-top: 100px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+}
+
+#bJMySum {
+	position: absolute;
+	left: 15%;
+	top: 330px;
+	display: none;
+	opacity: 0%;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+}
+
+#bJOpSum {
+	position: absolute;
+	left: 85%;
+	top: 180px;
+	display: none;
+	opacity: 0%;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+}
+
+.bJSum {
+	border: none;
+	background-color: transparent;
+	font-size: 15pt;
+	font-weight: 900;
+	color: white;
+	width: 100px;
+}
+
+.bJSum:focus {
+	outline: none;
+}
+
+.bJPlayer {
+	color: #3974fd;
+	font-size: 30pt;
+	text-shadow: white 0px 0px 2px;
+}
+
+.bJDealer {
+	color: #ff4a4a;
+	font-size: 30pt;
+	text-shadow: white 0px 0px 2px;
+}
+
+.bJBlackJack {
+	color: black;
+	font-size: 35pt;
+	text-shadow: white 0px 0px 2px;
+}

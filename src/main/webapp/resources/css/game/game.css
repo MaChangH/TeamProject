@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.gameTbl {
+	cursor: pointer;
+}
+
+.gameThumb {
+	width: 150px;
+	height: 150px;
+}
