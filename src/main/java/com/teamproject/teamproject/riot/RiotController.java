@@ -29,6 +29,7 @@ public class RiotController {
 		req.setAttribute("cp", "riot_board/riot.jsp");
 		return "index";
 	}
+	
 	@RequestMapping(value = "/riot.summoners", method = RequestMethod.GET)
 	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
@@ -36,6 +37,7 @@ public class RiotController {
 		String summonerName = rDAO.get_SummonerName(req); 
 		rDAO.get_Id_AccoutId_Puuid(summonerName, req);
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
+		rDAO.matchSearchWithNickName(req);
 		return "index";
 	}
 	
