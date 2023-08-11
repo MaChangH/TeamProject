@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>banner/weather.jsp</title>
+<link rel="stylesheet" href="resources/css/weather.css">
 <script type="text/javascript">
 	$(function() {
 		
@@ -25,18 +26,25 @@
 						w_wfKor = $(w).find('obsrValue').text();
 						if (w_wfKor == '0') {
 							w_wfKor = '맑음';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/shine.gif');
 						} else if (w_wfKor == '1') {
 							w_wfKor = '비';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/rain.gif');
 						} else if (w_wfKor == '2') {
 							w_wfKor = '비/눈';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/rain.gif');
 						} else if (w_wfKor == '3') {
 							w_wfKor = '눈';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/snow.gif');
 						} else if (w_wfKor == '5') {
 							w_wfKor = '빗방울';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/rain.gif');
 						} else if (w_wfKor == '6') {
 							w_wfKor = '빗방울눈날림';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/rain.gif');
 						} else if (w_wfKor == '7') {
 							w_wfKor = '눈날림';
+							$('#weatherImg').attr('src','resources/img/weatherIcon/snow.gif');
 						}
 						td_wf = $('<td></td>').text(w_wfKor);
 						td_wf.attr('id', 'weatherFore');
@@ -52,7 +60,7 @@
 					
 					$(tr1).append(td_wf);
 					$(tr2).append(td_te);
-					$('#wTbl').append(tr1, tr2);
+					$('#weatherResultTbl').append(tr1, tr2);
 					
 					
 				});
@@ -65,22 +73,26 @@
 </script>
 </head>
 <body>
-	<table border="1">
+	<table id="weatherTbl">
 		<tr>
-			<th>현재 날씨</th>
+			<th id="weatherTitle">현재 날씨</th>
 		</tr>
 		<tr>
 			<td>
 				<table>
 					<tr>
-						<td>${city1 } ${city2 } ${city3 }</td>
+						<td id="weatherCity">${city1 }</td>
+					</tr>
+					<tr>
+						<td id="weatherCity">${city2 } ${city3 }</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<table id="wTbl">
+				<table id="weatherResultTbl">
+					<img id="weatherImg">
 				</table>
 			</td>
 		</tr>
