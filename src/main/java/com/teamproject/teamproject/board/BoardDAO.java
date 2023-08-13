@@ -69,7 +69,7 @@ public class BoardDAO {
 		board.setTp_b_like(like);
 		view++;
 		ss.getMapper(BoardMapper.class).boardLike(board);
-		System.out.println(view);
+//		System.out.println(view);
 		board.setTp_b_view(view);
 		boards.set(0, board);
 		ss.getMapper(BoardMapper.class).updateBoardView(board);
@@ -280,8 +280,8 @@ public class BoardDAO {
 				req.setAttribute("r", "댓글 작성 성공");
 				req.getSession().setAttribute("st", token);
 				
-				System.out.println(formerToken);
-				System.out.println(token);
+//				System.out.println(formerToken);
+//				System.out.println(token);
 			} else {
 				req.setAttribute("r", "댓글 작성 실패(새로고침)");
 			}

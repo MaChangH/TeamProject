@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +59,9 @@ public class MemberDAO {
 			m.setTp_m_pw(mr.getParameter("tp_m_pw")); // 비밀번호
 			m.setTp_m_name(mr.getParameter("tp_m_name")); // 이름
 			m.setTp_m_nick(mr.getParameter("tp_m_nick")); // 별명
+			m.setTp_m_loginNum(0);	// 로그인 한 횟수 => 로그인 할 때마다 1씩 증가하게
+			m.setTp_m_firstLogin(20230101); // 로그인 한 횟수가 1이 될 때의 날짜 (년일월 까지만)
+			m.setTp_m_point(0);	// 포인트
 			
 			String addr1 = mr.getParameter("tp_m_addr1");
 			String addr2 = mr.getParameter("tp_m_addr2");
@@ -86,10 +90,49 @@ public class MemberDAO {
 			List<Member> dbms = ss.getMapper(MemberMapper.class).getById(inputM);
 			if (dbms.size() != 0) {
 				Member dbM = dbms.get(0);
-				if (dbM.getTp_m_pw().equals(inputM.getTp_m_pw())) {
-					req.getSession().setAttribute("loginMember", dbM);
-//					req.getSession().setMaxInactiveInterval(10 * 60);
-					req.setAttribute("r", "로그인했습니다.");
+				int loginNum = dbM.getTp_m_loginNum();	// dbM의 로그인 횟수
+				int first = dbM.getTp_m_firstLogin();	// dbM의 오늘 첫 로그인 날짜
+				int point = dbM.getTp_m_point();		// dbM의 포인트
+				
+				LocalDateTime now = LocalDateTime.now();	// 로그인 하는 지금 현재 시간
+				int year = now.getYear();				// 년
+				int month = now.getMonthValue();		// 월
+				int day = now.getDayOfMonth();			// 일
+				String ymd = String.valueOf(year) + String.format("%02d%02d", month, day);
+				int nowLogin = Integer.parseInt(ymd);	// 현재 년월일을
+				
+				if (dbM.getTp_m_pw().equals(inputM.getTp_m_pw())) { // 비밀번호가 일치하면
+					
+					if (nowLogin > first) {	// 지금 로그인 하는 시간이, 기록된 첫 로그인 시간보다 나중이면
+						loginNum = 0;		// 로그인 횟수를 0으로
+					}
+					
+					if (loginNum == 0) {	// 로그인 횟수가 0이면 ==> 첫 로그인이면
+						LocalDateTime loginDate = LocalDateTime.now();	// 첫 로그인 당시의 시간
+						int loginYear = loginDate.getYear();			// 첫 로그인 년
+						int loginMonth = loginDate.getMonthValue();		// 첫 로그인 월
+						int loginDay = loginDate.getDayOfMonth();		// 첫 로그인 일
+						String loginYmd = String.valueOf(loginYear) + String.format("%02d%02d", loginMonth, loginDay);
+						int firstLogin = Integer.parseInt(loginYmd);	// 첫 로그인 년월일
+						dbM.setTp_m_firstLogin(firstLogin);				// dbM의 첫 로그인에 기록
+															
+						point += 100;	// 첫 로그인시 100포인트 제공
+						loginNum ++;	// 첫 로그인 후 로그인 횟수가 1이 되면서, 이 후 같은 날의 로그인에서는 else 쪽으로 빠짐
+						dbM.setTp_m_loginNum(loginNum);
+						dbM.setTp_m_point(point);
+						ss.getMapper(MemberMapper.class).setLoginDate(dbM);
+						req.getSession().setAttribute("loginMember", dbM);
+//						req.getSession().setMaxInactiveInterval(10 * 60);
+						req.setAttribute("r", "오늘의 첫 로그인으로 100포인트를 획득했습니다");
+					} else {
+						loginNum ++;
+						dbM.setTp_m_loginNum(loginNum);
+						ss.getMapper(MemberMapper.class).setLoginDate(dbM);
+						req.getSession().setAttribute("loginMember", dbM);
+//						req.getSession().setMaxInactiveInterval(10 * 60);
+						req.setAttribute("r", "로그인했습니다.");
+					}
+					
 				} else {
 					req.setAttribute("r", "비밀번호를 확인하세요");
 				}

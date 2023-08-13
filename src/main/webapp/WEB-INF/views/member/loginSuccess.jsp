@@ -15,6 +15,9 @@
 			<td id="loginMemberID" align="center">환영합니다, ${sessionScope.loginMember.tp_m_nick }님!</td>
 		</tr>
 		<tr>
+			<td id="loginPoint" align="center">내 포인트 : <span id="loginPointNum">${sessionScope.loginMember.tp_m_point } 점</span></td>
+		</tr>
+		<tr>
 			<td align="center">
 				<button onclick="infoGo();" class="loginMemberBtn">회원정보</button>
 				<button onclick="logout();" class="loginMemberBtn">로그아웃</button>
