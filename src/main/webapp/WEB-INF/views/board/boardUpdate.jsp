@@ -30,8 +30,11 @@
 								<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
 								<td>
 									공지<input type="checkbox" id="updateNotice">
-									<input value="${tki.tp_b_notice }" id="isUpdateNotice" type="hidden">
-									<input id="updateNoticeResult" name="tp_b_notice" type="hidden" value="0">
+									<input value="${tki.tp_b_notice }" id="isUpdateNotice">
+									<input id="updateNoticeResult" name="tp_b_notice" value="0">
+									중요<input type="checkbox" id="updateImp">
+									<input value="${tki.tp_b_imp }" id="isUpdateImp">
+									<input id="updateImpResult" name="tp_b_imp" value="0">
 								</td>
 								</c:if>
 							</tr>
@@ -59,6 +62,9 @@
 	<script type="text/javascript">
 	if ($('#isUpdateNotice').val() == 1) {
 		$('#updateNotice').prop('checked', 'true');
+	}
+	if ($('#isUpdateImp').val() == 1) {
+		$('#updateImp').prop('checked', 'true');
 	}
 	</script>
 </body>

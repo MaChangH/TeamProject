@@ -5,7 +5,8 @@ create table tp_board (
 	tp_b_txt varchar2(300 char) not null,
 	tp_b_photo varchar2(500 char),
 	tp_b_when date not null,
-	tp_b_notice varchar2(1 char) not null,	
+	tp_b_notice varchar2(1 char) not null,
+	tp_b_imp varchar2(1 char) not null, -- 중요표시 --
 	tp_b_view number(10) not null,
 	tp_b_like number(10) not null,
 	foreign key (tp_b_writer) references tp_member (tp_m_nick) on delete cascade
@@ -15,10 +16,6 @@ create table tp_board (
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
 create sequence tp_board_seq;
-
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '트기', '안녕안녕', '진짜 안녕안녕 나는 지수야', sysdate);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '테스트1', '테스트용 글', '테스트용 게시글의 내용', sysdate);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when) values(tp_board_seq.nextval, '테스트a', 'test', 'text for test', sysdate);
 
 insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 1 ,1,1)
 
