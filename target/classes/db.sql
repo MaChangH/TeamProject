@@ -70,6 +70,7 @@ insert into tp_member values('team', '1', '관리자', '관리자', '팀프로�
 
 
 select * from tp_member;
+update tp_member set tp_m_point = 500 where tp_m_id = 'team';
 
 
 create table tp_like (

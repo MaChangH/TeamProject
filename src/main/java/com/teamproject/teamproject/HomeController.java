@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.teamproject.teamproject.banner.BannerDAO;
-import com.teamproject.teamproject.board.BoardDAO;
 import com.teamproject.teamproject.member.MemberDAO;
 
 @Controller
@@ -16,9 +15,6 @@ public class HomeController {
 	
 	@Autowired
 	private MemberDAO mDAO;
-	
-	@Autowired
-	private BoardDAO bDAO;
 	
 	@Autowired
 	private BannerDAO baDAO;

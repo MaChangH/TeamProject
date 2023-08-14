@@ -1,15 +1,24 @@
 //blackJack.js
 
+//	정상적으로 게임시작 버튼을 클릭함
+function bJStart() {
+	$('.bJStartBtn').click(function() {
+		if ($('#bJStmt').val() == 0 && $('#bJSwitch').val() == 0) {
+			$('#bJSwitch').val(10);
+			$('.bJBetBtn').css('display', 'none');
+			bjStart();
+		}
+	});
+}
+
 //	블랙잭 게임 시작
 function bjStart() {
-	$('#bJStartBtn').click(function() {
 		let bjs = $('#bJStmt').val(); // 게임의 상태를 나타내는 수, 숫자에 따라서 행동이 달라짐
 		let mn = $('#bJMyCard').val(); // 내 카드가 몇 장인지
 		let on = $('#bJOpCard').val(); // 상대 카드가 몇 장인지
 		let cn = $('#bJCardNum').val(); // 총 카드가 몇 장인지
 		if (bjs == 0) { //시작, 규칙 버튼 사라짐
-			bjs ++;
-			$('#bJStmt').val(bjs);
+			$('#bJStmt').val(1);
 			$('.bJBtn').css('opacity', '0%');
 			$('#bJMySum').css('opacity', '100%');
 			setTimeout(() => {
@@ -44,6 +53,7 @@ function bjStart() {
 									$('#bJOpCard').val(on);
 									setTimeout(() => {
 										$('#bJTurn').val(1);
+										$('#bJSwitch').val(0);
 										$('#bJStandBtn').css('display', 'block');
 										setTimeout(() => {
 											$('#bJStandBtn').css('opacity', '100%');
@@ -80,7 +90,6 @@ function bjStart() {
 				}, 100);
 			}, 500);
 		}
-	});
 }
 
 //	카드 분배(나)
@@ -213,7 +222,7 @@ function giveOpCardBack(num1, num2) {
 }
 
 //	블랙잭 규칙판 보이기/숨기기
-function bjRule() {
+function bJRule() {
 	$('#bJRuleBtn').click(function() {
 		let bjs = $('#bJStmt').val();
 		if (bjs == 0) {
@@ -327,11 +336,20 @@ function bJWin() {
 	$('#bJTurn').val(5);
 	$('#bJMyWin').css('display', 'block');
 	$('#bJMyWin').css('opacity', '100%');
+	let myPoint = Number($('#myPoint').val());
+	if ($('#isBet').val() == 1) {
+		$('#bJPointGet').css('display', 'block');
+		$('#bJPointGet').css('opacity', '100%');
+		$('#bJGet').val(Number($('#pointBet').val()));
+		myPoint = Number($('#myPoint').val());
+		myPoint += Number($('#pointBet').val());
+		$('#myPoint').val(myPoint);
+	}
 	const win = new Audio('resources/audio/blackJack/bJWin.mp3');
 	win.play();
 	setTimeout(() => {
-		restartBtnAappear();
-	}, 1000);
+		pointGetLoss(myPoint);
+	}, 2000);
 }
 
 //	패배
@@ -339,11 +357,17 @@ function bJLose() {
 	$('#bJTurn').val(5);
 	$('#bJOpWin').css('display', 'block');
 	$('#bJOpWin').css('opacity', '100%');
+	let myPoint = Number($('#myPoint').val());
+	if ($('#isBet').val() == 1) {
+		myPoint = Number($('#myPoint').val());
+		myPoint -= Number($('#pointBet').val());
+		$('#myPoint').val(myPoint);
+	}
 	const lose = new Audio('resources/audio/blackJack/bJLose.MP3');
 	lose.play();
 	setTimeout(() => {
-		restartBtnAappear();
-	}, 1000);
+		pointGetLoss(myPoint);
+	}, 1500);
 }
 
 //	블랙잭 승리
@@ -351,11 +375,20 @@ function bJMyBlackJack() {
 	$('#bJTurn').val(5);
 	$('#bJMyBlackJack').css('display', 'block');
 	$('#bJMyBlackJack').css('opacity', '100%');
+	let myPoint = Number($('#myPoint').val());
+	if ($('#isBet').val() == 1) {
+		$('#bJPointGet').css('display', 'block');
+		$('#bJPointGet').css('opacity', '100%');
+		$('#bJGet').val(Number($('#pointBet').val()) * 1.5);
+		myPoint = Number($('#myPoint').val());
+		myPoint += Number($('#pointBet').val() * 1.5);
+		$('#myPoint').val(myPoint);
+	}
 	const win = new Audio('resources/audio/blackJack/bJBJWin.mp3');
 	win.play();
 	setTimeout(() => {
-		restartBtnAappear();
-	}, 1000);
+		pointGetLoss(myPoint);
+	}, 2000);
 }
 
 //	블랙잭 패배
@@ -363,11 +396,17 @@ function bJOpBlackJack() {
 	$('#bJTurn').val(5);
 	$('#bJOpBlackJack').css('display', 'block');
 	$('#bJOpBlackJack').css('opacity', '100%');
+	let myPoint = Number($('#myPoint').val());
+	if ($('#isBet').val() == 1) {
+		myPoint = Number($('#myPoint').val());
+		myPoint -= Number($('#pointBet').val());
+		$('#myPoint').val(myPoint);
+	}
 	const lose = new Audio('resources/audio/blackJack/bJLose.MP3');
 	lose.play();
 	setTimeout(() => {
-		restartBtnAappear();
-	}, 1000);
+		pointGetLoss(myPoint);
+	}, 1500);
 }
 
 //	스탠드 버튼 사라짐
@@ -378,19 +417,56 @@ function standBtnDisappear() {
 	}, 500);
 }
 
-//	재시작 버튼 나타남
-function restartBtnAappear() {
-	$('#bJRestartBtn').css('opacity', '100%');
-	setTimeout(() => {
-		$('#bJRestartBtn').css('display', 'block');
-	}, 500);
+
+//	포인트 베팅하기
+function bJPointBet() {
+	// 10 포인트
+	$('#bJBet10').click(() => {
+		let point = Number($('#pointBet').val());
+		point += 10;
+		$('#pointBet').val(point);
+	});
+	
+	// 50 포인트
+	$('#bJBet50').click(() => {
+		let point = Number($('#pointBet').val());
+		point += 50;
+		$('#pointBet').val(point);
+	});
+	
+	// 100 포인트
+	$('#bJBet100').click(() => {
+		let point = Number($('#pointBet').val());
+		point += 100;
+		$('#pointBet').val(point);
+	});
+	
+	// 초기화
+	$('#bJBetReset').click(() => {
+		let point = 0;
+		$('#pointBet').val(point);
+	});
+}
+
+//	베팅한 점수 반영
+function pointGetLoss(myPoint) {
+	pageGoPost({
+		url: "blackJack.go",	//이동할 페이지
+		   target: "_self",
+		   vals: [				//전달할 인수들
+		    ["myPoint", myPoint],
+		]
+	});
 }
 
 
+
 $(function() {
-	bjStart();
-	bjRule();
+	stopBack();
+	bJStart();
+	bJRule();
 	bJCardDeck();
 	bJOpDraw();
 	bJStand();
+	bJPointBet();
 });

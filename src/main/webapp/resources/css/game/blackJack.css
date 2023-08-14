@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+
+.bJBtn:hover {
+	cursor: pointer;
+	background-color: #aa4806;
+}
+
+.bJInput {
+	background: transparent;
+	border: none;
+	color: white;
+}
+
+.bJInput:focus {
+	outline: none;
+}
+
 #bJTitle {
 	font-size: 20pt;
 	font-weight: 900;
@@ -36,7 +52,7 @@
 #bJRuleTitle {
 	font-size: 25pt;
 	font-weight: 900;
-	height: 100px;
+	height: 75px;
 }
 
 .bJRule {
@@ -57,12 +73,25 @@
 	z-index: 10;
 }
 
-.bJBtn:hover {
-	cursor: pointer;
-	background-color: #aa4806;
+.bJBetBtn {
+	border: none;
+	border-radius: 10px;
+	background-color: #f87e2e;
+	font-size: 12pt;
+	font-weight: 900;
+	transition: opacity 0.5s ease-in-out;
+	transform: translate(-50%, -50%);
+	width: 80px;
+	z-index: 10;
 }
 
 #bJStartBtn {
+	position: absolute;
+	top: 65%;
+	left: 50%;
+}
+
+#bJStartBetBtn {
 	position: absolute;
 	top: 65%;
 	left: 50%;
@@ -161,6 +190,29 @@
 	z-index: 5;
 }
 
+#bJPointGet {
+	position: absolute;
+	display: none;
+	opacity: 0%;
+	color: white;
+	font-size: 22pt;
+	font-weight: 900;
+	width: 640px;
+	height: 200px;
+	left: 50%;
+	top: 80%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+}
+
+#bJGet {
+	font-size: 27pt;
+	font-weight: 900;
+	text-align: right;
+	width: 100px;
+	overflow: visible;
+}
+
 #bJMySum {
 	position: absolute;
 	left: 15%;
@@ -190,9 +242,6 @@
 	width: 100px;
 }
 
-.bJSum:focus {
-	outline: none;
-}
 
 .bJPlayer {
 	color: #3974fd;
@@ -210,4 +259,48 @@
 	color: black;
 	font-size: 35pt;
 	text-shadow: white 0px 0px 2px;
+}
+
+
+#bJPointBetText {
+	position: absolute;
+	color: white;
+	font-size: 18pt;
+	font-weight: 900;
+	top: 5%;
+	left: 10%;
+}
+
+#pointBet {
+	position: absolute;
+	font-size: 22pt;
+	font-weight: 900;
+	top: 12%;
+	left: 5%;
+	text-align: right;
+	width: 150px;
+}
+
+#bJBet10 {
+	position: absolute;
+	top: 25%;
+	left: 12%;
+}
+
+#bJBet50 {
+	position: absolute;
+	top: 25%;
+	left: 28%;
+}
+
+#bJBet100 {
+	position: absolute;
+	top: 35%;
+	left: 12%;
+}
+
+#bJBetReset {
+	position: absolute;
+	top: 35%;
+	left: 28%;
 }

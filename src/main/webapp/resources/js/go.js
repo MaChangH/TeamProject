@@ -109,6 +109,21 @@ function pageGoPost(d){
 
 // 블랙잭 하러가기
 function blackJackGo() {
-	location.href = "blackJack.go";
+	pageGoPost({
+		url: "blackJack.go",	//이동할 페이지
+		   target: "_self",
+		   vals: [				//전달할 인수들
+		]
+	});
+}
+
+// 데스페라도 하러가기
+function desperadoGo() {
+	pageGoPost({
+		url: "desperado.go",	//이동할 페이지
+		   target: "_self",
+		   vals: [				//전달할 인수들
+		]
+	});
 }
 

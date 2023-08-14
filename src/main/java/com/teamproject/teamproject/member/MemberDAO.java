@@ -31,6 +31,8 @@ public class MemberDAO {
 	public boolean loginCheck(HttpServletRequest req) {
 		Member m = (Member) req.getSession().getAttribute("loginMember");
 		if (m != null) {
+			m.setTp_m_point(ss.getMapper(MemberMapper.class).getPoint(m));
+			req.getSession().setAttribute("loginMember", m);
 			req.setAttribute("lp", "member/loginSuccess.jsp");
 			return true;
 		} else {

@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamproject.teamproject.member.Member;
+
 @Service
 public class GameDAO {
 
@@ -89,8 +91,24 @@ public class GameDAO {
 		}
 		
 		
+		
 		req.getSession().setAttribute("bJCards", cards);
 		req.getSession().setAttribute("bJSeq", cardSeq);
 	}
 	
+	// 포인트 베팅
+	public void betPoint(HttpServletRequest req) {
+		if (req.getParameter("myPoint") != null && req.getSession().getAttribute("loginMember") != null) {
+			int myPoint = Integer.parseInt(req.getParameter("myPoint"));
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			m.setTp_m_point(myPoint);
+			ss.getMapper(GameMapper.class).betPoint(m);
+			System.out.println(m.getTp_m_point());
+		}
+	}
+	
+	
+	public void desperado(HttpServletRequest req) {
+		
+	}
 }

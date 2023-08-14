@@ -31,12 +31,12 @@
 								<td>
 									공지<input type="checkbox" id="updateNotice">
 									<input value="${tki.tp_b_notice }" id="isUpdateNotice" type="hidden">
+									<input id="updateNoticeResult" name="tp_b_notice" type="hidden" value="0">
 								</td>
 								</c:if>
 							</tr>
 							<tr>
 								<td colspan="3" id="boardUpdateText" align="center">
-									<input id="updateNoticeResult" name="tp_b_notice" type="hidden" value="0">
 									<c:if test="${tki.tp_b_photo != null }">
 										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
 										<input type="file" name="tp_b_photo"><br>

@@ -170,7 +170,22 @@ function updateCheck() {
 }
 
 
+//////////////////////////////////////////////////////////////////
 
+function pointCheck(myPoint) {
+	let betPoint = $('#pointBet').val();
+	if (betPoint > myPoint) {
+		$('#bJStmt').val(404);
+		alert('보유 포인트보다 많이 베팅할 수 없습니다');
+		$('#pointBet').val(0);
+		return false;
+	} else if(betPoint != 0) {
+		$('#isBet').val(1);
+		$('#bJStmt').val(0);
+	} else {
+		$('#bJStmt').val(0);
+	}
+}
 
 
 

@@ -25,14 +25,32 @@
 		<input id="bJCardNum" value="1" type="hidden">
 		<input id="bJMyAce" value="0" type="hidden">
 		<input id="bJOpAce" value="0" type="hidden">
-		<input id="bJMySum" class="bJSum" readonly="readonly">
-		<input id="bJOpSum" class="bJSum" readonly="readonly">
+		<input id="bJMySum" class="bJSum bJInput" readonly="readonly">
+		<input id="bJOpSum" class="bJSum bJInput" readonly="readonly">
 		
 		<c:forEach var="n" items="${sessionScope.bJCards }" varStatus="status">
 			<input value=${n } id="cn${bJSeq[status.index] }" type="hidden">
 		</c:forEach>
 		
-		<button id="bJStartBtn" class="bJBtn">게임 시작</button>
+			<input id="myPoint" name="myPoint" readonly="readonly" value="${sessionScope.loginMember.tp_m_point }" type="hidden">
+		<c:if test="${sessionScope.loginMember ne null }">
+			<span id="bJPointBetText">포인트 베팅</span>
+			<input id="pointBet" class="bJInput" value="0" readonly="readonly">
+			<input id="isBet" value="0" readonly="readonly" type="hidden">
+			<button id="bJBet10" class="bJBetBtn bJBtn">10점</button>
+			<button id="bJBet50" class="bJBetBtn bJBtn">50점</button>
+			<button id="bJBet100" class="bJBetBtn bJBtn">100점</button>
+			<button id="bJBetReset" class="bJBetBtn bJBtn">초기화</button>
+		</c:if>
+		
+		<c:choose>
+			<c:when test="${sessionScope.loginMember ne null }">
+				<button id="bJStartBetBtn" class="bJBtn bJStartBtn" onclick="return pointCheck(${sessionScope.loginMember.tp_m_point });">게임 시작</button>
+			</c:when>
+			<c:otherwise>
+				<button id="bJStartBtn" class="bJBtn bJStartBtn">게임 시작</button>
+			</c:otherwise>
+		</c:choose>
 		<button id="bJRuleBtn" class="bJBtn">게임 규칙</button>
 		<table id="bJRuleTbl">
 			<tr>
@@ -57,6 +75,9 @@
 				<td class="bJRule">※ J,Q,K는 10으로 / A는 1 또는 11로 사용할 수 있습니다 ※</td>
 			</tr>
 			<tr>
+				<td class="bJRule">※ 블랙잭으로 승리시, 베팅한 포인트의 1.5배를 획득합니다 ※</td>
+			</tr>
+			<tr>
 				<td align="center">
 					<button id="bJRuleCloseBtn" class="bJBtn">X 닫기</button>
 				</td>
@@ -64,11 +85,13 @@
 		</table>
 		<div id="bJCardDeck" class="bJCardBack"><span id="bJCardDeckText">카드 받기</span></div>
 		<button id="bJStandBtn" class="bJBtn">스탠드</button>
-		<button id="bJRestartBtn" class="bJBtn" onclick="blackJackGo();">다시 하기</button>
 		<div id="bJMyWin" class="bJResult"><span class="bJPlayer">당신</span>의 승리입니다</div>
 		<div id="bJOpWin" class="bJResult"><span class="bJDealer">딜러</span>의 승리입니다</div>
 		<div id="bJMyBlackJack" class="bJResult"><span class="bJPlayer">플레이어</span>의 <span class="bJBlackJack">블랙잭!</span></div>
 		<div id="bJOpBlackJack" class="bJResult"><span class="bJDealer">딜러</span>의  <span class="bJBlackJack">블랙잭!</span></div>
+		<div id="bJPointGet">
+			<input id="bJGet" class="bJInput"> 포인트를 획득했습니다.
+		</div>
 	</div>
 </body>
 </html>

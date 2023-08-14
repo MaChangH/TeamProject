@@ -21,4 +21,7 @@ public interface MemberMapper {
 	
 	// 정보 수정하기
 	public abstract int update(Member m);
+	
+	// 포인트 불러오기
+	public abstract int getPoint(Member m);
 }
