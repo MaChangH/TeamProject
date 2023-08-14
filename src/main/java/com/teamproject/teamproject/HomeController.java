@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.teamproject.teamproject.board.BoardDAO;
+import com.teamproject.teamproject.banner.BannerDAO;
 import com.teamproject.teamproject.member.MemberDAO;
 
 @Controller
@@ -17,13 +17,14 @@ public class HomeController {
 	private MemberDAO mDAO;
 	
 	@Autowired
-	private BoardDAO bDAO;
+	private BannerDAO baDAO;
 	
 	// 처음 접속 시 요청 페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		bDAO.bannerEvent(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
@@ -32,7 +33,8 @@ public class HomeController {
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
 	public String goHome(HttpServletRequest req) {
 		mDAO.loginCheck(req);
-		bDAO.bannerEvent(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
@@ -41,7 +43,8 @@ public class HomeController {
 		@RequestMapping(value = "/member.go", method = RequestMethod.GET)
 		public String goMember(HttpServletRequest req) {
 			mDAO.loginCheck(req);
-			bDAO.bannerEvent(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
 			req.setAttribute("cp", "teamMember.jsp");
 			return "index";
 		}

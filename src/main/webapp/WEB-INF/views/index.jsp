@@ -30,8 +30,8 @@
 	<table id="indexMenuTbl">
 		<tr>
 			<td class="indexMenu"><a href="board.go">BOARD1</a></td>
-			<td class="indexMenu"><a href="calendar.go">BOARD2</a></td>
-			<td class="indexMenu"><a href="#">BOARD3</a></td>
+			<td class="indexMenu"><a href="#">BOARD2</a></td>
+			<td class="indexMenu"><a href="game.go">GAME</a></td>
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
@@ -60,6 +60,11 @@
 		<tr>
 			<td>
 				<jsp:include page="banner/leftBanner.jsp" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<jsp:include page="banner/weather.jsp" />
 			</td>
 		</tr>
 	</table>

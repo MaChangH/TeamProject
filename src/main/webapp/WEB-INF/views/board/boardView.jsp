@@ -87,7 +87,7 @@
 	<table border="1" id="replyWriteTbl">
 		<tr>
 			<td>
-				<input id="replyWriteWriter" name="tp_r_writer" value="  ${sessionScope.loginMember.tp_m_nick }" readonly="readonly">
+				<input id="replyWriteWriter" name="tp_r_writer" value="${sessionScope.loginMember.tp_m_nick }" readonly="readonly">
 			</td>
 			<td align="center">
 				<button>작성</button>

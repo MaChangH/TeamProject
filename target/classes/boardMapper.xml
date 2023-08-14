@@ -79,7 +79,7 @@
 	
 	<!-- 댓글 작성하는 부분 -->
 	<insert id="writeReply" parameterType="com.teamproject.teamproject.board.Reply">
-		insert into tp_reply values (reply_seq.nextval, #{tp_r_b_no}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
+		insert into tp_reply values (tp_reply_seq.nextval, #{tp_r_b_no}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
 	</insert>
 	
 	<!-- 댓글 삭제하는 부분 -->

@@ -69,7 +69,7 @@ public class BoardDAO {
 		board.setTp_b_like(like);
 		view++;
 		ss.getMapper(BoardMapper.class).boardLike(board);
-		System.out.println(view);
+//		System.out.println(view);
 		board.setTp_b_view(view);
 		boards.set(0, board);
 		ss.getMapper(BoardMapper.class).updateBoardView(board);
@@ -283,8 +283,8 @@ public class BoardDAO {
 				req.setAttribute("r", "댓글 작성 성공");
 				req.getSession().setAttribute("st", token);
 				
-				System.out.println(formerToken);
-				System.out.println(token);
+//				System.out.println(formerToken);
+//				System.out.println(token);
 			} else {
 				req.setAttribute("r", "댓글 작성 실패(새로고침)");
 			}
@@ -327,14 +327,6 @@ public class BoardDAO {
 		}
 	}
 	
-	
-	// 오늘, 금주 핫 게시글 가져오는 method
-	public void bannerEvent(HttpServletRequest req) {
-		List<Board> boards1 = ss.getMapper(BoardMapper.class).todayHot();
-		List<Board> boards2 = ss.getMapper(BoardMapper.class).thisWeekHot();
-		req.setAttribute("todayHot", boards1);
-		req.setAttribute("thisWeekHot", boards2);
-	}
 	
 	
 }
