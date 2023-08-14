@@ -1,0 +1,13 @@
+<html>
+<head>
+<title>News Crawler</title>
+</head>
+<body>
+<h1>News Articles</h1>
+<ul>
+{% for newsArticle in newsArticles %}
+<li><a href="{{ newsArticle.link }}">{{ newsArticle.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

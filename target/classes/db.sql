@@ -71,5 +71,5 @@ create sequence tp_like_seq;
 drop table tp_like cascade constraint purge
 select * from tp_like order by tp_l_b_no;
 
-
+insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 1 ,1,1)
 
