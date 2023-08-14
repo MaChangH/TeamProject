@@ -69,7 +69,7 @@ public class BoardDAO {
 		board.setTp_b_like(like);
 		view++;
 		ss.getMapper(BoardMapper.class).boardLike(board);
-		System.out.println(view);
+//		System.out.println(view);
 		board.setTp_b_view(view);
 		boards.set(0, board);
 		ss.getMapper(BoardMapper.class).updateBoardView(board);
@@ -103,6 +103,8 @@ public class BoardDAO {
 			String txt = mr.getParameter("tp_b_txt").replace("\r\n", "<br>");
 			b.setTp_b_txt(txt);
 			b.setTp_b_notice(mr.getParameter("tp_b_notice"));
+			b.setTp_b_imp(mr.getParameter("tp_b_imp"));
+			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
 			if (tp_b_photo == null) {
@@ -185,6 +187,7 @@ public class BoardDAO {
 			String txt = mr.getParameter("tp_b_txt").replace("\r\n", "<br>");
 			b.setTp_b_txt(txt);
 			b.setTp_b_notice(mr.getParameter("tp_b_notice"));
+			b.setTp_b_imp(mr.getParameter("tp_b_imp"));
 //			System.out.println(txt);
 			if (newFile == null) { // 사진은 수정 안하는
 				newFile = oldFile;
@@ -280,8 +283,8 @@ public class BoardDAO {
 				req.setAttribute("r", "댓글 작성 성공");
 				req.getSession().setAttribute("st", token);
 				
-				System.out.println(formerToken);
-				System.out.println(token);
+//				System.out.println(formerToken);
+//				System.out.println(token);
 			} else {
 				req.setAttribute("r", "댓글 작성 실패(새로고침)");
 			}
@@ -324,14 +327,6 @@ public class BoardDAO {
 		}
 	}
 	
-	
-	// 오늘, 금주 핫 게시글 가져오는 method
-	public void bannerEvent(HttpServletRequest req) {
-		List<Board> boards1 = ss.getMapper(BoardMapper.class).todayHot();
-		List<Board> boards2 = ss.getMapper(BoardMapper.class).thisWeekHot();
-		req.setAttribute("todayHot", boards1);
-		req.setAttribute("thisWeekHot", boards2);
-	}
 	
 	
 }

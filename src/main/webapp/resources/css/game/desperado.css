@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+
+#dSpace {
+	position: relative;
+	border: 5px solid black;
+	border-radius: 20px;
+	background-color: #85d7fe;
+	background-image: url("../../img/game/desperado/dBackground.png");
+	width: 640px;
+	height: 480px;
+	margin-left: 300px;
+	margin-right: 300px;
+	overflow: hidden;
+}
+
+#dGun {
+	position: absolute;
+	left: 640px;
+	top: 480px;
+	transform: translate(-100%, -100%);
+	z-index: 10;
+}
+
+#dFire {
+	position: absolute;
+	left: 470px;
+	top: 350px;
+	transform: translate(-50%, -50%);
+	z-index: 8;
+}
+
+.dBtn {
+	z-index: 10;
+}
+
+.dBottle {
+	position: absolute;
+	display: none;
+	transform: translate(-50%, -50%);
+	width: 75px;
+	height: 75px;
+	z-index: 6;
+}
+
+#dBottle1 {
+	left: 7%;
+	top: 34%;
+}
+
+#dBottle2 {
+	left: 28%;
+	top: 47%;
+}
+
+#dBottle3 {
+	left: 47%;
+	top: 28%;
+}
+
+#dBottle4 {
+	left: 67%;
+	top: 39%;
+}
+
+#dBottle5 {
+	left: 88%;
+	top: 32%;
+}
+
+.dInput {
+	position: absolute;
+	background: transparent;
+	color: white;
+	text-shadow: black 1px 1px 2px;
+	border: none;
+}
+
+.dInput:focus {
+	outline: none;
+}
+
+#dGunBullet {
+	font-size: 30pt;
+	font-weight: 900;
+	top: 85%;
+	left: 9%;
+	width: 30px;
+}
+
+#dGunBullet6 {
+	font-size: 30pt;
+	font-weight: 900;
+	top: 85%;
+	left: 15%;
+	text-align: left;
+}
+
+.dBottleKey {
+	font-size: 25pt;
+	font-weight: 900;
+	background-color: #00000050;
+	border-radius: 10px;
+	width: 40px;
+	padding-left: 10px;
+	transform: translate(-50%, -50%);
+	transition: all 0.5s ease-out;
+}
+
+#dBottle1Key {
+	left: 7%;
+	top: 21%;
+	
+}
+
+#dBottle2Key {
+	left: 28%;
+	top: 34%;
+}
+
+#dBottle3Key {
+	left: 47%;
+	top: 15%;
+}
+
+#dBottle4Key {
+	left: 67%;
+	top: 26%;
+}
+
+#dBottle5Key {
+	left: 88%;
+	top: 19%;
+}
