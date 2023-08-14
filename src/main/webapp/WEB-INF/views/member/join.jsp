@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td>닉네임</td>
-			<td><input id="joinNick" placeholder="4~12자" name="tp_m_nick" class="i1" autocomplete="off" autofocus="autofocus" maxlength="12"></td>
+			<td><input id="joinNick" placeholder="2~12자" name="tp_m_nick" class="i1" autocomplete="off" autofocus="autofocus" maxlength="12"></td>
 			<td id="joinNicknameChk">이미 가입된 닉네임입니다</td>
 		</tr>
 		<tr>
