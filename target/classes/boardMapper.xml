@@ -23,7 +23,7 @@
 		resultType="com.teamproject.teamproject.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') order by
@@ -44,12 +44,12 @@
 	
 	<!-- 게시글 작성하는 부분(사진X) -->
 	<insert id="writeBoard" parameterType="com.teamproject.teamproject.board.Board"> 
-		insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, 0, 0) 
+		insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0) 
 	</insert>
 	
 	<!-- 게시글 작성하는 부분(사진O) -->
 	<insert id="writeBoardPhoto" parameterType="com.teamproject.teamproject.board.Board">
-		insert into tp_board values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, 0, 0)
+		insert into tp_board values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0)
 	</insert>
 	
 	<!-- 게시글 삭제하는 부분 -->
@@ -59,12 +59,12 @@
 	
 	<!-- 게시글 수정하는 부분(사진X) -->
 	<update id="updateBoard" parameterType="com.teamproject.teamproject.board.Board">
-		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice} where tp_b_no = #{tp_b_no}
+		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice}, tp_b_imp = #{tp_b_imp} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 게시글 수정하는 부분(사진O) -->
 	<update id="updateBoardPhoto" parameterType="com.teamproject.teamproject.board.Board">
-		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice}, tp_b_photo = #{tp_b_photo} where tp_b_no = #{tp_b_no}
+		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice}, tp_b_imp = #{tp_b_imp}, tp_b_photo = #{tp_b_photo} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 게시글 조회수 바꾸는 부분 -->

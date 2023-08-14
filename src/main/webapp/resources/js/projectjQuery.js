@@ -56,7 +56,7 @@ function nicknameCheck() {
 		});
 	});
 }
-
+// 공지 체크 시 input 벨류값 0에서 1로 변경
 function noticeChk() {
 	setInterval(() => {
 		if ($('#noticeChk').is(':checked')) {
@@ -71,6 +71,22 @@ function noticeChk() {
 			$('#updateNoticeResult').val(0);
 		}
 		
+	}, 1);
+}
+
+function importantChk() {
+	setInterval(() => {
+		if ($('#importantChk').is(':checked')) {
+			$('#isImportant').val(1);
+		} else {
+			$('#isImportant').val(0);
+		}
+		
+		if ($('#updateImp').is(':checked')) {
+			$('#updateImpResult').val(1);
+		} else {
+			$('#updateImpResult').val(0);
+		}
 	}, 1);
 }
 
@@ -97,6 +113,7 @@ $(function () {
 	idCheck();
 	nicknameCheck();
 	noticeChk();
+	importantChk();
 	textareaScroll();
 	replyareaScroll();
 });

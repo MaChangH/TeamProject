@@ -6,6 +6,7 @@ create table tp_board (
 	tp_b_photo varchar2(500 char),
 	tp_b_when date not null,
 	tp_b_notice varchar2(1 char) not null,
+	tp_b_imp varchar2(1 char) not null, -- 중요표시 --
 	tp_b_view number(10) not null,
 	tp_b_like number(10) not null
 );

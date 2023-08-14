@@ -103,6 +103,8 @@ public class BoardDAO {
 			String txt = mr.getParameter("tp_b_txt").replace("\r\n", "<br>");
 			b.setTp_b_txt(txt);
 			b.setTp_b_notice(mr.getParameter("tp_b_notice"));
+			b.setTp_b_imp(mr.getParameter("tp_b_imp"));
+			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
 			if (tp_b_photo == null) {
@@ -185,6 +187,7 @@ public class BoardDAO {
 			String txt = mr.getParameter("tp_b_txt").replace("\r\n", "<br>");
 			b.setTp_b_txt(txt);
 			b.setTp_b_notice(mr.getParameter("tp_b_notice"));
+			b.setTp_b_imp(mr.getParameter("tp_b_imp"));
 //			System.out.println(txt);
 			if (newFile == null) { // 사진은 수정 안하는
 				newFile = oldFile;
