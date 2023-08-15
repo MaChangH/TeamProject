@@ -56,8 +56,40 @@ import com.teamproject.teamproject.member.MemberDAO;
 			TokenMaker.makeToken(req);
 			req.setAttribute("cp", "board/board.jsp");
 			return "index";
+			
+		}
+		
+		// NOTICE버튼 클릭시 공지글페이지
+		@RequestMapping(value = "/notice.go", method = RequestMethod.GET)
+		public String goNotice(HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
+			bDAO.countAllBoard();
+			bDAO.searchClear(req);
+			bDAO.getNoticeMsg(1, req);
+			TokenMaker.makeToken(req);
+//			req.getSession().setAttribute("cp", "\"board/board.jsp\"");
+//			String cp = (String) req.getSession().getAttribute("cp");
+			req.setAttribute("cp", "board/noticeBoard.jsp");
+			return "index";
 		
 	}
+		
+		// 하단 페이지 번호 눌렀을 때 해당 공지글페이지로 이동하는 method
+				@RequestMapping(value = "/notice.page", method = RequestMethod.GET)
+				public String goNoticePage(HttpServletRequest req) {
+					mDAO.loginCheck(req);
+					baDAO.bannerEvent(req);
+					baDAO.getWeather(req);
+					bDAO.countAllBoard();
+					int p = Integer.parseInt(req.getParameter("p"));
+					bDAO.getNoticeMsg(p, req);
+					TokenMaker.makeToken(req);
+					req.setAttribute("cp", "board/noticeBoard.jsp");
+					return "index";
+					
+				}
 		
 		// 게시글 클릭시 해당 게시글 전체 내용 있는 페이지로 이동하는 method
 		@RequestMapping(value = "/board.view", method = RequestMethod.GET)

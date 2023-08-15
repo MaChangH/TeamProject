@@ -6,15 +6,27 @@ public interface BoardMapper {
 
 	// 게시글 갯수
 	public abstract int getAllBoardCount();
+
+	// 공지글 갯수
+	public abstract int getAllNoticeCount();
 	
 	// 검색어 해당하는 게시글 갯수
 	public abstract int getSearchBoardCount(BoardSelector bSel);
 	
+	// 검색어 해당하는 공지글 갯수
+	public abstract int getSearchNoticeCount(BoardSelector bSel);
+
 	// 검색어 해당하는 게시글
 	public abstract List<Board> getAllBoard(BoardSelector bSel);
+
+	// 검색어 해당하는 공지글
+	public abstract List<Board> getAllNoticeBoard(BoardSelector bSel);
 	
 	// 공지사항
 	public abstract List<Board> getAllNotice();
+	
+	// 공지사항 중요글
+	public abstract List<Board> getAllNoticeImp();	
 	
 	// 게시글 클릭시 전체 정보
 	public abstract List<Board> viewBoard(BoardNo bn);

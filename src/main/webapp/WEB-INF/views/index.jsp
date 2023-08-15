@@ -29,8 +29,8 @@
 	</table>
 	<table id="indexMenuTbl">
 		<tr>
-			<td class="indexMenu"><a href="board.go">BOARD1</a></td>
-			<td class="indexMenu"><a href="#">BOARD2</a></td>
+			<td class="indexMenu"><a href="board.go">BOARD</a></td>
+			<td class="indexMenu"><a href="notice.go">NOTICE</a></td>
 			<td class="indexMenu"><a href="game.go">GAME</a></td>
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>

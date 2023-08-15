@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class BoardDAO {
 
 	private int allBoardCount;
+	private int allNoticeCount;
 	
 	@Autowired
 	private SqlSession ss;
@@ -27,6 +28,7 @@ public class BoardDAO {
 	// 전체 게시글 수 가져오는 method
 	public void countAllBoard() {
 		allBoardCount = ss.getMapper(BoardMapper.class).getAllBoardCount();
+		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount();
 	}
 	
 	// 검색어 초기화 method
@@ -39,6 +41,7 @@ public class BoardDAO {
 		String search = (String) req.getSession().getAttribute("search"); // 검색어
 
 		int boardCount = 0;
+		int noticeCount = 0;
 		if (search == null) { // 전체조회
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
@@ -55,9 +58,34 @@ public class BoardDAO {
 		BoardSelector bSel = new BoardSelector(search, start, end);
 		List<Board> boards = ss.getMapper(BoardMapper.class).getAllBoard(bSel);
 		List<Board> notices = ss.getMapper(BoardMapper.class).getAllNotice();
+		List<Board> imps = ss.getMapper(BoardMapper.class).getAllNoticeImp();
 		req.setAttribute("boardMsg", boards);
 		req.setAttribute("notice", notices);
+		req.setAttribute("imp", imps);
 	}
+	
+	// 검색어에 해당하는 공지글 가져오는 method
+		public void getNoticeMsg(int page, HttpServletRequest req) {
+			String search = (String) req.getSession().getAttribute("search"); // 검색어
+
+			int noticeCount = 0;
+			if (search == null) { // 전체조회
+				noticeCount = allNoticeCount;
+				search = "";
+				
+			} else { // 검색
+				BoardSelector bSel2 = new BoardSelector(search, 0, 0);
+				noticeCount = ss.getMapper(BoardMapper.class).getSearchNoticeCount(bSel2);
+			}
+			int PerPage = 10;
+			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
+			req.setAttribute("APCN", allPageCountNotice);
+			int start = (PerPage * (page - 1)) + 1;
+			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
+			BoardSelector bSel = new BoardSelector(search, start, end);
+			List<Board> notices = ss.getMapper(BoardMapper.class).getAllNoticeBoard(bSel);
+			req.setAttribute("notice", notices);
+		}
 	
 	// 클릭한 게시글 전체 내용 보여주는 method
 	public void viewBoard(int tp_b_no, HttpServletRequest req) {
@@ -107,6 +135,12 @@ public class BoardDAO {
 			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
+			System.out.println(b.getTp_b_title());
+			System.out.println(b.getTp_b_txt());
+			System.out.println(b.getTp_b_writer());
+			System.out.println(b.getTp_b_photo());
+			System.out.println(b.getTp_b_notice());
+			System.out.println(b.getTp_b_imp());
 			if (tp_b_photo == null) {
 				if (ss.getMapper(BoardMapper.class).writeBoard(b) == 1) {
 					req.setAttribute("r", "글쓰기성공");
@@ -166,14 +200,14 @@ public class BoardDAO {
 		Board otk = (Board) req.getSession().getAttribute("boardManager");
 		String oldFile = otk.getTp_b_photo();
 		String newFile = mr.getFilesystemName("tp_b_photo");
-		System.out.println(oldFile);
-		System.out.println(newFile);
+//		System.out.println(oldFile);
+//		System.out.println(newFile);
 		try {
 			String token = mr.getParameter("token");
 
 			String st2 = (String) req.getSession().getAttribute("st");
-			System.out.println(token);
-			System.out.println(st2);
+//			System.out.println(token);
+//			System.out.println(st2);
 
 			if (st2 != null && token.equals(st2)) {
 				req.setAttribute("r", "글수정실패(새로고침)");

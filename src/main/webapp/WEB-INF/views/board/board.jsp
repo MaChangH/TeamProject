@@ -27,7 +27,19 @@
 			<td align="center" class="boardMsgTitle">조회수</td>
 			<td align="center" class="boardMsgTitle">좋아요</td>
 		</tr>
-		<c:forEach var="n" items="${notice }" end="4">
+		<c:forEach var="i" items="${imp }">
+						<tr onclick="boardViewGo(${i.tp_b_no })" class="boardMsgHover">
+							<td align="left" class="boardMsg boardNo" style="font-weight: bold; color: red;">[중요]</td>
+							<td class="boardMsg boardTitle">&nbsp;${i.tp_b_title }</td>
+							<td align="left" class="boardMsg boardWriter">★${i.tp_b_writer }</td>
+							<td align="right" class="boardMsg boardDate" class="notice4">
+								<fmt:formatDate value="${i.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
+							</td>
+							<td align="center" class="boardMsg boardView">${i.tp_b_view }</td>
+							<td align="center" class="boardMsg boardLike">${i.tp_b_like }</td>
+						</tr>
+					</c:forEach>
+		<c:forEach var="n" items="${notice }" end="2">
 						<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
 							<td align="left" class="boardMsg boardNo">[공지]</td>
 							<td class="boardMsg boardTitle">&nbsp;${n.tp_b_title }</td>
@@ -59,6 +71,9 @@
 							<td class="boardMsg boardTitle">&nbsp;
 								<c:if test="${tm.tp_b_notice eq 1 }">
 									<span class="titleNotice">[공지]</span>
+								</c:if>
+								<c:if test="${tm.tp_b_like >= 10 }">
+									<span class="titleNotice">★</span>
 								</c:if>
 								${tm.tp_b_title }
 							</td>
