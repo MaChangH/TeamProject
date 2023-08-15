@@ -17,7 +17,8 @@ create table tp_board (
 
 create sequence tp_board_seq;
 
-insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 1 ,1,1)
+insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 
+1 ,1,1,1)
 
 drop table tp_board cascade constraint purge;
 drop table tp_reply cascade constraint purge;
@@ -83,4 +84,6 @@ drop table tp_like cascade constraint purge
 select * from tp_like order by tp_l_b_no;
 
 
-
+-- 1. tp_member
+-- 2. tp_reply
+-- 3. tp_board 순서대로 create 하기

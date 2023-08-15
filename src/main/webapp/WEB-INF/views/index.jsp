@@ -32,12 +32,9 @@
 		<tr>
 			<td class="indexMenu"><a href="board.go">BOARD1</a></td>
 			<td class="indexMenu"><a href="#">BOARD2</a></td>
-<<<<<<< HEAD
 			<td class="indexMenu"><a href="#">BOARD3</a></td>
-			<td class="indexMenu"><a href="riot.go">Riot Games</a></td>
-=======
+			<td class="indexMenu"><a href="riot.go">Riot</a></td>
 			<td class="indexMenu"><a href="game.go">GAME</a></td>
->>>>>>> 305add157a245502f32b83aac6af513dbc9ba78d
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
