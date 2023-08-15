@@ -10,9 +10,14 @@
 		select * from tp_member where tp_m_nick = #{tp_m_nick}
 	</select>
 	
+	<!-- 로그인 했을 때의 년월일, 로그인 횟수, 포인트 기록 -->
+	<update id="setLoginDate" parameterType="com.teamproject.teamproject.member.Member">
+		update tp_member set tp_m_loginNum = #{tp_m_loginNum}, tp_m_firstLogin = #{tp_m_firstLogin}, tp_m_point = #{tp_m_point} where tp_m_id = #{tp_m_id}
+	</update>
+	
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="com.teamproject.teamproject.member.Member">
-		insert into tp_member values (#{tp_m_id}, #{tp_m_pw}, #{tp_m_nick}, #{tp_m_name}, #{tp_m_addr}, #{tp_m_photo}, 0)
+		insert into tp_member values (#{tp_m_id}, #{tp_m_pw}, #{tp_m_nick}, #{tp_m_name}, #{tp_m_addr}, #{tp_m_photo}, 0, 0, 0, 0)
 	</insert>
 	
 	<!-- 회원탈퇴 -->
@@ -24,4 +29,9 @@
 	<update id="update" parameterType="com.teamproject.teamproject.member.Member">
 		update tp_member set tp_m_pw = #{tp_m_pw}, tp_m_nick = #{tp_m_nick}, tp_m_name = #{tp_m_name}, tp_m_addr = #{tp_m_addr}, tp_m_photo = #{tp_m_photo} where tp_m_id = #{tp_m_id} 
 	</update>
+	
+	<!-- 포인트 데이터 불러오기 -->
+	<select id="getPoint" parameterType="com.teamproject.teamproject.member.Member" resultType="java.lang.Integer">
+		select tp_m_point from tp_member where tp_m_id = #{tp_m_id}
+	</select>
 </mapper>

@@ -61,6 +61,7 @@ public class BannerDAO {
 				hour = String.format("%02d", nowHour) + "00";
 			}
 
+//			System.out.println(ymd);
 //			System.out.println(nowMinute);
 //			System.out.println(hour);
 

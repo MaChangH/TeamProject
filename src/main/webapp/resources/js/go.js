@@ -84,6 +84,8 @@ function byeGo() {
 	}
 }
 
+
+// js로 post요청 보내는 함수
 function pageGoPost(d){
 	var insdoc = "";
     
@@ -99,5 +101,29 @@ function pageGoPost(d){
 	}).appendTo("body");
     
 	goform.submit();
+}
+
+
+
+///////////////// 게임 ///////////////////////
+
+// 블랙잭 하러가기
+function blackJackGo() {
+	pageGoPost({
+		url: "blackJack.go",	//이동할 페이지
+		   target: "_self",
+		   vals: [				//전달할 인수들
+		]
+	});
+}
+
+// 데스페라도 하러가기
+function desperadoGo() {
+	pageGoPost({
+		url: "desperado.go",	//이동할 페이지
+		   target: "_self",
+		   vals: [				//전달할 인수들
+		]
+	});
 }
 
