@@ -17,9 +17,9 @@ function test() {
 	$(document).keyup((e) => {
 		let gunFireSwitch = $('#dGunFireStmt').val();
 		let gunBullet = $('#dGunBullet').val();
-		if((e.keyCode == 81 || e.keyCode == 87 || e.keyCode == 69 || e.keyCode == 82 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 70) && gunFireSwitch == 1 && gunBullet > 0) {
+		if((e.keyCode == 81 || e.keyCode == 87 || e.keyCode == 69 || e.keyCode == 82 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 70) && gunFireSwitch == 1 && gunBullet > 0 && $('#dBottleShot').val() < 6) {
 			$('#dGunFireStmt').val(0);
-		} else if (((e.keyCode == 81 || e.keyCode == 87 || e.keyCode == 69 || e.keyCode == 82 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 70) && gunFireSwitch == 1 && gunBullet == 0) || $('#dBottleShot').val() == 6) {
+		} else if (((e.keyCode == 81 || e.keyCode == 87 || e.keyCode == 69 || e.keyCode == 82 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 70) && gunFireSwitch == 1) && (gunBullet == 0 || $('#dBottleShot').val() == 6)) {
 			$('#dGunFireStmt').val(2);
 			setTimeout(() => {
 			gunReload();
