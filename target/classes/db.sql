@@ -6,27 +6,31 @@ create table tp_board (
 	tp_b_photo varchar2(500 char),
 	tp_b_when date not null,
 	tp_b_notice varchar2(1 char) not null,
-	tp_b_imp varchar2(1 char) not null, -- 중요표시 --
+	tp_b_imp varchar2(1 char) not null, 
 	tp_b_view number(10) not null,
 	tp_b_like number(10) not null,
 	foreign key (tp_b_writer) references tp_member (tp_m_nick) on delete cascade
 );
+create sequence tp_board_seq;
 
+select * from TP_BOARD
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
-create sequence tp_board_seq;
 
-insert into tp_board values (tp_board_seq.nextval, 'writer', 'tp_b_title','text for test','tp_b_photo',  sysdate, 
-1 ,1,1,1)
+
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지사항21','공지합니다~19',  sysdate, 1 , 0, 0, 0)
 
 drop table tp_board cascade constraint purge;
-drop table tp_reply cascade constraint purge;
 drop sequence tp_board_seq ;
-drop sequence tp_reply_seq ;
 
-select * from TP_BOARD
-
+select * from (
+	select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_photo, tp_b_when, tp_b_notice, 
+	tp_b_imp, tp_b_view, tp_b_like from (
+		select * from tp_board 
+				order by tp_b_when desc )) 
+					where rn = 22 and tp_b_notice = 1;
 
 create table tp_reply (
 	tp_r_no number(4) primary key,
@@ -37,12 +41,14 @@ create table tp_reply (
 	tp_r_edit varchar2(5 char),
 	foreign key (tp_r_writer) references tp_member (tp_m_nick) on delete cascade
 );
-
--- 회원 탈퇴하면 작성했던 댓글 삭제되게
-
 create sequence tp_reply_seq;
+
 select * from TP_reply
 
+drop table tp_reply cascade constraint purge;
+drop sequence tp_reply_seq ;
+
+-- 회원 탈퇴하면 작성했던 댓글 삭제되게
 
 create table tp_member (
 	tp_m_id varchar2(20 char) primary key,
@@ -56,6 +62,7 @@ create table tp_member (
 	tp_m_loginNum number(5) not null,
 	tp_m_firstLogin number(8) not null 
 );
+select * from tp_member;
 
 drop table tp_member cascade constraint purge
 
@@ -67,7 +74,6 @@ drop table tp_member cascade constraint purge
 insert into tp_member values('team', '1', '관리자', '관리자', '팀프로젝트', '1.jpg', 1, 100, 0, 20230101);
 
 
-select * from tp_member;
 update tp_member set tp_m_point = 500 where tp_m_id = 'team';
 
 
@@ -78,10 +84,11 @@ create table tp_like (
 	foreign key (tp_l_b_no) references tp_board (tp_b_no) on delete cascade
 );
 -- 게시글 삭제하면 해당 게시글의 좋아요 역시 삭제되게
-
 create sequence tp_like_seq;
-drop table tp_like cascade constraint purge
+
 select * from tp_like order by tp_l_b_no;
+
+drop table tp_like cascade constraint purge
 
 
 -- 1. tp_member
