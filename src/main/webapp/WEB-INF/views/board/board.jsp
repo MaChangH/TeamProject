@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>board/board.jsp</title>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 	<table id="boardTitleTbl">
@@ -69,9 +72,6 @@
 						<tr onclick="boardViewGo(${tm.tp_b_no })" class="boardMsgHover">
 							<td align="left" class="boardMsg boardNo">${tm.tp_b_no }</td>
 							<td class="boardMsg boardTitle">&nbsp;
-								<c:if test="${tm.tp_b_notice eq 1 }">
-									<span class="titleNotice">[공지]</span>
-								</c:if>
 								<c:if test="${tm.tp_b_like >= 10 }">
 									<span class="titleNotice">★</span>
 								</c:if>

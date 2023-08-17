@@ -19,7 +19,8 @@ select * from TP_BOARD
 
 
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '공지사항21','공지합니다~19',  sysdate, 1 , 0, 0, 0)
+values (tp_board_seq.nextval, '관리자', '공지사항1','공지합니다~1',  sysdate, 1 , 0, 0, 0)
+
 
 drop table tp_board cascade constraint purge;
 drop sequence tp_board_seq ;
