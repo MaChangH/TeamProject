@@ -17,6 +17,7 @@
 <script type="text/javascript" src="resources/js/teamValidChecker.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
+<script type="text/javascript" src="resources/js/riot.js"></script>
 </head>
 <body>
 	<%-- 타이틀 및 메뉴 --%>
@@ -29,8 +30,9 @@
 	</table>
 	<table id="indexMenuTbl">
 		<tr>
-			<td class="indexMenu"><a href="board.go">BOARD1</a></td>
-			<td class="indexMenu"><a href="#">BOARD2</a></td>
+			<td class="indexMenu"><a href="board.go">BOARD</a></td>
+			<td class="indexMenu"><a href="notice.go">NOTICE</a></td>
+			<td class="indexMenu"><a href="riot.go">Riot</a></td>
 			<td class="indexMenu"><a href="game.go">GAME</a></td>
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>
