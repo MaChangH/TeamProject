@@ -42,6 +42,11 @@
 
 			<td align="center"><form action="board.search" name="searchForm"
 					onsubmit="return searchboard();">
+					<select name="searchop">
+						<option value="tp_b_title">제목</option>
+						<option value="tp_b_txt">내용</option>
+						<option value="tp_b_writer">닉네임</option>
+					</select>
 					<input name="search" placeholder="제목 검색">
 					<button>검색</button>
 				</form></td>

@@ -13,12 +13,26 @@ create table tp_board (
 );
 create sequence tp_board_seq;
 
-select * from TP_BOARD
+select * from TP_BOARD where tp_b_notice = 1
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
+select * from (
+		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		from ( select * from tp_board where (tp_b_txt like '%지수%') order by
+		tp_b_when desc ))
+		where rn >= 1 and rn <= 100 and tp_b_notice = 0;
+select count(*) from tp_board where tp_b_notice = 1
+
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '공지사항1','공지합니다~1',  sysdate, 1 , 0, 0, 0)
+values (tp_board_seq.nextval, '트기', '솔직히 유희왕','굉장히 어렵습니다',  sysdate, 0, 0, 0, 0)
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '트기', '이선수','나츄르만 잘합니다',  sysdate, 0, 0, 0, 0)
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '트기', '진정한 듀얼리스트는','왠벽한 패가 아니면 승부를 하지 않는다',  sysdate, 0, 0, 0, 0)
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '트기', '나 진짜','나츄르까지 하는거보면 전생에 드루이드였음',  sysdate, 0, 0, 0, 0)
 
 
 drop table tp_board cascade constraint purge;
