@@ -17,7 +17,6 @@ select * from TP_BOARD
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
-
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
 values (tp_board_seq.nextval, '관리자', '공지사항1','공지합니다~1',  sysdate, 1 , 0, 0, 0)
 
@@ -91,4 +90,6 @@ select * from tp_like order by tp_l_b_no;
 drop table tp_like cascade constraint purge
 
 
-
+-- 1. tp_member
+-- 2. tp_reply
+-- 3. tp_board 순서대로 create 하기
