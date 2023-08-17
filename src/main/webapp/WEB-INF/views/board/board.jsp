@@ -11,7 +11,7 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-			<td>게시판</td>
+			<td class="boardName">게시판</td>
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
@@ -20,7 +20,7 @@
 			<td colspan="6" align="center" id="boardNoticeTitle">공지사항</td>
 		</tr>
 		<tr>
-			<td align="center" class="boardMsgTitle">번호</td>
+			<td align="center" class="boardMsgTitle"></td>
 			<td align="center" class="boardMsgTitle">제목</td>
 			<td align="center" class="boardMsgTitle">작성자</td>
 			<td align="center" class="boardMsgTitle">작성일</td>

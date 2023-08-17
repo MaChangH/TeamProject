@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* 날씨 css */
+#weatherTbl {
+	border: 2px solid black;
+	border-radius: 20px;
+	width: 180px;
+	height: 120px;
+	overflow: hidden;
+}
+
+#weatherTitle {
+	font-size: 15pt;
+	font-weight: 900;
+}
+
+#weatherResultTbl {
+	overflow: hidden;
+}
+
+#weatherImg {
+	position: absolute;
+	width: 120px;
+	height: 120px;
+	z-index: -1;
+	left: 30%;
+	bottom: 10px;
+}
+
+#weatherTemp {
+	font-size: 25pt;
+	font-weight: 900;
+}
+
+/* 금일, 금주 핫 게시글 css */
+.bannerHotTbl {
+	border: 2px solid black;
+	border-radius: 20px;
+	border-spacing: 0px;
+	width: 180px;
+	margin-bottom: 20px;
+}
+
+.bannerHotTr {
+	cursor: pointer;
+}
+
+.bannerHotTitle {
+	text-align: center;
+	font-size: 14pt;
+	font-weight: 900;
+	border-bottom: 1px dashed black;
+	height: 40px;
+}
+
+.bannerHotIndex {
+	text-align: center;
+	border-bottom: 1px solid black;
+	height: 30px;
+	font-weight: 900;
+}
+
+.bannerHotIndexTitle {
+	border-right: 1px solid black;
+}
+
+.bannerHotMsgTitle {
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	max-width: 100px;
+	height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 10px;
+}
+
+.bannerHotMsgLike {
+	text-align: center;
+	border-top: 1px solid black;
+}

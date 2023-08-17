@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/info.css">
 <link rel="stylesheet" href="resources/css/board.css">
 <link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet" href="resources/css/banner.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript" src="resources/js/projectjQuery.js"></script>
@@ -21,18 +22,18 @@
 </head>
 <body>
 	<%-- 타이틀 및 메뉴 --%>
-	<table id="indexTitleTbl">
+	<table id="indexTitleTbl" class="indexTitleMenu">
 		<tr>
 			<td id="indexTitle">
 				<a href = "home.go">Team Project</a>
 			</td>
 		</tr>
 	</table>
-	<table id="indexMenuTbl">
+	<table id="indexMenuTbl" class="indexTitleMenu">
 		<tr>
 			<td class="indexMenu"><a href="board.go">BOARD</a></td>
 			<td class="indexMenu"><a href="notice.go">NOTICE</a></td>
-			<td class="indexMenu"><a href="riot.go">Riot</a></td>
+			<td class="indexMenu"><a href="riot.go">RIOT</a></td>
 			<td class="indexMenu"><a href="game.go">GAME</a></td>
 			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
 		</tr>
@@ -64,6 +65,10 @@
 				<jsp:include page="banner/leftBanner.jsp" />
 			</td>
 		</tr>
+	</table>
+	
+	<%-- 오른쪽 배너 --%>
+	<table id="indexRightBannerTbl">
 		<tr>
 			<td>
 				<jsp:include page="banner/weather.jsp" />

@@ -9,33 +9,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table id="todayHot" border="1">
+	<table id="todayHot" class="bannerHotTbl">
 	<tr>
-		<td colspan="2">오늘의 인기 게시글</td>
+		<td colspan="2" class="bannerHotTitle">오늘의 인기 게시글</td>
 	</tr>
 	<tr>
-		<td>제목</td>
-		<td>조회수</td>
+		<td class="bannerHotIndex bannerHotIndexTitle">제목</td>
+		<td class="bannerHotIndex">조회수</td>
 	</tr>
 	<c:forEach var="dh" items="${todayHot }" end="4">
-		<tr onclick="boardViewGo(${dh.tp_b_no });">
-			<td>${dh.tp_b_title }</td>
-			<td>${dh.tp_b_view }</td>
+		<tr onclick="boardViewGo(${dh.tp_b_no });" class="bannerHotTr">
+			<td class="bannerHotMsgTitle">${dh.tp_b_title }</td>
+			<td class="bannerHotMsgLike">${dh.tp_b_view }</td>
 		</tr>
 	</c:forEach>
-	</table><p>
-	<table id="thisWeekHot" border="1">
+	</table>
+	<table id="thisWeekHot" class="bannerHotTbl">
 	<tr>
-		<td colspan="2">이번주 인기 게시글</td>
+		<td colspan="2" class="bannerHotTitle">이번주 인기 게시글</td>
 	</tr>
 	<tr>
-		<td>제목</td>
-		<td>좋아요 수</td>
+		<td class="bannerHotIndex bannerHotIndexTitle">제목</td>
+		<td class="bannerHotIndex">좋아요</td>
 	</tr>
 	<c:forEach var="wh" items="${thisWeekHot }" end="4">
-		<tr onclick="boardViewGo(${wh.tp_b_no });">
-			<td>${wh.tp_b_title }</td>
-			<td>${wh.tp_b_like }</td>
+		<tr onclick="boardViewGo(${wh.tp_b_no });" class="bannerHotTr">
+			<td class="bannerHotMsgTitle">${wh.tp_b_title }</td>
+			<td class="bannerHotMsgLike">${wh.tp_b_like }</td>
 		</tr>
 	</c:forEach>
 	</table>

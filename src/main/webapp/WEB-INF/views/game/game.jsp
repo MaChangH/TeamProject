@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="resources/css/game/game.css">
 </head>
 <body>
+	<table id="boardTitleTbl">
+		<tr>
+			<td class="boardName">미니게임</td>
+		</tr>
+	</table>
 	<table onclick="blackJackGo();" class="gameTbl">
 		<tr>
 			<td><img src="resources/img/game/blackJack/bjThumbnail.png" class="gameThumb"></td>

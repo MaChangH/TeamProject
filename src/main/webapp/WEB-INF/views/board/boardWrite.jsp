@@ -9,30 +9,33 @@
 <title>board/boardWrite.jsp</title>
 </head>
 <body>
-	<table>
+	<table id="boardTitleTbl">
 		<tr>
-			<th colspan="3" align="left">글 작 성</th>
+			<td class="boardName">게시글 작성</td>
 		</tr>
 	</table>
-		<table id="boardWriteTbl" border="1">
+		<table id="boardWriteTbl">
 	<form action="board.write" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return writeCheck();">
 	<input name="token" value="${token }" type="hidden">
 			<tr>
 				<td>
-					<table id="writeTbl" border="1">
+					<table id="writeTbl">
 						<tr>
-							<td id="boardWriteTitle">제목 :</td>
-							<td>
+							<td id="boardWriteTitle" class="boardWriteTitle" align="center">제목</td>
+							<td class="boardWriteTitle">
 								<input id="boardWriteTitleContext" name="tp_b_title" autocomplete="off" maxlength="50">
 							</td>
 						</tr>
 						<tr>
-							<td align="center">
+							<td align="center" id="boardWriteChk">
 								<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
-								공지 : 
+								공지  
 									<input id="noticeChk" type="checkbox">
-								중요 : 
+								중요  
 									<input id="importantChk" type="checkbox">
+								</c:if>
+								<c:if test="${sessionScope.loginMember.tp_m_role ne 1 }">
+								작성자
 								</c:if>
 									<input id="isNotice" value="0" name="tp_b_notice" type="hidden">
 									<input id="isImportant" value="0" name="tp_b_imp" type="hidden">

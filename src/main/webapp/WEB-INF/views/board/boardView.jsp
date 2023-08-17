@@ -11,7 +11,7 @@
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<c:forEach var="tki" items="${boards }">
-		<table id="boardViewTbl" border="1">
+		<table id="boardViewTbl">
 			<tr>
 				<td id="boardViewTitle" name="tp_b_title" colspan="2">
 				<c:if test="${tki.tp_b_notice eq 1 }">
@@ -31,7 +31,7 @@
 				<td id="boardViewWriter">${tki.tp_b_writer }</td>
 				<td id="boardViewDate"><fmt:formatDate value="${tki.tp_b_when }"
 						pattern="yyyy-MM-dd E HH:mm:ss" /></td>
-				<td align="center">
+				<td align="center" id="boardViewLike">
 					조회수 : ${tki.tp_b_view }
 					추천수 : ${tki.tp_b_like }
 				</td>
@@ -42,17 +42,19 @@
 				${tki.tp_b_txt }
 				</td>
 			</tr>
-			<tr>
-				<td align="center" colspan="3">
 					<c:if test="${sessionScope.loginMember ne null}">
+			<tr>
+				<td align="center" colspan="3" id="boardViewLikeBtn">
 						<button onclick="likeGo();">게시글 추천</button>
-					</c:if>
 				</td>
 			</tr>
+					</c:if>
 		</table>
 	</c:forEach>
+	
+	<!-- 댓글 불러오는 곳 -->
 	<c:forEach var="r" items="${Reply }">
-	<table border="1"  id="replyTextTbl">
+	<table id="replyTextTbl">
 		<tr>
 			<td id="replyTextWriter">
 				${r.tp_r_writer }
@@ -72,30 +74,34 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="3">
+			<td colspan="3" id="replyTextTd">
 				<span style="color: red;" id="replyEdited${r.tp_r_no }">${r.tp_r_edit }</span>
-				<span id="replyText${r.tp_r_no }">&nbsp;${r.tp_r_text }</span>
+				<span id="replyText${r.tp_r_no }">${r.tp_r_text }</span>
 				<textarea id="replyTextarea${r.tp_r_no }" class="replyTextarea" readonly="readonly">${r.tp_r_text }</textarea>
 				<textarea id="replyHiddenText${r.tp_r_no }" class="replyHiddenText">${r.tp_r_text }</textarea>
 			</td>
 		</tr>
 	</table><p>
 	</c:forEach>
+	
+	<!-- 공지사항은 관리자만 댓글 작성 가능, 그 외에는 로그인 상태에서만 댓글 작성 가능 -->
 	<c:if test="${(sessionScope.loginMember ne null and sessionScope.boardManager.tp_b_notice ne 1) or sessionScope.loginMember.tp_m_role eq 1}">
 	<form action="reply.write" method="post">
 	<input name="token" value="${token }" type="hidden">
-	<table border="1" id="replyWriteTbl">
+	<table id="replyWriteTbl">
 		<tr>
-			<td>
-				<input id="replyWriteWriter" name="tp_r_writer" value="${sessionScope.loginMember.tp_m_nick }" readonly="readonly">
+			<td id="replyWriteWriter" colspan="2">
+				${sessionScope.loginMember.tp_m_nick }
+				<input name="tp_r_writer" value="${sessionScope.loginMember.tp_m_nick }" type="hidden">
 			</td>
-			<td align="center">
-				<button>작성</button>
-			</td>
+			
 		</tr>
 		<tr>
-			<td id="replyWriteText" align="center" colspan="2">
+			<td id="replyWriteText">
 				<textarea id="replyWriteTextarea" class="replyarea" name="tp_r_text"></textarea>
+			</td>
+			<td align="center" id="replyWriteBtn">
+				<button>작성</button>
 			</td>
 		</tr>
 	</table>

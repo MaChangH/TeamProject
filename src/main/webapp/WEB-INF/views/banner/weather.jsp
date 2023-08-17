@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>banner/weather.jsp</title>
-<link rel="stylesheet" href="resources/css/weather.css">
 <script type="text/javascript">
 	$(function() {
 		

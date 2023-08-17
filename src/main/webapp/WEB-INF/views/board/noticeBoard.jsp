@@ -11,31 +11,33 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-			<td>게시판</td>
+			<td class="boardName">공지사항</td>
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
 	<table id="boardNoticeTbl">
 		<tr>
-			<td align="center" class="boardMsgTitle">번호</td>
+			<td align="center" class="boardMsgTitle"></td>
 			<td align="center" class="boardMsgTitle">제목</td>
 			<td align="center" class="boardMsgTitle">작성자</td>
 			<td align="center" class="boardMsgTitle">작성일</td>
 			<td align="center" class="boardMsgTitle">조회수</td>
 			<td align="center" class="boardMsgTitle">좋아요</td>
 		</tr>
-		<c:forEach var="n" items="${notice }">
-						<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
-							<td align="left" class="boardMsg boardNo">[공지]${n.tp_b_no }</td>
-							<td class="boardMsg boardTitle">&nbsp;${n.tp_b_title }</td>
-							<td align="left" class="boardMsg boardWriter">★${n.tp_b_writer }</td>
-							<td align="right" class="boardMsg boardDate" class="notice4">
-								<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
-							</td>
-							<td align="center" class="boardMsg boardView">${n.tp_b_view }</td>
-							<td align="center" class="boardMsg boardLike">${n.tp_b_like }</td>
-						</tr>
-		</c:forEach>
+			<c:forEach var="n" items="${notice }">
+					<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
+						<td align="left" class="boardMsg boardNo">[공지]</td>
+						<td class="boardMsg boardTitle">&nbsp;${n.tp_b_title }</td>
+						<td align="left" class="boardMsg boardWriter">★${n.tp_b_writer }</td>
+						<td align="right" class="boardMsg boardDate" class="notice4">
+							<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
+						</td>
+						<td align="center" class="boardMsg boardView">${n.tp_b_view }</td>
+						<td align="center" class="boardMsg boardLike">${n.tp_b_like }</td>
+					</tr>
+			</c:forEach>
+		</table>
+		<table>
 		<tr>
 
 			<%-- 검색 기능 부분 --%>
@@ -45,12 +47,13 @@
 					<input name="search" placeholder="제목 검색">
 					<button>검색</button>
 				</form></td>
-			<td align="right" id="writeButton" class="boardSoild"><form
-					action="board.write.go">
-					<c:if test="${sessionScope.loginMember ne null }">
-					<button>글쓰기</button>
+					<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
+						<td align="right" id="writeButton" class="boardSoild">
+						<form action="board.write.go">
+							<button>글쓰기</button>
+						</form>
+						</td>
 					</c:if>
-				</form></td>
 		</tr>
 
 		
