@@ -6,7 +6,7 @@ create table tp_board (
 	tp_b_photo varchar2(500 char),
 	tp_b_when date not null,
 	tp_b_notice varchar2(1 char) not null,
-	tp_b_imp varchar2(1 char) not null, -- 중요표시 --
+	tp_b_imp varchar2(1 char) not null, 
 	tp_b_view number(10) not null,
 	tp_b_like number(10) not null,
 	foreign key (tp_b_writer) references tp_member (tp_m_nick) on delete cascade
@@ -39,6 +39,7 @@ create table tp_reply (
 
 -- 회원 탈퇴하면 작성했던 댓글 삭제되게
 
+
 create sequence tp_reply_seq;
 select * from TP_reply
 
@@ -54,7 +55,7 @@ create table tp_member (
 	tp_m_point number(5) not null,
 	tp_m_loginNum number(5) not null,
 	tp_m_firstLogin number(8) not null 
-);
+); 
 
 drop table tp_member cascade constraint purge
 
