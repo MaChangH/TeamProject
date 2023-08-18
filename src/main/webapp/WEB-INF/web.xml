@@ -52,4 +52,14 @@
     <servlet-name>news_servlet</servlet-name>
     <url-pattern>/news_servlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewsSevlet</display-name>
+    <servlet-name>NewsSevlet</servlet-name>
+    <servlet-class>com.kwon.news.news.NewsSevlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewsSevlet</servlet-name>
+    <url-pattern>/NewsSevlet</url-pattern>
+  </servlet-mapping>
 </web-app>

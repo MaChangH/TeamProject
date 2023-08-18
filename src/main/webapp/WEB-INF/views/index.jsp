@@ -56,12 +56,12 @@
 			<td><jsp:include page="banner/leftBanner.jsp" /></td>
 		</tr>
 		<tr>
-			<td><jsp:include page="banner/weather.jsp" /></td>
+			<td><jsp:include page="banner/weather.jsp" /></td>`
 		</tr>
 	</table>
 	<%-- 뉴스 나오는 배너 --%>
 	<c:forEach var="newsArticle" items="${newsArticles}">
-		<li><a href="${newsArticle.link}">${newsArticle.title}</a></li>
+		<li><a href="${newsArticles.link}">${newsArticles.title}</a></li>
 	</c:forEach>
 </body>
 </html>
