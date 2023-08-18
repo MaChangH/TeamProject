@@ -34,18 +34,28 @@ public class BoardDAO {
 	// 검색어 초기화 method
 	public void searchClear(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
+		req.getSession().setAttribute("searchNum", 1);
 	}
 	
 	// 검색어에 해당하는 게시글 가져오는 method
 	public void getBoardMsg(int page, HttpServletRequest req) {
 		String search = (String) req.getSession().getAttribute("search"); // 검색어
 		int boardCount = 0;
+		int searchNum = 1;
 		if (search == null) { // 전체조회
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
 		} else { // 검색
 			BoardSelector bSel2 = new BoardSelector(search, 0, 0);
-			boardCount = ss.getMapper(BoardMapper.class).getSearchBoardCount(bSel2);
+			searchNum = Integer.parseInt(req.getParameter("searchNum"));
+			req.getSession().setAttribute("searchNum", searchNum);
+			if (searchNum == 1) {
+				boardCount = ss.getMapper(BoardMapper.class).getSearchTitleCount(bSel2);
+			}else if (searchNum == 2) {
+				boardCount = ss.getMapper(BoardMapper.class).getSearchTxtCount(bSel2);				
+			}else if (searchNum == 3) {
+				boardCount = ss.getMapper(BoardMapper.class).getSearchWriterCount(bSel2);				
+			}
 		}
 		int PerPage = 10;
 		int allPageCount = (int) Math.ceil(boardCount / (double) PerPage);
@@ -53,8 +63,16 @@ public class BoardDAO {
 		int start = (PerPage * (page - 1)) + 1;
 		int end = (page == allPageCount) ? boardCount : (start + PerPage - 1);
 		BoardSelector bSel = new BoardSelector(search, start, end);
-		List<Board> boards = ss.getMapper(BoardMapper.class).getAllBoard(bSel);
 		List<Board> notices = ss.getMapper(BoardMapper.class).getAllNotice();
+		List<Board> boards = null;
+		System.out.println(searchNum);
+		if (searchNum == 1) {
+			boards = ss.getMapper(BoardMapper.class).getAllTitle(bSel);			
+		}else if (searchNum == 2) {
+			boards = ss.getMapper(BoardMapper.class).getAllTxt(bSel);									
+		}else if (searchNum == 3) {
+			boards = ss.getMapper(BoardMapper.class).getAllWriter(bSel);																
+		}
 		List<Board> imps = ss.getMapper(BoardMapper.class).getAllNoticeImp();
 		req.setAttribute("boardMsg", boards);
 		req.setAttribute("notice", notices);
