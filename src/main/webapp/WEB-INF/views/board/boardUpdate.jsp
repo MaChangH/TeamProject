@@ -21,6 +21,8 @@
 					<form action="board.update" method="post" name="writeForm" enctype="multipart/form-data"
 						onsubmit="return writeCheck();">
 						<input name="token" value="${token }" type="hidden">
+						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
+						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">
 						<table id="updateTbl" border="1">
 							<tr>
 								<td id="boardUpdateTitle">제목 :<input name="tp_b_no"
@@ -31,12 +33,13 @@
 								<td>
 									공지<input type="checkbox" id="updateNotice">
 									<input value="${tki.tp_b_notice }" id="isUpdateNotice" type="hidden">
+									중요<input type="checkbox" id="updateImp">
+									<input value="${tki.tp_b_imp }" id="isUpdateImp" type="hidden">
 								</td>
 								</c:if>
 							</tr>
 							<tr>
 								<td colspan="3" id="boardUpdateText" align="center">
-									<input id="updateNoticeResult" name="tp_b_notice" type="hidden" value="0">
 									<c:if test="${tki.tp_b_photo != null }">
 										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
 										<input type="file" name="tp_b_photo"><br>
@@ -59,6 +62,9 @@
 	<script type="text/javascript">
 	if ($('#isUpdateNotice').val() == 1) {
 		$('#updateNotice').prop('checked', 'true');
+	}
+	if ($('#isUpdateImp').val() == 1) {
+		$('#updateImp').prop('checked', 'true');
 	}
 	</script>
 </body>

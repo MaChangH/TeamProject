@@ -51,13 +51,8 @@ function joinCheck() {
 		alert('닉네임을 입력해주세요');
 		j_nickname.focus();
 		return false;
-	} else if (atLeastLetter(j_nickname, 4)) {
-		alert('닉네임은 최소 4자입니다');
-		j_nickname.value = "";
-		j_nickname.focus();
-		return false;
-	} else if (containsAnotherID(j_nickname)) {
-		alert('닉네임은 영어 및 숫자만 사용 가능합니다');
+	} else if (atLeastLetter(j_nickname, 2)) {
+		alert('닉네임은 최소 2자입니다');
 		j_nickname.value = "";
 		j_nickname.focus();
 		return false;
@@ -169,8 +164,32 @@ function updateCheck() {
 	}
 }
 
+// 소환사명 빈칸방지
+function riotSearchCheck(){
+	let SNinput = document.SN_Form.SN;
+	if (isEmpty(SNinput)) {
+		alert('소환사명을 입력해주세요');
+		SN.focus();
+		return false;
+	}}
 
 
+//////////////////////////////////////////////////////////////////
+
+function pointCheck(myPoint) {
+	let betPoint = $('#pointBet').val();
+	if (betPoint > myPoint) {
+		$('#bJStmt').val(404);
+		alert('보유 포인트보다 많이 베팅할 수 없습니다');
+		$('#pointBet').val(0);
+		return false;
+	} else if(betPoint != 0) {
+		$('#isBet').val(1);
+		$('#bJStmt').val(0);
+	} else {
+		$('#bJStmt').val(0);
+	}
+}
 
 
 

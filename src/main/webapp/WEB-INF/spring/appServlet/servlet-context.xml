@@ -28,9 +28,9 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<beans:property name="username" value="yang" />
-		<beans:property name="password" value="4971" />
+			 value="jdbc:oracle:thin:@192.168.219.100:1521:xe" />
+		<beans:property name="username" value="uniqueguy" />
+		<beans:property name="password" value="1" />
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -45,6 +45,7 @@
 			<beans:list>
 				<beans:value>classpath:boardMapper.xml</beans:value>
 				<beans:value>classpath:memberMapper.xml</beans:value>
+				<beans:value>classpath:gameMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
