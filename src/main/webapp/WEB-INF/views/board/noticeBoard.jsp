@@ -11,11 +11,7 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-<<<<<<< HEAD
-			<td>공 지 사 항</td>
-=======
 			<td class="boardName themeColor">공지사항</td>
->>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
