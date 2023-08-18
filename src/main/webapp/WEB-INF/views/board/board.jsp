@@ -25,15 +25,12 @@ $(function() {
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-<<<<<<< HEAD
-			<td>게 시 판</td>
-=======
 			<td class="boardName themeColor">게시판</td>
->>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
-	<table id="boardNoticeTbl" class="themeBackground-color themeColor themeBorderColor">
+	<table id="boardNoticeTbl"
+		class="themeBackground-color themeColor themeBorderColor">
 		<tr>
 			<td colspan="6" align="center" id="boardNoticeTitle">공지사항</td>
 		</tr>
@@ -46,66 +43,47 @@ $(function() {
 			<td align="center" class="boardMsgTitle themeBorderColor">좋아요</td>
 		</tr>
 		<c:forEach var="i" items="${imp }">
-<<<<<<< HEAD
-			<tr onclick="boardViewGo(${i.tp_b_no })" class="boardMsgHover">
-				<td align="left" class="boardMsg boardNo"
+			<tr onclick="boardViewGo(${i.tp_b_no })"
+				class="boardMsgHover themeBackground-colorGrey">
+				<td align="center"
+					class="boardMsg boardNo themeNotice themeBorderColor"
 					style="font-weight: bold; color: red;">[중요]</td>
-				<td class="boardMsg boardTitle">&nbsp;${i.tp_b_title }</td>
-				<td align="left" class="boardMsg boardWriter">★${i.tp_b_writer }</td>
-				<td align="right" class="boardMsg boardDate" class="notice4"><fmt:formatDate
-						value="${i.tp_b_when }" pattern="yyyy-MM-dd HH:mm" /></td>
-				<td align="center" class="boardMsg boardView">${i.tp_b_view }</td>
-				<td align="center" class="boardMsg boardLike">${i.tp_b_like }</td>
+				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${i.tp_b_title }</td>
+				<td align="left" class="boardMsg boardWriter themeBorderColor">★${i.tp_b_writer }</td>
+				<td align="right" class="boardMsg boardDate themeBorderColor"
+					class="notice4"><fmt:formatDate value="${i.tp_b_when }"
+						pattern="yyyy-MM-dd HH:mm" /></td>
+				<td align="center" class="boardMsg boardView themeBorderColor">${i.tp_b_view }</td>
+				<td align="center" class="boardMsg boardLike themeBorderColor">${i.tp_b_like }</td>
 			</tr>
 		</c:forEach>
-			<tr>
-				<td colspan="6" align="center" id="unfold">펼치기▼</td>
-			</tr>
+		<tr>
+			<td colspan="6" align="center" id="unfold">펼치기▼</td>
+		</tr>
 		<c:forEach var="n" items="${notice }" end="2">
-			<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover notice">
-				<td align="left" class="boardMsg boardNo">[공지]</td>
-				<td class="boardMsg boardTitle">&nbsp;${n.tp_b_title }</td>
-				<td align="left" class="boardMsg boardWriter boardNotice">★${n.tp_b_writer }</td>
-				<td align="right" class="boardMsg boardDate" class="notice4"><fmt:formatDate
-						value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm" /></td>
-				<td align="center" class="boardMsg boardView">${n.tp_b_view }</td>
-				<td align="center" class="boardMsg boardLike">${n.tp_b_like }</td>
+			<tr onclick="boardViewGo(${n.tp_b_no })"
+				class="boardMsgHover themeBackground-colorGrey notice">
+				<td align="center"
+					class="boardMsg boardNo themeNotice themeBorderColor">[공지]</td>
+				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${n.tp_b_title }</td>
+				<td align="left" class="boardMsg boardWriter themeBorderColor">★${n.tp_b_writer }</td>
+				<td align="right" class="boardMsg boardDate themeBorderColor"
+					class="notice4"><fmt:formatDate value="${n.tp_b_when }"
+						pattern="yyyy-MM-dd HH:mm" /></td>
+				<td align="center" class="boardMsg boardView themeBorderColor">${n.tp_b_view }</td>
+				<td align="center" class="boardMsg boardLike themeBorderColor">${n.tp_b_like }</td>
 			</tr>
 		</c:forEach>
-			<tr>
-				<td colspan="6" align="center" class="notice" id="folding">접기▲</td>
-			</tr>
-=======
-						<tr onclick="boardViewGo(${i.tp_b_no })" class="boardMsgHover themeBackground-colorGrey">
-							<td align="center" class="boardMsg boardNo themeNotice themeBorderColor" style="font-weight: bold; color: red;">[중요]</td>
-							<td class="boardMsg boardTitle themeBorderColor">&nbsp;${i.tp_b_title }</td>
-							<td align="left" class="boardMsg boardWriter themeBorderColor">★${i.tp_b_writer }</td>
-							<td align="right" class="boardMsg boardDate themeBorderColor" class="notice4">
-								<fmt:formatDate value="${i.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
-							</td>
-							<td align="center" class="boardMsg boardView themeBorderColor">${i.tp_b_view }</td>
-							<td align="center" class="boardMsg boardLike themeBorderColor">${i.tp_b_like }</td>
-						</tr>
-					</c:forEach>
-		<c:forEach var="n" items="${notice }" end="2">
-						<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover themeBackground-colorGrey">
-							<td align="center" class="boardMsg boardNo themeNotice themeBorderColor">[공지]</td>
-							<td class="boardMsg boardTitle themeBorderColor">&nbsp;${n.tp_b_title }</td>
-							<td align="left" class="boardMsg boardWriter themeBorderColor">★${n.tp_b_writer }</td>
-							<td align="right" class="boardMsg boardDate themeBorderColor" class="notice4">
-								<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
-							</td>
-							<td align="center" class="boardMsg boardView themeBorderColor">${n.tp_b_view }</td>
-							<td align="center" class="boardMsg boardLike themeBorderColor">${n.tp_b_like }</td>
-						</tr>
-					</c:forEach>
->>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
+		<tr>
+			<td colspan="6" align="center" class="notice" id="folding">접기▲</td>
+		</tr>
 	</table>
 	<table id="boardTbl">
 		<%-- 글 제목 보이는 부분 --%>
 		<tr>
 			<td colspan="2" id="noSoild">
-				<table id="boardMsgTbl" class="themeBackground-color themeColor themeBorderColor">
+				<table id="boardMsgTbl"
+					class="themeBackground-color themeColor themeBorderColor">
 					<tr>
 						<td align="center" class="boardMsgTitle themeBorderColor">번호</td>
 						<td align="center" class="boardMsgTitle themeBorderColor">제목</td>
@@ -115,52 +93,30 @@ $(function() {
 						<td align="center" class="boardMsgTitle themeBorderColor">좋아요</td>
 					</tr>
 					<c:forEach var="tm" items="${boardMsg }">
-<<<<<<< HEAD
-						<tr onclick="boardViewGo(${tm.tp_b_no })" class="boardMsgHover">
-							<td align="left" class="boardMsg boardNo">${tm.tp_b_no }</td>
-							<td class="boardMsg boardTitle">&nbsp; <c:if
-									test="${tm.tp_b_like >= 10 }">
-									<span class="titleNotice">★</span>
+						<tr onclick="boardViewGo(${tm.tp_b_no })"
+							class="boardMsgHover themeBackground-colorGrey">
+							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
+							<td class="boardMsg boardTitle themeBorderColor">&nbsp; <c:if
+									test="${tm.tp_b_notice eq 1 }">
+									<span class="titleNotice themeNotice themeBorderColor">[공지]</span>
+								</c:if> <c:if test="${tm.tp_b_like >= 10 }">
+									<span class="titleNotice themeBorderColor">★</span>
 								</c:if> ${tm.tp_b_title }
 							</td>
 							<c:choose>
 								<c:when test="${tm.tp_b_writer eq '관리자' }">
-									<td align="left" class="boardMsg boardWriter">★${tm.tp_b_writer }</td>
+									<td align="left" class="boardMsg boardWriter themeBorderColor">★${tm.tp_b_writer }</td>
 								</c:when>
 								<c:otherwise>
-									<td align="left" class="boardMsg boardWriter">${tm.tp_b_writer }</td>
-								</c:otherwise>
-							</c:choose>
-							<td align="right" class="boardMsg boardDate"><fmt:formatDate
-									value="${tm.tp_b_when }" pattern="yyyy-MM-dd HH:mm" /></td>
-							<td align="center" class="boardMsg boardView">${tm.tp_b_view }</td>
-							<td align="center" class="boardMsg boardLike">${tm.tp_b_like }</td>
-=======
-						<tr onclick="boardViewGo(${tm.tp_b_no })" class="boardMsgHover themeBackground-colorGrey">
-							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
-							<td class="boardMsg boardTitle themeBorderColor">&nbsp;
-								<c:if test="${tm.tp_b_notice eq 1 }">
-									<span class="titleNotice themeNotice themeBorderColor">[공지]</span>
-								</c:if>
-								<c:if test="${tm.tp_b_like >= 10 }">
-									<span class="titleNotice themeBorderColor">★</span>
-								</c:if>
-								${tm.tp_b_title }
-							</td>
-							<c:choose>
-								<c:when test="${tm.tp_b_writer eq '관리자' }">
-								<td align="left" class="boardMsg boardWriter themeBorderColor">★${tm.tp_b_writer }</td>
-								</c:when>
-								<c:otherwise>
-								<td align="left" class="boardMsg boardWriter themeBorderColor">${tm.tp_b_writer }</td>
+									<td align="left" class="boardMsg boardWriter themeBorderColor">${tm.tp_b_writer }</td>
 								</c:otherwise>
 							</c:choose>
 							<td align="right" class="boardMsg boardDate themeBorderColor">
-								<fmt:formatDate value="${tm.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
+								<fmt:formatDate value="${tm.tp_b_when }"
+									pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td align="center" class="boardMsg boardView themeBorderColor">${tm.tp_b_view }</td>
 							<td align="center" class="boardMsg boardLike themeBorderColor">${tm.tp_b_like }</td>
->>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 						</tr>
 					</c:forEach>
 				</table>
@@ -177,8 +133,7 @@ $(function() {
 						<option value="1">제목</option>
 						<option value="2">내용</option>
 						<option value="3">닉네임</option>
-					</select>
-					<input name="search" placeholder="제목 검색">
+					</select> <input name="search" placeholder="제목 검색">
 					<button>검색</button>
 				</form></td>
 			<td align="right" id="writeButton" class="boardSoild"><form
@@ -194,7 +149,7 @@ $(function() {
 		<%-- 페이지 넘기는 부분 --%>
 
 		<tr>
-			<td colspan="2" align="center" ><c:forEach var="p" begin="1"
+			<td colspan="2" align="center"><c:forEach var="p" begin="1"
 					end="${allPageCount }">
 					<a class="themeColor" href="board.page?p=${p }">[${p }] </a>
 				</c:forEach></td>

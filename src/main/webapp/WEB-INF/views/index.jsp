@@ -19,11 +19,8 @@
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
 <script type="text/javascript" src="resources/js/riot.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="resources/js/riotInfo.js"></script>
-=======
 <script type="text/javascript" src="resources/js/theme.js"></script>
->>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 </head>
 <body>
 	<%-- 타이틀 및 메뉴 --%>
