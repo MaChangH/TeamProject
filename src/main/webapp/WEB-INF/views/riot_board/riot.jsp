@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>API key의 유효기간을 확인해주세요 하루한번</h3>
+	<table id="boardTitleTbl">
+		<tr>
+			<td class="boardName themeColor">League of Legends 전적검색</td>
+		</tr>
+	</table>
+	<h3 class="themeColor">API key의 유효기간을 확인해주세요 하루한번</h3>
 
 	<form action  = 'riot.summoners'>
 		<input placeholder = "소환사명" name ="SN">

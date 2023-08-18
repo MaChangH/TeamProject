@@ -14,12 +14,47 @@
 	overflow: hidden;
 }
 
+#dTitle {
+	font-size: 20pt;
+	font-weight: 900;
+}
+
+#Desperado {
+	position: absolute;
+	left: 50%;
+	top: 15%;
+	color: white;
+	font-size: 80pt;
+	font-weight: 900;
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
+	opacity: 0%;
+	transition: all 1.5s linear;
+	transform: translate(-50%, -50%);
+}
+
+#dOpening {
+	position: absolute;
+	width: 640px;
+	height: 480px;
+	left: 0px;
+	top: 0px;
+	background-color: black;
+	z-index: 15;
+	color: white;
+	font-size: 30pt;
+	font-weight: 900;
+	padding-top: 240px;
+	cursor: pointer;
+	transition: all 1.5s linear;
+}
+
 #dGun {
 	position: absolute;
 	left: 640px;
 	top: 480px;
 	transform: translate(-100%, -100%);
 	z-index: 10;
+	opacity: 0%;
 }
 
 #dFire {
@@ -31,6 +66,7 @@
 }
 
 .dBtn {
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
 	z-index: 10;
 }
 
@@ -72,8 +108,9 @@
 	position: absolute;
 	background: transparent;
 	color: white;
-	text-shadow: black 1px 1px 2px;
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
 	border: none;
+	cursor: default;
 }
 
 .dInput:focus {
@@ -86,6 +123,7 @@
 	top: 85%;
 	left: 9%;
 	width: 30px;
+	opacity: 0%;
 }
 
 #dGunBullet6 {
@@ -94,6 +132,7 @@
 	top: 85%;
 	left: 15%;
 	text-align: left;
+	opacity: 0%;
 }
 
 .dBottleKey {
@@ -104,7 +143,8 @@
 	width: 40px;
 	padding-left: 10px;
 	transform: translate(-50%, -50%);
-	transition: all 0.5s ease-out;
+	transition: all 0.1s ease-out;
+	opacity: 0%;
 }
 
 #dBottle1Key {
@@ -131,4 +171,155 @@
 #dBottle5Key {
 	left: 88%;
 	top: 19%;
+}
+
+.dTumbleweed {
+	position: absolute;
+	left: 800px;
+	transform: translate(-50%, -50%);
+}
+
+#dTumbleweed {
+	top: 370px;
+	z-index: 5;
+}
+
+#dShadow {
+	z-index: 3;
+	top: 380px;
+	opacity: 80%;
+}
+
+#dStartBtn {
+	position: absolute;
+	left: 50%;
+	top: 90%;
+	border: none;
+	background: transparent;
+	color: white;
+	font-size: 30pt;
+	font-weight: 900;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	opacity: 0%;
+	transition: opacity 1.5s linear;
+}
+
+#dStartBtn:hover {
+	font-size: 35pt;
+}
+
+.dInstruction {
+	position: absolute;
+	color: white;
+	border: 3px solid #FF000090;
+	border-radius: 80px;
+	background-color: #00000090;
+	font-size: 16pt;
+	font-weight: 900;
+	text-shadow: red 1px 1px 2px;
+	transform: translate(-50%, -50%);
+	opacity: 0%;
+	line-height: 40px;
+	padding-left: 20px;
+	z-index: 10;
+}
+
+#dBulletInstruction {
+	left: 25%;
+	top: 75%;
+	width: 280px;
+	height: 80px;
+	text-align: left;
+}
+
+#dRuleInstruction {
+	left: 50%;
+	top: 30%;
+	width: 400px;
+	height: 80px;
+	text-align: left;
+}
+
+#dTimeBar {
+	position: absolute;
+	background-color: orange;
+	border-radius: 10px;
+	width: 500px;
+	height: 20px;
+	left: 50%;
+	top: 5%;
+	opacity: 0%;
+	transform: translate(-50%, -50%);
+	z-index: 8;
+}
+
+#dTimeNum {
+	position: absolute;
+	background: transparent;
+	color: white;
+	font-size: 25pt;
+	font-weight: 900;
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
+	left: 50%;
+	top: 5%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+}
+
+#d321 {
+	position: absolute;
+	background: transparent;
+	color: white;
+	font-size: 80pt;
+	font-weight: 900;
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+}
+
+#dResult {
+	position: absolute;
+	background: transparent;
+	color: white;
+	font-size: 24pt;
+	font-weight: 900;
+	text-shadow: black 0px 0px 1px, black 0px 0px 2px, black 0px 0px 3px;
+	left: 50%;
+	top: 70%;
+	width: 640px;
+	margin-top: 20px;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+}
+
+#dRestartBtn {
+	position: absolute;
+	left: 50%;
+	top: 70%;
+	border: none;
+	background: transparent;
+	color: white;
+	font-size: 30pt;
+	font-weight: 900;
+	cursor: pointer;
+	display: none;
+	transform: translate(-50%, -50%);
+}
+
+#dRestartBtn:hover {
+	font-size: 35pt;
+}
+
+#dScore {
+	position: absolute;
+	font-size: 35pt;
+	font-weight: 900;
+	left: 12%;
+	top: 8%;
+	width: 100px;
+	opacity: 0%;
+	transform: translate(-50%, -50%);
 }

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/info.css">
 <link rel="stylesheet" href="resources/css/board.css">
 <link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet" href="resources/css/banner.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript" src="resources/js/projectjQuery.js"></script>
@@ -18,29 +19,48 @@
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
 <script type="text/javascript" src="resources/js/riot.js"></script>
+<script type="text/javascript" src="resources/js/riotInfo.js"></script>
+<script type="text/javascript" src="resources/js/theme.js"></script>
 </head>
 <body>
 	<%-- 타이틀 및 메뉴 --%>
-	<table id="indexTitleTbl">
+	<table id="indexTitleTbl" class="indexTitleMenu">
 		<tr>
 			<td id="indexTitle">
-				<a href = "home.go">Team Project</a>
+				<a class="indexTitleA themeColor" href = "home.go">Team Project</a>
 			</td>
 		</tr>
 	</table>
-	<table id="indexMenuTbl">
+	<table id="indexMenuTbl" class="indexTitleMenu">
 		<tr>
-			<td class="indexMenu"><a href="board.go">BOARD</a></td>
-			<td class="indexMenu"><a href="notice.go">NOTICE</a></td>
-			<td class="indexMenu"><a href="riot.go">Riot</a></td>
-			<td class="indexMenu"><a href="game.go">GAME</a></td>
-			<td class="indexMenu"><a href="member.go">MEMBER</a></td>
+			<td class="indexMenu"><a class="indexMenuA themeColor" href="board.go">BOARD</a></td>
+			<td class="indexMenu"><a class="indexMenuA themeColor" href="notice.go">NOTICE</a></td>
+			<td class="indexMenu"><a class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
+			<td class="indexMenu"><a class="indexMenuA themeColor" href="game.go">GAME</a></td>
+			<td class="indexMenu"><a class="indexMenuA themeColor" href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
 	<input id="result" value="${r }" type="hidden">
 	
+	<table id="indexThemeTbl">
+		<tr>
+			<td>
+				<select id="indexTheme">
+					<option value="themeSelect">사이트 테마</option>
+					<option value="Blue">Blue(기본)</option>
+					<option value="Red">Red</option>
+					<option value="Orange">Orange</option>
+					<option value="Silver">Silver</option>
+					<option value="Dark">Dark</option>
+				</select>
+				<input id="indexThemeInput" value="${sessionScope.themeColor }" type="hidden">
+				<button id="indexThemeBtn">테마 변경</button>
+			</td>
+		</tr>
+	</table>
+	
 	<%-- 로그인 페이지 --%>
-	<table id="indexLoginTbl">
+	<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">
 		<tr>
 			<td>
 				<jsp:include page="${lp }" />
@@ -64,11 +84,19 @@
 				<jsp:include page="banner/leftBanner.jsp" />
 			</td>
 		</tr>
+	</table>
+	
+	<%-- 오른쪽 배너 --%>
+	<table id="indexRightBannerTbl">
 		<tr>
 			<td>
 				<jsp:include page="banner/weather.jsp" />
 			</td>
 		</tr>
 	</table>
+	
+	<script type="text/javascript">
+		colorChange();
+	</script>
 </body>
 </html>

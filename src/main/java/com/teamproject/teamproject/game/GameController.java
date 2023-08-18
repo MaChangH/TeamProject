@@ -50,7 +50,7 @@ public class GameController {
 		mDAO.loginCheck(req);
 		baDAO.getWeather(req);
 		baDAO.bannerEvent(req);
-		gDAO.desperado(req);
+		gDAO.getPoint(req);
 		req.setAttribute("cp", "game/desperado.jsp");
 		return "index";
 	}

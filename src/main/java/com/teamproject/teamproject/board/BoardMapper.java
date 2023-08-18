@@ -10,14 +10,26 @@ public interface BoardMapper {
 	// 공지글 갯수
 	public abstract int getAllNoticeCount();
 	
-	// 검색어 해당하는 게시글 갯수
-	public abstract int getSearchBoardCount(BoardSelector bSel);
+	// 검색어(제목) 해당하는 게시글 갯수
+	public abstract int getSearchTitleCount(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글 갯수
+	public abstract int getSearchTxtCount(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글 갯수
+	public abstract int getSearchWriterCount(BoardSelector bSel);
 	
 	// 검색어 해당하는 공지글 갯수
 	public abstract int getSearchNoticeCount(BoardSelector bSel);
 
-	// 검색어 해당하는 게시글
-	public abstract List<Board> getAllBoard(BoardSelector bSel);
+	// 검색어(제목) 해당하는 게시글
+	public abstract List<Board> getAllTitle(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글
+	public abstract List<Board> getAllTxt(BoardSelector bSel);
+	
+	// 검색어(작성자) 해당하는 게시글
+	public abstract List<Board> getAllWriter(BoardSelector bSel);
 
 	// 검색어 해당하는 공지글
 	public abstract List<Board> getAllNoticeBoard(BoardSelector bSel);

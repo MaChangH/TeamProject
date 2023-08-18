@@ -8,7 +8,12 @@
 <link rel="stylesheet" href="resources/css/game/game.css">
 </head>
 <body>
-	<table onclick="blackJackGo();" class="gameTbl">
+	<table id="boardTitleTbl">
+		<tr>
+			<td class="boardName themeColor">미니게임</td>
+		</tr>
+	</table>
+	<table onclick="blackJackGo();" class="gameTbl themeBackground-color themeColor themeBorderColor">
 		<tr>
 			<td><img src="resources/img/game/blackJack/bjThumbnail.png" class="gameThumb"></td>
 		</tr>
@@ -16,7 +21,7 @@
 			<td align="center">블랙잭</td>
 		</tr>
 	</table>
-	<table onclick="desperadoGo();" class="gameTbl">
+	<table onclick="desperadoGo();" class="gameTbl themeBackground-color themeColor themeBorderColor">
 		<tr>
 			<td><img src="resources/img/game/desperado/dThumbnail.jpg" class="gameThumb"></td>
 		</tr>

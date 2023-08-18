@@ -48,4 +48,15 @@ public class HomeController {
 			req.setAttribute("cp", "teamMember.jsp");
 			return "index";
 		}
+		
+	// 사이트 테마 변경시 요청 페이지
+		@RequestMapping(value = "/themeChange.go", method = RequestMethod.POST)
+		public String goThemeChange(HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
+			themeChange.theme(req);
+			req.setAttribute("cp", "home.jsp");
+			return "index";
+		}
 }

@@ -11,10 +11,11 @@
 	<div id = "SNinput">
 		<form action  = 'riot.summoners' name = SN_Form onsubmit = "riotSearchCheck();" >
 				<input placeholder = "소환사명" name ="SN"  id = "SN" > <br>
-				<input  value ="${SNinfoURL}" readonly='readonly' id = 'k'><br>
+				<input type="hidden" value ="${SNinfoURL}" readonly='readonly' id = 'info' name = 'info'><br>
 				<!--  input 타입에 hidden 넣기 -->
 				<button>검색</button>
 			</form>
+			<!--  검색을 누른 뒤 페이지를 따로 summoners 로 넘어감. -->
 	</div>
 		
 		

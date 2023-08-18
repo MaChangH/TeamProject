@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>banner/weather.jsp</title>
-<link rel="stylesheet" href="resources/css/weather.css">
 <script type="text/javascript">
 	$(function() {
 		
@@ -17,10 +16,13 @@
 					let w_temp = "-";
 					let w_wfKor = "-";
 					let td_te = "";
+					let td_teN = "";
 					let td_wf = "";
 					if (w_category == 'T1H') {
 						w_temp = $(w).find('obsrValue').text() + ' ℃';
-						td_te = $('<td></td>').text(w_temp);
+						td_teN = $('<div id="weatherTempNum"></div>').text(w_temp);
+						td_te = $('<td></td>');
+						td_te.append(td_teN);
 						td_te.attr('id', 'weatherTemp');
 					} else if (w_category == 'PTY') {
 						w_wfKor = $(w).find('obsrValue').text();
@@ -75,16 +77,13 @@
 <body>
 	<table id="weatherTbl">
 		<tr>
-			<th id="weatherTitle">현재 날씨</th>
-		</tr>
-		<tr>
 			<td>
-				<table>
+				<table id="weatherCityTbl">
 					<tr>
-						<td id="weatherCity">${city1 }</td>
+						<td class="weatherCity" style="font-size: 18pt; font-weight: 900;">${city1 }</td>
 					</tr>
 					<tr>
-						<td id="weatherCity">${city2 } ${city3 }</td>
+						<td class="weatherCity" style="font-size: 15pt;">${city2 } ${city3 }</td>
 					</tr>
 				</table>
 			</td>
@@ -92,7 +91,11 @@
 		<tr>
 			<td>
 				<table id="weatherResultTbl">
-					<img id="weatherImg">
+					<tr>
+						<td>
+							<img id="weatherImg">
+						</td>
+					</tr>
 				</table>
 			</td>
 		</tr>

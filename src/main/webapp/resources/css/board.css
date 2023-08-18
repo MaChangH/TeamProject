@@ -25,6 +25,8 @@
 	color: red;
 }
 
+
+/* 보드 게시판의 css */
 #boardTbl {
 	margin-left: auto;
 	margin-right: auto;
@@ -38,6 +40,7 @@
 }
 
 #boardNoticeTbl {
+	background-color: white;
 	border: solid 2px black;
 	margin-bottom: 20px;
 	border-spacing: 0px;
@@ -46,9 +49,12 @@
 
 #boardNoticeTitle {
 	border-bottom: solid 2px black;
+	font-size: 15pt;
+	font-weight: 900;
 }
 
 #boardMsgTbl {
+	background-color: white;
 	border: solid 2px black;
 	border-spacing: 0px;
 	width: 100%;
@@ -61,6 +67,8 @@
 .boardMsgTitle {
 	border-bottom: solid 2px black;
 	border: solid 1px black;
+	font-size: 12pt;
+	font-weight: 900;
 }
 
 .boardMsg {
@@ -68,8 +76,7 @@
 }
 
 .boardNo {
-	width: 50px;
-	padding-left: 10px;
+	min-width: 50px;
 }
 
 .boardTitle {
@@ -89,7 +96,7 @@
 }
 
 .boardDate {
-	width: 150px;
+	width: 180px;
 	padding-right: 10px;
 }
 
@@ -102,7 +109,11 @@
 }
 
 
+/* 클릭한 보드 전체 내용의 css */
 #boardViewTbl {
+	border: 2px solid black;
+	border-spacing: 0px;
+	background-color: white;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
@@ -111,6 +122,8 @@
 }
 
 #boardViewTitle {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
 	padding-left: 10px;
 	max-width: 500px;
 	height: 30px;
@@ -118,20 +131,10 @@
 }
 
 #boardViewWriter {
+	border-bottom: 1px solid black;
 	padding-left: 10px;
 	height: 30px;
 	font-weight: 900;
-}
-
-#boardViewDate {
-	text-align: right;
-	padding-right: 10px;
-	height: 30px;
-}
-
-
-#boardViewUD {
-	width: 200px;
 }
 
 #boardViewText {
@@ -152,11 +155,36 @@
 	outline: none;
 }
 
+#boardViewDate {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	text-align: right;
+	padding-right: 10px;
+	height: 30px;
+}
+
+
+#boardViewUD {
+	border-bottom: 1px solid black;
+	width: 200px;
+}
+
+#boardViewLike {
+	border-bottom: 1px solid black;
+}
+
+#boardViewLikeBtn {
+	border-top: 2px solid black;
+	height: 30px;
+}
+
 #boardViewImg {
 	max-height: 300px;
 	max-width: 300px;
 }
 
+
+/* 보드 작성하는 부분의 css */
 #boardWriteTbl {
 	margin-left: auto;
 	margin-right: auto;
@@ -165,16 +193,25 @@
 }
 
 #writeTbl {
+	background-color: white;
+	border: 2px solid black;
+	border-spacing: 0px;
 	height: 100%;
 	width: 100%;
 }
 
 #boardWriteTitle {
+	border-right: 1px solid black;
 	width: 70px;
 	height: 30px;
 }
 
+.boardWriteTitle {
+	border-bottom: 1px solid black;
+}
+
 #boardWriteTitleContext {
+	border-bottom: 1px solid black;
 	border: none;
 	padding-left: 10px;
 	margin-left: 10px;
@@ -182,8 +219,14 @@
 	width: 90%;
 }
 
+#boardWriteChk {
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
 #boardWriteWriter {
 	height: 30px;
+	border-bottom: 1px solid black;
 }
 
 #boardWriteWriterContext {
@@ -198,6 +241,7 @@
 }
 
 #boardWriteImg {
+	border-bottom: 2px dashed black;
 	height: 50px;
 	padding-left: 10px;
 }
@@ -218,6 +262,8 @@
 	padding-right: 20px;
 }
 
+
+/* 보드 수정하는 부분의 css */
 #boardUpdateTbl {
 	margin-left: auto;
 	margin-right: auto;
@@ -226,13 +272,20 @@
 }
 
 #updateTbl {
-	height: 100%;
+	background-color: white;
+	border: 2px solid black;
+	border-spacing: 0px;
 	width: 100%;
 }
 
 #boardUpdateTitle {
+	border-right: 1px solid black;
 	width: 70px;
 	height: 30px;
+}
+
+.boardUpdateTitle {
+	border-bottom: 1px solid black;
 }
 
 #boardUpdateTitleContext {
@@ -241,6 +294,11 @@
 	margin-left: 10px;
 	max-width: 500px;
 	width: 80%;
+}
+
+#boardUpdateChk {
+	border-bottom: 1px solid black;
+	max-width: 50px;
 }
 
 #boardUpdateText {
@@ -262,7 +320,12 @@
 	max-width: 300px;
 }
 
+
+/* 댓글 부분의 css */
 #replyTextTbl {
+	background-color: white;
+	border: 2px solid black;
+	border-spacing: 0px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
@@ -283,7 +346,16 @@
 	width: 100px;
 }
 
+#replyTextTd {
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #replyWriteTbl {
+	background-color: white;
+	border: 2px solid black;
+	border-spacing: 0px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
@@ -291,7 +363,7 @@
 }
 
 #replyWriteWriter {
-	border: none;
+	padding-left: 10px;
 	font-weight: 900;
 }
 
@@ -301,10 +373,21 @@
 
 #replyWriteText {
 	padding-top: 10px;
+	padding-left: 10px;
 }
 
 #replyWriteTextarea {
-	width: 95%;
+	width: 100%;
 	resize: none;
-	border: none;
 }
+
+#replyWriteBtn {
+	width: 100px;
+}
+
+/* 공지사항 게시판의 css */
+
+.noticeNo {
+	width: 75px;
+}
+
