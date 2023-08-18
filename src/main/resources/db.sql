@@ -28,7 +28,7 @@ select * from (
 	select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_photo, 
 	tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like from (
 		select * from tp_board where (tp_b_txt like '%%') and tp_b_notice = 1 order by tp_b_when desc ))
-		where rn >= 1 and rn <= 10;
+		where rn >= 21 and rn <= 30;
 		
 select count(*) from tp_board where tp_b_notice = 1
 select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 

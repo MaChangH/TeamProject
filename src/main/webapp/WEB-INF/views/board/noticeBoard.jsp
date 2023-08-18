@@ -11,7 +11,7 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-			<td>게시판</td>
+			<td>공 지 사 항</td>
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
