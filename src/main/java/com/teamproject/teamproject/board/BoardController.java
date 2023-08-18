@@ -44,21 +44,6 @@ import com.teamproject.teamproject.member.MemberDAO;
 		
 	}
 		
-		// 하단 페이지 번호 눌렀을 때 해당 페이지로 이동하는 method
-		@RequestMapping(value = "/board.page", method = RequestMethod.GET)
-		public String goBoardPage(HttpServletRequest req) {
-			mDAO.loginCheck(req);
-			baDAO.bannerEvent(req);
-			baDAO.getWeather(req);
-			bDAO.countAllBoard();
-			int p = Integer.parseInt(req.getParameter("p"));
-			bDAO.getBoardMsg(p, req);
-			TokenMaker.makeToken(req);
-			req.setAttribute("cp", "board/board.jsp");
-			return "index";
-			
-		}
-		
 		// NOTICE버튼 클릭시 공지글페이지
 		@RequestMapping(value = "/notice.go", method = RequestMethod.GET)
 		public String goNotice(HttpServletRequest req) {
@@ -73,8 +58,23 @@ import com.teamproject.teamproject.member.MemberDAO;
 //			String cp = (String) req.getSession().getAttribute("cp");
 			req.setAttribute("cp", "board/noticeBoard.jsp");
 			return "index";
+			
+		}
 		
-	}
+		// 하단 페이지 번호 눌렀을 때 해당 페이지로 이동하는 method
+		@RequestMapping(value = "/board.page", method = RequestMethod.GET)
+		public String goBoardPage(HttpServletRequest req) {
+			mDAO.loginCheck(req);
+			baDAO.bannerEvent(req);
+			baDAO.getWeather(req);
+			bDAO.countAllBoard();
+			int p = Integer.parseInt(req.getParameter("p"));
+			bDAO.getBoardMsg(p, req);
+			TokenMaker.makeToken(req);
+			req.setAttribute("cp", "board/board.jsp");
+			return "index";
+			
+		}
 		
 		// 하단 페이지 번호 눌렀을 때 해당 공지글페이지로 이동하는 method
 				@RequestMapping(value = "/notice.page", method = RequestMethod.GET)

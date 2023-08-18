@@ -22,8 +22,16 @@ select * from (
 		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
 		from ( select * from tp_board where (tp_b_txt like '%지수%') order by
 		tp_b_when desc ))
-		where rn >= 1 and rn <= 100 and tp_b_notice = 0;
+		where rn >= 1 and rn <= 10 and tp_b_notice = 0;
+		
+select * from (
+	select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_photo, 
+	tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like from (
+		select * from tp_board where (tp_b_txt like '%%') and tp_b_notice = 1 order by tp_b_when desc ))
+		where rn >= 1 and rn <= 10;
+		
 select count(*) from tp_board where tp_b_notice = 1
+select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
 values (tp_board_seq.nextval, '트기', '솔직히 유희왕','굉장히 어렵습니다',  sysdate, 0, 0, 0, 0)
