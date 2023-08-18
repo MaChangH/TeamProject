@@ -13,7 +13,7 @@
 <body>
 	<table>
 		<tr>
-			<td id="bJTitle">Black Jack</td>
+			<td id="bJTitle" class="themeColor">Black Jack</td>
 		</tr>
 	</table>
 	<div id="bJSpace">

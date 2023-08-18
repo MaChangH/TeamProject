@@ -40,6 +40,7 @@
 }
 
 #boardNoticeTbl {
+	background-color: white;
 	border: solid 2px black;
 	margin-bottom: 20px;
 	border-spacing: 0px;
@@ -48,9 +49,12 @@
 
 #boardNoticeTitle {
 	border-bottom: solid 2px black;
+	font-size: 15pt;
+	font-weight: 900;
 }
 
 #boardMsgTbl {
+	background-color: white;
 	border: solid 2px black;
 	border-spacing: 0px;
 	width: 100%;
@@ -63,6 +67,8 @@
 .boardMsgTitle {
 	border-bottom: solid 2px black;
 	border: solid 1px black;
+	font-size: 12pt;
+	font-weight: 900;
 }
 
 .boardMsg {
@@ -71,7 +77,6 @@
 
 .boardNo {
 	min-width: 50px;
-	padding-left: 10px;
 }
 
 .boardTitle {
@@ -81,7 +86,6 @@
 	white-space: nowrap;
 	padding-left: 10px;
 }
-
 
 .boardWriter {
 	width: 100px;
@@ -108,8 +112,8 @@
 /* 클릭한 보드 전체 내용의 css */
 #boardViewTbl {
 	border: 2px solid black;
-	border-radius: 20px;
 	border-spacing: 0px;
+	background-color: white;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
@@ -189,8 +193,8 @@
 }
 
 #writeTbl {
+	background-color: white;
 	border: 2px solid black;
-	border-radius: 20px;
 	border-spacing: 0px;
 	height: 100%;
 	width: 100%;
@@ -268,8 +272,8 @@
 }
 
 #updateTbl {
+	background-color: white;
 	border: 2px solid black;
-	border-radius: 20px;
 	border-spacing: 0px;
 	width: 100%;
 }
@@ -319,6 +323,7 @@
 
 /* 댓글 부분의 css */
 #replyTextTbl {
+	background-color: white;
 	border: 2px solid black;
 	border-spacing: 0px;
 	margin-left: auto;
@@ -348,6 +353,7 @@
 }
 
 #replyWriteTbl {
+	background-color: white;
 	border: 2px solid black;
 	border-spacing: 0px;
 	margin-left: auto;
@@ -373,7 +379,6 @@
 #replyWriteTextarea {
 	width: 100%;
 	resize: none;
-	border: none;
 }
 
 #replyWriteBtn {
@@ -382,4 +387,7 @@
 
 /* 공지사항 게시판의 css */
 
+.noticeNo {
+	width: 75px;
+}
 

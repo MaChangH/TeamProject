@@ -7,12 +7,12 @@
 <title>info.jsp</title>
 </head>
 <body>
-	<table class="memberTitleTbl">
+	<table class="memberTitleTbl themeColor">
 		<tr>
 			<td class="memberTitle">회원정보</td>
 		</tr>
 	</table>
-	<table id="infoTbl" class="infoTbl">
+	<table id="infoTbl" class="infoTbl themeColor">
 		<form action="member.update.go" method="post"
 			enctype="multipart/form-data"
 			name="memberUpdateForm">

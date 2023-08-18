@@ -11,7 +11,11 @@
 <script type="text/javascript" src="resources/js/game/desperado.js"></script>
 </head>
 <body>
-	<h1>Desperado</h1>
+	<table class="themeColor">
+		<tr>
+			<td id="dTitle" class="themeColor">Desperado</td>
+		</tr>
+	</table>
 	<div id="dSpace"> <!-- 게임 공간 -->
 	<input id="dStmt" value="0" type="hidden"> <!-- 게임 상황을 결정하는 변수 -->
 	<input id="dGunFireStmt" value="0" type="hidden"> <!-- 총 발사 가능여부를 결정하는 변수 -->

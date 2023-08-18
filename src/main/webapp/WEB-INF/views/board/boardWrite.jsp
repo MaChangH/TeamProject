@@ -9,9 +9,9 @@
 <title>board/boardWrite.jsp</title>
 </head>
 <body>
-	<table id="boardTitleTbl">
+	<table id="boardTitleTbl themeColor">
 		<tr>
-			<td class="boardName">게시글 작성</td>
+			<td class="boardName themeColor">게시글 작성</td>
 		</tr>
 	</table>
 		<table id="boardWriteTbl">
@@ -19,7 +19,7 @@
 	<input name="token" value="${token }" type="hidden">
 			<tr>
 				<td>
-					<table id="writeTbl">
+					<table id="writeTbl" class="themeBackground-color themeColor">
 						<tr>
 							<td id="boardWriteTitle" class="boardWriteTitle" align="center">제목</td>
 							<td class="boardWriteTitle">
@@ -40,13 +40,16 @@
 									<input id="isNotice" value="0" name="tp_b_notice" type="hidden">
 									<input id="isImportant" value="0" name="tp_b_imp" type="hidden">
 							</td>
-							<td id="boardWriteWriter"><input id="boardWriteWriterContext" name="tp_b_writer" value="${sessionScope.loginMember.tp_m_nick }" readonly="readonly"></td>
+							<td id="boardWriteWriter">
+								${sessionScope.loginMember.tp_m_nick }
+								<input id="boardWriteWriterContext" name="tp_b_writer" value="${sessionScope.loginMember.tp_m_nick }" type="hidden">
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" id="boardWriteImg">이미지 첨부 : <input id="boardWriteImgSelect" type="file" name="tp_b_photo"></td>
 						</tr>
 						<tr>
-							<td class="textarea" id="boardWriteText" colspan="3" align="center"><textarea id="boardWriteTextarea" name="tp_b_txt"
+							<td class="textarea themeBackground-colorGrey" id="boardWriteText" colspan="3" align="center"><textarea id="boardWriteTextarea" name="tp_b_txt"
 									style="resize: none;" maxlength="300" rows="10"></textarea></td>
 						</tr>
 					</table>

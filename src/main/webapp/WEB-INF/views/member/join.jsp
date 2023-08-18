@@ -7,12 +7,12 @@
 <title>join.jsp</title>
 </head>
 <body>
-	<table class="memberTitleTbl">
+	<table class="memberTitleTbl themeColor">
 		<tr>
 			<td class="memberTitle">회원가입</td>
 		</tr>
 	</table>
-	<table id="joinTbl">
+	<table id="joinTbl" class="themeColor">
 	<form action="member.join" method="post" enctype="multipart/form-data" name="joinForm" onsubmit="return joinCheck();">
 		<tr>
 			<td class="joinIndex">ID</td>

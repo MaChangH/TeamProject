@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: "a";
+	src: url("K.TTF");
+}
+
 body {
 	margin: 0px;
 	padding: 0px;
@@ -20,13 +25,14 @@ button {
 #indexTitleTbl {
 	margin-botton: 20px;
 	width: 300px;
-	top: 50px;;
+	top: 75px;
 	
 }
 
-#indexTitle a {
+.indexTitleA {
 	font-size: 30pt;
 	font-weight: 900;
+	font-family: "a";
 }
 
 #indexMenuTbl {
@@ -38,6 +44,7 @@ button {
 
 .indexTitleMenu {
 	position: absolute;
+	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
@@ -47,12 +54,20 @@ button {
 	text-align: center;
 }
 
-.indexMenu a {
+.indexMenuA {
 	font-size: 20pt;
+	font-family: "a";
+}
+
+.indexMenuA:hover {
+	font-weight: 900;
 }
 
 #indexLoginTbl {
 	position: absolute;
+	border: 2px solid black;
+	border-radius: 20px;
+	background-color: white;
 	left: 10px;
 	top: 200px;
 }
@@ -69,14 +84,20 @@ button {
 
 #indexLeftBannerTbl {
 	position: absolute;
-	top: 400px;
+	top: 470px;
 	left: 10px;
 }
 
 #indexRightBannerTbl {
 	position: absolute;
-	display: block;
+	left: 85%;
 	top: 200px;
+}
+
+#indexThemeTbl {
+	position: absolute;
+	left: 50px;
+	top: 50px;
 }
 
 .boardTitleTbl {

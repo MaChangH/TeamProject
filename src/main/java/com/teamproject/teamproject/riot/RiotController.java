@@ -26,6 +26,7 @@ public class RiotController {
 	public String goRiot(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "riot_board/riot.jsp");
 		return "index";
 	}
@@ -34,6 +35,7 @@ public class RiotController {
 	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		String summonerName = rDAO.get_SummonerName(req); 
 		rDAO.get_Id_AccoutId_Puuid(summonerName, req);
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");

@@ -2,19 +2,12 @@
 
 /* 날씨 css */
 #weatherTbl {
+	font-family: "a";
 	border: 2px solid black;
 	border-radius: 20px;
-	width: 180px;
-	height: 120px;
-	overflow: hidden;
-}
-
-#weatherTitle {
-	font-size: 15pt;
-	font-weight: 900;
-}
-
-#weatherResultTbl {
+	background-color: white;
+	width: 200px;
+	height: 180px;
 	overflow: hidden;
 }
 
@@ -22,9 +15,14 @@
 	position: absolute;
 	width: 120px;
 	height: 120px;
-	z-index: -1;
-	left: 30%;
+	left: 35%;
 	bottom: 10px;
+	z-index: 0;
+}
+
+#weatherFore {
+	font-size: 20pt;
+	font-weight: 900;
 }
 
 #weatherTemp {
@@ -32,11 +30,16 @@
 	font-weight: 900;
 }
 
+#weatherTempNum {
+	position: absolute;
+	bottom: 10px;
+}
+
 /* 금일, 금주 핫 게시글 css */
 .bannerHotTbl {
 	border: 2px solid black;
-	border-radius: 20px;
 	border-spacing: 0px;
+	background-color: white;
 	width: 180px;
 	margin-bottom: 20px;
 }

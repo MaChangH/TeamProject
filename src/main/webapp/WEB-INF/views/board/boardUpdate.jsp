@@ -11,7 +11,7 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-			<td class="boardName">게시글 수정</td>
+			<td class="boardName themeColor">게시글 수정</td>
 		</tr>
 	</table>
 	<table id="boardUpdateTbl">
@@ -23,7 +23,7 @@
 						<input name="token" value="${token }" type="hidden">
 						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
 						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">
-						<table id="updateTbl">
+						<table id="updateTbl" class="themeBackground-color themeColor">
 							<tr>
 								<td id="boardUpdateTitle" class="boardUpdateTitle" align="center">제목<input name="tp_b_no"
 									value="${tki.tp_b_no }" type="hidden" readonly="readonly"></td>
@@ -39,7 +39,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="3" id="boardUpdateText" align="center">
+								<td colspan="3" id="boardUpdateText" class="themeBackground-colorGrey" align="center">
 									<c:if test="${tki.tp_b_photo != null }">
 										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
 										<input type="file" name="tp_b_photo"><br>

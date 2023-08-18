@@ -11,11 +11,11 @@
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<c:forEach var="tki" items="${boards }">
-		<table id="boardViewTbl">
+		<table id="boardViewTbl" class="themeColor themeBackground-color">
 			<tr>
 				<td id="boardViewTitle" name="tp_b_title" colspan="2">
 				<c:if test="${tki.tp_b_notice eq 1 }">
-					<span class="titleNotice">[공지]</span>
+					<span class="titleNotice themeNotice">[공지]</span>
 				</c:if>
 					${tki.tp_b_title }
 				</td>
@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td id="boardViewWriter">${tki.tp_b_writer }</td>
-				<td id="boardViewDate"><fmt:formatDate value="${tki.tp_b_when }"
+				<td id="boardViewDate" class="themeBackground-color"><fmt:formatDate value="${tki.tp_b_when }"
 						pattern="yyyy-MM-dd E HH:mm:ss" /></td>
 				<td align="center" id="boardViewLike">
 					조회수 : ${tki.tp_b_view }
@@ -37,14 +37,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" id="boardViewText"><c:if test="${tki.tp_b_photo != null }">
+				<td colspan="3" id="boardViewText" class="themeBackground-colorGrey"><c:if test="${tki.tp_b_photo != null }">
 				<img id="boardViewImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;"><br></c:if>
 				${tki.tp_b_txt }
 				</td>
 			</tr>
 					<c:if test="${sessionScope.loginMember ne null}">
 			<tr>
-				<td align="center" colspan="3" id="boardViewLikeBtn">
+				<td align="center" colspan="3" id="boardViewLikeBtn" class="">
 						<button onclick="likeGo();">게시글 추천</button>
 				</td>
 			</tr>
@@ -54,27 +54,26 @@
 	
 	<!-- 댓글 불러오는 곳 -->
 	<c:forEach var="r" items="${Reply }">
-	<table id="replyTextTbl">
+	<table id="replyTextTbl" class="themeBackground-color themeColor">
 		<tr>
 			<td id="replyTextWriter">
 				${r.tp_r_writer }
+				<c:if test="${sessionScope.boardWriter eq r.tp_r_writer }"><span style="color: #0000AA;" class="themeNotice">(작성자)</span></c:if>
 			</td>
 			<td align="right"  id="replyTextDate">
 				<fmt:formatDate value="${r.tp_r_date }" pattern="yyyy-MM-dd E HH:mm:ss"/>
 			</td>
+			<c:if test="${sessionScope.loginMember.tp_m_nick == r.tp_r_writer }">
 			<td align="center" id="replyTextBtn">
-			<c:if test="${sessionScope.loginMember.tp_m_nick == r.tp_r_writer }">
 				<button id="replyUpdateBtn${r.tp_r_no }" class="replyUpdateBtn" onclick="replyUpdate(${r.tp_r_no });">수정</button>
-			</c:if>
-			<c:if test="${sessionScope.loginMember.tp_m_nick == r.tp_r_writer }">
 				<button id="replyDeleteBtn${r.tp_r_no }" class="replyDeleteBtn" onclick="replyDeleteGo(${r.tp_r_no });">삭제</button>
-			</c:if>
 				<button id="replyUpdateDoneBtn${r.tp_r_no }" onclick="replyUpdateDone(${r.tp_r_no });" class="replyUpdateDoneBtn">작성</button>
 				<button id="replyUpdateCancelBtn${r.tp_r_no }" onclick="replyUpdateCancel(${r.tp_r_no });" class="replyUpdateCancelBtn">취소</button>
 			</td>
+			</c:if>
 		</tr>
 		<tr>
-			<td colspan="3" id="replyTextTd">
+			<td colspan="3" id="replyTextTd" class="themeBackground-colorGrey">
 				<span style="color: red;" id="replyEdited${r.tp_r_no }">${r.tp_r_edit }</span>
 				<span id="replyText${r.tp_r_no }">${r.tp_r_text }</span>
 				<textarea id="replyTextarea${r.tp_r_no }" class="replyTextarea" readonly="readonly">${r.tp_r_text }</textarea>
@@ -88,9 +87,9 @@
 	<c:if test="${(sessionScope.loginMember ne null and sessionScope.boardManager.tp_b_notice ne 1) or sessionScope.loginMember.tp_m_role eq 1}">
 	<form action="reply.write" method="post">
 	<input name="token" value="${token }" type="hidden">
-	<table id="replyWriteTbl">
+	<table id="replyWriteTbl" class="themeBackground-color themeColor">
 		<tr>
-			<td id="replyWriteWriter" colspan="2">
+			<td id="replyWriteWriter" colspan="2" style="color: #0000AA" class="themeNotice">
 				${sessionScope.loginMember.tp_m_nick }
 				<input name="tp_r_writer" value="${sessionScope.loginMember.tp_m_nick }" type="hidden">
 			</td>

@@ -11,29 +11,29 @@
 <body>
 	<table id="boardTitleTbl">
 		<tr>
-			<td class="boardName">공지사항</td>
+			<td class="boardName themeColor">공지사항</td>
 		</tr>
 	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
-	<table id="boardNoticeTbl">
+	<table id="boardNoticeTbl" class="themeBackground-color themeColor themeBorderColor">
 		<tr>
-			<td align="center" class="boardMsgTitle"></td>
-			<td align="center" class="boardMsgTitle">제목</td>
-			<td align="center" class="boardMsgTitle">작성자</td>
-			<td align="center" class="boardMsgTitle">작성일</td>
-			<td align="center" class="boardMsgTitle">조회수</td>
-			<td align="center" class="boardMsgTitle">좋아요</td>
+			<td align="center" class="boardMsgTitle themeBorderColor"></td>
+			<td align="center" class="boardMsgTitle themeBorderColor">제목</td>
+			<td align="center" class="boardMsgTitle themeBorderColor">작성자</td>
+			<td align="center" class="boardMsgTitle themeBorderColor">작성일</td>
+			<td align="center" class="boardMsgTitle themeBorderColor">조회수</td>
+			<td align="center" class="boardMsgTitle themeBorderColor">좋아요</td>
 		</tr>
 			<c:forEach var="n" items="${notice }">
 					<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
-						<td align="left" class="boardMsg boardNo">[공지]</td>
-						<td class="boardMsg boardTitle">&nbsp;${n.tp_b_title }</td>
-						<td align="left" class="boardMsg boardWriter">★${n.tp_b_writer }</td>
-						<td align="right" class="boardMsg boardDate" class="notice4">
+						<td align="center" class="boardMsg noticeNo themeBackground-colorGrey themeBorderColor">[공지]</td>
+						<td class="boardMsg boardTitle themeBackground-colorGrey themeBorderColor">&nbsp;${n.tp_b_title }</td>
+						<td align="left" class="boardMsg boardWriter themeBackground-colorGrey themeBorderColor">★${n.tp_b_writer }</td>
+						<td align="right" class="boardMsg boardDate themeBackground-colorGrey themeBorderColor" class="notice4">
 							<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm"/>
 						</td>
-						<td align="center" class="boardMsg boardView">${n.tp_b_view }</td>
-						<td align="center" class="boardMsg boardLike">${n.tp_b_like }</td>
+						<td align="center" class="boardMsg boardView themeBackground-colorGrey themeBorderColor">${n.tp_b_view }</td>
+						<td align="center" class="boardMsg boardLike themeBackground-colorGrey themeBorderColor">${n.tp_b_like }</td>
 					</tr>
 			</c:forEach>
 		</table>
@@ -63,7 +63,7 @@
 		<tr>
 			<td colspan="2" align="center"><c:forEach var="p" begin="1"
 					end="${APCN }">
-					<a href="notice.page?p=${p }">[${p }] </a>
+					<a class="themeColor" href="notice.page?p=${p }">[${p }] </a>
 				</c:forEach></td>
 		</tr>
 	</table>

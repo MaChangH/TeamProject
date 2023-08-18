@@ -100,10 +100,12 @@ public class BoardDAO {
 //		System.out.println(view);
 		board.setTp_b_view(view);
 		boards.set(0, board);
+		String writer = board.getTp_b_writer();
 		ss.getMapper(BoardMapper.class).updateBoardView(board);
 		req.getSession().setAttribute("boardManager", board);
 		req.getSession().setAttribute("boardNo", tp_b_no);
 		req.getSession().setAttribute("boardText", (board.getTp_b_txt()).replace("<br>", "\r\n"));
+		req.getSession().setAttribute("boardWriter", writer);
 		req.setAttribute("boards", boards);
 	}
 	
