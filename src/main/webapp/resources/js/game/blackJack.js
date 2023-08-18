@@ -348,7 +348,7 @@ function bJWin() {
 	const win = new Audio('resources/audio/blackJack/bJWin.mp3');
 	win.play();
 	setTimeout(() => {
-		pointGetLoss(myPoint);
+		bJPointGetLoss(myPoint);
 	}, 2000);
 }
 
@@ -366,7 +366,7 @@ function bJLose() {
 	const lose = new Audio('resources/audio/blackJack/bJLose.MP3');
 	lose.play();
 	setTimeout(() => {
-		pointGetLoss(myPoint);
+		bJPointGetLoss(myPoint);
 	}, 1500);
 }
 
@@ -387,7 +387,7 @@ function bJMyBlackJack() {
 	const win = new Audio('resources/audio/blackJack/bJBJWin.mp3');
 	win.play();
 	setTimeout(() => {
-		pointGetLoss(myPoint);
+		bJPointGetLoss(myPoint);
 	}, 2000);
 }
 
@@ -405,7 +405,7 @@ function bJOpBlackJack() {
 	const lose = new Audio('resources/audio/blackJack/bJLose.MP3');
 	lose.play();
 	setTimeout(() => {
-		pointGetLoss(myPoint);
+		bJPointGetLoss(myPoint);
 	}, 1500);
 }
 
@@ -449,7 +449,7 @@ function bJPointBet() {
 }
 
 //	베팅한 점수 반영
-function pointGetLoss(myPoint) {
+function bJPointGetLoss(myPoint) {
 	pageGoPost({
 		url: "blackJack.go",	//이동할 페이지
 		   target: "_self",

@@ -107,8 +107,16 @@ public class GameDAO {
 		}
 	}
 	
-	
-	public void desperado(HttpServletRequest req) {
-		
+	// 포인트 획득
+	public void getPoint(HttpServletRequest req) {
+		if (req.getParameter("myPoint") != null && req.getSession().getAttribute("loginMember") != null) {
+			int myPoint = Integer.parseInt(req.getParameter("myPoint"));
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			int point = m.getTp_m_point();
+			point += myPoint;
+			m.setTp_m_point(point);
+			ss.getMapper(GameMapper.class).betPoint(m);
+			System.out.println(m.getTp_m_point());
+		}
 	}
 }

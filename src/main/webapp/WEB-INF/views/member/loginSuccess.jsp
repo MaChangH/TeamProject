@@ -7,12 +7,12 @@
 <title>loginSuccess.jsp</title>
 </head>
 <body>
-	<table id="loginSuccessTbl">
+	<table id="loginSuccessTbl" class="themeColor">
 		<tr>
 			<td align="center" id="loginSuccessImg"><img src="resources/img/${sessionScope.loginMember.tp_m_photo }"></td>
 		</tr>
 		<tr>
-			<td id="loginMemberID" align="center">환영합니다, ${sessionScope.loginMember.tp_m_nick }님!</td>
+			<td id="loginMemberID" align="center">환영합니다, <span style="font-weight: 900;">${sessionScope.loginMember.tp_m_nick }</span>님!</td>
 		</tr>
 		<tr>
 			<td id="loginPoint" align="center">내 포인트 : <span id="loginPointNum">${sessionScope.loginMember.tp_m_point } 점</span></td>

@@ -9,12 +9,12 @@
 <title>boardUpdate.jsp</title>
 </head>
 <body>
-	<table>
+	<table id="boardTitleTbl">
 		<tr>
-			<th colspan="2" align="left">글 수 정</th>
+			<td class="boardName themeColor">게시글 수정</td>
 		</tr>
 	</table>
-	<table border="1" id="boardUpdateTbl">
+	<table id="boardUpdateTbl">
 		<c:forEach var="tki" items="${boards }">
 			<tr>
 				<td>
@@ -23,23 +23,23 @@
 						<input name="token" value="${token }" type="hidden">
 						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
 						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">
-						<table id="updateTbl" border="1">
+						<table id="updateTbl" class="themeBackground-color themeColor">
 							<tr>
-								<td id="boardUpdateTitle">제목 :<input name="tp_b_no"
+								<td id="boardUpdateTitle" class="boardUpdateTitle" align="center">제목<input name="tp_b_no"
 									value="${tki.tp_b_no }" type="hidden" readonly="readonly"></td>
-								<td><input id="boardUpdateTitleContext" name="tp_b_title" autocomplete="off" maxlength="50"
+								<td class="boardUpdateTitle"><input id="boardUpdateTitleContext" name="tp_b_title" autocomplete="off" maxlength="50"
 									value="${tki.tp_b_title }"></td>
+								<td  id="boardUpdateChk">
 								<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
-								<td>
-									공지<input type="checkbox" id="updateNotice">
+									공지 <input type="checkbox" id="updateNotice">
 									<input value="${tki.tp_b_notice }" id="isUpdateNotice" type="hidden">
-									중요<input type="checkbox" id="updateImp">
+									중요 <input type="checkbox" id="updateImp">
 									<input value="${tki.tp_b_imp }" id="isUpdateImp" type="hidden">
-								</td>
 								</c:if>
+								</td>
 							</tr>
 							<tr>
-								<td colspan="3" id="boardUpdateText" align="center">
+								<td colspan="3" id="boardUpdateText" class="themeBackground-colorGrey" align="center">
 									<c:if test="${tki.tp_b_photo != null }">
 										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
 										<input type="file" name="tp_b_photo"><br>
