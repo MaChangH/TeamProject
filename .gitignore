@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2712da49b2522edc270a2ff174cd83d4dd4c1e94
 *.properties
 
 ### Eclipse ###
@@ -138,3 +142,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2712da49b2522edc270a2ff174cd83d4dd4c1e94

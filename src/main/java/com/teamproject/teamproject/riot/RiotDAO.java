@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class RiotDAO {
 	
-	String api_key = "RGAPI-31410784-d0dd-47aa-94f6-b9a86b882bf4";
+	String api_key = "RGAPI-d7d1c4c5-badf-4e45-9b17-c938fdab2102";
 	
-	public String get_SummonerName(HttpServletRequest req) {
+	
+	// input으로 받은 아이디에 띄어쓰기 자리에 %20 추가 후 URL 용 아이디 return
+	public String get_UrlName(HttpServletRequest req) {
 		String name = req.getParameter("SN");
 		req.setAttribute("SN_input", name);
 		String nameforURL = req.getParameter("SN");
 		nameforURL = nameforURL.replace(" ", "%20");
-//		System.out.println(nameforURL);
 		return nameforURL;
 	}
 	
@@ -33,14 +34,8 @@ public class RiotDAO {
 	
 	public void matchSearchWithNickName(HttpServletRequest req) {
 		String urlname = req.getParameter("SN");
-		// js 에서 값 가지고오기 => 바로는 안되고 form 써라고 하는데 
 		String url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + urlname +"?api_key=" + api_key;
 		System.out.println("matchSearchWithNickName 안에있는 url입니다." + url) ;
-		
-		// api 키 를 여기에 String api-key = '' 넣어주고 
-		// 게임아이디 쪽에 띄어쓰기가 어떻게 되는지 ... 아마 닉네임이랑 게임 아이디랑은 별개로 존재할거 같아서 닉네임을 통해서 
-		// 게임아이디를 가지고 오고 그걸를 위에 url 에 넣어야 할 것으로 보임.
-		
 	}
 	
 	// 챔피언 id -> 숫자 => 트타 , 사일 이런게 숫자로 keyvalue 느낌으로 되어있는듯? -> getChampionID
