@@ -31,11 +31,11 @@
 								<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
 								공지 : 
 									<input id="noticeChk" type="checkbox">
-									<input id="isNotice" value="0" name="tp_b_notice" type="hidden">
 								중요 : 
 									<input id="importantChk" type="checkbox">
-									<input id="isImportant" value="0" name="tp_b_imp">
 								</c:if>
+									<input id="isNotice" value="0" name="tp_b_notice" type="hidden">
+									<input id="isImportant" value="0" name="tp_b_imp" type="hidden">
 							</td>
 							<td id="boardWriteWriter"><input id="boardWriteWriterContext" name="tp_b_writer" value="${sessionScope.loginMember.tp_m_nick }" readonly="readonly"></td>
 						</tr>

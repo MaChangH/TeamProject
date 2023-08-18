@@ -21,6 +21,8 @@
 					<form action="board.update" method="post" name="writeForm" enctype="multipart/form-data"
 						onsubmit="return writeCheck();">
 						<input name="token" value="${token }" type="hidden">
+						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
+						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">
 						<table id="updateTbl" border="1">
 							<tr>
 								<td id="boardUpdateTitle">제목 :<input name="tp_b_no"
@@ -30,11 +32,9 @@
 								<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
 								<td>
 									공지<input type="checkbox" id="updateNotice">
-									<input value="${tki.tp_b_notice }" id="isUpdateNotice">
-									<input id="updateNoticeResult" name="tp_b_notice" value="0">
+									<input value="${tki.tp_b_notice }" id="isUpdateNotice" type="hidden">
 									중요<input type="checkbox" id="updateImp">
-									<input value="${tki.tp_b_imp }" id="isUpdateImp">
-									<input id="updateImpResult" name="tp_b_imp" value="0">
+									<input value="${tki.tp_b_imp }" id="isUpdateImp" type="hidden">
 								</td>
 								</c:if>
 							</tr>
