@@ -28,7 +28,7 @@ public class BoardDAO {
 	// 전체 게시글 수 가져오는 method
 	public void countAllBoard() {
 		allBoardCount = ss.getMapper(BoardMapper.class).getAllBoardCount();
-		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount();
+		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount(); // 23
 	}
 	
 	// 검색어 초기화 method
@@ -39,13 +39,10 @@ public class BoardDAO {
 	// 검색어에 해당하는 게시글 가져오는 method
 	public void getBoardMsg(int page, HttpServletRequest req) {
 		String search = (String) req.getSession().getAttribute("search"); // 검색어
-
 		int boardCount = 0;
-		int noticeCount = 0;
 		if (search == null) { // 전체조회
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
-			
 		} else { // 검색
 			BoardSelector bSel2 = new BoardSelector(search, 0, 0);
 			boardCount = ss.getMapper(BoardMapper.class).getSearchBoardCount(bSel2);
@@ -67,12 +64,10 @@ public class BoardDAO {
 	// 검색어에 해당하는 공지글 가져오는 method
 		public void getNoticeMsg(int page, HttpServletRequest req) {
 			String search = (String) req.getSession().getAttribute("search"); // 검색어
-
 			int noticeCount = 0;
 			if (search == null) { // 전체조회
-				noticeCount = allNoticeCount;
-				search = "";
-				
+				noticeCount = allNoticeCount; // 23
+				search = "";			
 			} else { // 검색
 				BoardSelector bSel2 = new BoardSelector(search, 0, 0);
 				noticeCount = ss.getMapper(BoardMapper.class).getSearchNoticeCount(bSel2);
@@ -135,18 +130,18 @@ public class BoardDAO {
 			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
-			System.out.println(b.getTp_b_title());
-			System.out.println(b.getTp_b_txt());
-			System.out.println(b.getTp_b_writer());
-			System.out.println(b.getTp_b_photo());
-			System.out.println(b.getTp_b_notice());
-			System.out.println(b.getTp_b_imp());
+//			System.out.println(b.getTp_b_title());
+//			System.out.println(b.getTp_b_txt());
+//			System.out.println(b.getTp_b_writer());
+//			System.out.println(b.getTp_b_photo());
+//			System.out.println(b.getTp_b_notice());
+//			System.out.println(b.getTp_b_imp());
 			if (tp_b_photo == null) {
 				if (ss.getMapper(BoardMapper.class).writeBoard(b) == 1) {
 					req.setAttribute("r", "글쓰기성공");
 					req.getSession().setAttribute("st", token);
-					System.out.println(token);
-					System.out.println(st2);
+//					System.out.println(token);
+//					System.out.println(st2);
 					allBoardCount++;
 				}else {
 					req.setAttribute("r", "글쓰기실패");
@@ -165,7 +160,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "글쓰기실패-db");
-			System.out.println("글쓰기실패-db");
+//			System.out.println("글쓰기실패-db");
 		}
 	}
 	
@@ -253,7 +248,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "글수정실패-db");
-			System.out.println("글수정실패-db");
+//			System.out.println("글수정실패-db");
 			if (!oldFile.equals(newFile)) {
 				try {
 					newFile = URLDecoder.decode(newFile, "utf-8");
