@@ -7,53 +7,57 @@
 <title>info.jsp</title>
 </head>
 <body>
-	<table id="joinTbl">
+	<table class="memberTitleTbl themeColor">
+		<tr>
+			<td class="memberTitle">회원정보</td>
+		</tr>
+	</table>
+	<table id="infoTbl" class="infoTbl themeColor">
 		<form action="member.update.go" method="post"
 			enctype="multipart/form-data"
 			name="memberUpdateForm">
 			<tr>
-				<td>ID</td>
-				<td>
+				<td class="infoIndex">ID</td>
+				<td class="infoContent">
 				<input
 					value="${sessionScope.loginMember.tp_m_id }" name="tp_m_id"
-					class="i1" readonly="readonly">
+					class="infoInput" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>PW</td>
-				<td>
+				<td class="infoIndex">PW</td>
+				<td class="infoContent">
 				<input type="password"
 					value="${sessionScope.loginMember.tp_m_pw }" name="tp_m_pw"
-					class="i1" readonly="readonly">
+					class="infoInput" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
-				<td><input name="tp_m_nick"
+				<td class="infoIndex">닉네임</td>
+				<td class="infoContent"><input name="tp_m_nick"
 					value="${sessionScope.loginMember.tp_m_name }"
-					class="i1" readonly="readonly">
+					class="infoInput" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>이름</td>
-				<td><input name="tp_m_name"
+				<td class="infoIndex">이름</td>
+				<td class="infoContent"><input name="tp_m_name"
 					value="${sessionScope.loginMember.tp_m_name }" placeholder="이름"
-					class="i1" autocomplete="off" maxlength="10" readonly="readonly">
+					class="infoInput" autocomplete="off" maxlength="10" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>주소</td>
-				<td id="infoInputAddr" colspan="2">
-					<input value="${addr[0] }" readonly="readonly"><p>
-					<input value="${addr[1] }" readonly="readonly"><p>
-					<input value="${addr[2] }" readonly="readonly">
+				<td class="infoIndex">주소</td>
+				<td id="infoInputAddr" colspan="2" class="infoContent">
+					<input value="${addr[0] }" class="infoInput" readonly="readonly"><p>
+					<input value="${addr[1] }" class="infoInput" readonly="readonly"><p>
+					<input value="${addr[2] }" class="infoInput" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>사진</td>
-				<td>
-				<img src="resources/img/${sessionScope.loginMember.tp_m_photo }"
-					e="max-width: 30%; box-shadow: 3px 3px 3px violet;"> <br>
+				<td class="infoIndex">사진</td>
+				<td class="infoContent">
+				<img src="resources/img/${sessionScope.loginMember.tp_m_photo }" class="infoImg"> <br>
 				</td>
 			</tr>
 			<tr>

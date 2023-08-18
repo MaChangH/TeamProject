@@ -17,6 +17,7 @@ select * from TP_BOARD where tp_b_notice = 1
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
+<<<<<<< HEAD
 select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
 		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
@@ -33,6 +34,8 @@ select * from (
 select count(*) from tp_board where tp_b_notice = 1
 select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 
+=======
+>>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
 values (tp_board_seq.nextval, '트기', '솔직히 유희왕','굉장히 어렵습니다',  sysdate, 0, 0, 0, 0)
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)

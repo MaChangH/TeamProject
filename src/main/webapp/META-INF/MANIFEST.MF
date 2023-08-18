@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: rkdek
+=======
+Built-By: 0210m
+>>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 Build-Jdk: 1.8.0_332
 Created-By: Maven Integration for Eclipse
 

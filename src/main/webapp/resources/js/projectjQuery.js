@@ -127,11 +127,37 @@ function stopBack() {
 	}
 }
 
+// 인터넷 창의 크기를 조절했을 때, 요소들의 위치를 조절하기 => 조절하지 않으면 창을 작게 했을 때 ContentPage와 겹치는 문제 발생
+function movePosition () {
+	$(window).resize(function () {
+		let wWidth = $(window).width();
+		if (wWidth < 1200) {
+			$('#indexRightBannerTbl').css('left', '1020px');
+			$('.indexTitleMenu').css('left', '600px');
+		} else {
+			$('#indexRightBannerTbl').css('left', '85%');
+			$('.indexTitleMenu').css('left', '50%');
+		}
+	});
+}
 
+// 처음 인터넷 창을 켰을 때 요소들의 위치
+function position () {
+	let wWidth = $(window).width();
+	if (wWidth < 1200) {
+		$('#indexRightBannerTbl').css('left', '1020px');
+		$('.indexTitleMenu').css('left', '600px');
+	} else {
+		$('#indexRightBannerTbl').css('left', '85%');
+		$('.indexTitleMenu').css('left', '50%');
+	}
+}
 
 
 $(function () {
 	notice();
+	position();
+	movePosition();
 	searchAddr();
 	idCheck();
 	nicknameCheck();

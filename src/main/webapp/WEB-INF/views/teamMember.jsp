@@ -7,7 +7,7 @@
 <title>teamMember.jsp</title>
 </head>
 <body>
-	<table>
+	<table class="themeColor">
 		<tr>
 			<td>권진호</td>
 		</tr>

@@ -26,6 +26,7 @@ public class RiotController {
 	public String goRiot(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
 		req.setAttribute("cp", "riot_board/riot.jsp");
 		return "index";
 	}
@@ -34,8 +35,14 @@ public class RiotController {
 	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
+<<<<<<< HEAD
 		String summonerName = rDAO.get_UrlName(req); // js 안에서 %20 처리
 		rDAO.get_Id_AccoutId_Puuid(summonerName, req); // 처리된 이름 기반 url 넣기
+=======
+		baDAO.getWeather(req);
+		String summonerName = rDAO.get_SummonerName(req); 
+		rDAO.get_Id_AccoutId_Puuid(summonerName, req);
+>>>>>>> 43e2f1a9d5bc432db6d1acb4d51b414d1f65a49b
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
 		rDAO.matchSearchWithNickName(req);	// 필요없음.
 		return "index";

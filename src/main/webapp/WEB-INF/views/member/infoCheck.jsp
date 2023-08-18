@@ -7,7 +7,12 @@
 <title>member/infoCheck.jsp</title>
 </head>
 <body>
-	<table>
+	<table class="memberTitleTbl themeColor">
+		<tr>
+			<td class="memberTitle">로그인 확인</td>
+		</tr>
+	</table>
+	<table class="themeColor">
 	<form action="member.info.go" method="POST">
 		<tr>
 			<td>
