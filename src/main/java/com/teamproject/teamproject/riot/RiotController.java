@@ -34,10 +34,10 @@ public class RiotController {
 	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
-		String summonerName = rDAO.get_SummonerName(req); 
-		rDAO.get_Id_AccoutId_Puuid(summonerName, req);
+		String summonerName = rDAO.get_UrlName(req); // js 안에서 %20 처리
+		rDAO.get_Id_AccoutId_Puuid(summonerName, req); // 처리된 이름 기반 url 넣기
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
-		rDAO.matchSearchWithNickName(req);
+		rDAO.matchSearchWithNickName(req);	// 필요없음.
 		return "index";
 	}
 	

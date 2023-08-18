@@ -1,11 +1,11 @@
 // 파라미터로 받아온 값을 json 에서 뽑아내는함수 
-function getSN_URL(k) {
-  const url = document.SN_Form.k.value;
-
+function getSN_URL(info) {
+  
+  const url = document.SN_Form.info.value;
+  console.log('url : ' + url)
   // 받아온 k 파라미터를 url 에서 파싱하는 콜백함수
   $.getJSON(url, function(get_var) {
-    let m = get_var[k];
-//    alert(`${k}는` + m);
+    let m = get_var[info];
     callvalFromgetSN_URL(m)
     return m;
   });
