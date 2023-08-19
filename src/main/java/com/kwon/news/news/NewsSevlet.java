@@ -24,8 +24,7 @@ public class NewsSevlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<newsArticles> newsArticles = new ArrayList<>();
-
-        // Perform news crawling and populate the newsArticles list
+// h
         try {
             URL url = new URL("https://www.yna.co.kr/");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
