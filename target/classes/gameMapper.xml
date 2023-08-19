@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamproject.teamproject.game.GameMapper">
+<mapper namespace="com.team.project.game.GameMapper">
 
 	<!-- 포인트 반영하기 -->
-	<update id="betPoint" parameterType="com.teamproject.teamproject.member.Member">
+	<update id="betPoint" parameterType="com.team.project.member.Member">
 		update tp_member set tp_m_point = #{tp_m_point} where tp_m_id = #{tp_m_id}
 	</update>
 </mapper>

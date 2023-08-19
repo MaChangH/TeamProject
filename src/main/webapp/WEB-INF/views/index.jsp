@@ -98,5 +98,9 @@
 	<script type="text/javascript">
 		colorChange();
 	</script>
+	<%-- 뉴스 나오는 배너 --%>
+	<c:forEach var="newsArticle" items="${newsArticles}">
+		<li><a href="${newsArticles.link}">${newsArticles.title}</a></li>
+	</c:forEach>
 </body>
 </html>
