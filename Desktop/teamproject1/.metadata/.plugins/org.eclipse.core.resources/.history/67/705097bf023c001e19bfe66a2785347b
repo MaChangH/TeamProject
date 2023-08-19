@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News.html</title>
+</head>
+<body>
+    <div class="list_news">
+        <div class="item">
+            <a class="title" href="https://www.yna.co.kr/">연합뉴스</a>
+        </div>
+        <div class="item">
+            <a class="title" href="https://example.com/news2">News Article 2</a>
+        </div>
+        <div class="item">
+            <a class="title" href="https://example.com/news3">News Article 3</a>
+        </div>
+    </div>
+</body>
+</html>

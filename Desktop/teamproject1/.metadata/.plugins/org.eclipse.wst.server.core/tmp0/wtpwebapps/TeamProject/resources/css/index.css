@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+a {
+	text-decoration: none;
+}
+
+#indexTitleTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px; 
+	margin-botton: 20px; 
+}
+
+#indexTitle a {
+	font-size: 30pt;
+	font-weight: 900;
+}
+
+#indexMenuTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px; 
+	margin-botton: 20px; 
+	width: 500px;
+}
+
+.indexMenu {
+	width: 28%;
+	height: 20px;
+}
+
+.indexMenu a {
+	font-size: 20pt;
+}
+
+#indexLoginTbl {
+	position: absolute;
+	left: 10px;
+}
+
+#indexContentTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px; 
+	margin-botton: 20px; 
+	width: 75%;
+	min-width: 1000px;
+	height: 80%;
+}
+
+#indexLeftBannerTbl {
+	position: absolute;
+	top: 400px;
+	left: 10px;
+
+
+
+
+
+
+
+
+
+

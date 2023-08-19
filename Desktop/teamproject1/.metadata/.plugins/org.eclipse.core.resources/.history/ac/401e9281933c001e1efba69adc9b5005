@@ -1,0 +1,11 @@
+package com.teamproject.news;
+
+public class NewsArticle {
+	private String title;
+	private String link;
+
+	public NewsArticle(String title, String link) {
+		this.title = title;
+		this.link = link;
+	}
+}

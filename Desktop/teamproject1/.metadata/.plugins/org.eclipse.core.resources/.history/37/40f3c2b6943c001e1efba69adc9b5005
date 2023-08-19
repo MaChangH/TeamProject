@@ -1,0 +1,71 @@
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+@SpringBootApplication
+public class YonhapNewsCrawlerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(YonhapNewsCrawlerApplication.class, args);
+    }
+
+    @RestController
+    public class YonhapNewsController {
+
+        @GetMapping("/")
+        public List<YonhapNews> getYonhapNews() throws IOException {
+            List<YonhapNews> yonhapNewsList = new ArrayList<>();
+
+            // 연합뉴스의 문화면 뉴스 URL을 가져옵니다.
+            URL url = new URL("https://www.yonhapnews.co.kr/culture/");
+
+            // 뉴스 페이지를 요청합니다.
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+
+            // 뉴스 페이지를 Jsoup으로 파싱합니다.
+            Document document = Jsoup.parse(connection.getInputStream());
+
+            // 뉴스 기사 목록을 가져옵니다.
+            Elements articles = document.select(".article");
+
+            // 뉴스 기사 제목, 요약, 링크를 가져옵니다.
+            for (Element article : articles) {
+                String title = article.select(".title").text();
+                String summary = article.select(".lead_txt").text();
+                String link = article.select(".link").attr("href");
+
+                yonhapNewsList.add(new YonhapNews(title, summary, link));
+            }
+
+            return yonhapNewsList;
+        }
+
+    }
+
+    class YonhapNews {
+
+        String title;
+        String summary;
+        String link;
+
+        public YonhapNews(String title, String summary, String link) {
+            this.title = title;
+            this.summary = summary;
+            this.link = link;
+        }
+
+    }
