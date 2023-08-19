@@ -1,0 +1,310 @@
+@charset "UTF-8";
+
+.replyUpdateDoneBtn {
+	display: none;
+}
+
+.replyUpdateCancelBtn {
+	display: none;
+}
+
+.replyHiddenText {
+	display: none;
+}
+
+.replyTextarea {
+	display: none;
+	width: 95%;
+	resize: none;
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+}
+
+.titleNotice {
+	color: red;
+}
+
+#boardTbl {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+#boardTitleTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+#boardNoticeTbl {
+	border: solid 2px black;
+	margin-bottom: 20px;
+	border-spacing: 0px;
+	width: 60%;
+}
+
+#boardNoticeTitle {
+	border-bottom: solid 2px black;
+}
+
+#boardMsgTbl {
+	border: solid 2px black;
+	border-spacing: 0px;
+	width: 100%;
+}
+
+.boardMsgHover :hover{
+	cursor: pointer;
+}
+
+.boardMsgTitle {
+	border-bottom: solid 2px black;
+	border: solid 1px black;
+}
+
+.boardMsg {
+	border: solid 1px black;
+}
+
+.boardNo {
+	width: 50px;
+	padding-left: 10px;
+}
+
+.boardTitle {
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 10px;
+}
+
+.boardWriter {
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 10px;
+}
+
+.boardDate {
+	width: 150px;
+	padding-right: 10px;
+}
+
+.boardView {
+	width: 60px;
+}
+
+.boardLike {
+	width: 60px;
+}
+
+
+#boardViewTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 60%;
+	height: 400px;
+}
+
+#boardViewTitle {
+	padding-left: 10px;
+	max-width: 500px;
+	height: 30px;
+	font-weight: 900;
+}
+
+#boardViewWriter {
+	padding-left: 10px;
+	height: 30px;
+	font-weight: 900;
+}
+
+#boardViewDate {
+	text-align: right;
+	padding-right: 10px;
+	height: 30px;
+}
+
+
+#boardViewUD {
+	width: 200px;
+}
+
+#boardViewText {
+	vertical-align: top;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+#boardViewTextarea {
+	resize: none;
+	border: none;
+	width: 90%;
+	line-height: 150%;
+}
+
+#boardViewTextarea:focus {
+	outline: none;
+}
+
+#boardViewImg {
+	max-height: 300px;
+	max-width: 300px;
+}
+
+#boardWriteTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 60%;
+}
+
+#writeTbl {
+	height: 100%;
+	width: 100%;
+}
+
+#boardWriteTitle {
+	width: 70px;
+	height: 30px;
+}
+
+#boardWriteTitleContext {
+	border: none;
+	padding-left: 10px;
+	margin-left: 10px;
+	max-width: 500px;
+	width: 90%;
+}
+
+#boardWriteWriter {
+	height: 30px;
+}
+
+#boardWriteWriterContext {
+	border: none;
+	padding-left: 10px;
+	max-width: 500px;
+	width: 90%;
+}
+
+#boardWriteWriterContext:focus {
+	outline: none;
+}
+
+#boardWriteImg {
+	height: 50px;
+	padding-left: 10px;
+}
+
+#boardWriteText {
+	vertical-align: top;
+	padding-top: 10px;
+}
+
+#boardWriteTextarea {
+	resize: none;
+	border: none;
+	width: 90%;
+	line-height: 150%;
+}
+
+#boardWriteBtn {
+	padding-right: 20px;
+}
+
+#boardUpdateTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 60%;
+}
+
+#updateTbl {
+	height: 100%;
+	width: 100%;
+}
+
+#boardUpdateTitle {
+	width: 70px;
+	height: 30px;
+}
+
+#boardUpdateTitleContext {
+	border: none;
+	padding-left: 10px;
+	margin-left: 10px;
+	max-width: 500px;
+	width: 80%;
+}
+
+#boardUpdateText {
+	vertical-align: top;
+	padding-top: 10px;
+}
+
+#boardUpdateTextarea {
+	resize: none;
+	border: none;
+	width: 90%;
+	height: 100%;
+	line-height: 150%;
+	overflow: hidden;
+}
+
+#boardUpdateImg {
+	max-height: 300px;
+	max-width: 300px;
+}
+
+#replyTextTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 50%;
+}
+
+#replyTextWriter {
+	padding-left: 10px;
+	font-weight: 900;
+}
+
+#replyTextDate {
+	padding-right: 10px;
+	width: 200px;
+}
+
+#replyTextBtn {
+	width: 100px;
+}
+
+#replyWriteTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 50%;
+}
+
+#replyWriteWriter {
+	border: none;
+	font-weight: 900;
+}
+
+#replyWriteWriter:focus {
+	outline: none;
+}
+
+#replyWriteText {
+	padding-top: 10px;
+}
+
+#replyWriteTextarea {
+	width: 95%;
+	resize: none;
+	border: none;
+}

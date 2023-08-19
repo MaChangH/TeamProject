@@ -1,0 +1,5 @@
+package com.teamproject.news;
+
+public class NewsArticle {
+
+}
