@@ -35,6 +35,7 @@ public class BoardDAO {
 	public void searchClear(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
 		req.getSession().setAttribute("searchNum", 1);
+		req.setAttribute("SN", req.getSession().getAttribute("searchNum"));
 	}
 	
 	// 검색어에 해당하는 게시글 가져오는 method
@@ -47,8 +48,6 @@ public class BoardDAO {
 			search = "";
 		} else { // 검색
 			BoardSelector bSel2 = new BoardSelector(search, 0, 0);
-			searchNum = Integer.parseInt(req.getParameter("searchNum"));
-			req.getSession().setAttribute("searchNum", searchNum);
 			if (searchNum == 1) {
 				boardCount = ss.getMapper(BoardMapper.class).getSearchTitleCount(bSel2);
 			}else if (searchNum == 2) {
@@ -65,7 +64,6 @@ public class BoardDAO {
 		BoardSelector bSel = new BoardSelector(search, start, end);
 		List<Board> notices = ss.getMapper(BoardMapper.class).getAllNotice();
 		List<Board> boards = null;
-		System.out.println(searchNum);
 		if (searchNum == 1) {
 			boards = ss.getMapper(BoardMapper.class).getAllTitle(bSel);			
 		}else if (searchNum == 2) {
@@ -74,6 +72,7 @@ public class BoardDAO {
 			boards = ss.getMapper(BoardMapper.class).getAllWriter(bSel);																
 		}
 		List<Board> imps = ss.getMapper(BoardMapper.class).getAllNoticeImp();
+		req.setAttribute("SN", searchNum);
 		req.setAttribute("boardMsg", boards);
 		req.setAttribute("notice", notices);
 		req.setAttribute("imp", imps);
@@ -147,7 +146,7 @@ public class BoardDAO {
 			b.setTp_b_txt(txt);
 			b.setTp_b_notice(mr.getParameter("tp_b_notice"));
 			b.setTp_b_imp(mr.getParameter("tp_b_imp"));
-			System.out.println(b.getTp_b_imp());
+//			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
 //			System.out.println(b.getTp_b_title());
