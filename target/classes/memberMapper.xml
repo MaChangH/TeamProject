@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamproject.teamproject.member.MemberMapper">
+<mapper namespace="com.team.project.member.MemberMapper">
 	<!-- ID가 같은지 아닌지 확인하기 위함 -->
-	<select id="getById" parameterType="com.teamproject.teamproject.member.Member" resultType="com.teamproject.teamproject.member.Member">
+	<select id="getById" parameterType="com.team.project.member.Member" resultType="com.team.project.member.Member">
 		select * from tp_member where tp_m_id = #{tp_m_id}
 	</select>
 	<!-- 닉네임이 같은지 아닌지 확인하기 위함 -->
-	<select id="getByNickname" parameterType="com.teamproject.teamproject.member.Member" resultType="com.teamproject.teamproject.member.Member">
+	<select id="getByNickname" parameterType="com.team.project.member.Member" resultType="com.team.project.member.Member">
 		select * from tp_member where tp_m_nick = #{tp_m_nick}
 	</select>
 	
 	<!-- 로그인 했을 때의 년월일, 로그인 횟수, 포인트 기록 -->
-	<update id="setLoginDate" parameterType="com.teamproject.teamproject.member.Member">
+	<update id="setLoginDate" parameterType="com.team.project.member.Member">
 		update tp_member set tp_m_loginNum = #{tp_m_loginNum}, tp_m_firstLogin = #{tp_m_firstLogin}, tp_m_point = #{tp_m_point} where tp_m_id = #{tp_m_id}
 	</update>
 	
 	<!-- 회원가입 -->
-	<insert id="join" parameterType="com.teamproject.teamproject.member.Member">
+	<insert id="join" parameterType="com.team.project.member.Member">
 		insert into tp_member values (#{tp_m_id}, #{tp_m_pw}, #{tp_m_nick}, #{tp_m_name}, #{tp_m_addr}, #{tp_m_photo}, 0, 0, 0, 0)
 	</insert>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="bye" parameterType="com.teamproject.teamproject.member.Member">
+	<delete id="bye" parameterType="com.team.project.member.Member">
 		delete from tp_member where tp_m_id = #{tp_m_id}
 	</delete>
 	
 	<!-- 회원정보수정 -->
-	<update id="update" parameterType="com.teamproject.teamproject.member.Member">
+	<update id="update" parameterType="com.team.project.member.Member">
 		update tp_member set tp_m_pw = #{tp_m_pw}, tp_m_nick = #{tp_m_nick}, tp_m_name = #{tp_m_name}, tp_m_addr = #{tp_m_addr}, tp_m_photo = #{tp_m_photo} where tp_m_id = #{tp_m_id} 
 	</update>
 	
 	<!-- 포인트 데이터 불러오기 -->
-	<select id="getPoint" parameterType="com.teamproject.teamproject.member.Member" resultType="java.lang.Integer">
+	<select id="getPoint" parameterType="com.team.project.member.Member" resultType="java.lang.Integer">
 		select tp_m_point from tp_member where tp_m_id = #{tp_m_id}
 	</select>
 </mapper>
