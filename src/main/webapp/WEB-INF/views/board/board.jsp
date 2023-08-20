@@ -130,9 +130,9 @@ $(function() {
 			<td align="center"><form action="board.search" name="searchForm"
 					onsubmit="return searchboard();">
 					<select name="searchNum">
-						<option value="1">제목</option>
-						<option value="2">내용</option>
-						<option value="3">닉네임</option>
+						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
+						<option value="2" <c:if test="">selected="selected"</c:if>> 내용</option>
+						<option value="3" <c:if test="">selected="selected"</c:if>> 닉네임</option>
 					</select> <input name="search" placeholder="제목 검색">
 					<button>검색</button>
 				</form></td>
