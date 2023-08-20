@@ -58,7 +58,7 @@ $(function() {
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="6" align="center" id="unfold">펼치기▼</td>
+			<td colspan="6" align="center" id="unfold" class="boardFold themeBorderColor">펼치기▼</td>
 		</tr>
 		<c:forEach var="n" items="${notice }" end="2">
 			<tr onclick="boardViewGo(${n.tp_b_no })"
@@ -75,7 +75,7 @@ $(function() {
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="6" align="center" class="notice" id="folding">접기▲</td>
+			<td colspan="6" align="center" class="notice boardFold themeBorderColor" id="folding">접기▲</td>
 		</tr>
 	</table>
 	<table id="boardTbl">

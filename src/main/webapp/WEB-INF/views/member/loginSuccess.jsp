@@ -9,7 +9,7 @@
 <body>
 	<table id="loginSuccessTbl" class="themeColor">
 		<tr>
-			<td align="center" id="loginSuccessImg"><img src="resources/img/${sessionScope.loginMember.tp_m_photo }"></td>
+			<td align="center" id="loginSuccessImg" class="themeBackground-colorGrey"><img src="resources/img/${sessionScope.loginMember.tp_m_photo }"></td>
 		</tr>
 		<tr>
 			<td id="loginMemberID" align="center">환영합니다, <span style="font-weight: 900;">${sessionScope.loginMember.tp_m_nick }</span>님!</td>
@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<button onclick="infoGo();" class="loginMemberBtn">회원정보</button>
+				<button onclick="settingGo();" class="loginMemberBtn">설정</button>
 				<button onclick="logout();" class="loginMemberBtn">로그아웃</button>
 			</td>
 		</tr>

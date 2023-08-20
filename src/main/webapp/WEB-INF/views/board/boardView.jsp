@@ -58,7 +58,7 @@
 		<tr>
 			<td id="replyTextWriter">
 				${r.tp_r_writer }
-				<c:if test="${sessionScope.boardWriter eq r.tp_r_writer }"><span style="color: #0000AA;" class="themeNotice">(작성자)</span></c:if>
+				<c:if test="${sessionScope.boardWriter eq r.tp_r_writer }"><span class="themeReplyWriter">(작성자)</span></c:if>
 			</td>
 			<td align="right"  id="replyTextDate">
 				<fmt:formatDate value="${r.tp_r_date }" pattern="yyyy-MM-dd E HH:mm:ss"/>

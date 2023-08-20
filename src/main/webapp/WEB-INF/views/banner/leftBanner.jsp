@@ -19,8 +19,8 @@
 	</tr>
 	<c:forEach var="dh" items="${todayHot }" end="4">
 		<tr onclick="boardViewGo(${dh.tp_b_no });" class="bannerHotTr">
-			<td class="bannerHotMsgTitle themeBorderColor">${dh.tp_b_title }</td>
-			<td class="bannerHotMsgLike themeBorderColor">${dh.tp_b_view }</td>
+			<td class="bannerHotMsgTitle themeBackground-colorGrey themeBorderColor">${dh.tp_b_title }</td>
+			<td class="bannerHotMsgLike themeBackground-colorGrey themeBorderColor">${dh.tp_b_view }</td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -34,8 +34,8 @@
 	</tr>
 	<c:forEach var="wh" items="${thisWeekHot }" end="4">
 		<tr onclick="boardViewGo(${wh.tp_b_no });" class="bannerHotTr">
-			<td class="bannerHotMsgTitle themeBorderColor">${wh.tp_b_title }</td>
-			<td class="bannerHotMsgLike themeBorderColor">${wh.tp_b_like }</td>
+			<td class="bannerHotMsgTitle themeBackground-colorGrey themeBorderColor">${wh.tp_b_title }</td>
+			<td class="bannerHotMsgLike themeBackground-colorGrey themeBorderColor">${wh.tp_b_like }</td>
 		</tr>
 	</c:forEach>
 	</table>

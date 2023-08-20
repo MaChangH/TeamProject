@@ -56,7 +56,7 @@ public class HomeController {
 			baDAO.bannerEvent(req);
 			baDAO.getWeather(req);
 			themeChange.theme(req);
-			req.setAttribute("cp", "home.jsp");
+			req.setAttribute("cp", "member/setting.jsp");
 			return "index";
 		}
 }

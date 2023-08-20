@@ -28,7 +28,7 @@
 			<td align="center">
 				<button>확인</button>&nbsp;&nbsp;&nbsp;
 		</form>
-				<button onclick="homeGo();">취소</button>
+				<button onclick="settingGo();">취소</button>
 			</td>
 		</tr>
 	</table>

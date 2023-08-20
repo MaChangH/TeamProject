@@ -51,7 +51,19 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.setAttribute("cp", "home.jsp");
+		req.setAttribute("cp", "member/loginGo.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member.login.go", method = RequestMethod.GET)
+	public String memberLoginGo(Member m, HttpServletRequest req) {
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
+		if (mDAO.loginCheck(req)) {
+			req.setAttribute("cp", "home.jsp");
+		} else {
+			req.setAttribute("cp", "member/loginGo.jsp");
+		}
 		return "index";
 	}
 	
@@ -61,7 +73,6 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
@@ -72,6 +83,15 @@ public class MemberController {
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
 		req.setAttribute("cp", "home.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member.setting", method = RequestMethod.GET)
+	public String memberSetting(Member m, HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
+		req.setAttribute("cp", "member/setting.jsp");
 		return "index";
 	}
 	

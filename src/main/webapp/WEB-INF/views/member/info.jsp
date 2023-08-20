@@ -64,7 +64,7 @@
 				<td colspan="2" align="center">
 					<button>정보수정</button>&nbsp;&nbsp;&nbsp;
 		</form>
-					<button onclick="byeGo();">회원탈퇴</button>
+					<button onclick="settingGo();">뒤로</button>
 				</td>
 				
 			</tr>

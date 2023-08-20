@@ -42,22 +42,8 @@
 	</table>
 	<input id="result" value="${r }" type="hidden">
 	
-	<table id="indexThemeTbl">
-		<tr>
-			<td>
-				<select id="indexTheme">
-					<option value="themeSelect">사이트 테마</option>
-					<option value="Blue">Blue(기본)</option>
-					<option value="Red">Red</option>
-					<option value="Orange">Orange</option>
-					<option value="Silver">Silver</option>
-					<option value="Dark">Dark</option>
-				</select>
-				<input id="indexThemeInput" value="${sessionScope.themeColor }" type="hidden">
-				<button id="indexThemeBtn">테마 변경</button>
-			</td>
-		</tr>
-	</table>
+	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
+	
 	
 	<%-- 로그인 페이지 --%>
 	<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">

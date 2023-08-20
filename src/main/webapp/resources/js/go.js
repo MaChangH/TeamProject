@@ -59,6 +59,11 @@ function replyDeleteGo(tp_r_no) {
 	}
 }
 
+// 로그인 및 회원가입 하러하기
+function loginGo() {
+	location.href = "member.login.go";
+}
+
 // 회원 가입하기
 function goJoin() {
 	location.href = "member.join.go";
@@ -70,6 +75,11 @@ function logout() {
 	if (ok) {
 		location.href = "member.logout";
 	}
+}
+
+//설정 보러가기
+function settingGo() {
+	location.href = "member.setting";
 }
 
 // 회원 정보 보러가기

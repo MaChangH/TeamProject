@@ -57,7 +57,7 @@
 			<td align="center" colspan="2">
 				<button>가입</button>&nbsp;&nbsp;&nbsp;
 	</form>
-				<button onclick="homeGo();">취소</button>
+				<button onclick="loginGo();">취소</button>
 			</td>
 		</tr>
 	</table>

@@ -391,3 +391,12 @@
 	width: 75px;
 }
 
+/* 펼치기, 접기 */
+
+.boardFold {
+	border-top: 2px solid black;
+	cursor: pointer;
+	font-size: 13pt;
+	font-weight: 900;
+}
+
