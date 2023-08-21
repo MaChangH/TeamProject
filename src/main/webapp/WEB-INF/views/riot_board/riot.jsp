@@ -16,7 +16,7 @@
 
 	<form action  = 'riot.summoners'>
 		<input placeholder = "소환사명" name ="SN">
-		<button>검색</button>
+		<button id = 'b1'>검색</button>
 	</form>
 </body>
 </html>
