@@ -14,7 +14,7 @@
 	</table>
 	<h3 class="themeColor">API key의 유효기간을 확인해주세요 하루한번</h3>
 
-	<form action  = 'riot.summoners'>
+	<form action  = 'riot.summoners' name ='SN_Form' onsubmit = "riotSearchCheck();">
 		<input placeholder = "소환사명" name ="SN">
 		<button id = 'b1'>검색</button>
 	</form>
