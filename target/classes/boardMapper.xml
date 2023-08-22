@@ -43,6 +43,36 @@
 		select count(*) from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 0
 	</select>
 	
+	<!-- 해당 검색어(제목) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNTitleCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
+	<!-- 해당 검색어(내용) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNTxtCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
+	<!-- 해당 검색어(작성자) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNWriterCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
 	<!-- 해당 검색어 공지글 몇개인지 가져오는 부분 -->
 	<select id="getSearchNoticeCount"
 		parameterType="com.team.project.board.BoardSelector"

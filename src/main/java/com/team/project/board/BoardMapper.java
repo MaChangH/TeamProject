@@ -19,6 +19,15 @@ public interface BoardMapper {
 	// 검색어(내용) 해당하는 게시글 갯수
 	public abstract int getSearchWriterCount(BoardSelector bSel);
 	
+	// 검색어(제목) 해당하는 게시글 갯수
+	public abstract int getSearchNTitleCount(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글 갯수
+	public abstract int getSearchNTxtCount(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글 갯수
+	public abstract int getSearchNWriterCount(BoardSelector bSel);
+	
 	// 검색어 해당하는 공지글 갯수
 	public abstract int getSearchNoticeCount(BoardSelector bSel);
 
