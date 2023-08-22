@@ -16,8 +16,8 @@
 	<div id = "SNinput">
 		<form action  = 'riot.summoners' name = SN_Form onsubmit = "riotSearchCheck();" >
 				<input placeholder = "소환사명" name ="SN"  id = "SN" > <br>
-				<button id = 'b1'>검색</button>
 			</form>
+				<button id = 'b1'>검색</button>
 			<!--  검색을 누른 뒤 페이지를 따로 summoners 로 넘어감. -->
 	</div>
 		

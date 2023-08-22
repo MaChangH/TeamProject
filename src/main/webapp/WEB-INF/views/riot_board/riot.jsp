@@ -16,7 +16,7 @@
 
 	<form action  = 'riot.summoners' name ='SN_Form' onsubmit = "riotSearchCheck();">
 		<input placeholder = "소환사명" name ="SN">
-		<button id = 'b1'>검색</button>
 	</form>
+		<button id = 'b1'>검색</button>
 </body>
 </html>

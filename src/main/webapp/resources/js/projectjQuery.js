@@ -163,6 +163,6 @@ $(function () {
 	nicknameCheck();
 	noticeChk();
 	importantChk();
-	textareaScroll();
-	replyareaScroll();
+//	textareaScroll();
+//	replyareaScroll();
 });
