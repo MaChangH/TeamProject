@@ -49,6 +49,8 @@ public class BoardDAO {
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
 		} else { // 검색
+			searchNum = Integer.parseInt(req.getParameter("searchNum"));
+			req.getSession().setAttribute("searchNum", searchNum);
 			BoardSelector bSel2 = new BoardSelector(search, 0, 0);
 			searchNum = Integer.parseInt(req.getParameter("searchNum"));
 			if (searchNum == 1) {
@@ -91,12 +93,22 @@ public class BoardDAO {
 		public void getNoticeMsg(int page, HttpServletRequest req) {
 			String search = (String) req.getSession().getAttribute("search"); // 검색어
 			int noticeCount = 0;
+			int searchNum = 1;
 			if (search == null) { // 전체조회
 				noticeCount = allNoticeCount; // 23
 				search = "";			
 			} else { // 검색
 				BoardSelector bSel2 = new BoardSelector(search, 0, 0);
+				searchNum = Integer.parseInt(req.getParameter("searchNum"));
+				req.getSession().setAttribute("searchNum", searchNum);
 				noticeCount = ss.getMapper(BoardMapper.class).getSearchNoticeCount(bSel2);
+				if (searchNum == 1) {
+					noticeCount = ss.getMapper(BoardMapper.class).getSearchNTitleCount(bSel2);
+				}else if (searchNum == 2) {
+					noticeCount = ss.getMapper(BoardMapper.class).getSearchNTxtCount(bSel2);				
+				}else if (searchNum == 3) {
+					noticeCount = ss.getMapper(BoardMapper.class).getSearchNWriterCount(bSel2);				
+				}
 			}
 			int PerPage = 10;
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
@@ -104,7 +116,14 @@ public class BoardDAO {
 			int start = (PerPage * (page - 1)) + 1;
 			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
 			BoardSelector bSel = new BoardSelector(search, start, end);
-			List<Board> notices = ss.getMapper(BoardMapper.class).getAllNoticeBoard(bSel);
+			List<Board> notices = null;
+			if (searchNum == 1) {
+				notices = ss.getMapper(BoardMapper.class).getAllNoticeBoard(bSel);		
+			}else if (searchNum == 2) {
+				notices = ss.getMapper(BoardMapper.class).getAllTxt(bSel);									
+			}else if (searchNum == 3) {
+				notices = ss.getMapper(BoardMapper.class).getAllWriter(bSel);																
+			}
 			req.setAttribute("notice", notices);
 		}
 	

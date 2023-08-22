@@ -82,10 +82,16 @@
 		<%-- 페이지 넘기는 부분 --%>
 
 		<tr>
-			<td colspan="2" align="center"><c:forEach var="p" begin="1"
-					end="${APCN }">
-					<a class="themeColor" href="notice.page?p=${p }">[${p }] </a>
-				</c:forEach></td>
+			<td colspan="2" align="center">
+				<c:forEach var="p" begin="1" end="${APCN }">
+					<a class="themeColor" href="notice.page?p=${p }
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>
+					">[${p }] </a>
+				</c:forEach>
+			</td>
 		</tr>
 	</table>
 </body>

@@ -9,6 +9,7 @@
 <title>board/board.jsp</title>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript">
+// 공지사항 숨기기, 펼치기
 $(function() {
 	$('.notice').hide(); 
 	$('#unfold').click(function() {
@@ -20,6 +21,8 @@ $(function() {
         $('#unfold').show(); 
     });
 });
+
+
 </script>
 </head>
 <body>
@@ -68,7 +71,7 @@ $(function() {
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="6" align="center" id="unfold" class="boardFold themeBorderColor">펼치기▼</td>
+			<td colspan="6" align="center" id="unfold" class="boardFold themeBorderColor">최근 공지사항 펼치기▼</td>
 		</tr>
 		<c:forEach var="n" items="${notice }" end="2">
 			<tr onclick="boardViewGo(${n.tp_b_no })"
