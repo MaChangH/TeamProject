@@ -64,6 +64,7 @@ public class MemberController {
 		} else {
 			req.setAttribute("cp", "member/loginGo.jsp");
 		}
+		req.getSession().setAttribute("currentPage", "login");
 		return "index";
 	}
 	
@@ -92,6 +93,7 @@ public class MemberController {
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
 		req.setAttribute("cp", "member/setting.jsp");
+		req.getSession().setAttribute("currentPage", "setting");
 		return "index";
 	}
 	
@@ -104,6 +106,7 @@ public class MemberController {
 		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		req.getSession().setAttribute("currentPage", "info");
 		return "index";
 	}
 	
@@ -118,6 +121,7 @@ public class MemberController {
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
+		req.getSession().setAttribute("currentPage", "info");
 		return "index";
 	}
 
@@ -143,6 +147,7 @@ public class MemberController {
 		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		req.getSession().setAttribute("currentPage", "info");
 		return "index";
 	}
 	

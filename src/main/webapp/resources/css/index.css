@@ -5,6 +5,16 @@
 	src: url("K.TTF");
 }
 
+@font-face {
+	font-family: "bJ";
+	src: url("blackJackFont.otf");
+}
+
+@font-face {
+	font-family: "d";
+	src: url("desperadoFont.ttf");
+}
+
 body {
 	margin: 0px;
 	padding: 0px;
@@ -46,6 +56,8 @@ button {
 #indexMenuTbl {
 	margin-top: 20px; 
 	margin-botton: 20px; 
+	margin-left: auto;
+	margin-right: auto;
 	width: 600px;
 	top: 150px;
 }
@@ -71,34 +83,39 @@ button {
 	font-weight: 900;
 }
 
-#indexLoginTbl {
-	position: absolute;
-	border: 2px solid black;
-	border-spacing: 0px;
-	left: 10px;
-	top: 200px;
-}
-
-#indexContentTbl {
+#indexMainTbl {
+	position:relative;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 300px; 
+	margin-top: 225px; 
 	margin-botton: 20px; 
 	width: 75%;
 	min-width: 1200px;
 	height: 80%;
 }
 
+#indexLoginTbl {
+	position: absolute;
+	border: 2px solid black;
+	border-spacing: 0px;
+	z-index: 10;
+}
+
+#indexContentTbl {
+	position: absolute;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%, 0%);
+}
+
 #indexLeftBannerTbl {
 	position: absolute;
-	top: 300px;
-	left: 10px;
+	top: 200px;
 }
 
 #indexRightBannerTbl {
 	position: absolute;
-	left: 85%;
-	top: 200px;
+	left: 82%;
 }
 
 .boardTitleTbl {
@@ -118,7 +135,7 @@ button {
 	top: 50%;
 	opacity: 0%;
 	display: none;
-	transition: all 0.3s linear;
+	transition: opacity 0.3s linear;
 	transform: translate(-50%, -50%);
 }
 

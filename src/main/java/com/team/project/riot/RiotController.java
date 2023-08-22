@@ -28,6 +28,7 @@ public class RiotController {
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
 		req.setAttribute("cp", "riot_board/riot.jsp");
+		req.getSession().setAttribute("currentPage", "riot");
 		return "index";
 	}
 	

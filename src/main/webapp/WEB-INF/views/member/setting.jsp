@@ -8,11 +8,6 @@
 <title>member/setting.jsp</title>
 </head>
 <body>
-	<table class="memberTitleTbl themeColor">
-		<tr>
-			<td class="memberTitle">설정</td>
-		</tr>
-	</table>
 	<table id="settingTbl" class="themeColor">
 		<tr>
 			<td class="settingTd">
@@ -42,25 +37,25 @@
 		</c:if>
 	</table>
 	
-	<table id="settingThemeTbl" class="themeColor themeBackground-color themeBorderColor">
+	<table id="settingThemeTbl" class="themeColor themeBackground-color themeBorderColor themePreviewColor themePreviewBackground-color themePreviewBorderColor">
 		<tr>
-			<td align="center" colspan="2">
+			<td align="center" colspan="2" style="font-size: 16pt; font-weight: 900;">
 				테마 설정
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<div id="settingThemePreview">
-					<table id="settingThemePreviewTbl" class="themeBackground-colorGrey themeColor">
+					<table id="settingThemePreviewTbl" class="themeBackground-colorGrey themeColor themePreviewBackground-colorGrey themePreviewColor">
 						<tr>
 							<td id="settingThemePreviewWriter" style="font-weight: 900;">
-								테마설정 <span class="themeReplyWriter">(작성자)</span>
+								테마설정 <span class="themeReplyWriter themePreviewReplyWriter">(작성자)</span>
 							</td>
 			
 						</tr>
 						<tr>
 							<td id="settingThemePreviewText">
-								<span class="titleNotice themeNotice" style="font-weight: 900;">[중요]</span> 현재 테마에서는 이렇게 보입니다.
+								<span class="titleNotice themeNotice themePreviewNotice" style="font-weight: 900;">[중요]</span> 현재 테마에서는 이렇게 보입니다.
 							</td>
 						</tr>
 					</table>
@@ -79,8 +74,8 @@
 				</select>
 			</td>
 			<td align="right">
-				<button id="settingThemeBtn" class="themeBtn">테마 변경</button>
-				<button id="settingThemeCancelBtn" class="themeBtn">닫기</button>
+				<button id="settingThemeBtn" class="themeBtn themePreviewBtn">테마 변경</button>
+				<button id="settingThemeCancelBtn" class="themeBtn themePreviewBtn">닫기</button>
 			</td>
 		</tr>
 	</table>

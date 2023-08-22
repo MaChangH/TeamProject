@@ -116,22 +116,6 @@ function showPW() {
 }
 
 
-// 텍스트 에어리어의 height가 엔터키를 입력하면 자동으로 늘어나게
-
-function textareaScroll() {
-	const DEFAULT_HEIGHT = 180;
-	
-
-	const $textarea = document.querySelector('.textarea');
-	
-	$textarea.oninput = (event) => {
-		const $target = event.target;
-
-		$target.style.height = 0;
-		$target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
-	};
-}
-
 // 뒤로가기 막기
 function stopBack() {
 	// 스택 추가
@@ -144,39 +128,13 @@ function stopBack() {
 	}
 }
 
-// 인터넷 창의 크기를 조절했을 때, 요소들의 위치를 조절하기 => 조절하지 않으면 창을 작게 했을 때 ContentPage와 겹치는 문제 발생
-function movePosition () {
-	$(window).resize(function () {
-		let wWidth = $(window).width();
-		if (wWidth < 1200) {
-			$('#indexRightBannerTbl').css('left', '1020px');
-			$('.indexTitleMenu').css('left', '600px');
-		} else {
-			$('#indexRightBannerTbl').css('left', '85%');
-			$('.indexTitleMenu').css('left', '50%');
-		}
-	});
-}
-
-// 처음 인터넷 창을 켰을 때 요소들의 위치
-function position () {
-	let wWidth = $(window).width();
-	if (wWidth < 1200) {
-		$('#indexRightBannerTbl').css('left', '1020px');
-		$('.indexTitleMenu').css('left', '600px');
-	} else {
-		$('#indexRightBannerTbl').css('left', '85%');
-		$('.indexTitleMenu').css('left', '50%');
-	}
-}
-
 // 로그인/비로그인 상태일 때 왼쪽 배너의 높이 조절
 function leftBannerTop() {
 	let login = $('#loginMember').val();
 	if (login == "") {
-		$('#indexLeftBannerTbl').css('top', "300px");
+		$('#indexLeftBannerTbl').css('top', "100px");
 	} else {
-		$('#indexLeftBannerTbl').css('top', "500px");
+		$('#indexLeftBannerTbl').css('top', "350px");
 	}
 }
 
@@ -201,11 +159,31 @@ function writerImgAppear() {
 	});
 }
 
+// 메뉴 눌러서 페이지로 이동하면, 해당 메뉴 버튼 색 바뀌게 하는 함수
+function menuColorChange() {
+	let menu = $('#currentPage').val();
+	if (menu == 'board') {
+		$('#menu1').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu1').css('font-weight', '900');
+	} else if (menu == 'notice') {
+		$('#menu2').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu2').css('font-weight', '900');
+	} else if (menu == 'riot') {
+		$('#menu3').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu3').css('font-weight', '900');
+	} else if (menu == 'game') {
+		$('#menu4').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu4').css('font-weight', '900');
+	} else if (menu == 'member') {
+		$('#menu5').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu5').css('font-weight', '900');
+	}
+	colorChange();
+}
+
 $(function () {
 	notice();
 	leftBannerTop();
-	position();
-	movePosition();
 	searchAddr();
 	idCheck();
 	nicknameCheck();
@@ -216,6 +194,5 @@ $(function () {
 	importantUpdateChk();
 	importantChk();
 	writerImgAppear();
-	textareaScroll();
-	replyareaScroll();
+	menuColorChange();
 });

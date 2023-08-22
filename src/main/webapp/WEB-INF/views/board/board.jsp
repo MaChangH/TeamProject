@@ -26,11 +26,6 @@ $(function() {
 </script>
 </head>
 <body>
-	<table id="boardTitleTbl">
-		<tr>
-			<td class="boardName themeColor">게시판</td>
-		</tr>
-	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
 	<table id="boardNoticeTbl"
 		class="themeBackground-color themeColor themeBorderColor">

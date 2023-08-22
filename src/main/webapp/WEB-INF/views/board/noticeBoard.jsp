@@ -9,11 +9,6 @@
 <title>board/noticeBoard.jsp</title>
 </head>
 <body>
-	<table id="boardTitleTbl">
-		<tr>
-			<td class="boardName themeColor">공지사항</td>
-		</tr>
-	</table>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
 	<table id="boardNoticeTbl"
 		class="themeBackground-color themeColor themeBorderColor">
@@ -66,12 +61,12 @@
 						<option value="tp_b_txt">내용</option>
 						<option value="tp_b_writer">닉네임</option>
 					</select> <input name="search" placeholder="제목 검색">
-					<button>검색</button>
+					<button class="themeBtn">검색</button>
 				</form></td>
 			<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
 				<td align="right" id="writeButton" class="boardSoild">
 					<form action="board.write.go">
-						<button>글쓰기</button>
+						<button class="themeBtn">글쓰기</button>
 					</form>
 				</td>
 			</c:if>

@@ -39,6 +39,7 @@ public class BoardController {
 //			req.getSession().setAttribute("cp", "\"board/board.jsp\"");
 //			String cp = (String) req.getSession().getAttribute("cp");
 		req.setAttribute("cp", "board/board.jsp");
+		req.getSession().setAttribute("currentPage", "board");
 		return "index";
 
 	}
@@ -56,6 +57,7 @@ public class BoardController {
 //			req.getSession().setAttribute("cp", "\"board/board.jsp\"");
 //			String cp = (String) req.getSession().getAttribute("cp");
 		req.setAttribute("cp", "board/noticeBoard.jsp");
+		req.getSession().setAttribute("currentPage", "notice");
 		return "index";
 
 	}
@@ -101,6 +103,7 @@ public class BoardController {
 		bDAO.getReply(req);
 		TokenMaker.makeToken(req);
 		req.setAttribute("cp", "board/boardView.jsp");
+		req.getSession().setAttribute("currentPage", "viewBoard");
 		return "index";
 	}
 

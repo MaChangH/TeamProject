@@ -33,61 +33,66 @@
 	</table>
 	<table id="indexMenuTbl" class="indexTitleMenu">
 		<tr>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="board.go">BOARD</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="notice.go">NOTICE</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="game.go">GAME</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="member.go">MEMBER</a></td>
+			<td class="indexMenu"><a id="menu1" class="indexMenuA themeColor" href="board.go">BOARD</a></td>
+			<td class="indexMenu"><a id="menu2" class="indexMenuA themeColor" href="notice.go">NOTICE</a></td>
+			<td class="indexMenu"><a id="menu3" class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
+			<td class="indexMenu"><a id="menu4" class="indexMenuA themeColor" href="game.go">GAME</a></td>
+			<td class="indexMenu"><a id="menu5" class="indexMenuA themeColor" href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
 	<input id="result" value="${r }" type="hidden">
 	
 	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
 	<input id="loginMember" value="${sessionScope.loginMember }" type="hidden">
+	<input id="currentPage" value="${sessionScope.currentPage }" type="hidden">
 	
 	
-	<%-- 로그인 페이지 --%>
-	<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">
-		<tr>
-			<td>
-				<jsp:include page="${lp }" />
-			</td>
-		</tr>
-	</table>
 	
-	<%-- 메인 컨텐츠 --%>
-	<table id="indexContentTbl">
+	<table id="indexMainTbl">
 		<tr>
 			<td align="center">
-				<jsp:include page="${cp }"/>
-			</td>
-		</tr>
-	</table>
+	<%-- 로그인 페이지 --%>
+				<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">
+					<tr>
+						<td>
+							<jsp:include page="${lp }" />
+						</td>
+					</tr>
+				</table>
+	
+	<%-- 메인 컨텐츠 --%>
+				<table id="indexContentTbl">
+					<tr>
+						<td align="center">
+							<jsp:include page="${cp }"/>
+						</td>
+					</tr>
+				</table>
 	
 	<%-- 왼쪽 배너 --%>
-	<table id="indexLeftBannerTbl">
-		<tr>
-			<td>
-				<jsp:include page="banner/leftBanner.jsp" />
+				<table id="indexLeftBannerTbl">
+					<tr>
+						<td>
+							<jsp:include page="banner/weather.jsp" />
+						</td>
+					</tr>
+				</table>
+	
+	<%-- 오른쪽 배너 --%>
+				<table id="indexRightBannerTbl">
+					<tr>
+						<td>
+							<jsp:include page="banner/rightBanner.jsp" />
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 	</table>
 	
-	<%-- 오른쪽 배너 --%>
-	<table id="indexRightBannerTbl">
-		<tr>
-			<td>
-				<jsp:include page="banner/weather.jsp" />
-			</td>
-		</tr>
-	</table>
 	
 	<script type="text/javascript">
 		colorChange();
 	</script>
-	<%-- 뉴스 나오는 배너 --%>
-	<c:forEach var="newsArticle" items="${newsArticles}">
-		<li><a href="${newsArticles.link}">${newsArticles.title}</a></li>
-	</c:forEach>
 </body>
 </html>
