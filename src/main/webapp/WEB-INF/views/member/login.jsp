@@ -7,11 +7,11 @@
 <title>login.jsp</title> 
 </head>
 <body>	<%--로그인창이 나오는 jsp--%>
-	<table id="loginTbl">
+	<table id="loginTbl" class="themeBackground-color themeBorderColor themeColor">
 		<tr>
 			<td align="center">
-				<button onclick="settingGo();">설정</button>&nbsp;&nbsp;&nbsp;
-				<button onclick="loginGo();">로그인</button>
+				<button onclick="settingGo();" class="themeBtn">설정</button>&nbsp;&nbsp;&nbsp;
+				<button onclick="loginGo();" class="themeBtn">로그인</button>
 			</td> 
 		</tr>	
 	</table>

@@ -21,14 +21,45 @@
 				</td>
 				<td align="center" id="boardViewUD">
 					<c:if test="${sessionScope.loginMember.tp_m_nick == tki.tp_b_writer }">
-						<button onclick="boardUpdateGo(${tki.tp_b_no }, '${tki.tp_b_writer}');">수정</button>&nbsp;&nbsp;
-						<button onclick="boardDeleteGo(${tki.tp_b_no }, '${tki.tp_b_writer}' );">삭제</button>&nbsp;&nbsp;
+						<button onclick="boardUpdateGo(${tki.tp_b_no }, '${tki.tp_b_writer}');" class="themeBtn">수정</button>&nbsp;&nbsp;
+						<button onclick="boardDeleteGo(${tki.tp_b_no }, '${tki.tp_b_writer}' );" class="themeBtn">삭제</button>&nbsp;&nbsp;
 					</c:if>
-					<button onclick="boardGo();">목록</button>
+					<button onclick="boardGo();" class="themeBtn">목록</button>
 				</td>
 			</tr>
 			<tr>
-				<td id="boardViewWriter">${tki.tp_b_writer }</td>
+			<td id="boardViewWriter">
+			<c:choose>
+				<c:when test="${tki.tp_b_writer eq '관리자' }">
+					♛<span style="cursor: pointer;">${tki.tp_b_writer }</span>
+				</c:when>
+				<c:otherwise>
+					<span style="cursor: pointer;">${tki.tp_b_writer }</span>
+				</c:otherwise>
+			</c:choose>
+					<table id="boardViewWriterImg" class="themeColor themeBackground-color themeBorderColor">
+						<tr>
+							<td align="center">
+								<img class="themeBorderColor" src="resources/img/${sessionScope.writerImg }">
+							</td>
+						</tr>
+						<tr>
+							<c:choose>
+								<c:when test="${tki.tp_b_writer eq '관리자' }">
+									<td align="center" class="themeReplyWriter">♛${tki.tp_b_writer }</td>
+								</c:when>
+								<c:otherwise>
+									<td align="center" class="themeReplyWriter">${tki.tp_b_writer }</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+						<tr>
+							<td align="center">
+								<span id="boardViewWriterImgClose" style="font-weight: 900; cursor: pointer;">X 닫기</span>
+							</td>
+						</tr>
+					</table>
+				</td>
 				<td id="boardViewDate" class="themeBackground-color"><fmt:formatDate value="${tki.tp_b_when }"
 						pattern="yyyy-MM-dd E HH:mm:ss" /></td>
 				<td align="center" id="boardViewLike">
@@ -45,7 +76,7 @@
 					<c:if test="${sessionScope.loginMember ne null}">
 			<tr>
 				<td align="center" colspan="3" id="boardViewLikeBtn" class="">
-						<button onclick="likeGo();">게시글 추천</button>
+						<button onclick="likeGo();" class="themeBtn">게시글 추천</button>
 				</td>
 			</tr>
 					</c:if>
@@ -65,16 +96,16 @@
 			</td>
 			<c:if test="${sessionScope.loginMember.tp_m_nick == r.tp_r_writer }">
 			<td align="center" id="replyTextBtn">
-				<button id="replyUpdateBtn${r.tp_r_no }" class="replyUpdateBtn" onclick="replyUpdate(${r.tp_r_no });">수정</button>
-				<button id="replyDeleteBtn${r.tp_r_no }" class="replyDeleteBtn" onclick="replyDeleteGo(${r.tp_r_no });">삭제</button>
-				<button id="replyUpdateDoneBtn${r.tp_r_no }" onclick="replyUpdateDone(${r.tp_r_no });" class="replyUpdateDoneBtn">작성</button>
-				<button id="replyUpdateCancelBtn${r.tp_r_no }" onclick="replyUpdateCancel(${r.tp_r_no });" class="replyUpdateCancelBtn">취소</button>
+				<button id="replyUpdateBtn${r.tp_r_no }" class="replyUpdateBtn themeBtn" onclick="replyUpdate(${r.tp_r_no });">수정</button>
+				<button id="replyDeleteBtn${r.tp_r_no }" class="replyDeleteBtn themeBtn" onclick="replyDeleteGo(${r.tp_r_no });">삭제</button>
+				<button id="replyUpdateDoneBtn${r.tp_r_no }" onclick="replyUpdateDone(${r.tp_r_no });" class="replyUpdateDoneBtn themeBtn">작성</button>
+				<button id="replyUpdateCancelBtn${r.tp_r_no }" onclick="replyUpdateCancel(${r.tp_r_no });" class="replyUpdateCancelBtn themeBtn">취소</button>
 			</td>
 			</c:if>
 		</tr>
 		<tr>
 			<td colspan="3" id="replyTextTd" class="themeBackground-colorGrey">
-				<span style="color: red;" id="replyEdited${r.tp_r_no }">${r.tp_r_edit }</span>
+				<span id="replyEdited${r.tp_r_no }" class="themeNotice">${r.tp_r_edit }</span>
 				<span id="replyText${r.tp_r_no }">${r.tp_r_text }</span>
 				<textarea id="replyTextarea${r.tp_r_no }" class="replyTextarea" readonly="readonly">${r.tp_r_text }</textarea>
 				<textarea id="replyHiddenText${r.tp_r_no }" class="replyHiddenText">${r.tp_r_text }</textarea>
@@ -89,7 +120,7 @@
 	<input name="token" value="${token }" type="hidden">
 	<table id="replyWriteTbl" class="themeBackground-color themeColor">
 		<tr>
-			<td id="replyWriteWriter" colspan="2" style="color: #0000AA" class="themeNotice">
+			<td id="replyWriteWriter" colspan="2" class="themeReplyWriter">
 				${sessionScope.loginMember.tp_m_nick }
 				<input name="tp_r_writer" value="${sessionScope.loginMember.tp_m_nick }" type="hidden">
 			</td>

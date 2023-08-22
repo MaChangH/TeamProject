@@ -12,19 +12,19 @@
 			<td class="memberTitle">로그인</td>
 		</tr>
 	</table>
-	<table id="loginTbl">
+	<table id="loginGoTbl" class="themeBackground-color themeBorderColor themeColor">
 		<form action="member.login" method="POST">
 		<tr>
-			<td align="center"><input name="tp_m_id" placeholder="ID" class="i1" maxlength="20" autocomplete="off"></td>
+			<td align="center"><input name="tp_m_id" placeholder="ID" class="i1" maxlength="20" autocomplete="off" autofocus="autofocus"></td>
 		</tr>
 		<tr>
 			<td align="center"><input name="tp_m_pw" type="password" placeholder="PW" class="i1" maxlength="20"></td>
 		</tr>
 		<tr>
 			<td align="center">
-			<button>로그인</button>&nbsp;&nbsp;&nbsp;
+			<button class="themeBtn">로그인</button>&nbsp;&nbsp;&nbsp;
 		</form>
-			<button onclick="goJoin();">회원가입</button>
+			<button onclick="goJoin();" class="themeBtn">회원가입</button>
 			</td> 
 		</tr>	
 	</table>

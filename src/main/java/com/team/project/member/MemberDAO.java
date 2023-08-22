@@ -124,6 +124,7 @@ public class MemberDAO {
 						dbM.setTp_m_point(point);
 						ss.getMapper(MemberMapper.class).setLoginDate(dbM);
 						req.getSession().setAttribute("loginMember", dbM);
+						req.getSession().setMaxInactiveInterval(0);
 //						req.getSession().setMaxInactiveInterval(10 * 60);
 						req.setAttribute("r", "오늘의 첫 로그인으로 100포인트를 획득했습니다");
 						req.setAttribute("cp", "home.jsp");
@@ -132,6 +133,7 @@ public class MemberDAO {
 						dbM.setTp_m_loginNum(loginNum);
 						ss.getMapper(MemberMapper.class).setLoginDate(dbM);
 						req.getSession().setAttribute("loginMember", dbM);
+						req.getSession().setMaxInactiveInterval(0);
 //						req.getSession().setMaxInactiveInterval(10 * 60);
 						req.setAttribute("r", "로그인했습니다.");
 						req.setAttribute("cp", "home.jsp");
@@ -154,6 +156,7 @@ public class MemberDAO {
 	// 로그아웃 하는 method
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginMember", null);
+		req.getSession().setMaxInactiveInterval(0);
 		req.setAttribute("r", "로그아웃 되었습니다");
 	}
 	

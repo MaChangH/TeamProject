@@ -28,15 +28,25 @@
 		<c:forEach var="n" items="${notice }">
 			<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
 				<td align="center"
-					class="boardMsg noticeNo themeBackground-colorGrey themeBorderColor">[공지]</td>
+					class="boardMsg noticeNo themeBackground-colorGrey themeBorderColor themeNotice">[공지]</td>
 				<td
 					class="boardMsg boardTitle themeBackground-colorGrey themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left"
-					class="boardMsg boardWriter themeBackground-colorGrey themeBorderColor">★${n.tp_b_writer }</td>
+					class="boardMsg boardWriter themeBackground-colorGrey themeBorderColor">♛${n.tp_b_writer }</td>
 				<td align="right"
 					class="boardMsg boardDate themeBackground-colorGrey themeBorderColor"
-					class="notice4"><fmt:formatDate value="${n.tp_b_when }"
-						pattern="yyyy-MM-dd HH:mm" /></td>
+					class="notice4">
+					<c:choose>
+								<c:when test="${sessionScope.sysdate > n.tp_b_when }">
+								<fmt:formatDate value="${n.tp_b_when }"
+									pattern="yyyy-MM-dd" />
+								</c:when>
+								<c:otherwise>
+								<fmt:formatDate value="${n.tp_b_when }"
+									pattern="yyyy-MM-dd HH:mm" />
+								</c:otherwise>
+							</c:choose>
+						</td>
 				<td align="center"
 					class="boardMsg boardView themeBackground-colorGrey themeBorderColor">${n.tp_b_view }</td>
 				<td align="center"

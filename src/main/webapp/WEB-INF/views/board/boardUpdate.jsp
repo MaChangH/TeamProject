@@ -52,9 +52,9 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="right">
-					<button>작성</button>
+					<button class="themeBtn">작성</button>
 				</form>
-					<button onclick="boardViewGo(${tki.tp_b_no});">취소</button>
+					<button onclick="boardViewGo(${tki.tp_b_no});" class="themeBtn">취소</button>
 					</td>
 			</tr>
 		</c:forEach>

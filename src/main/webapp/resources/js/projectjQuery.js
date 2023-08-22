@@ -65,37 +65,54 @@ function nicknameCheck() {
 // 공지 체크 시 input 벨류값 0에서 1로 변경
 // 해당 게시글이 공지사항인지 아닌지 확인
 function noticeChk() {
-	setInterval(() => {
+	$('#noticeChk').change(function() {
 		if ($('#noticeChk').is(':checked')) {
 			$('#isNotice').val(1);
 		} else {
 			$('#isNotice').val(0);
 		}
-		
+	});
+}
+
+function noticeUpdateChk() {
+	$('#updateNotice').change(function() {
 		if ($('#updateNotice').is(':checked')) {
 			$('#updateNoticeResult').val(1);
 		} else {
 			$('#updateNoticeResult').val(0);
 		}
-		
-	}, 1);
+	});
 }
 
-
 function importantChk() {
-	setInterval(() => {
+	$('#importantChk').change(function() {
 		if ($('#importantChk').is(':checked')) {
 			$('#isImportant').val(1);
 		} else {
 			$('#isImportant').val(0);
 		}
-		
+	});
+}
+
+function importantUpdateChk() {
+	$('#updateImp').change(function() {
 		if ($('#updateImp').is(':checked')) {
 			$('#updateImpResult').val(1);
 		} else {
 			$('#updateImpResult').val(0);
 		}
-	}, 1);
+	});
+}
+
+// 회원정보 창에서 PW보기에 마우스를 올리면 PW의 input type을 변경
+function showPW() {
+	$('#seePW').mouseenter(() => {
+		$('#infoPW').removeAttr("type");
+	});
+	
+	$('#seePW').mouseleave(() => {
+		$('#infoPW').attr("type", "password");
+	});
 }
 
 
@@ -153,16 +170,52 @@ function position () {
 	}
 }
 
+// 로그인/비로그인 상태일 때 왼쪽 배너의 높이 조절
+function leftBannerTop() {
+	let login = $('#loginMember').val();
+	if (login == "") {
+		$('#indexLeftBannerTbl').css('top', "300px");
+	} else {
+		$('#indexLeftBannerTbl').css('top', "500px");
+	}
+}
+
+// 게시글의 작성자 닉네임을 클릭하면 해당 작성자의 사진이 나오고, 닫기를 클릭하면 창이 사라지도록
+function writerImgAppear() {
+	$('#boardViewWriter').click(() => {
+		if ($('#boardViewWriterImg').css('opacity') == 0) {
+			$('#boardViewWriterImg').css('display', 'block');
+			setTimeout(() => {
+				$('#boardViewWriterImg').css('opacity', '100%');
+			}, 10);
+		}
+	});
+	
+	$('#boardViewWriterImgClose').click(() => {
+		if ($('#boardViewWriterImg').css('opacity') == 1) {
+			$('#boardViewWriterImg').css('opacity', '0%');
+			setTimeout(() => {
+				$('#boardViewWriterImg').css('display', 'none');
+			}, 300);
+		}
+	});
+}
 
 $(function () {
 	notice();
+	leftBannerTop();
 	position();
 	movePosition();
 	searchAddr();
 	idCheck();
 	nicknameCheck();
+	showPW();
 	noticeChk();
+	noticeUpdateChk();
 	importantChk();
+	importantUpdateChk();
+	importantChk();
+	writerImgAppear();
 	textareaScroll();
 	replyareaScroll();
 });

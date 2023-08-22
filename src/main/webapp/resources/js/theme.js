@@ -25,7 +25,7 @@ function themeChangeAppear() {
 			$('#settingThemeTbl').css('display', 'block');
 			setTimeout(() => {
 				$('#settingThemeTbl').css('opacity', '100%');
-			}, 100);
+			}, 10);
 		}
 	});
 	
@@ -57,31 +57,55 @@ function colorChange() {
 
 function colorNormal() {
 	$('body').css('background-color', '#00AAFF10');
+	$('.themeColor').css('color', 'black');
 	$('.themeBackground-color').css('background-color', '#abd2ff');
 	$('.themeBackground-colorGrey').css('background-color', '#ddedff');
+	$('.themeNotice').css('color', 'red');
 	$('.themeReplyWriter').css('color', '#0000AA');
+	$('.themeBorderColor').css('border-color', 'black');
 }
 
 function colorRed() {
 	$('body').css('background-color', '#FF000020');
+	$('.themeColor').css('color', 'black');
+	$('.themeBackground-color').css('background-color', '#ffa9a9');
+	$('.themeBackground-colorGrey').css('background-color', '#ffdfdf');
+	$('.themeNotice').css('color', '#008888');
+	$('.themeReplyWriter').css('color', '#AA0000');
+	$('.themeBorderColor').css('border-color', 'black');
 }
 
 function colorOrange() {
 	$('body').css('background-color', '#FF6A0020');
+	$('.themeColor').css('color', 'black');
+	$('.themeBackground-color').css('background-color', '#ffc1a9');
+	$('.themeBackground-colorGrey').css('background-color', '#ffe6db');
+	$('.themeNotice').css('color', '#0066AA');
+	$('.themeReplyWriter').css('color', '#e17122');
+	$('.themeBorderColor').css('border-color', 'black');
 }
 
 function colorSilver() {
-	$('body').css('background-color', '#00000020');
+	$('body').css('background-color', '#00000010');
+	$('.themeColor').css('color', 'black');
+	$('.themeBackground-color').css('background-color', '#dddddd');
+	$('.themeBackground-colorGrey').css('background-color', '#ebebeb');
+	$('.themeNotice').css('color', 'red');
+	$('.themeReplyWriter').css('color', '#0000AA');
+	$('.themeBorderColor').css('border-color', 'black');
 }
 
 function colorDark() {
-	$('body').css('background-color', '#202020');
+	$('body').css('background-color', '#101010');
 	$('.themeColor').css('color', 'white');
 	$('.themeBackground-color').css('background-color', 'black');
-	$('.themeBackground-colorGrey').css('background-color', '#101010');
+	$('.themeBackground-colorGrey').css('background-color', '#202020');
 	$('.themeNotice').css('color', 'yellow');
 	$('.themeReplyWriter').css('color', 'yellow');
 	$('.themeBorderColor').css('border-color', 'white');
+	$('.themeBtn').css('border-color', 'white');
+	$('.themeBtn').css('background-color', '#202020');
+	$('.themeBtn').css('color', 'white');
 }
 
 

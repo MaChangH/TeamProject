@@ -16,7 +16,7 @@
 	<table id="settingTbl" class="themeColor">
 		<tr>
 			<td class="settingTd">
-				<button id="settingThemeChangeBtn" class="settingBtn">테마 설정</button>
+				<button id="settingThemeChangeBtn" class="settingBtn themeBtn">테마 설정</button>
 			</td>
 			<td>
 				사이트의 전체적인 색감을 변경할 수 있습니다.
@@ -25,7 +25,7 @@
 		<c:if test="${sessionScope.loginMember ne null }">
 		<tr>
 			<td class="settingTd">
-				<button class="settingBtn" onclick="infoGo();">가입 정보</button>
+				<button class="settingBtn themeBtn" onclick="infoGo();">가입 정보</button>
 			</td>
 			<td>
 				회원가입 할 때 입력한 내용들을 확인 및 수정 할 수 있습니다.
@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td class="settingTd">
-				<button class="settingBtn" onclick="byeGo();">회원 탈퇴</button>
+				<button class="settingBtn themeBtn" onclick="byeGo();">회원 탈퇴</button>
 			</td>
 			<td>
 				회원탈퇴 시 작성한 모든 게시글/댓글도 함께 삭제됩니다.
@@ -79,8 +79,8 @@
 				</select>
 			</td>
 			<td align="right">
-				<button id="settingThemeBtn">테마 변경</button>
-				<button id="settingThemeCancelBtn">닫기</button>
+				<button id="settingThemeBtn" class="themeBtn">테마 변경</button>
+				<button id="settingThemeCancelBtn" class="themeBtn">닫기</button>
 			</td>
 		</tr>
 	</table>

@@ -43,6 +43,7 @@
 	<input id="result" value="${r }" type="hidden">
 	
 	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
+	<input id="loginMember" value="${sessionScope.loginMember }" type="hidden">
 	
 	
 	<%-- 로그인 페이지 --%>
