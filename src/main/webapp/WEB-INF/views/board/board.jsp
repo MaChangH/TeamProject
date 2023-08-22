@@ -9,6 +9,7 @@
 <title>board/board.jsp</title>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript">
+// 공지사항 숨기기, 펼치기
 $(function() {
 	$('.notice').hide(); 
 	$('#unfold').click(function() {
@@ -20,6 +21,8 @@ $(function() {
         $('#unfold').show(); 
     });
 });
+
+
 </script>
 </head>
 <body>
@@ -50,15 +53,15 @@ $(function() {
 					style="font-weight: bold; color: red;">[중요]</td>
 				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${i.tp_b_title }</td>
 				<td align="left" class="boardMsg boardWriter themeBorderColor">★${i.tp_b_writer }</td>
-				<td align="right" class="boardMsg boardDate themeBorderColor"
-					class="notice4"><fmt:formatDate value="${i.tp_b_when }"
-						pattern="yyyy-MM-dd HH:mm" /></td>
+				<td align="right" class="boardMsg boardDate themeBorderColor" class="notice4">
+					<fmt:formatDate value="${i.tp_b_when }" pattern="yyyy-MM-dd HH:mm" />
+				</td>
 				<td align="center" class="boardMsg boardView themeBorderColor">${i.tp_b_view }</td>
 				<td align="center" class="boardMsg boardLike themeBorderColor">${i.tp_b_like }</td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="6" align="center" id="unfold">펼치기▼</td>
+			<td colspan="6" align="center" id="unfold">최근 공지사항 펼치기▼</td>
 		</tr>
 		<c:forEach var="n" items="${notice }" end="2">
 			<tr onclick="boardViewGo(${n.tp_b_no })"
@@ -67,9 +70,9 @@ $(function() {
 					class="boardMsg boardNo themeNotice themeBorderColor">[공지]</td>
 				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left" class="boardMsg boardWriter themeBorderColor">★${n.tp_b_writer }</td>
-				<td align="right" class="boardMsg boardDate themeBorderColor"
-					class="notice4"><fmt:formatDate value="${n.tp_b_when }"
-						pattern="yyyy-MM-dd HH:mm" /></td>
+				<td align="right" class="boardMsg boardDate themeBorderColor notice4">
+					<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm" />
+				</td>
 				<td align="center" class="boardMsg boardView themeBorderColor">${n.tp_b_view }</td>
 				<td align="center" class="boardMsg boardLike themeBorderColor">${n.tp_b_like }</td>
 			</tr>
@@ -112,8 +115,7 @@ $(function() {
 								</c:otherwise>
 							</c:choose>
 							<td align="right" class="boardMsg boardDate themeBorderColor">
-								<fmt:formatDate value="${tm.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+								<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td align="center" class="boardMsg boardView themeBorderColor">${tm.tp_b_view }</td>
 							<td align="center" class="boardMsg boardLike themeBorderColor">${tm.tp_b_like }</td>
@@ -131,8 +133,8 @@ $(function() {
 					onsubmit="return searchboard();">
 					<select name="searchNum">
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
-						<option value="2" <c:if test="">selected="selected"</c:if>> 내용</option>
-						<option value="3" <c:if test="">selected="selected"</c:if>> 닉네임</option>
+						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
+						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
 					</select> <input name="search" placeholder="제목 검색">
 					<button>검색</button>
 				</form></td>
@@ -149,10 +151,16 @@ $(function() {
 		<%-- 페이지 넘기는 부분 --%>
 
 		<tr>
-			<td colspan="2" align="center"><c:forEach var="p" begin="1"
-					end="${allPageCount }">
-					<a class="themeColor" href="board.page?p=${p }">[${p }] </a>
-				</c:forEach></td>
+			<td colspan="2" align="center">
+				<c:forEach var="p" begin="1" end="${allPageCount }">
+					<a class="themeColor" href="board.page?p=${p }
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>
+					">[${p }] </a>
+				</c:forEach>
+			</td>
 		</tr>
 	</table>
 </body>
