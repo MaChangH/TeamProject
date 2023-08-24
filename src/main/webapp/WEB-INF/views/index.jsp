@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="resources/css/banner.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
-<script type="text/javascript" src="resources/js/projectjQuery.js"></script>
+<!-- <script type="text/javascript" src="resources/js/projectjQuery.js"></script> -->
 <script type="text/javascript" src="resources/js/go.js"></script>
 <script type="text/javascript" src="resources/js/teamValidChecker.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
