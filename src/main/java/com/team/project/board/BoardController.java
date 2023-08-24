@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team.project.TokenMaker;
+import com.team.project.TokenMaker2;
 import com.team.project.banner.BannerDAO;
 import com.team.project.member.Member;
 import com.team.project.member.MemberDAO;
@@ -36,6 +37,7 @@ public class BoardController {
 		bDAO.searchClear(req);
 		bDAO.getBoardMsg(1, req);
 		TokenMaker.makeToken(req);
+		TokenMaker2.makeToken(req);
 //			req.getSession().setAttribute("cp", "\"board/board.jsp\"");
 //			String cp = (String) req.getSession().getAttribute("cp");
 		req.setAttribute("cp", "board/board.jsp");

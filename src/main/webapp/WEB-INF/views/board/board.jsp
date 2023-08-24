@@ -22,10 +22,10 @@ $(function() {
     });
 });
 
-
 </script>
 </head>
 <body>
+	<c:set var="token2" value="${token2 }"></c:set>
 	<table id="boardTitleTbl">
 		<tr>
 			<td class="boardName themeColor">게시판</td>
@@ -114,8 +114,12 @@ $(function() {
 									<td align="left" class="boardMsg boardWriter themeBorderColor">${tm.tp_b_writer }</td>
 								</c:otherwise>
 							</c:choose>
-							<td align="right" class="boardMsg boardDate themeBorderColor">
-								<fmt:formatDate value="${n.tp_b_when }" pattern="yyyy-MM-dd HH:mm" />
+							<c:set var='writeDate' value='<fmt:formatDate value="${tm.tp_b_when }" pattern="yyyyMMdd" />' />
+							<td align="right" class="boardMsg boardDate themeBorderColor MMdd">
+								<fmt:formatDate value="${tm.tp_b_when }" pattern="MM-dd" />
+							</td>
+							<td align="right" class="boardMsg boardDate themeBorderColor HHmm">
+								<fmt:formatDate value="${tm.tp_b_when }" pattern="HH:mm" />
 							</td>
 							<td align="center" class="boardMsg boardView themeBorderColor">${tm.tp_b_view }</td>
 							<td align="center" class="boardMsg boardLike themeBorderColor">${tm.tp_b_like }</td>

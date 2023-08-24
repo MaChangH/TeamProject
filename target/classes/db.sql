@@ -116,3 +116,8 @@ drop table tp_like cascade constraint purge
 -- 1. tp_member
 -- 2. tp_reply
 -- 3. tp_board 순서대로 create 하기
+
+
+
+
+
