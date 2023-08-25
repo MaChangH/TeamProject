@@ -69,15 +69,20 @@ async function leagueInfo(encID) {
     }
 
     console.log(data);
-
-    let lP = data[0].leaguePoints;
-    let rank = data[0].rank;
-    let wins = data[0].wins;
-    let losses = data[0].losses;
-    let tier = data[0].tier;
-    console.log(tier, rank, lP, wins, losses);
-    arr = [tier, rank, lP, wins, losses];
-    return arr;
+    // 0 아니면 1인데
+    for (i = 0; i < 2; i++) {
+      console.log(i);
+      if (data[i].queueType == "RANKED_SOLO_5x5") {
+        let lP = data[i].leaguePoints;
+        let rank = data[i].rank;
+        let wins = data[i].wins;
+        let losses = data[i].losses;
+        let tier = data[i].tier;
+        console.log(tier, rank, lP, wins, losses);
+        arr = [tier, rank, lP, wins, losses];
+        return arr;
+      }
+    }
   } catch (error) {
     console.log(error);
   }
