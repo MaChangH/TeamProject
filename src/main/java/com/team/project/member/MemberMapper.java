@@ -2,6 +2,8 @@ package com.team.project.member;
 
 import java.util.List;
 
+import com.team.project.board.Board;
+
 public interface MemberMapper {
 
 	// Id 가져오기
@@ -24,4 +26,7 @@ public interface MemberMapper {
 	
 	// 포인트 불러오기
 	public abstract int getPoint(Member m);
+	
+	// 게시글 작성자 사진 불러오기
+	public abstract String getBoardWriterImg(Board b);
 }

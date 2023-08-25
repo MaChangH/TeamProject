@@ -12,7 +12,7 @@
 			<td class="memberTitle">로그인 확인</td>
 		</tr>
 	</table>
-	<table class="themeColor">
+	<table style="border: 2px solid black" class="themeColor themeBackground-color themeBorderColor">
 	<form action="member.info.go" method="POST">
 		<tr>
 			<td>
@@ -21,14 +21,14 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="password" placeholder="PW" maxlength="20" name="tp_m_pw">
+				<input type="password" placeholder="PW" maxlength="20" name="tp_m_pw" autofocus="autofocus">
 			</td>
 		</tr>
 		<tr>
 			<td align="center">
-				<button>확인</button>&nbsp;&nbsp;&nbsp;
+				<button class="themeBtn">확인</button>&nbsp;&nbsp;&nbsp;
 		</form>
-				<button onclick="homeGo();">취소</button>
+				<button onclick="settingGo();" class="themeBtn">취소</button>
 			</td>
 		</tr>
 	</table>

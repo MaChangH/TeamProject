@@ -29,6 +29,7 @@ public class GameController {
 		baDAO.getWeather(req);
 		baDAO.bannerEvent(req);
 		req.setAttribute("cp", "game/game.jsp");
+		req.getSession().setAttribute("currentPage", "game");
 		return "index";
 	}
 	

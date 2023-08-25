@@ -40,8 +40,8 @@
 	border: 2px solid black;
 	border-spacing: 0px;
 	background-color: white;
-	width: 180px;
-	margin-bottom: 20px;
+	width: 250px;
+	margin-bottom: 30px;
 }
 
 .bannerHotTr {
@@ -70,7 +70,7 @@
 .bannerHotMsgTitle {
 	border-right: 1px solid black;
 	border-top: 1px solid black;
-	max-width: 100px;
+	max-width: 150px;
 	height: 30px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -81,4 +81,14 @@
 .bannerHotMsgLike {
 	text-align: center;
 	border-top: 1px solid black;
+}
+
+
+/* 뉴스 */
+
+#newsBannerTbl {
+	border: 2px solid black;
+	border-spacing: 0px;
+	width: 300px;
+	
 }

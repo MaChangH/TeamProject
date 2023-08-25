@@ -14,7 +14,6 @@ create table tp_board (
 create sequence tp_board_seq;
 
 select * from TP_BOARD
-select * from TP_BOARD where tp_b_notice = 1
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
@@ -35,13 +34,14 @@ select count(*) from tp_board where tp_b_notice = 1
 select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '솔직히 유희왕','굉장히 어렵습니다',  sysdate, 0, 0, 0, 0)
+values (tp_board_seq.nextval, '트기', '이번에 스찍만 안하길','항상 큰대회만 나가면 이러더라',  sysdate, 0, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '이선수','나츄르만 잘합니다',  sysdate, 0, 0, 0, 0)
+values (tp_board_seq.nextval, '트기', '그거는 니가','못해서 그래',  sysdate, 0, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '진정한 듀얼리스트는','왠벽한 패가 아니면 승부를 하지 않는다',  sysdate, 0, 0, 0, 0)
+values (tp_board_seq.nextval, '트기', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 0, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '나 진짜','나츄르까지 하는거보면 전생에 드루이드였음',  sysdate, 0, 0, 0, 0)
+values (tp_board_seq.nextval, '트기', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 0, 0, 0, 0);
+
 
 
 drop table tp_board cascade constraint purge;
@@ -116,6 +116,8 @@ drop table tp_like cascade constraint purge
 -- 1. tp_member
 -- 2. tp_reply
 -- 3. tp_board 순서대로 create 하기
+
+
 
 
 

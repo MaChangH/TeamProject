@@ -57,11 +57,25 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="right" id="boardWriteBtn">
-					<button>작성</button>
+					<button class="themeBtn">작성</button>
 			</form>
-					<button onclick="boardGo()">취소</button>
+					<button onclick="boardGo()" class="themeBtn">취소</button>
 				</td>
 			</tr>
 		</table>
+		
+	<script type="text/javascript">
+const DEFAULT_HEIGHT = 180;
+	
+
+	const $textarea = document.querySelector('.textarea');
+	
+	$textarea.oninput = (event) => {
+		const $target = event.target;
+
+		$target.style.height = 0;
+		$target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
+	};
+	</script>
 </body>
 </html>

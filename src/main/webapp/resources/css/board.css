@@ -33,12 +33,6 @@
 	width: 60%;
 }
 
-#boardTitleTbl {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 20px;
-}
-
 #boardNoticeTbl {
 	background-color: white;
 	border: solid 2px black;
@@ -131,10 +125,24 @@
 }
 
 #boardViewWriter {
+	position: relative;
 	border-bottom: 1px solid black;
 	padding-left: 10px;
 	height: 30px;
 	font-weight: 900;
+}
+#boardViewWriterImg {
+	position: absolute;
+	border: 2px solid black;
+	display: none;
+	opacity: 0%;
+	transition: all 0.3s linear;
+}
+
+#boardViewWriterImg img {
+	border: 2px solid black;
+	max-width: 150px;
+	max-height: 150px;
 }
 
 #boardViewText {
@@ -389,5 +397,14 @@
 
 .noticeNo {
 	width: 75px;
+}
+
+/* 펼치기, 접기 */
+
+.boardFold {
+	border-top: 2px solid black;
+	cursor: pointer;
+	font-size: 13pt;
+	font-weight: 900;
 }
 

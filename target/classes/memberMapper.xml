@@ -34,4 +34,9 @@
 	<select id="getPoint" parameterType="com.team.project.member.Member" resultType="java.lang.Integer">
 		select tp_m_point from tp_member where tp_m_id = #{tp_m_id}
 	</select>
+	
+	<!-- 게시글에서 작성자 이름 클릭했을 때, 해당 작성자의 사진 불러오기 -->
+	<select id="getBoardWriterImg" parameterType="com.team.project.board.Board" resultType="java.lang.String">
+		select tp_m_photo from tp_member, tp_board where tp_m_nick = tp_b_writer and tp_b_no = #{tp_b_no}
+	</select>
 </mapper>

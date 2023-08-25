@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.project.member.MemberMapper;
 
 @Service
 public class BoardDAO {
@@ -49,6 +52,7 @@ public class BoardDAO {
 			searchNum = Integer.parseInt(req.getParameter("searchNum"));
 			req.getSession().setAttribute("searchNum", searchNum);
 			BoardSelector bSel2 = new BoardSelector(search, 0, 0);
+			searchNum = Integer.parseInt(req.getParameter("searchNum"));
 			if (searchNum == 1) {
 				boardCount = ss.getMapper(BoardMapper.class).getSearchTitleCount(bSel2);
 			}else if (searchNum == 2) {
@@ -76,6 +80,13 @@ public class BoardDAO {
 		req.setAttribute("boardMsg", boards);
 		req.setAttribute("notice", notices);
 		req.setAttribute("imp", imps);
+		req.getSession().setAttribute("searchNum", searchNum);
+		
+		Date sysdate = new Date();
+		sysdate.setHours(0);
+		sysdate.setMinutes(0);
+		sysdate.setSeconds(0);
+		req.getSession().setAttribute("sysdate", sysdate);
 	}
 	
 	// 검색어에 해당하는 공지글 가져오는 method
@@ -121,13 +132,20 @@ public class BoardDAO {
 		BoardNo bn = new BoardNo(tp_b_no);
 		List<Board> boards = ss.getMapper(BoardMapper.class).viewBoard(bn);
 		Board board = boards.get(0);
-		int view = board.getTp_b_view();
+		
 		int like = ss.getMapper(BoardMapper.class).getBoardLike(board);
 		board.setTp_b_like(like);
-		view++;
 		ss.getMapper(BoardMapper.class).boardLike(board);
+		
+		int view = board.getTp_b_view();
+		view++;
 //		System.out.println(view);
 		board.setTp_b_view(view);
+		
+		String photo = ss.getMapper(MemberMapper.class).getBoardWriterImg(board);
+		req.getSession().setAttribute("writerImg", photo);
+		req.getSession().setMaxInactiveInterval(0);
+		
 		boards.set(0, board);
 		String writer = board.getTp_b_writer();
 		ss.getMapper(BoardMapper.class).updateBoardView(board);

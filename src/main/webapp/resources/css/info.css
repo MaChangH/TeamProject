@@ -6,7 +6,6 @@
 
 .infoTbl {
 	border: 2px solid black;
-	border-radius: 20px;
 	width: 50%;
 	border-spacing: 0px;
 }
@@ -35,5 +34,12 @@
 
 .infoInput {
 	border: none;
+	width: 250px;
 }
 
+#infoInputAddr {
+	border-bottom: 1px solid black;
+	text-align: left;
+	padding-left: 10px;
+	width: 80%;
+}
