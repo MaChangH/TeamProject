@@ -96,6 +96,21 @@ $(function() {
 			<td colspan="6" align="center" class="notice boardFold themeBorderColor" id="folding">접기▲</td>
 		</tr>
 	</table>
+	<table class="themeColor" style="width: 60%">
+		<tr>
+			<td align="right">
+				<div class="themeNotice">
+					페이지 당 게시글 수
+					<select id="boardPerPageSelect">
+						<option value="10" <c:if test ="${sessionScope.boardPerPage == 10}"> selected="selected"</c:if>>10</option>
+						<option value="15" <c:if test ="${sessionScope.boardPerPage == 15}"> selected="selected"</c:if>>15</option>
+						<option value="20" <c:if test ="${sessionScope.boardPerPage == 20}"> selected="selected"</c:if>>20</option>
+						<option value="30" <c:if test ="${sessionScope.boardPerPage == 30}"> selected="selected"</c:if>>30</option>
+					</select>
+				</div>
+			</td>
+		</tr>
+	</table>
 	<table id="boardTbl">
 		<%-- 글 제목 보이는 부분 --%>
 		<tr>
@@ -152,12 +167,14 @@ $(function() {
 
 			<td align="center"><form action="board.search" name="searchForm"
 					onsubmit="return searchboard();">
+					<input value="1" name="p" type="hidden">
+					<input id="boardPerPageSearch" value="${param.b }" name="b" type="hidden">
 					<select name="searchNum">
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
 						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
 						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
-					</select> <input name="search" placeholder="제목 검색" value=${param.search }>
-					<button class="themeBtn">검색</button>
+					</select> <input name="search" placeholder="제목 검색" value="${sessionScope.search }">
+					<button id="boardSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<td align="right" id="writeButton" class="boardSoild"><form
 					action="board.write.go">
@@ -173,17 +190,35 @@ $(function() {
 
 		<tr>
 			<td colspan="2" align="center">
-				<c:forEach var="p" begin="1" end="${allPageCount }">
-					<a class="themeColor" href="board.page?p=${p }&searchNum=${searchNum }&search=${param.search }">
-					<c:if test="${p == param.p or (param.p == null and p == 1)}" >
+			<a class="themeReplyWriter themeBorderColor themeBackground-colorGrey boardFirstLast" href="board.page?p=1&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">첫페이지</a>&nbsp;&nbsp;&nbsp;
+			<c:if test="${param.p >10 }">
+				<a class="themeColor" href="board.page?p=${sessionScope.pageNum - 10 }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">◀&nbsp;&nbsp;</a>
+			</c:if>
+				<c:forEach var="p" begin="${sessionScope.pageNum - 9 }" end="${sessionScope.pageNum }">
+					<c:if test="${p <= allPageCount }">
+					<a class="themeColor" href="board.page?p=${p }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">
+					<c:if test="${p == param.p or (param.p == null and p%10 == 1)}" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
-					[${p }] </a>
+					[${p }]</a>&nbsp;&nbsp;
 					<c:if test="${p == param.p }" >
 						</span>
 					</c:if>
-					
+					</c:if>
 				</c:forEach>
+			<c:if test="${allPageCount > sessionScope.pageNum }">
+				<a class="themeColor" href="board.page?p=
+				<c:choose>
+					<c:when test="${param.p eq null }">
+						11
+					</c:when>
+					<c:otherwise>
+					<fmt:formatNumber groupingUsed="false" pattern="#" value="${1 + sessionScope.pageNum }" />
+					</c:otherwise>
+				</c:choose>
+				&searchNum=${searchNum }&search=${param.search }&b=${sessionScope.boardPerPage }">▶</a>
+			</c:if>
+			&nbsp;&nbsp;&nbsp;<a class="themeReplyWriter themeBorderColor themeBackground-colorGrey boardFirstLast" href="board.page?p=${allPageCount }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">끝페이지</a>
 			</td>
 		</tr>
 	</table>

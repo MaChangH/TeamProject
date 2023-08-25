@@ -15,7 +15,7 @@
 		</tr>
 	</table>
 		<table id="boardWriteTbl">
-	<form action="board.write" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return writeCheck();">
+	<form action="board.write" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return boardWriteCheck();">
 	<input name="token" value="${token }" type="hidden">
 			<tr>
 				<td>
@@ -59,7 +59,7 @@
 				<td colspan="3" align="right" id="boardWriteBtn">
 					<button class="themeBtn">작성</button>
 			</form>
-					<button onclick="boardGo()" class="themeBtn">취소</button>
+					<button onclick="boardGo(1, ${sessionScope.boardPerPage })" class="themeBtn">취소</button>
 				</td>
 			</tr>
 		</table>

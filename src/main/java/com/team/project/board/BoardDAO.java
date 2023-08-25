@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -38,13 +39,17 @@ public class BoardDAO {
 	public void searchClear(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
 		req.getSession().setAttribute("searchNum", 1);
+		req.getSession().setAttribute("pageNum", 1);
+		req.getSession().setAttribute("boardPerPage", 10);
+		req.getSession().setAttribute("p", 0); // 검색 초기화가 되면 값이 0이 되는 세션, 페이지 번호가 바뀌면 값이 변함
 	}
 	
 	// 검색어에 해당하는 게시글 가져오는 method
 	public void getBoardMsg(int page, HttpServletRequest req) {
 		String search = (String) req.getSession().getAttribute("search"); // 검색어
 		int boardCount = 0;
-		int searchNum = 1;
+		int searchNum = 1; // 검색을 어떤것으로 할지
+		int nowPage = 0; // 마지막으로 머물렀던 페이지가 몇 번인지
 		if (search == null) { // 전체조회
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
@@ -60,8 +65,11 @@ public class BoardDAO {
 			}else if (searchNum == 3) {
 				boardCount = ss.getMapper(BoardMapper.class).getSearchWriterCount(bSel2);				
 			}
+			
 		}
-		int PerPage = 10;
+		int PerPage = (Integer) req.getSession().getAttribute("boardPerPage"); // 한 페이지에 몇 개의 게시글을 보여줄지
+		req.getSession().setAttribute("boardPerPage", PerPage);
+		
 		int allPageCount = (int) Math.ceil(boardCount / (double) PerPage);
 		req.setAttribute("allPageCount", allPageCount);
 		int start = (PerPage * (page - 1)) + 1;
@@ -82,7 +90,19 @@ public class BoardDAO {
 		req.setAttribute("imp", imps);
 		req.getSession().setAttribute("searchNum", searchNum);
 		
-		Date sysdate = new Date();
+		if ((Integer) req.getSession().getAttribute("p") == 0) { // 검색 초기화가 발생하면
+			nowPage = 1; // 페이지를 1번으로
+		} else {
+			nowPage = Integer.parseInt(req.getParameter("p")); // 그 외에는 파라미터 값으로
+		}
+		req.getSession().setAttribute("nowPage", nowPage);
+		req.getSession().setAttribute("p", nowPage); // 0이었던 세션 값을 바꿈
+		
+		int pageNum = (int) (10*Math.ceil((double)nowPage/10)); // 화살표를 눌렀을 때 이동할 페이지의 기준
+		req.getSession().setAttribute("pageNum", pageNum);
+		
+		
+		Date sysdate = new Date(); // 하루 이상 지난 게시글들은 날짜가 간략하게 표시되게 하기 위한 기준점
 		sysdate.setHours(0);
 		sysdate.setMinutes(0);
 		sysdate.setSeconds(0);
@@ -160,6 +180,9 @@ public class BoardDAO {
 	public void searchBoard(HttpServletRequest req) {
 		String search = req.getParameter("search");
 		req.getSession().setAttribute("search", search);
+		
+		int PerPage = Integer.parseInt(req.getParameter("b")); // 한 페이지에 몇 개의 게시글을 보여줄지
+		req.getSession().setAttribute("boardPerPage", PerPage);
 	}
 	
 	// 게시글 작성하는 method
@@ -184,6 +207,9 @@ public class BoardDAO {
 //			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
+			
+			
+			
 //			System.out.println(b.getTp_b_title());
 //			System.out.println(b.getTp_b_txt());
 //			System.out.println(b.getTp_b_writer());

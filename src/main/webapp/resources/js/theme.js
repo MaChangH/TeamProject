@@ -98,7 +98,7 @@ function colorRed() {
 	$('body').css('background-color', '#FF000020');
 	$('.themeColor').css('color', 'black');
 	$('.themeBackground-color').css('background-color', '#ffa9a9');
-	$('.themeBackground-colorGrey').css('background-color', '#ffdfdf');
+	$('.themeBackground-colorGrey').css('background-color', '#ffd1d1');
 	$('.themeNotice').css('color', '#008888');
 	$('.themeReplyWriter').css('color', '#AA0000');
 	$('.themeBorderColor').css('border-color', 'black');
@@ -163,7 +163,7 @@ function colorPreviewNormal() {
 function colorPreviewRed() {
 	$('.themePreviewColor').css('color', 'black');
 	$('.themePreviewBackground-color').css('background-color', '#ffa9a9');
-	$('.themePreviewBackground-colorGrey').css('background-color', '#ffdfdf');
+	$('.themePreviewBackground-colorGrey').css('background-color', '#ffd1d1');
 	$('.themePreviewNotice').css('color', '#008888');
 	$('.themePreviewReplyWriter').css('color', '#AA0000');
 	$('.themePreviewBorderColor').css('border-color', 'black');

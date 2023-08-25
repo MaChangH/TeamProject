@@ -5,8 +5,22 @@ function homeGo () {
 }
 
 //BOARD로 이동하기
-function boardGo () {
-	location.href = "board.go";
+function boardGo (p, b) {
+	location.href = "board.go?p=" + p + "&b=" + b;
+}
+
+//검색어 유지한 채로 board로 돌아가기
+function boardBack (p, b, sn, s) {
+	location.href = "board.page?p=" + p + "&b=" + b + "&searchNum=" + sn + "&search=" + s;
+}
+
+// 페이지 당 게시글 수 변경하기
+function boardPerPage() {
+	$('#boardPerPageSelect').change(function() {
+		let bpp = $('#boardPerPageSelect').val();
+		$('#boardPerPageSearch').val(bpp);
+		$('#boardSearchBtn').trigger('click');
+	})
 }
 
 
@@ -138,3 +152,7 @@ function desperadoGo() {
 }
 
 
+
+$(function() {
+	boardPerPage();
+});

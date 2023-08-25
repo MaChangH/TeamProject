@@ -1,3 +1,5 @@
+// 회원가입 체크
+
 function joinCheck() {
 	let j_id = document.joinForm.tp_m_id;
 	let j_pw = document.joinForm.tp_m_pw;
@@ -92,6 +94,7 @@ function joinCheck() {
 	}
 }
 
+// 정보수정 체크
 function updateCheck() {
 	let u_pw = document.updateForm.tp_m_pw;
 	let u_pwChk = document.updateForm.tp_m_pwChk;
@@ -173,6 +176,38 @@ function riotSearchCheck(){
 		return false;
 	}}
 
+
+//게시글 작성 체크
+function boardWriteCheck(){
+	let w_title = document.writeForm.tp_b_title;
+	let w_txt = document.writeForm.tp_b_txt;
+	
+	if (isEmpty(w_title)) {
+		alert('제목을 입력하세요');
+		w_title.focus();
+		return false;
+	} else if (isEmpty(w_txt)) {
+		alert('내용을 입력하세요');
+		w_txt.focus();
+		return false;
+	}
+}
+
+//게시글 수정 체크
+function boardUpdateCheck(){
+	let u_title = document.updateForm.tp_b_title;
+	let u_txt = document.updateForm.tp_b_txt;
+	
+	if (isEmpty(u_title)) {
+		alert('제목을 입력하세요');
+		u_title.focus();
+		return false;
+	} else if (isEmpty(u_txt)) {
+		alert('내용을 입력하세요');
+		u_txt.focus();
+		return false;
+	}
+}
 
 //////////////////////////////////////////////////////////////////
 

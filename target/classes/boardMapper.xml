@@ -93,7 +93,7 @@
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
 	</select>
 	
@@ -107,7 +107,7 @@
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
 	</select>
 	
@@ -121,7 +121,7 @@
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
 	</select>
 	
@@ -135,7 +135,7 @@
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 1 order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	

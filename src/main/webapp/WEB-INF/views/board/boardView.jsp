@@ -24,7 +24,7 @@
 						<button onclick="boardUpdateGo(${tki.tp_b_no }, '${tki.tp_b_writer}');" class="themeBtn">수정</button>&nbsp;&nbsp;
 						<button onclick="boardDeleteGo(${tki.tp_b_no }, '${tki.tp_b_writer}' );" class="themeBtn">삭제</button>&nbsp;&nbsp;
 					</c:if>
-					<button onclick="boardGo();" class="themeBtn">목록</button>
+					<button onclick="boardBack(${sessionScope.nowPage},  ${sessionScope.boardPerPage }, '${sessionScope.searchNum }', '${sessionScope.search }');" class="themeBtn">목록</button>
 				</td>
 			</tr>
 			<tr>
