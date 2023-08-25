@@ -1,4 +1,4 @@
-const api_key = "RGAPI-8c905173-cd12-4063-9c29-d0bc2503e539";
+const api_key = "RGAPI-390177bd-c645-4733-9bec-791a19a3f631";
 
 // 함수에서 promise return (resolve)
 /** 버튼 누르면  input value 를 가져온다.
@@ -7,8 +7,10 @@ const api_key = "RGAPI-8c905173-cd12-4063-9c29-d0bc2503e539";
 function getSN() {
   return new Promise((resolve, reject) => {
     $("#b1").click(function (e) {
-      let sn = $("#SN").val();
-      resolve(sn);
+    	let sn = $("#SN").val();
+    	if (sn != "") {
+    		resolve(sn);
+		}
     });
   });
 }
@@ -55,56 +57,96 @@ async function getJson(url) {
 }
 /** encryptedSummonerId 로 소환사 ID에 대한 리그 정보들을 가져온다.*/
 async function leagueInfo(encID) {
-  let url =
-    "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" +
-    encID +
-    "?api_key=" +
-    api_key;
-  console.log(url);
-  try {
-    let response = await fetch(url);
-    let data = await response.json();
-    if (response.status != 200) {
-      alert("서버문제입니다.");
-    }
-
-    console.log(data);
-
-    let lP = data[0].leaguePoints;
-    let rank = data[0].rank;
-    let wins = data[0].wins;
-    let losses = data[0].losses;
-    let tier = data[0].tier;
-    console.log(tier, rank, lP, wins, losses);
-    arr = [tier, rank, lP, wins, losses];
-    return arr;
-  } catch (error) {
-    console.log(error);
-  }
-}
+	  let url =
+	    "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" +
+	    encID +
+	    "?api_key=" +
+	    api_key;
+	  console.log(url);
+	  try {
+	    let response = await fetch(url);
+	    let data = await response.json();
+	/** 롤 계정 자체는 존재하지만, 랭크 게임을 하지 않은 경우 */
+	    if (data == "") { 
+	    	$('#riotSommonerTbl3').css('opacity', '0%');
+	    	let lP = '정보를 불러올 수 없습니다';
+			let rank = '';
+			let wins = '';
+			let losses = '';
+			let tier = '통계가 부족합니다';
+			let winrate = '';
+			console.log(tier, rank, lP, wins, losses, winrate);
+			arr = [tier, rank, lP, wins, losses, winrate];
+			return arr;
+		} else {
+			if (response.status != 200) {
+				alert("서버문제입니다.");
+			}
+			
+			console.log(data);
+			// 0 아니면 1인데
+			for (i = 0; i < 2; i++) {
+				console.log(i);
+				if (data[i].queueType == "RANKED_SOLO_5x5") {
+					let lP = data[i].leaguePoints;
+					let rank = data[i].rank;
+					let wins = data[i].wins;
+					let losses = data[i].losses;
+					let tier = data[i].tier;
+					let match = wins + losses;
+					let winrate = Math.ceil((wins / match) * 100);
+					console.log(tier, rank, lP, wins, losses, winrate);
+					arr = [tier, rank, lP + ' LP', wins + ' 승', losses + ' 패', '승률 ' + winrate + ' %'];
+					return arr;
+				}
+			}
+		}
+	    
+	  } catch (error) {
+	    console.log(error);
+	  }
+	}
 
 /** LeagueInfo 에서 받아온거 jsp 출력 */
 function onJsp(leagueInfo) {
   // var infolist = document.querySelector("#infolist");
-  $("#infolist").empty();
-  console.log(leagueInfo);
-  var tag = "";
-  let match = leagueInfo[3] + leagueInfo[4];
-  tag +=
-    "<div>" + "솔로랭크 : " + leagueInfo[0] + "\t " + leagueInfo[1] + " </div>";
-  tag += "<div>" + "League Point : " + leagueInfo[2] + "</div>";
-  tag += "<div>" + "승 : " + leagueInfo[3] + " </div>";
-  tag += "<div>" + "패 : " + leagueInfo[4] + " </div>";
-  tag +=
-    "<div>" +
-    "승률 : " +
-    Math.ceil((leagueInfo[3] / match) * 100) +
-    "%" +
-    " </div>";
+	$('.riotSommonerTbl').css('opacity', '100%');
+	
+	$("#infolist").empty();
+	$(".riotTd").empty();
+	
+	let tier = leagueInfo[0];
+	let tierNum = leagueInfo[1];
+	let img = tier;
+  
+	/** 챌린저, 그랜드마스터, 마스터는 티어의 구분만 있고 랭크 구분이 없음 */
+	if (tier == 'CHALLENGER' || tier == 'GRANDMASTER' || tier == 'MASTER') {
+		tierNum = "";
+	} else if (tier == '통계가 부족합니다') {
+		img = 'empty';
+	}
+	
+  var tag1 = $('#SN').val();
+  var tag2 = tier + "\t " + tierNum;
+  var tag3 = leagueInfo[2];
+  var tag4 = leagueInfo[3];
+  var tag5 = leagueInfo[4];
+  var tag6 = leagueInfo[5];
+ 
+  $('#riotIcon').attr('src', 'resources/img/riot/' + img + '.png');
+  
+  
 
   // infolist.innerHTML = tag;
-  $("#infolist").append(tag);
+  $("#riotTd1").append(tag1);
+  $("#riotTd2").append(tag2);
+  $("#riotTd3").append(tag3);
+  $("#riotTd4").append(tag4);
+  $("#riotTd5").append(tag5);
+  $("#riotTd6").append(tag6);
   // console.log(tag);
+  
+  
 }
 
 /**버튼을 눌러도 동작을 안해서 두번째 실행부터 필요한 코드  + 코드추가 */
@@ -115,7 +157,6 @@ function getOnClick() {
     let InfoResult = await getJson(url);
     let encId = InfoResult[1]; //encryptedSummonerId
     let LInfo = await leagueInfo(encId);
-    console.log(LInfo);
     onJsp(LInfo);
   });
 }
@@ -127,7 +168,6 @@ $(document).ready(async function () {
   let InfoResult = await getJson(url);
   let encId = InfoResult[1]; //encryptedSummonerId
   let LInfo = await leagueInfo(encId);
-  console.log(LInfo);
   onJsp(LInfo);
 
   // url 로 fetch 하는거
@@ -138,4 +178,19 @@ $(document).ready(function () {
   $("#b1").click(function (e) {
     getOnClick();
   });
+  
+});
+
+// 엔터 치면 검색 버튼이 클릭되도록
+function keydownEnter() {
+	$(document).keydown((e) => {
+		if (e.keyCode == 13) {
+			$('#b1').trigger('click');
+			return false;
+		}
+	});
+}
+
+$(function () {
+	keydownEnter();
 });

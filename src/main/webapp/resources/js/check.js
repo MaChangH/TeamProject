@@ -169,8 +169,8 @@ function updateCheck() {
 
 // 소환사명 빈칸방지
 function riotSearchCheck(){
-	let SNinput = document.SN_Form.SN;
-	if (isEmpty(SNinput)) {
+	let SNinput = $('#SN').val();
+	if (SNinput == "") {
 		alert('소환사명을 입력해주세요');
 		SN.focus();
 		return false;

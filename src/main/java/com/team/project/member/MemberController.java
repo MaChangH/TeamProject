@@ -33,6 +33,7 @@ public class MemberController {
 		return mDAO.nicknameCheck(m);
 	}
 
+	// 회원가입 페이지 이동 요청
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
 		if (!mDAO.loginCheck(req)) {
@@ -45,6 +46,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 회원가입 요청
 	@RequestMapping(value = "/member.join", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
 		mDAO.join(m, req);
@@ -55,6 +57,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 로그인 페이지 이동 요청
 	@RequestMapping(value = "/member.login.go", method = RequestMethod.GET)
 	public String memberLoginGo(Member m, HttpServletRequest req) {
 		baDAO.bannerEvent(req);
@@ -68,6 +71,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 로그인 요청
 	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
@@ -77,6 +81,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 로그아웃 요청
 	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
 	public String memberLogout(Member m, HttpServletRequest req) {
 		mDAO.logout(req);
@@ -87,6 +92,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 세팅 요청
 	@RequestMapping(value = "/member.setting", method = RequestMethod.GET)
 	public String memberSetting(Member m, HttpServletRequest req) {
 		mDAO.loginCheck(req);
@@ -97,6 +103,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 회원정보 확인하기 전 로그인 확인 페이지 이동 요청
 	@RequestMapping(value = "/member.infoCheck.go", method = RequestMethod.GET)
 	public String memberInfoCheckGo(HttpServletRequest req) {
 		if (mDAO.loginCheck(req)) {
@@ -110,6 +117,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 로그인 확인 후 회원정보 페이지 이동 요청
 	@RequestMapping(value = "/member.info.go", method = RequestMethod.POST)
 	public String memberInfoGo(HttpServletRequest req) {
 		mDAO.loginCheck(req);
@@ -125,6 +133,7 @@ public class MemberController {
 		return "index";
 	}
 
+	// 회원 탈퇴 요청
 	@RequestMapping(value = "/member.bye", method = RequestMethod.GET)
 	public String memberBye(HttpServletRequest req) {
 		if (mDAO.loginCheck(req)) {
@@ -137,6 +146,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 회원정보 수정 페이지 이동 요청
 	@RequestMapping(value = "/member.update.go", method = RequestMethod.POST)
 	public String memberUpdateGo(Member m, HttpServletRequest req) {
 		if (mDAO.loginCheck(req)) {
@@ -151,6 +161,7 @@ public class MemberController {
 		return "index";
 	}
 	
+	// 회원정보 수정 요청
 	@RequestMapping(value = "/member.update", method = RequestMethod.POST)
 	public String memberUpdate(Member m, HttpServletRequest req) {
 		if (mDAO.loginCheck(req)) {

@@ -32,14 +32,14 @@ public class RiotController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/riot.summoners", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/riot.summoners", method = RequestMethod.GET)
 	public String getSummoner(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
 		return "index";
-	}
+	}*/
 	
 	
 }
