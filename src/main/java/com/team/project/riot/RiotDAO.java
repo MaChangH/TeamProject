@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RiotDAO {
 	
-	String api_key = "RGAPI-d7d1c4c5-badf-4e45-9b17-c938fdab2102";
+	String api_key = "RGAPI-34e221cd-0ae6-4a94-9556-cb7f9b289f9c";
 	
 	
 	// input으로 받은 아이디에 띄어쓰기 자리에 %20 추가 후 URL 용 아이디 return

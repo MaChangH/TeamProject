@@ -21,14 +21,14 @@ public class RiotController {
 	private BannerDAO baDAO;
 	@Autowired
 	private RiotDAO rDAO;
-	
+	// 안씀.
 	@RequestMapping(value = "/riot.go", method = RequestMethod.GET)
 	public String goRiot(HttpServletRequest req) {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.setAttribute("cp", "riot_board/riot.jsp");
 		req.getSession().setAttribute("currentPage", "riot");
+		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
 		return "index";
 	}
 	
@@ -37,10 +37,7 @@ public class RiotController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		String summonerName = rDAO.get_UrlName(req); 
-		rDAO.get_Id_AccoutId_Puuid(summonerName, req);
 		req.setAttribute("cp", "riot_board/riotSummonerInfo.jsp");
-		rDAO.matchSearchWithNickName(req);	// 필요없음.
 		return "index";
 	}
 	

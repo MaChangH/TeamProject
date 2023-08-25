@@ -19,7 +19,6 @@
 <script type="text/javascript" src="resources/js/teamValidChecker.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
-<script type="text/javascript" src="resources/js/riot.js"></script>
 <script type="text/javascript" src="resources/js/riotInfo.js"></script>
 <script type="text/javascript" src="resources/js/theme.js"></script>
 </head>
@@ -45,7 +44,7 @@
 	
 	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
 	<input id="loginMember" value="${sessionScope.loginMember }" type="hidden">
-	
+	<input id="currentPage" value="${sessionScope.currentPage }" type="hidden">
 	
 	
 	<table id="indexMainTbl">
