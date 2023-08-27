@@ -84,15 +84,23 @@ async function leagueInfo(encID) {
     // 0 아니면 1인데
     for (i = 0; i < 2; i++) {
       console.log(i);
-      if (data[i].queueType == "RANKED_SOLO_5x5") {
-        let lP = data[i].leaguePoints;
-        let rank = data[i].rank;
-        let wins = data[i].wins;
-        let losses = data[i].losses;
-        let tier = data[i].tier;
-        console.log(tier, rank, lP, wins, losses);
-        arr = [tier, rank, lP, wins, losses];
-        return arr;
+      try {
+        if (data[i].queueType == "RANKED_SOLO_5x5") {
+          let lP = data[i].leaguePoints;
+          let rank = data[i].rank;
+          let wins = data[i].wins;
+          let losses = data[i].losses;
+          let tier = data[i].tier;
+          console.log(tier, rank, lP, wins, losses);
+          arr = [tier, rank, lP, wins, losses];
+          return arr;
+        } else {
+          alert(
+            "현재 버전에서는 솔로랭크만 지원합니다. 최근 솔로랭크 데이터가 존재하지 않습니다."
+          );
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   } catch (error) {
@@ -185,6 +193,12 @@ async function matchInfo(matchId, encpuuid) {
     let ChampionName =
       data.info.participants[indexForSearcherPuuid].championName;
     console.log(ChampionName);
+    //  챔피언 사진 (사각형)
+    let ChampionSquarePhoto =
+      "http://ddragon.leagueoflegends.com/cdn/13.16.1/img/champion/" +
+      ChampionName +
+      ".png";
+    console.log(ChampionSquarePhoto);
     // 게임 끝났을 때 챔피언 레벨
     let C_level_endgame = await data.info.participants[indexForSearcherPuuid]
       .champLevel;
@@ -196,8 +210,22 @@ async function matchInfo(matchId, encpuuid) {
     let item4 = await data.info.participants[indexForSearcherPuuid].item4;
     let item5 = await data.info.participants[indexForSearcherPuuid].item5;
     let item6 = await data.info.participants[indexForSearcherPuuid].item6;
+    itemArr = [item1, item2, item3, item4, item5, item6];
     console.log(item1, item2, item3, item4, item5, item6);
-
+    //  아이템 사진
+    for (let i = 1; i < 7; i++) {
+      const itemNumber = itemArr[i];
+      if (itemNumber == 0) {
+        console.log("아이템 창이 비어있습니다.");
+        // 비어있는 사진 넣는게 더 좋을 듯 ?
+      } else {
+        itemUrl =
+          "https://ddragon.leagueoflegends.com/cdn/13.16.1/img/item/" +
+          itemNumber +
+          ".png";
+        console.log(itemUrl);
+      }
+    }
     // 승리 패배 출력
     let n = await data.info.participants[indexForSearcherPuuid].win;
     if (n == true) {
