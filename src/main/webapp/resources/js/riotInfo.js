@@ -1,5 +1,16 @@
-const api_key = "RGAPI-8c905173-cd12-4063-9c29-d0bc2503e539";
+const api_key = "RGAPI-3608265c-5b64-4fd7-a96f-088032b06702";
+const head = "https://kr.api.riotgames.com";
+// 설정할 헤더 객체
+const headers = new Headers();
+headers.append("Origin", "http://localhost"); // 요청이 시작된 origin 설정 (CORS 정책을 만족시키기 위해 필요)
+headers.append("Accept", "application/json"); // 원하는 응답 데이터 타입
 
+// fetch 요청 설정
+const requestOptions = {
+  method: "GET",
+  headers: headers,
+  mode: "cors", // CORS 요청 모드
+};
 // 함수에서 promise return (resolve)
 /** 버튼 누르면  input value 를 가져온다.
  *  이벤트 핸들러 -> Promise (o) / async (x)
@@ -17,7 +28,8 @@ function getURL(name) {
   let n_url = name.replace(/ /g, "%20");
   // console.log(n_url);
   let url =
-    "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
+    head +
+    "/lol/summoner/v4/summoners/by-name/" +
     n_url +
     "?api_key=" +
     api_key;
@@ -27,7 +39,7 @@ function getURL(name) {
 /** 가져온 url 로 fetch  */
 async function getJson(url) {
   try {
-    let response = await fetch(url);
+    let response = await fetch(url, requestOptions);
     if (response.status != 200) {
       alert("서버문제입니다.");
     }
@@ -41,7 +53,7 @@ async function getJson(url) {
       data.puuid,
       data.summonerLevel,
     ];
-    // console.log(arr);
+    console.log(arr);
     return arr;
   } catch (error) {
     console.log(error);
@@ -62,7 +74,7 @@ async function leagueInfo(encID) {
     api_key;
   console.log(url);
   try {
-    let response = await fetch(url);
+    let response = await fetch(url, requestOptions);
     let data = await response.json();
     if (response.status != 200) {
       alert("서버문제입니다.");
@@ -92,7 +104,7 @@ async function leagueInfo(encID) {
 function onJsp(leagueInfo) {
   // var infolist = document.querySelector("#infolist");
   $("#infolist").empty();
-  console.log(leagueInfo);
+  // console.log(leagueInfo);
   var tag = "";
   let match = leagueInfo[3] + leagueInfo[4];
   tag +=
@@ -112,6 +124,46 @@ function onJsp(leagueInfo) {
   // console.log(tag);
 }
 
+/** match id 가지고오기 */
+async function getMatch(encpuuid) {
+  // console.log(encAccId);
+  let url =
+    "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
+    encpuuid +
+    "/ids?start=0&" +
+    "count=" +
+    20 + // 가져올 매치 수
+    "&api_key=" +
+    api_key;
+  console.log(url);
+  try {
+    let response = fetch(url, requestOptions);
+    let data = (await response).json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+/**match id 하나씩 넣어서 matchInfo 가지고오기 */
+function matchInfo(matchId) {
+  // 이번에는 for 문안에서 url 을 만들어야함.
+  for (let i = 0; i < matchId.length; i++) {
+    const m_id = matchId[i];
+    console.log(m_id);
+    let url =
+      "https://asia.api.riotgames.com/lol/match/v5/matches/" +
+      m_id +
+      "?api_key=" +
+      api_key;
+    console.log(url);
+    // url 안에서 fetch 해와야지. 여기서는 각각 개별적으로 진행하는것도 있어야할듯.
+    // 일단 하나 동작하는거 만들어놓고 생각하자.
+    let response = fetch(url, requestOptions);
+    console.log(response);
+  }
+}
+
 /**버튼을 눌러도 동작을 안해서 두번째 실행부터 필요한 코드  + 코드추가 */
 function getOnClick() {
   $(document).ready(async function () {
@@ -124,18 +176,21 @@ function getOnClick() {
     onJsp(LInfo);
   });
 }
+// 매치는 puuid
+// 전적은 summonerid
 
 //  첫 실행  ++ 코드추가 (두번째 실행이랑 코드 맞추기 )
 $(document).ready(async function () {
   let name = await getSN();
-  let url = await getURL(name);
+  let url = getURL(name);
   let InfoResult = await getJson(url);
+  let encAccId = InfoResult[0]; // encryptedAccountId
   let encId = InfoResult[1]; //encryptedSummonerId
+  let encpuuid = InfoResult[3]; //encryptedSummonerId
   let LInfo = await leagueInfo(encId);
-  console.log(LInfo);
-  onJsp(LInfo);
-
-  // url 로 fetch 하는거
+  let matchId = await getMatch(encpuuid); //matchID 정보 array
+  onJsp(LInfo); // 단순실행 -> 화면에 띄우기
+  matchInfo(matchId);
 });
 
 /**  버튼을 눌러도 동작을 안해서 두번째 실행부터 필요한 코드 + 내용 추가X*/
@@ -144,3 +199,7 @@ $(document).ready(function () {
     getOnClick();
   });
 });
+
+/*
+
+*/
