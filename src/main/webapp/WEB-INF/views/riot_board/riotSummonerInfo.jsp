@@ -55,39 +55,40 @@
 		</tr>
 	</table>
 	
-	<table  border = '1'> 
+	<table class = "riotDetailInfoTbl" border = '1'> 
 		<tr>
 			<td>솔랭</td>
-			<td>몇일전</td>
-			<td rowspan= '2'>챔피언사진 네모아이콘</td>
+			<td id = "gameEndsTime">몇일전</td>
+			<td id = "ChampionSquarePhoto"rowspan= '2'>챔피언사진 네모아이콘</td>
+			<td rowspan = '2'id = "ChampionName"> 챔피언 이름</td> 
 			<td>킬/데스/어시 ; KDA</td>
 			<td rowspan = '2'>
 				<table>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
+					<tr><td> 팀원1 사진 이름</td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
+					<tr><td> 팀원1 사진 이름</td></tr>
+					<tr><td> 팀원1 사진 이름</td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
 				</table>
 			</td>
 				
 			<td rowspan = '2'>
 				<table>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
-					<tr><td> 팀원1 </td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
+					<tr><td> 팀원1 사진 이름 </td></tr>
 				</table>
 			</td>
 		</tr>
 		<tr>
 			<td>승리 </td> 
-			<td>몇분짜리 경기</td> 
+			<td id = "gameDuration">몇분짜리 경기</td> 
 			<td>
 				<table>
 					<tr>
-						<td>아이템1<img id="riotItem"></td>
+						<td>아이템1<img id="riotItem" ></td>
 						<td>아이템2<img id="riotItem"></td>
 						<td>아이템3<img id="riotItem"></td>
 						<td>아이템4<img id="riotItem"></td>

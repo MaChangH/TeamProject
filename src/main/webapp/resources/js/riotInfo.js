@@ -184,6 +184,9 @@ async function getMatch(encpuuid) {
 }
 /**match id 하나씩 넣어서 matchInfo 가지고오기 */
 async function matchInfo(matchId, encpuuid) {
+  // 검색하면 보이게 .
+  $(".riotDetailInfoTbl").css("opacity", "100%");
+  // $(".riotDetailInfoTbl").empty();
   // 이번에는 for 문안에서 url 을 만들어야함.
   let count = 0;
   for (let i = 0; i < matchId.length; i++) {
@@ -241,56 +244,131 @@ async function matchInfo(matchId, encpuuid) {
     let item6 = await data.info.participants[indexForSearcherPuuid].item6;
     itemArr = [item1, item2, item3, item4, item5, item6];
     console.log(item1, item2, item3, item4, item5, item6);
-    //  아이템 사진
-    for (let i = 1; i < 7; i++) {
+    //  아이템 사진 itemUrlArr 주소들어간 사진배열
+    itemUrlArr = [];
+    for (let i = 0; i < 6; i++) {
       const itemNumber = itemArr[i];
       if (itemNumber == 0) {
-        console.log("아이템 창이 비어있습니다.");
+        itemUrl =
+          "https://w7.pngwing.com/pngs/111/998/png-transparent-letter-x-illustration-x-mark-check-mark-desktop-x-mark-miscellaneous-angle-flag.png";
         // 비어있는 사진 넣는게 더 좋을 듯 ?
       } else {
         itemUrl =
           "https://ddragon.leagueoflegends.com/cdn/13.16.1/img/item/" +
           itemNumber +
           ".png";
-        console.log(itemUrl);
       }
+      itemUrlArr.push(itemUrl);
     }
+    console.log(itemUrlArr);
     // 승리 패배 출력
     let n = await data.info.participants[indexForSearcherPuuid].win;
+    let gameResult;
     if (n == true) {
-      console.log("승리");
+      gameResult = "승리";
+      console.log(gameResult);
     } else {
       // 10분? 이전 패배면 -> 다시하기
-      console.log("패배");
+      gameResult = "패배";
+      console.log(gameResult);
       if (data.info.gameDuration < 600) {
-        console.log("다시하기");
+        gameResult = "다시하기";
+        console.log(gameResult);
       }
     }
     // KDA 출력
     let challenges = data.info.participants[indexForSearcherPuuid].challenges;
-
+    let jsp_kda;
     if (challenges) {
       // challenges 객체가 존재하는 경우
       // console.log(challenges);
-      console.log("kda : " + challenges.kda);
+      jsp_kda = Math.round(challenges.kda) / 10;
+      console.log("kda : " + jsp_kda);
     } else {
       // challenges 객체가 없는 경우
       console.log("challenges 오브젝트 없음");
-      let k = data.info.participants[indexForSearcherPuuid].kills;
-      let d = data.info.participants[indexForSearcherPuuid].deaths;
-      let a = data.info.participants[indexForSearcherPuuid].assists;
+      let k = Number(data.info.participants[indexForSearcherPuuid].kills);
+      let d = Number(data.info.participants[indexForSearcherPuuid].deaths);
+      let a = Number(data.info.participants[indexForSearcherPuuid].assists);
+      let kda = Math.round(k + a / d) / 10;
       if (d == 0) {
-        console.log("Perfect!!  No Death");
+        jsp_kda = "Perfect!!  No Death";
+        console.log(jsp_kda);
       } else {
-        let kda = k + a / d;
-        console.log("KDA :" + kda);
+        jsp_kda = kda;
+        console.log("KDA :" + jsp_kda);
       }
     }
+    // 순서대로 안되어있네 .. 그러면 win true false 로 팀 나누고  배열로 넘겨야겠다.
+    // ㄴㄴ 다시 승리는 필요없음. 그러면어디서부터 어디까지 우리팀인지 알면됨.
+    // 우리팀 이 teamId 100 인지 200 인지
+    let ourTeam = data.info.participants[indexForSearcherPuuid].teamId;
+    console.log(ourTeam);
+    var jspgameDuration = gameDuration; // 진행시간
+    var jspWhenGameEnds = WhenGameEnds; // 몇일전
+    var jspsummonerName = summonerName; // hide on bush
+    var jspChampionName = ChampionName; // Ahri
+    var jspChampionSquarePhoto = ChampionSquarePhoto; // 사진 사각형
+    var jspC_level_endgame = C_level_endgame; // 끝날때 레벨
+    var jspGameresult = gameResult; // 게임결과 승리 패배
+    // $("#gameDuration").append(jspgameDuration);
+    // $("#gameEndsTime").append(jspWhenGameEnds);
+    // $("#summonerName").append(jspsummonerName);
+    // $("#ChampionName").append(jspChampionName);
+    // $("#ChampionSquarePhoto").append(jspChampionSquarePhoto);
+    // $("#Champion_level_endgame").append(jspC_level_endgame);
 
-    // console.log(indexForSearcherPuuid);
-    // console.log(ArrIndex);
-    // console.log(WhatNumberInfo);
-    // puuid 도 파라미터로 받아와야되겠네...
+    // 여기서 부터 DetailTag 추가하고
+    // var DetailTag = (DetailTag =
+    //   "<tr>" +
+    //   "<td >솔랭</td>" +
+    //   '<td id = "gameEndsTime">' +
+    //   jspWhenGameEnds +
+    //   "</td>" +
+    //   `<td id = "ChampionSquarePhoto" rowspan= '2'>` +
+    //   ChampionSquarePhoto +
+    //   "</td>"`<td id = "ChampionName">` +
+    //   ChampionName +
+    //   `</td> `);
+    //     <td>킬/데스/어시 ; KDA</td>
+    //     <td rowspan = '2'>
+    //       <table>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //       </table>
+    //     </td>
+
+    //     <td rowspan = '2'>
+    //       <table>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //         <tr><td> 팀원1 </td></tr>
+    //       </table>
+    //     </td>
+    //   </tr>
+    //   <tr>
+    //     <td>승리 </td>
+    //     <td id = "gameDuration">몇분짜리 경기</td>
+    //     <td>
+    //       <table>
+    //         <tr>
+    //           <td>아이템1<img id="riotItem" ></td>
+    //           <td>아이템2<img id="riotItem"></td>
+    //           <td>아이템3<img id="riotItem"></td>
+    //           <td>아이템4<img id="riotItem"></td>
+    //           <td>아이템5<img id="riotItem"></td>
+    //           <td>아이템6<img id="riotItem"></td>
+    //         </tr>
+    //       </table>
+    //     </td>
+    //   </tr>
+    //   ;
+    // append 하고 DetailTag +=;
   }
 }
 /** 유닉스 시간 변환 */
