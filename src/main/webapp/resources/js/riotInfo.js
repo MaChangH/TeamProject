@@ -461,8 +461,26 @@ async function matchInfo(matchId, encpuuid) {
       "</tr>";
     $(".riotDetailInfoTbl").append(DetailTag);
     console.log(itemUrlArr[5]);
+
+    /**
+     * 이거를 배열로 만들어서 리턴하면 다른함수에서 쓰기편하게 만들 수 있음.
+     *  jspWhenGameEnds
+     *  jspC_level_endgame
+     *  jspChampionSquarePhoto
+     *  jspChampionName
+     *  kill
+     *  death
+     *  assist
+     *  jspKDA
+     * teamarr1
+     * teamarr2
+     * jspGameresult
+     * jspgameDuration
+     * itemUrlArr
+     */
   }
 }
+
 /** 유닉스 시간 변환 */
 function UnixTimeTransfer(unixTimestamp) {
   // 현재 Unix 타임스탬프 (밀리초) 가져오기
