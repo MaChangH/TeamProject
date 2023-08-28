@@ -347,9 +347,7 @@ async function matchInfo(matchId, encpuuid) {
       "<td>" +
       "<table>" +
       "<tr>" +
-      "<td>" +
-      "솔랭" +
-      "</td>" +
+      "<td>솔랭</td>" +
       "</tr>" +
       "<tr>" +
       "<td>" +
@@ -364,7 +362,7 @@ async function matchInfo(matchId, encpuuid) {
       "<td>" +
       jspC_level_endgame +
       "</td>" +
-      "<td> <img src = " +
+      "<td> <img src =" +
       jspChampionSquarePhoto +
       "> </img>챔피언사진</td>" +
       "<td>" +
@@ -382,117 +380,81 @@ async function matchInfo(matchId, encpuuid) {
       "</tr>" +
       "</table>" +
       "</td>" +
-      `<td rowspan="2">` +
-      `<table>` +
-      `<tr>` +
-      `<td>` +
+      "<td rowspan='2'>" +
+      "<table>" +
+      "<tr><td>" +
       teamarr1[0] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr1[1] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr1[2] +
-      `</td>` +
-      ` </tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr1[3] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr1[4] +
-      `</td>` +
-      `</tr>` +
-      `</table>` +
-      `</td>` +
-      `<td rowspan="2">` +
-      `<table>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "</table>" +
+      "</td>" +
+      "<td rowspan='2'>" +
+      "<table>" +
+      "<tr><td>" +
       teamarr2[0] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr2[1] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr2[2] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr2[3] +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       teamarr2[4] +
-      `</td>` +
-      `</tr>` +
-      `</table>` +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
-      `<table>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "</table>" +
+      "</td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td>" +
+      "<table>" +
+      "<tr><td>" +
       jspGameresult +
-      `</td>` +
-      `</tr>` +
-      `<tr>` +
-      `<td>` +
+      "</td></tr>" +
+      "<tr><td>" +
       jspgameDuration +
-      `</td>` +
-      `</tr>` +
-      `</table>` +
-      `</td>` +
-      `<td>` +
-      `<table>` +
-      `<tr>` +
-      `<td>` +
-      `<img src =` +
+      "</td></tr>" +
+      "</table>" +
+      "</td>" +
+      "<td>" +
+      "<table>" +
+      "<tr>" +
+      "<td><img src =" +
       itemUrlArr[0] +
-      ">" +
-      `</td>` +
-      `<td>` +
-      `<img src =` +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
       itemUrlArr[1] +
-      ">" +
-      `</td>` +
-      `<td>` +
-      `<img src =` +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
       itemUrlArr[2] +
-      ">" +
-      `</td>` +
-      `<td>` +
-      `<img src =` +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
       itemUrlArr[3] +
-      ">" +
-      `</td>` +
-      `<td>` +
-      `<img src =` +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
       itemUrlArr[4] +
-      ">" +
-      `</td>` +
-      `<td>` +
-      `<img src =` +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
       itemUrlArr[5] +
-      ">" +
-      `</td>` +
-      `</tr>` +
-      `</table>` +
-      `</td>` +
-      `</tr>`;
+      " width='32' height='32'></td>" +
+      "</tr>" +
+      "</table>" +
+      "</td>" +
+      "</tr>";
     $(".riotDetailInfoTbl").append(DetailTag);
     console.log(itemUrlArr[5]);
   }
