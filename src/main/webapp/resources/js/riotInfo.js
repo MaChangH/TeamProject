@@ -74,33 +74,48 @@ async function leagueInfo(encID) {
     api_key;
   console.log(url);
   try {
-    let response = await fetch(url, requestOptions);
+    let response = await fetch(url);
     let data = await response.json();
-    if (response.status != 200) {
-      alert("서버문제입니다.");
-    }
+    /** 롤 계정 자체는 존재하지만, 랭크 게임을 하지 않은 경우 */
+    if (data == "") {
+      $("#riotSommonerTbl3").css("opacity", "0%");
+      let lP = "정보를 불러올 수 없습니다";
+      let rank = "";
+      let wins = "";
+      let losses = "";
+      let tier = "통계가 부족합니다";
+      let winrate = "";
+      console.log(tier, rank, lP, wins, losses, winrate);
+      arr = [tier, rank, lP, wins, losses, winrate];
+      return arr;
+    } else {
+      if (response.status != 200) {
+        alert("서버문제입니다.");
+      }
 
-    console.log(data);
-    // 0 아니면 1인데
-    for (i = 0; i < 2; i++) {
-      console.log(i);
-      try {
+      console.log(data);
+      // 0 아니면 1인데
+      for (i = 0; i < 2; i++) {
+        console.log(i);
         if (data[i].queueType == "RANKED_SOLO_5x5") {
           let lP = data[i].leaguePoints;
           let rank = data[i].rank;
           let wins = data[i].wins;
           let losses = data[i].losses;
           let tier = data[i].tier;
-          console.log(tier, rank, lP, wins, losses);
-          arr = [tier, rank, lP, wins, losses];
+          let match = wins + losses;
+          let winrate = Math.ceil((wins / match) * 100);
+          console.log(tier, rank, lP, wins, losses, winrate);
+          arr = [
+            tier,
+            rank,
+            lP + " LP",
+            wins + " 승",
+            losses + " 패",
+            "승률 " + winrate + " %",
+          ];
           return arr;
-        } else {
-          alert(
-            "현재 버전에서는 솔로랭크만 지원합니다. 최근 솔로랭크 데이터가 존재하지 않습니다."
-          );
         }
-      } catch (error) {
-        console.log(error);
       }
     }
   } catch (error) {
@@ -111,24 +126,38 @@ async function leagueInfo(encID) {
 /** LeagueInfo 에서 받아온거 jsp 출력 */
 function onJsp(leagueInfo) {
   // var infolist = document.querySelector("#infolist");
+  $(".riotSommonerTbl").css("opacity", "100%");
+
   $("#infolist").empty();
-  // console.log(leagueInfo);
-  var tag = "";
-  let match = leagueInfo[3] + leagueInfo[4];
-  tag +=
-    "<div>" + "솔로랭크 : " + leagueInfo[0] + "\t " + leagueInfo[1] + " </div>";
-  tag += "<div>" + "League Point : " + leagueInfo[2] + "</div>";
-  tag += "<div>" + "승 : " + leagueInfo[3] + " </div>";
-  tag += "<div>" + "패 : " + leagueInfo[4] + " </div>";
-  tag +=
-    "<div>" +
-    "승률 : " +
-    Math.ceil((leagueInfo[3] / match) * 100) +
-    "%" +
-    " </div>";
+  $(".riotTd").empty();
+
+  let tier = leagueInfo[0];
+  let tierNum = leagueInfo[1];
+  let img = tier;
+
+  /** 챌린저, 그랜드마스터, 마스터는 티어의 구분만 있고 랭크 구분이 없음 */
+  if (tier == "CHALLENGER" || tier == "GRANDMASTER" || tier == "MASTER") {
+    tierNum = "";
+  } else if (tier == "통계가 부족합니다") {
+    img = "empty";
+  }
+
+  var tag1 = $("#SN").val();
+  var tag2 = tier + "\t " + tierNum;
+  var tag3 = leagueInfo[2];
+  var tag4 = leagueInfo[3];
+  var tag5 = leagueInfo[4];
+  var tag6 = leagueInfo[5];
+
+  $("#riotIcon").attr("src", "resources/img/riot/" + img + ".png");
 
   // infolist.innerHTML = tag;
-  $("#infolist").append(tag);
+  $("#riotTd1").append(tag1);
+  $("#riotTd2").append(tag2);
+  $("#riotTd3").append(tag3);
+  $("#riotTd4").append(tag4);
+  $("#riotTd5").append(tag5);
+  $("#riotTd6").append(tag6);
   // console.log(tag);
 }
 
@@ -251,7 +280,7 @@ async function matchInfo(matchId, encpuuid) {
       let d = data.info.participants[indexForSearcherPuuid].deaths;
       let a = data.info.participants[indexForSearcherPuuid].assists;
       if (d == 0) {
-        console.log("Perfect : No Death");
+        console.log("Perfect!!  No Death");
       } else {
         let kda = k + a / d;
         console.log("KDA :" + kda);
@@ -368,6 +397,16 @@ $(document).ready(function () {
   });
 });
 
-/*
+// 엔터 치면 검색 버튼이 클릭되도록
+function keydownEnter() {
+  $(document).keydown((e) => {
+    if (e.keyCode == 13) {
+      $("#b1").trigger("click");
+      return false;
+    }
+  });
+}
 
-*/
+$(function () {
+  keydownEnter();
+});
