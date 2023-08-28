@@ -13,16 +13,17 @@ create table tp_board (
 );
 create sequence tp_board_seq;
 
-select * from TP_BOARD
+select * from TP_BOARD where tp_b_notice = 1;
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
+
 
 select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
 		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
-		from ( select * from tp_board where (tp_b_txt like '%지수%') order by
+		from ( select * from tp_board where (tp_b_txt like '%나츄르%') and tp_b_notice = 1 order by
 		tp_b_when desc ))
-		where rn >= 1 and rn <= 10 and tp_b_notice = 0;
+		where rn >= 1 and rn <= 10;
 		
 select * from (
 	select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_photo, 
@@ -34,13 +35,293 @@ select count(*) from tp_board where tp_b_notice = 1
 select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '이번에 스찍만 안하길','항상 큰대회만 나가면 이러더라',  sysdate, 0, 0, 0, 0);
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '그거는 니가','못해서 그래',  sysdate, 0, 0, 0, 0);
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 0, 0, 0, 0);
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
 insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '트기', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 0, 0, 0, 0);
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
 
 
 

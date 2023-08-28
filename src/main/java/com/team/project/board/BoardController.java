@@ -121,6 +121,19 @@ public class BoardController {
 		req.setAttribute("cp", "board/board.jsp");
 		return "index";
 	}
+	
+	// 입력한 검색어 적용해서 페이지 불러오는 method
+	@RequestMapping(value = "/notice.search", method = RequestMethod.GET)
+	public String searchNotice(HttpServletRequest req) {
+		mDAO.loginCheck(req);
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
+		bDAO.searchBoard(req);
+		bDAO.getNoticeMsg(1, req);
+		TokenMaker.makeToken(req);
+		req.setAttribute("cp", "board/noticeBoard.jsp");
+		return "index";
+	}
 
 	// 글쓰기 버튼 눌렀을 때 글쓰기 페이지로 이동하는 method
 	@RequestMapping(value = "/board.write.go", method = RequestMethod.GET)

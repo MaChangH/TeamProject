@@ -167,20 +167,33 @@ $(function() {
 		</tr>
 		
 		<%-- 페이지 넘기는 부분 --%>
+
 		<tr>
+			<c:if test="${startPage != 1 }">
+				<td><a class="themeColor" href="board.page?p=1
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>">[1] </a></td>
+				<td>...</td>
+			</c:if>
 			<td colspan="2" align="center">
-				<c:forEach var="p" begin="1" end="${allPageCount }">
-					<a class="themeColor" href="board.page?p=${p }&searchNum=${searchNum }&search=${param.search }">
-					<c:if test="${p == param.p or (param.p == null and p == 1)}" >
-						<span class="themeNotice" style="font-weight: 900;">
-					</c:if>
-					[${p }] </a>
-					<c:if test="${p == param.p }" >
-						</span>
-					</c:if>
-					
+				<c:forEach var="p" begin="${startPage }" end="${endPage }">
+					<a class="themeColor" href="board.page?p=${p }
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>">[${p }] </a>
 				</c:forEach>
 			</td>
+			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 }">
+				<td>...</td>
+				<td><a class="themeColor" href="board.page?p=${allPageCount }
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>">[${allPageCount }] </a></td>
+			</c:if>
 		</tr>
 	</table>
 </body>
