@@ -22,7 +22,6 @@ $(function() {
     });
 });
 
-
 </script>
 </head>
 <body>
@@ -183,47 +182,44 @@ $(function() {
 					</c:if>
 				</form></td>
 		</tr>
-
-
-
+	</table>
+		
 		<%-- 페이지 넘기는 부분 --%>
-
+	<table class="themeColor">
 		<tr>
-			<td colspan="2" align="center">
-			<a class="themeReplyWriter themeBorderColor themeBackground-colorGrey boardFirstLast" href="board.page?p=1&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">첫페이지</a>&nbsp;&nbsp;&nbsp;
-			<c:if test="${param.p >10 }">
-				<a class="themeColor" href="board.page?p=${sessionScope.pageNum - 10 }
+			<c:if test="${startPage != 1 }">
+				<td>
+				<a href="board.page?p=1
 				&b=${sessionScope.boardPerPage }
 				&searchNum=${searchNum }
-				&search=${param.search }">◀&nbsp;&nbsp;</a>
+				&search=${param.search }">[1] 
+				</a>
+				</td>
+				<td>...</td>
 			</c:if>
-				<c:forEach var="p" begin="${sessionScope.pageNum - 9 }" end="${sessionScope.pageNum }">
-					<c:if test="${p <= allPageCount }">
-					<a class="themeColor" href="board.page?p=${p }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">
-					<c:if test="${p == param.p or (param.p == null and p%10 == 1)}" >
+			<td align="center">
+				<c:forEach var="p" begin="${startPage }" end="${endPage }">
+					<c:if test="${p == param.p }" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
-					[${p }]</a>&nbsp;&nbsp;
+					<a href="board.page?p=${p }
+					&b=${sessionScope.boardPerPage }
+					&searchNum=${searchNum }
+					&search=${param.search }">[${p }] 
+					</a>
 					<c:if test="${p == param.p }" >
 						</span>
 					</c:if>
-					</c:if>
 				</c:forEach>
-			<c:if test="${allPageCount > sessionScope.pageNum }">
-				<a class="themeColor" href="board.page?p=
-				<c:choose>
-					<c:when test="${param.p eq null }">
-						11
-					</c:when>
-					<c:otherwise>
-					<fmt:formatNumber groupingUsed="false" pattern="#" value="${1 + sessionScope.pageNum }" />
-					</c:otherwise>
-				</c:choose>
-				&searchNum=${searchNum }&search=${param.search }&b=${sessionScope.boardPerPage }">▶</a>
-			</c:if>
-			&nbsp;&nbsp;&nbsp;<a class="themeReplyWriter themeBorderColor themeBackground-colorGrey boardFirstLast" href="board.page?p=${allPageCount }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">끝페이지</a>
 			</td>
+			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 }">
+				<td>...</td>
+				<td>
+				<a href="board.page?p=${allPageCount }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">[${allPageCount }] </a></td>
+			</c:if>
 		</tr>
 	</table>
+	
+	
 </body>
 </html>

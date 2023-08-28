@@ -54,13 +54,13 @@
 
 			<%-- 검색 기능 부분 --%>
 
-			<td align="center"><form action="board.search" name="searchForm"
+				<td align="center"><form action="notice.search" name="searchForm"
 					onsubmit="return searchboard();">
-					<select name="searchop">
-						<option value="tp_b_title">제목</option>
-						<option value="tp_b_txt">내용</option>
-						<option value="tp_b_writer">닉네임</option>
-					</select> <input name="search" placeholder="제목 검색">
+					<select name="searchNum">
+						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
+						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
+						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
+					</select> <input name="search" placeholder="제목 검색" value=${param.search }>
 					<button class="themeBtn">검색</button>
 				</form></td>
 			<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
@@ -72,21 +72,34 @@
 			</c:if>
 		</tr>
 
-
-
 		<%-- 페이지 넘기는 부분 --%>
 
 		<tr>
+			<c:if test="${startPage != 1 }">
+				<td><a class="themeColor" href="notice.page?p=1
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>">[1] </a></td>
+				<td>...</td>
+			</c:if>
 			<td colspan="2" align="center">
-				<c:forEach var="p" begin="1" end="${APCN }">
+				<c:forEach var="p" begin="${startPage }" end="${endPage }">
 					<a class="themeColor" href="notice.page?p=${p }
 					<c:choose>
 						<c:when test="${empty sessionScope.searchNum }">1</c:when>
 						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
-					</c:choose>
-					">[${p }] </a>
+					</c:choose>">[${p }] </a>
 				</c:forEach>
 			</td>
+			<c:if test="${endPage != APCN && endPage != APCN - 1 }">
+				<td>...</td>
+				<td><a class="themeColor" href="notice.page?p=${APCN }
+					<c:choose>
+						<c:when test="${empty sessionScope.searchNum }">1</c:when>
+						<c:otherwise>&searchNum=${sessionScope.searchNum }</c:otherwise>
+					</c:choose>">[${APCN }] </a></td>
+			</c:if>
 		</tr>
 	</table>
 </body>

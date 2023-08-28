@@ -75,10 +75,25 @@ public class BoardDAO {
 		int start = (PerPage * (page - 1)) + 1;
 		int end = (page == allPageCount) ? boardCount : (start + PerPage - 1);
 		BoardSelector bSel = new BoardSelector(search, start, end);
+		if (page == 1 || page == 2) {
+			page = 2;
+			req.setAttribute("startPage", page - 1);
+			req.setAttribute("endPage", page + 3);
+		}else if (page == allPageCount || page + 1 == allPageCount) {
+			page = allPageCount;
+			req.setAttribute("startPage", page - 4);
+			req.setAttribute("endPage", page);
+		}else if (page + 3 == allPageCount) {
+			req.setAttribute("startPage", page - 2);
+			req.setAttribute("endPage", allPageCount);
+		}else {
+			req.setAttribute("startPage", page - 2);
+			req.setAttribute("endPage", page + 2);
+		}
 		List<Board> notices = ss.getMapper(BoardMapper.class).getAllNotice();
 		List<Board> boards = null;
 		if (searchNum == 1) {
-			boards = ss.getMapper(BoardMapper.class).getAllTitle(bSel);			
+			boards = ss.getMapper(BoardMapper.class).getAllTitle(bSel);	
 		}else if (searchNum == 2) {
 			boards = ss.getMapper(BoardMapper.class).getAllTxt(bSel);									
 		}else if (searchNum == 3) {
@@ -97,9 +112,6 @@ public class BoardDAO {
 		}
 		req.getSession().setAttribute("nowPage", nowPage);
 		req.getSession().setAttribute("p", nowPage); // 0이었던 세션 값을 바꿈
-		
-		int pageNum = (int) (10*Math.ceil((double)nowPage/10)); // 화살표를 눌렀을 때 이동할 페이지의 기준
-		req.getSession().setAttribute("pageNum", pageNum);
 		
 		
 		Date sysdate = new Date(); // 하루 이상 지난 게시글들은 날짜가 간략하게 표시되게 하기 위한 기준점
@@ -136,13 +148,28 @@ public class BoardDAO {
 			int start = (PerPage * (page - 1)) + 1;
 			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
 			BoardSelector bSel = new BoardSelector(search, start, end);
+			if (page == 1 || page == 2) {
+				page = 2;
+				req.setAttribute("startPage", page - 1);
+				req.setAttribute("endPage", page + 3);
+			}else if (page == allPageCountNotice || page + 1 == allPageCountNotice) {
+				page = allPageCountNotice;
+				req.setAttribute("startPage", page - 4);
+				req.setAttribute("endPage", page);
+			}else if (page + 3 == allPageCountNotice) {
+				req.setAttribute("startPage", page - 2);
+				req.setAttribute("endPage", allPageCountNotice);
+			}else {
+				req.setAttribute("startPage", page - 2);
+				req.setAttribute("endPage", page + 2);
+			}
 			List<Board> notices = null;
 			if (searchNum == 1) {
-				notices = ss.getMapper(BoardMapper.class).getAllNoticeBoard(bSel);		
+				notices = ss.getMapper(BoardMapper.class).getAllNoticetitle(bSel);	
 			}else if (searchNum == 2) {
-				notices = ss.getMapper(BoardMapper.class).getAllTxt(bSel);									
+				notices = ss.getMapper(BoardMapper.class).getAllNoticeTxt(bSel);									
 			}else if (searchNum == 3) {
-				notices = ss.getMapper(BoardMapper.class).getAllWriter(bSel);																
+				notices = ss.getMapper(BoardMapper.class).getAllNoticeWriter(bSel);																
 			}
 			req.setAttribute("notice", notices);
 		}

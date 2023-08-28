@@ -41,7 +41,13 @@ public interface BoardMapper {
 	public abstract List<Board> getAllWriter(BoardSelector bSel);
 
 	// 검색어 해당하는 공지글
-	public abstract List<Board> getAllNoticeBoard(BoardSelector bSel);
+	public abstract List<Board> getAllNoticetitle(BoardSelector bSel);
+	
+	// 검색어(내용) 해당하는 게시글
+	public abstract List<Board> getAllNoticeTxt(BoardSelector bSel);
+	
+	// 검색어(작성자) 해당하는 게시글
+	public abstract List<Board> getAllNoticeWriter(BoardSelector bSel);
 	
 	// 공지사항
 	public abstract List<Board> getAllNotice();
