@@ -147,9 +147,20 @@ button {
 	height: 75px;
 }
 
+#teamMemberTbl {
+	font-family: "a";
+}
 
+.teamMemberName {
+	font-size: 25pt;
+	font-weight: 900;
+	padding-right: 30px;
+	height: 100px;
+}
 
-
+.teamMemberWork {
+	font-size: 15pt;
+}
 
 
 

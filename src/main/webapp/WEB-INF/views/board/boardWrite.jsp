@@ -46,7 +46,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" id="boardWriteImg">이미지 첨부 : <input id="boardWriteImgSelect" type="file" name="tp_b_photo"></td>
+							<td colspan="2" id="boardWriteImg">
+								이미지 첨부 : <input id="boardWriteImgSelect" type="file" name="tp_b_photo">
+								<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
+							</td>
 						</tr>
 						<tr>
 							<td class="textarea themeBackground-colorGrey" id="boardWriteText" colspan="3" align="center"><textarea id="boardWriteTextarea" name="tp_b_txt"

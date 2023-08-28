@@ -13,7 +13,7 @@ create table tp_board (
 );
 create sequence tp_board_seq;
 
-select * from TP_BOARD
+select * from TP_BOARD order by tp_b_no desc;
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 

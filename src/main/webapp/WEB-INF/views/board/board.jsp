@@ -173,7 +173,7 @@ $(function() {
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
 						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
 						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
-					</select> <input name="search" placeholder="제목 검색" value="${sessionScope.search }">
+					</select> <input name="search" placeholder="검색어를 입력하세요" value="${sessionScope.search }">
 					<button id="boardSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<td align="right" id="writeButton" class="boardSoild"><form
@@ -192,7 +192,10 @@ $(function() {
 			<td colspan="2" align="center">
 			<a class="themeReplyWriter themeBorderColor themeBackground-colorGrey boardFirstLast" href="board.page?p=1&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">첫페이지</a>&nbsp;&nbsp;&nbsp;
 			<c:if test="${param.p >10 }">
-				<a class="themeColor" href="board.page?p=${sessionScope.pageNum - 10 }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">◀&nbsp;&nbsp;</a>
+				<a class="themeColor" href="board.page?p=${sessionScope.pageNum - 10 }
+				&b=${sessionScope.boardPerPage }
+				&searchNum=${searchNum }
+				&search=${param.search }">◀&nbsp;&nbsp;</a>
 			</c:if>
 				<c:forEach var="p" begin="${sessionScope.pageNum - 9 }" end="${sessionScope.pageNum }">
 					<c:if test="${p <= allPageCount }">

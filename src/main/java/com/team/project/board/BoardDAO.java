@@ -274,6 +274,9 @@ public class BoardDAO {
 		}
 		Board otk = (Board) req.getSession().getAttribute("boardManager");
 		String oldFile = otk.getTp_b_photo();
+		if (oldFile == null) {
+			oldFile = "";
+		}
 		String newFile = mr.getFilesystemName("tp_b_photo");
 //		System.out.println(oldFile);
 //		System.out.println(newFile);

@@ -41,8 +41,13 @@
 	</table>
 	<input id="result" value="${r }" type="hidden">
 	
+	<%-- 사이트 테마 저장값 --%>
 	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
+	
+	<%-- 로그인 아이디 저장값 --%>
 	<input id="loginMember" value="${sessionScope.loginMember }" type="hidden">
+	
+	<%-- 현재 메뉴 저장값 --%>
 	<input id="currentPage" value="${sessionScope.currentPage }" type="hidden">
 	
 	

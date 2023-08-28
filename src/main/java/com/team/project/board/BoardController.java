@@ -72,6 +72,7 @@ public class BoardController {
 		int p = Integer.parseInt(req.getParameter("p"));
 		bDAO.getBoardMsg(p, req);
 		TokenMaker.makeToken(req);
+		req.getSession().setAttribute("currentPage", "board");
 		req.setAttribute("cp", "board/board.jsp");
 		return "index";
 
@@ -146,6 +147,7 @@ public class BoardController {
 		bDAO.searchClear(req);
 		bDAO.getBoardMsg(1, req);
 		TokenMaker.makeToken(req);
+		req.getSession().setAttribute("currentPage", "board");
 		req.setAttribute("cp", "board/board.jsp");
 		return "index";
 	}

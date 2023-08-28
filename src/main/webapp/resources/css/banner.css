@@ -41,7 +41,10 @@
 	border-spacing: 0px;
 	background-color: white;
 	width: 250px;
-	margin-bottom: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+	margin-top: 25px;
 }
 
 .bannerHotTr {
@@ -83,12 +86,34 @@
 	border-top: 1px solid black;
 }
 
+/* 광고 */
+#bannerC {
+	position: relative;
+	border-spacing: 0px;
+	width: 286px;
+	height: 512px;
+}
+
+.cSpan {
+	position: absolute;
+	background-color: #000000;
+	color: white;
+	left: 2%;
+	top: 2%;
+	cursor: pointer;
+}
+
+#cOpen {
+	display: none;
+}
+
 
 /* 뉴스 */
+
 
 #newsBannerTbl {
 	border: 2px solid black;
 	border-spacing: 0px;
-	width: 300px;
+	width: 604px;
 	
 }
