@@ -55,67 +55,8 @@
 		</tr>
 	</table>
 	
-	<!-- <table class = "riotDetailInfoTbl" border = '1'> 
-		<tr>
-			<td>솔랭
-				<table>
-					<tr>
-						<td id = "gameEndsTime">몇일전</td>
-					</tr>
-				</table>
-			</td>
-			
-			<td >킬/데스/어시 ; KDA</td>
-			<td rowspan = '2'>
-				<table>
-					<tr><td> 팀원1 사진 이름</td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-					<tr><td> 팀원1 사진 이름</td></tr>
-					<tr><td> 팀원1 사진 이름</td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-				</table>
-			</td>
-				
-			<td rowspan = '2'>
-				<table>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-					<tr><td> 팀원1 사진 이름 </td></tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>승리 
-				<table>
-					<tr>
-						<td id = "gameDuration">몇분짜리 경기</td> 
-					</tr>
-					<tr>
-						<td id = "ChampionSquarePhoto">챔피언사진 네모아이콘</td>
-					</tr>
-					</table>	
-				<table>
-					<tr>
-						<td id = "ChampionName"> 챔피언 이름</td> 
-					</tr>
-					<tr>
-						<td>아이템1<img id="riotItem"></td>
-						<td>아이템2<img id="riotItem"></td>
-						<td>아이템3<img id="riotItem"></td>
-						<td>아이템4<img id="riotItem"></td>
-						<td>아이템5<img id="riotItem"></td>
-						<td>아이템6<img id="riotItem"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	 -->
-	
 	 <table border="1" class  = "riotDetailInfoTbl">
-		<tr>
+		<!-- <tr>
 			<td>
 				<table>
 					<tr>
@@ -129,7 +70,7 @@
 			<td>
                 <table>
                     <tr>
-                    	<td>끝날 때 레벨</td>
+                    	<td>게임 끝날 때 레벨 !!!</td>
                         <td>챔피언사진</td>
                         <td>챔피언이름</td>
                         <td>k/d/a :: / KDA</td>
@@ -190,7 +131,7 @@
 			<td>
                 <table >
                     <tr>
-                        <td>아이템1</td>
+                        <td> <img src = ""> 아이템1</td>
                         <td>아이템1</td>
                         <td>아이템1</td>
                         <td>아이템1</td>
@@ -199,7 +140,7 @@
                     </tr>
                 </table>
             </td>
-		</tr>
+		</tr> -->
 	</table>
 </body>
 </html>

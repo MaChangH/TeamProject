@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family:'bJ';
+	src: 'resources/css/K.TTF';
+}
 
 #riotSommonerTbl1 {
 	margin-top: 20px;

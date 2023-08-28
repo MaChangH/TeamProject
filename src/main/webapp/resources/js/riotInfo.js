@@ -192,7 +192,7 @@ async function matchInfo(matchId, encpuuid) {
   for (let i = 0; i < matchId.length; i++) {
     const m_id = matchId[i];
     console.log("================================");
-    console.log(m_id);
+    // console.log(m_id);
     let url =
       "https://asia.api.riotgames.com/lol/match/v5/matches/" +
       m_id +
@@ -218,8 +218,8 @@ async function matchInfo(matchId, encpuuid) {
     let ArrIndex = data.metadata.participants;
     let indexForSearcherPuuid = ArrIndex.indexOf(encpuuid); // info-participants-summonerName , 숫자
     // 검색한 사람 닉네임.
-    let summonerName =
-      data.info.participants[indexForSearcherPuuid].summonerName;
+    let summonerName = await data.info.participants[indexForSearcherPuuid]
+      .summonerName;
     console.log(summonerName);
     //  챔피언이름
     let ChampionName =
@@ -243,7 +243,7 @@ async function matchInfo(matchId, encpuuid) {
     let item5 = await data.info.participants[indexForSearcherPuuid].item5;
     let item6 = await data.info.participants[indexForSearcherPuuid].item6;
     itemArr = [item1, item2, item3, item4, item5, item6];
-    console.log(item1, item2, item3, item4, item5, item6);
+    // console.log(item1, item2, item3, item4, item5, item6);
     //  아이템 사진 itemUrlArr 주소들어간 사진배열
     itemUrlArr = [];
     for (let i = 0; i < 6; i++) {
@@ -277,6 +277,9 @@ async function matchInfo(matchId, encpuuid) {
       }
     }
     // KDA 출력
+    let kill = Number(data.info.participants[indexForSearcherPuuid].kills);
+    let death = Number(data.info.participants[indexForSearcherPuuid].deaths);
+    let assist = Number(data.info.participants[indexForSearcherPuuid].assists);
     let challenges = data.info.participants[indexForSearcherPuuid].challenges;
     let jsp_kda;
     if (challenges) {
@@ -287,11 +290,8 @@ async function matchInfo(matchId, encpuuid) {
     } else {
       // challenges 객체가 없는 경우
       console.log("challenges 오브젝트 없음");
-      let k = Number(data.info.participants[indexForSearcherPuuid].kills);
-      let d = Number(data.info.participants[indexForSearcherPuuid].deaths);
-      let a = Number(data.info.participants[indexForSearcherPuuid].assists);
-      let kda = Math.round(k + a / d) / 10;
-      if (d == 0) {
+      let kda = Math.round(kill + assist / death) / 10;
+      if (death == 0) {
         jsp_kda = "Perfect!!  No Death";
         console.log(jsp_kda);
       } else {
@@ -325,10 +325,10 @@ async function matchInfo(matchId, encpuuid) {
     // 팀 2개로 나눠서 배열만들기 성공
     console.log(teamarr1);
     console.log(teamarr2);
-
+    console.log(kill);
     var jspgameDuration = gameDuration; // 진행시간
     var jspWhenGameEnds = WhenGameEnds; // 몇일전
-    var jspsummonerName = summonerName; // hide on bush
+    // var jspsummonerName = summonerName; // hide on bush
     var jspChampionName = ChampionName; // Ahri
     var jspChampionSquarePhoto = ChampionSquarePhoto; // 사진 사각형
     var jspC_level_endgame = C_level_endgame; // 끝날때 레벨
@@ -341,56 +341,160 @@ async function matchInfo(matchId, encpuuid) {
     // $("#Champion_level_endgame").append(jspC_level_endgame);
 
     // 여기서 부터 DetailTag 추가하고
-    // var DetailTag = (DetailTag =
-    //   "<tr>" +
-    //   "<td >솔랭</td>" +
-    //   '<td id = "gameEndsTime">' +
-    //   jspWhenGameEnds +
-    //   "</td>" +
-    //   `<td id = "ChampionSquarePhoto" rowspan= '2'>` +
-    //   ChampionSquarePhoto +
-    //   "</td>"`<td id = "ChampionName">` +
-    //   ChampionName +
-    //   `</td> `);
-    //     <td>킬/데스/어시 ; KDA</td>
-    //     <td rowspan = '2'>
-    //       <table>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //       </table>
-    //     </td>
-
-    //     <td rowspan = '2'>
-    //       <table>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //         <tr><td> 팀원1 </td></tr>
-    //       </table>
-    //     </td>
-    //   </tr>
-    //   <tr>
-    //     <td>승리 </td>
-    //     <td id = "gameDuration">몇분짜리 경기</td>
-    //     <td>
-    //       <table>
-    //         <tr>
-    //           <td>아이템1<img id="riotItem" ></td>
-    //           <td>아이템2<img id="riotItem"></td>
-    //           <td>아이템3<img id="riotItem"></td>
-    //           <td>아이템4<img id="riotItem"></td>
-    //           <td>아이템5<img id="riotItem"></td>
-    //           <td>아이템6<img id="riotItem"></td>
-    //         </tr>
-    //       </table>
-    //     </td>
-    //   </tr>
-    //   ;
-    // append 하고 DetailTag +=;
+    let DetailTag;
+    DetailTag =
+      "<tr>" +
+      "<td>" +
+      "<table>" +
+      "<tr>" +
+      "<td>" +
+      "솔랭" +
+      "</td>" +
+      "</tr>" +
+      "<tr>" +
+      "<td>" +
+      jspWhenGameEnds +
+      "</td>" +
+      "</tr>" +
+      "</table>" +
+      "</td>" +
+      "<td>" +
+      "<table>" +
+      "<tr>" +
+      "<td>" +
+      jspC_level_endgame +
+      "</td>" +
+      "<td> <img src = " +
+      jspChampionSquarePhoto +
+      "> </img>챔피언사진</td>" +
+      "<td>" +
+      jspChampionName +
+      "</td>" +
+      "<td>" +
+      kill +
+      "/" +
+      death +
+      "/" +
+      assist +
+      "KDA : " +
+      jsp_kda +
+      "</td>" +
+      "</tr>" +
+      "</table>" +
+      "</td>" +
+      `<td rowspan="2">` +
+      `<table>` +
+      `<tr>` +
+      `<td>` +
+      teamarr1[0] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr1[1] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr1[2] +
+      `</td>` +
+      ` </tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr1[3] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr1[4] +
+      `</td>` +
+      `</tr>` +
+      `</table>` +
+      `</td>` +
+      `<td rowspan="2">` +
+      `<table>` +
+      `<tr>` +
+      `<td>` +
+      teamarr2[0] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr2[1] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr2[2] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr2[3] +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      teamarr2[4] +
+      `</td>` +
+      `</tr>` +
+      `</table>` +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      `<table>` +
+      `<tr>` +
+      `<td>` +
+      jspGameresult +
+      `</td>` +
+      `</tr>` +
+      `<tr>` +
+      `<td>` +
+      jspgameDuration +
+      `</td>` +
+      `</tr>` +
+      `</table>` +
+      `</td>` +
+      `<td>` +
+      `<table>` +
+      `<tr>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[0] +
+      ">" +
+      `</td>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[1] +
+      ">" +
+      `</td>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[2] +
+      ">" +
+      `</td>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[3] +
+      ">" +
+      `</td>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[4] +
+      ">" +
+      `</td>` +
+      `<td>` +
+      `<img src =` +
+      itemUrlArr[5] +
+      ">" +
+      `</td>` +
+      `</tr>` +
+      `</table>` +
+      `</td>` +
+      `</tr>`;
+    $(".riotDetailInfoTbl").append(DetailTag);
+    console.log(itemUrlArr[5]);
   }
 }
 /** 유닉스 시간 변환 */
