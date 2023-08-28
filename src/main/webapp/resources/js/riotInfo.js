@@ -1,4 +1,4 @@
-const api_key = "RGAPI-4790a197-9d5a-4584-bf8a-0a584295eb3d";
+const api_key = "RGAPI-f74463b7-f619-450b-b23b-abd61742ddeb";
 const head = "https://kr.api.riotgames.com";
 // 설정할 헤더 객체
 const headers = new Headers();
@@ -303,7 +303,29 @@ async function matchInfo(matchId, encpuuid) {
     // ㄴㄴ 다시 승리는 필요없음. 그러면어디서부터 어디까지 우리팀인지 알면됨.
     // 우리팀 이 teamId 100 인지 200 인지
     let ourTeam = data.info.participants[indexForSearcherPuuid].teamId;
+
     console.log(ourTeam);
+
+    // 끝날 때 까지 진행한 사람 총 몇명
+    let len = data.metadata.participants;
+    let howManyPlayed = len.length; // 10 명 8명 이게 필요하지 안에 내용물은 필요없음.
+    console.log(howManyPlayed);
+    teamarr1 = [];
+    teamarr2 = [];
+    for (let i = 0; i < howManyPlayed; i++) {
+      let teamId = data.info.participants[i].teamId;
+      if (teamId == ourTeam) {
+        teamarr1.push(data.info.participants[i].summonerName);
+      } else {
+        teamarr2.push(data.info.participants[i].summonerName);
+      }
+      // const element = len[i];
+      // console.log(element);
+    }
+    // 팀 2개로 나눠서 배열만들기 성공
+    console.log(teamarr1);
+    console.log(teamarr2);
+
     var jspgameDuration = gameDuration; // 진행시간
     var jspWhenGameEnds = WhenGameEnds; // 몇일전
     var jspsummonerName = summonerName; // hide on bush

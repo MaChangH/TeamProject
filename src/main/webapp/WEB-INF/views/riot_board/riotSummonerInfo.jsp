@@ -55,13 +55,17 @@
 		</tr>
 	</table>
 	
-	<table class = "riotDetailInfoTbl" border = '1'> 
+	<!-- <table class = "riotDetailInfoTbl" border = '1'> 
 		<tr>
-			<td>솔랭</td>
-			<td id = "gameEndsTime">몇일전</td>
-			<td id = "ChampionSquarePhoto"rowspan= '2'>챔피언사진 네모아이콘</td>
-			<td rowspan = '2'id = "ChampionName"> 챔피언 이름</td> 
-			<td>킬/데스/어시 ; KDA</td>
+			<td>솔랭
+				<table>
+					<tr>
+						<td id = "gameEndsTime">몇일전</td>
+					</tr>
+				</table>
+			</td>
+			
+			<td >킬/데스/어시 ; KDA</td>
 			<td rowspan = '2'>
 				<table>
 					<tr><td> 팀원1 사진 이름</td></tr>
@@ -83,12 +87,21 @@
 			</td>
 		</tr>
 		<tr>
-			<td>승리 </td> 
-			<td id = "gameDuration">몇분짜리 경기</td> 
-			<td>
+			<td>승리 
 				<table>
 					<tr>
-						<td>아이템1<img id="riotItem" ></td>
+						<td id = "gameDuration">몇분짜리 경기</td> 
+					</tr>
+					<tr>
+						<td id = "ChampionSquarePhoto">챔피언사진 네모아이콘</td>
+					</tr>
+					</table>	
+				<table>
+					<tr>
+						<td id = "ChampionName"> 챔피언 이름</td> 
+					</tr>
+					<tr>
+						<td>아이템1<img id="riotItem"></td>
 						<td>아이템2<img id="riotItem"></td>
 						<td>아이템3<img id="riotItem"></td>
 						<td>아이템4<img id="riotItem"></td>
@@ -96,7 +109,96 @@
 						<td>아이템6<img id="riotItem"></td>
 					</tr>
 				</table>
-			 </td>
+			</td>
+		</tr>
+	</table>
+	 -->
+	
+	 <table border="1" class  = "riotDetailInfoTbl">
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>솔랭</td>
+					</tr>
+					<tr>
+						<td>3일전</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+                <table>
+                    <tr>
+                    	<td>끝날 때 레벨</td>
+                        <td>챔피언사진</td>
+                        <td>챔피언이름</td>
+                        <td>k/d/a :: / KDA</td>
+                    </tr>
+                </table>
+            </td>
+			<td rowspan="2">
+                <table>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                </table>
+            </td>
+			<td rowspan="2">
+                <table>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+		
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>승리 패배</td>
+					</tr>
+					<tr>
+						<td>15분 게임</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+                <table >
+                    <tr>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                    </tr>
+                </table>
+            </td>
 		</tr>
 	</table>
 </body>
