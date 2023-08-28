@@ -236,17 +236,18 @@ async function matchInfo(matchId, encpuuid) {
       .champLevel;
     console.log(C_level_endgame + "레벨");
     // 아이템
+    let item0 = await data.info.participants[indexForSearcherPuuid].item0;
     let item1 = await data.info.participants[indexForSearcherPuuid].item1;
     let item2 = await data.info.participants[indexForSearcherPuuid].item2;
     let item3 = await data.info.participants[indexForSearcherPuuid].item3;
     let item4 = await data.info.participants[indexForSearcherPuuid].item4;
     let item5 = await data.info.participants[indexForSearcherPuuid].item5;
     let item6 = await data.info.participants[indexForSearcherPuuid].item6;
-    itemArr = [item1, item2, item3, item4, item5, item6];
+    itemArr = [item0, item1, item2, item3, item4, item5, item6];
     // console.log(item1, item2, item3, item4, item5, item6);
     //  아이템 사진 itemUrlArr 주소들어간 사진배열
     itemUrlArr = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       const itemNumber = itemArr[i];
       if (itemNumber == 0) {
         itemUrl =
@@ -260,7 +261,7 @@ async function matchInfo(matchId, encpuuid) {
       }
       itemUrlArr.push(itemUrl);
     }
-    console.log(itemUrlArr);
+    console.log(itemUrlArr[6]);
     // 승리 패배 출력
     let n = await data.info.participants[indexForSearcherPuuid].win;
     let gameResult;
@@ -450,6 +451,9 @@ async function matchInfo(matchId, encpuuid) {
       " width='32' height='32'></td>" +
       "<td><img src =" +
       itemUrlArr[5] +
+      " width='32' height='32'></td>" +
+      "<td><img src =" +
+      itemUrlArr[6] +
       " width='32' height='32'></td>" +
       "</tr>" +
       "</table>" +
