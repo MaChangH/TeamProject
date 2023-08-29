@@ -17,7 +17,7 @@ select * from TP_BOARD where tp_b_notice = 1;
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
-delete from tp_board where tp_b_title like '%그거는 %' and tp_b_notice = 1;
+delete from tp_board where tp_b_title like '%그거%' and tp_b_notice = 1;
 
 select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
