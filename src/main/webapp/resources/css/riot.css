@@ -84,3 +84,14 @@
 	opacity: 0%;
 	font-family: "bJ";
 }
+
+.win {
+	background-color: rgb(107, 107, 255);
+  }
+  
+.lose {
+	background-color: rgba(232, 125, 125, 0.764);
+  }
+.retry{
+	background-color: rgba(254, 254, 254, 0.764);
+}
