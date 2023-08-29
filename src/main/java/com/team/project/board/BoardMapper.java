@@ -88,6 +88,15 @@ public interface BoardMapper {
 	// 댓글 수정
 	public abstract int updateReply(Reply r);
 	
+	// board no에 해당하는 게시글 가져오기
+	public abstract List<Board> getBoardbyNo(int tp_b_no);
+	
+	// 댓글수 가져오기
+	public abstract int getBoardRCount(int tp_b_no);
+	
+	// 댓글수 적용하기
+	public abstract int updateBoardRCount(Board b);
+	
 	// 추천수 가져오기
 	public abstract int getBoardLike(Board b);
 	

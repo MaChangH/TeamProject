@@ -27,7 +27,17 @@
 	
 	<!-- 회원정보수정 -->
 	<update id="update" parameterType="com.team.project.member.Member">
-		update tp_member set tp_m_pw = #{tp_m_pw}, tp_m_nick = #{tp_m_nick}, tp_m_name = #{tp_m_name}, tp_m_addr = #{tp_m_addr}, tp_m_photo = #{tp_m_photo} where tp_m_id = #{tp_m_id} 
+		update tp_member set tp_m_pw = #{tp_m_pw}, tp_m_nick = #{tp_m_nick}, tp_m_name = #{tp_m_name}, tp_m_addr = #{tp_m_addr}, tp_m_photo = #{tp_m_photo} where tp_m_id = #{tp_m_id}
+	</update>
+	
+	<!-- 회원정보수정시 그동안 작성했던 게시글의 닉네임도 변경되게 -->
+	<update id="updateBNick" parameterType="com.team.project.member.Member">
+		update tp_board set tp_b_writer = #{tp_m_nick} where tp_b_id = #{tp_m_id} 
+	</update>
+	
+	<!-- 회원정보수정시 그동안 작성했던 댓글의 닉네임도 변경되게 -->
+	<update id="updateRNick" parameterType="com.team.project.member.Member">
+		update tp_reply set tp_r_writer = #{tp_m_nick} where tp_r_id = #{tp_m_id} 
 	</update>
 	
 	<!-- 포인트 데이터 불러오기 -->

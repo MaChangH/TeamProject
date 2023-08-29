@@ -33,7 +33,7 @@
 	<table id="indexMenuTbl" class="indexTitleMenu">
 		<tr>
 			<td class="indexMenu"><a id="menu1" class="indexMenuA themeColor" href="board.go?p=1&b=10">BOARD</a></td>
-			<td class="indexMenu"><a id="menu2" class="indexMenuA themeColor" href="notice.go">NOTICE</a></td>
+			<td class="indexMenu"><a id="menu2" class="indexMenuA themeColor" href="notice.go?p=1&b=10">NOTICE</a></td>
 			<td class="indexMenu"><a id="menu3" class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
 			<td class="indexMenu"><a id="menu4" class="indexMenuA themeColor" href="game.go">GAME</a></td>
 			<td class="indexMenu"><a id="menu5" class="indexMenuA themeColor" href="member.go">MEMBER</a></td>

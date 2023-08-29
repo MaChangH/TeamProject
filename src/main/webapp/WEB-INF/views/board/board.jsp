@@ -118,7 +118,7 @@ $(function() {
 					class="themeBackground-color themeColor themeBorderColor">
 					<tr>
 						<td align="center" class="boardMsgTitle themeBorderColor">번호</td>
-						<td align="center" class="boardMsgTitle themeBorderColor">제목</td>
+						<td align="center" class="boardMsgTitle themeBorderColor" colspan="2">제목</td>
 						<td align="center" class="boardMsgTitle themeBorderColor">작성자</td>
 						<td align="center" class="boardMsgTitle themeBorderColor">작성일</td>
 						<td align="center" class="boardMsgTitle themeBorderColor">조회수</td>
@@ -128,9 +128,15 @@ $(function() {
 						<tr onclick="boardViewGo(${tm.tp_b_no })"
 							class="boardMsgHover themeBackground-colorGrey">
 							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
-							<td class="boardMsg boardTitle themeBorderColor">&nbsp; <c:if test="${tm.tp_b_like >= 10 }">
+							<td id ="boardTitle" class="boardTitle themeBorderColor">&nbsp; 
+								<c:if test="${tm.tp_b_like >= 10 }">
 									<span class="titleNotice themeBorderColor">★</span>
 								</c:if> ${tm.tp_b_title }
+							</td>
+							<td id="boardReplyCount" class="themeNotice themeBorderColor" align="center">
+								<c:if test="${tm.tp_b_rCount > 0}">
+									[${tm.tp_b_rCount }]
+								</c:if>
 							</td>
 							<c:choose>
 								<c:when test="${tm.tp_b_writer eq '관리자' }">
@@ -189,11 +195,11 @@ $(function() {
 		<tr>
 			<c:if test="${startPage != 1 }">
 				<td>
-				<a href="board.page?p=1
-				&b=${sessionScope.boardPerPage }
-				&searchNum=${searchNum }
-				&search=${param.search }">[1] 
-				</a>
+					<a href="board.page?p=1
+					&b=${sessionScope.boardPerPage }
+					&searchNum=${searchNum }
+					&search=${param.search }">[1] 
+					</a>
 				</td>
 				<td>...</td>
 			</c:if>
@@ -202,11 +208,11 @@ $(function() {
 					<c:if test="${p == param.p }" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
-					<a href="board.page?p=${p }
-					&b=${sessionScope.boardPerPage }
-					&searchNum=${searchNum }
-					&search=${param.search }">[${p }] 
-					</a>
+						<a href="board.page?p=${p }
+						&b=${sessionScope.boardPerPage }
+						&searchNum=${searchNum }
+						&search=${param.search }">[${p }] 
+						</a>
 					<c:if test="${p == param.p }" >
 						</span>
 					</c:if>
@@ -215,7 +221,12 @@ $(function() {
 			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 }">
 				<td>...</td>
 				<td>
-				<a href="board.page?p=${allPageCount }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }&search=${param.search }">[${allPageCount }] </a></td>
+					<a href="board.page?p=${allPageCount }
+					&b=${sessionScope.boardPerPage }
+					&searchNum=${searchNum }
+					&search=${param.search }">[${allPageCount }] 
+					</a>
+				</td>
 			</c:if>
 		</tr>
 	</table>

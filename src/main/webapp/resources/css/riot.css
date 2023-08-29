@@ -11,6 +11,10 @@
 	font-family: "bJ";
 }
 
+#SNinput {
+	margin-top: 20px;
+}
+
 #riotTd0 {
 	width: 150px;
 	height: 150px;

@@ -1,4 +1,4 @@
-const api_key = "RGAPI-390177bd-c645-4733-9bec-791a19a3f631";
+const api_key = "RGAPI-f74463b7-f619-450b-b23b-abd61742ddeb";
 
 // 함수에서 promise return (resolve)
 /** 버튼 누르면  input value 를 가져온다.

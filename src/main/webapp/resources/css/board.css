@@ -81,6 +81,16 @@
 	padding-left: 10px;
 }
 
+#boardTitle {
+	border: solid 1px black;
+	border-right: none;
+}
+
+#boardReplyCount {
+	border: solid 1px black;
+	border-left: none;
+}
+
 .boardWriter {
 	width: 100px;
 	overflow: hidden;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,9 @@
 			<td class="boardName themeColor">League of Legends 전적검색 <span class="themeReplyWriter">(솔로랭크)</span></td>
 		</tr>
 	</table>
+	<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
 	<h3 class="themeNotice">API key의 유효기간을 확인해주세요 ( 하루 한 번 )</h3>
+	</c:if>
 	<div id = "SNinput">
 		<input placeholder = "소환사명" name ="SN"  id = "SN" autocomplete="off" autofocus="autofocus" >
 		<button id = 'b1' class="themeBtn" onclick="return riotSearchCheck();">검색</button>

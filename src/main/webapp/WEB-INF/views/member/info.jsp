@@ -36,7 +36,7 @@
 			<tr>
 				<td class="infoIndex themeReplyWriter themeBorderColor">닉네임</td>
 				<td class="infoContent themeColor themeBackground-colorGrey themeBorderColor""><input name="tp_m_nick"
-					value="${sessionScope.loginMember.tp_m_name }"
+					value="${sessionScope.loginMember.tp_m_nick }"
 					class="infoInput" readonly="readonly">
 				</td>
 			</tr>

@@ -21,6 +21,12 @@ function boardPerPage() {
 		$('#boardPerPageSearch').val(bpp);
 		$('#boardSearchBtn').trigger('click');
 	})
+	
+	$('#noticePerPageSelect').change(function() {
+		let bpp = $('#noticePerPageSelect').val();
+		$('#noticePerPageSearch').val(bpp);
+		$('#noticeSearchBtn').trigger('click');
+	})
 }
 
 
@@ -37,7 +43,8 @@ function boardDeleteGo(tp_b_no, tp_b_writer) {
 			   target: "_self",
 			   vals: [				//전달할 인수들
 			    ["tp_b_no", tp_b_no],
-			    ["tp_b_writer", tp_b_writer]
+			    ["tp_b_writer", tp_b_writer],
+			    ["p", 1]
 			]
 		});
 	}

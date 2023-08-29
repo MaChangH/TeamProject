@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.project.member.Member;
 import com.team.project.member.MemberMapper;
 
 @Service
@@ -142,16 +143,25 @@ public class BoardDAO {
 					noticeCount = ss.getMapper(BoardMapper.class).getSearchNWriterCount(bSel2);				
 				}
 			}
-			int PerPage = 10;
+			int PerPage = (Integer) req.getSession().getAttribute("boardPerPage");
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
+			System.out.println(allPageCountNotice);
 			req.setAttribute("APCN", allPageCountNotice);
 			int start = (PerPage * (page - 1)) + 1;
 			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
 			BoardSelector bSel = new BoardSelector(search, start, end);
-			if (page == 1 || page == 2) {
+			if (page == 1 || page == 2 && allPageCountNotice <= 4) {
+				page = 2;
+				req.setAttribute("startPage", page - 1);
+				req.setAttribute("endPage", allPageCountNotice);
+			}else if (page == 1 || page == 2) {
 				page = 2;
 				req.setAttribute("startPage", page - 1);
 				req.setAttribute("endPage", page + 3);
+			}else if (page == allPageCountNotice || page + 1 == allPageCountNotice && allPageCountNotice <= 4) {
+				page = allPageCountNotice;
+				req.setAttribute("startPage", page - 2);
+				req.setAttribute("endPage", page);
 			}else if (page == allPageCountNotice || page + 1 == allPageCountNotice) {
 				page = allPageCountNotice;
 				req.setAttribute("startPage", page - 4);
@@ -224,6 +234,10 @@ public class BoardDAO {
 				req.setAttribute("r", "글쓰기실패(새로고침)");
 				return;
 			}
+			
+			Member lm = (Member) req.getSession().getAttribute("loginMember");
+			b.setTp_b_id(lm.getTp_m_id());
+			
 			String title = mr.getParameter("tp_b_title");
 			b.setTp_b_title(title);
 			b.setTp_b_writer(mr.getParameter("tp_b_writer"));
@@ -410,9 +424,14 @@ public class BoardDAO {
 	// 게시글에 댓글 작성하는 method
 	public void writeReply(int tp_b_no, HttpServletRequest req, Reply r) {
 		try {
+			
+			Member lm = (Member) req.getSession().getAttribute("loginMember");
+			r.setTp_r_id(lm.getTp_m_id());
+			
 			r.setTp_r_writer(req.getParameter("tp_r_writer"));
 			r.setTp_r_text(req.getParameter("tp_r_text"));
 			r.setTp_r_b_no(tp_b_no);
+			
 			
 			String formerToken = (String) req.getSession().getAttribute("st");
 			String token = req.getParameter("token");
@@ -420,6 +439,20 @@ public class BoardDAO {
 			if (!token.equals(formerToken)) {
 				ss.getMapper(BoardMapper.class).writeReply(r);
 				req.setAttribute("r", "댓글 작성 성공");
+				//	해당 번호에 해당하는 게시글의 전체 댓글 수를 불러옴
+				int rCount = ss.getMapper(BoardMapper.class).getBoardRCount(tp_b_no);
+				
+				//	해당 no를 갖는 Board 전체의 정보 불러옴
+				List<Board> Boards = ss.getMapper(BoardMapper.class).getBoardbyNo(tp_b_no);
+				
+				//	no는 중복 없는 값이기 때문에 0번째 Board를 불러오면 해당 no를 갖는 Board임
+				Board b = Boards.get(0);
+				
+				//	b의 tp_b_rCount에 rCount를 적용
+				b.setTp_b_rCount(rCount);
+				
+				//	b의 rCount를 DB에 적용
+				ss.getMapper(BoardMapper.class).updateBoardRCount(b);
 				req.getSession().setAttribute("st", token);
 				
 //				System.out.println(formerToken);
@@ -440,6 +473,13 @@ public class BoardDAO {
 			ReplyNo rn = new ReplyNo(tp_r_b_no, tp_r_no);
 			if (ss.getMapper(BoardMapper.class).deleteReply(rn) == 1) {
 				req.setAttribute("r", "댓글삭제성공");
+				int rCount = ss.getMapper(BoardMapper.class).getBoardRCount(tp_r_b_no);
+
+				List<Board> Boards = ss.getMapper(BoardMapper.class).getBoardbyNo(tp_r_b_no);
+				Board b = Boards.get(0);
+				b.setTp_b_rCount(rCount);
+				
+				ss.getMapper(BoardMapper.class).updateBoardRCount(b);
 			}else {
 				req.setAttribute("r", "댓글삭제실패");
 			}
