@@ -20,7 +20,13 @@
 	z-index: 0;
 }
 
+#weatherCityTbl {
+	position: absolute;
+	z-index: 1;
+}
+
 #weatherFore {
+	position: absolute;
 	font-size: 20pt;
 	font-weight: 900;
 }
