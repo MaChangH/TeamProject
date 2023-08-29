@@ -255,6 +255,8 @@ public class MemberDAO {
 
 			// DB 수정하기
 			if (ss.getMapper(MemberMapper.class).update(m) == 1) {
+				ss.getMapper(MemberMapper.class).updateBNick(m);
+				ss.getMapper(MemberMapper.class).updateRNick(m);
 				req.setAttribute("r", "수정했습니다");
 
 				// 사이트에 반영하기
@@ -277,6 +279,9 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "수정에 실패했습니다");
+			System.out.println(mr.getParameter("tp_m_nick"));
+			System.out.println(mr.getParameter("tp_m_pw"));
+			System.out.println(mr.getParameter("tp_m_name"));
 
 			// 새 프로필 지우기
 			if (!oldFile.equals(newFile)) {

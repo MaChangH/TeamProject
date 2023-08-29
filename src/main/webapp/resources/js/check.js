@@ -1,3 +1,5 @@
+// 회원가입 체크
+
 function joinCheck() {
 	let j_id = document.joinForm.tp_m_id;
 	let j_pw = document.joinForm.tp_m_pw;
@@ -92,6 +94,7 @@ function joinCheck() {
 	}
 }
 
+// 정보수정 체크
 function updateCheck() {
 	let u_pw = document.updateForm.tp_m_pw;
 	let u_pwChk = document.updateForm.tp_m_pwChk;
@@ -125,13 +128,8 @@ function updateCheck() {
 		alert('닉네임을 입력해주세요');
 		u_nickname.focus();
 		return false;
-	} else if (atLeastLetter(u_nickname, 4)) {
-		alert('닉네임은 최소 4자입니다');
-		u_nickname.value = "";
-		u_nickname.focus();
-		return false;
-	} else if (containsAnotherID(u_nickname)) {
-		alert('닉네임은 영어 및 숫자만 사용 가능합니다');
+	} else if (atLeastLetter(u_nickname, 2)) {
+		alert('닉네임은 최소 2자입니다');
 		u_nickname.value = "";
 		u_nickname.focus();
 		return false;
@@ -156,7 +154,7 @@ function updateCheck() {
 		u_addr3.value = "";
 		return false;
 	}
-	let t = confirm('회원가입을 하시겠습니까?');
+	let t = confirm('회원정보를 수정하시겠습니까?');
 	if (t) {
 		return true;
 	} else {
@@ -166,13 +164,45 @@ function updateCheck() {
 
 // 소환사명 빈칸방지
 function riotSearchCheck(){
-	let SNinput = document.SN_Form.SN;
-	if (isEmpty(SNinput)) {
+	let SNinput = $('#SN').val();
+	if (SNinput == "") {
 		alert('소환사명을 입력해주세요');
 		SN.focus();
 		return false;
 	}}
 
+
+//게시글 작성 체크
+function boardWriteCheck(){
+	let w_title = document.writeForm.tp_b_title;
+	let w_txt = document.writeForm.tp_b_txt;
+	
+	if (isEmpty(w_title)) {
+		alert('제목을 입력하세요');
+		w_title.focus();
+		return false;
+	} else if (isEmpty(w_txt)) {
+		alert('내용을 입력하세요');
+		w_txt.focus();
+		return false;
+	}
+}
+
+//게시글 수정 체크
+function boardUpdateCheck(){
+	let u_title = document.updateForm.tp_b_title;
+	let u_txt = document.updateForm.tp_b_txt;
+	
+	if (isEmpty(u_title)) {
+		alert('제목을 입력하세요');
+		u_title.focus();
+		return false;
+	} else if (isEmpty(u_txt)) {
+		alert('내용을 입력하세요');
+		u_txt.focus();
+		return false;
+	}
+}
 
 //////////////////////////////////////////////////////////////////
 

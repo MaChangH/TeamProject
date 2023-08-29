@@ -15,7 +15,7 @@
 			<td id="loginMemberID" align="center">환영합니다, <span class="themeReplyWriter" style="font-weight: 900;">${sessionScope.loginMember.tp_m_nick }</span>님!</td>
 		</tr>
 		<tr>
-			<td id="loginPoint" align="center">내 포인트 : <span id="loginPointNum">${sessionScope.loginMember.tp_m_point } 점</span></td>
+			<td id="loginPoint" align="center">내 포인트 : <span id="loginPointNum" class="themeReplyWriter">${sessionScope.loginMember.tp_m_point } </span>점</td>
 		</tr>
 		<tr>
 			<td align="center">

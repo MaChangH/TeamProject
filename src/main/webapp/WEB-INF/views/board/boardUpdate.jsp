@@ -18,8 +18,8 @@
 		<c:forEach var="tki" items="${boards }">
 			<tr>
 				<td>
-					<form action="board.update" method="post" name="writeForm" enctype="multipart/form-data"
-						onsubmit="return writeCheck();">
+					<form action="board.update" method="post" name="updateForm" enctype="multipart/form-data"
+						onsubmit="return boardUpdateCheck();">
 						<input name="token" value="${token }" type="hidden">
 						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
 						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">

@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.project.member.Member;
 import com.team.project.member.MemberMapper;
 
 @Service
@@ -38,13 +40,17 @@ public class BoardDAO {
 	public void searchClear(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
 		req.getSession().setAttribute("searchNum", 1);
+		req.getSession().setAttribute("pageNum", 1);
+		req.getSession().setAttribute("boardPerPage", 10);
+		req.getSession().setAttribute("p", 0); // 검색 초기화가 되면 값이 0이 되는 세션, 페이지 번호가 바뀌면 값이 변함
 	}
 	
 	// 검색어에 해당하는 게시글 가져오는 method
 	public void getBoardMsg(int page, HttpServletRequest req) {
 		String search = (String) req.getSession().getAttribute("search"); // 검색어
 		int boardCount = 0;
-		int searchNum = 1;
+		int searchNum = 1; // 검색을 어떤것으로 할지
+		int nowPage = 0; // 마지막으로 머물렀던 페이지가 몇 번인지
 		if (search == null) { // 전체조회
 			boardCount = allBoardCount; // mapper의 sql로 가서 전체 조회한 값
 			search = "";
@@ -60,8 +66,11 @@ public class BoardDAO {
 			}else if (searchNum == 3) {
 				boardCount = ss.getMapper(BoardMapper.class).getSearchWriterCount(bSel2);				
 			}
+			
 		}
-		int PerPage = 10;
+		int PerPage = (Integer) req.getSession().getAttribute("boardPerPage"); // 한 페이지에 몇 개의 게시글을 보여줄지
+		req.getSession().setAttribute("boardPerPage", PerPage);
+		
 		int allPageCount = (int) Math.ceil(boardCount / (double) PerPage);
 		req.setAttribute("allPageCount", allPageCount);
 		req.getSession().setAttribute("APCSession", allPageCount);
@@ -110,7 +119,16 @@ public class BoardDAO {
 		req.setAttribute("imp", imps);
 		req.getSession().setAttribute("searchNum", searchNum);
 		
-		Date sysdate = new Date();
+		if ((Integer) req.getSession().getAttribute("p") == 0) { // 검색 초기화가 발생하면
+			nowPage = 1; // 페이지를 1번으로
+		} else {
+			nowPage = Integer.parseInt(req.getParameter("p")); // 그 외에는 파라미터 값으로
+		}
+		req.getSession().setAttribute("nowPage", nowPage);
+		req.getSession().setAttribute("p", nowPage); // 0이었던 세션 값을 바꿈
+		
+		
+		Date sysdate = new Date(); // 하루 이상 지난 게시글들은 날짜가 간략하게 표시되게 하기 위한 기준점
 		sysdate.setHours(0);
 		sysdate.setMinutes(0);
 		sysdate.setSeconds(0);
@@ -138,8 +156,9 @@ public class BoardDAO {
 					noticeCount = ss.getMapper(BoardMapper.class).getSearchNWriterCount(bSel2);				
 				}
 			}
-			int PerPage = 10;
+			int PerPage = (Integer) req.getSession().getAttribute("boardPerPage");
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
+			System.out.println(allPageCountNotice);
 			req.setAttribute("APCN", allPageCountNotice);
 			req.getSession().setAttribute("APCNSession", allPageCountNotice);
 			int start = (PerPage * (page - 1)) + 1;
@@ -216,6 +235,9 @@ public class BoardDAO {
 	public void searchBoard(HttpServletRequest req) {
 		String search = req.getParameter("search");
 		req.getSession().setAttribute("search", search);
+		
+		int PerPage = Integer.parseInt(req.getParameter("b")); // 한 페이지에 몇 개의 게시글을 보여줄지
+		req.getSession().setAttribute("boardPerPage", PerPage);
 	}
 	
 	// 게시글 작성하는 method
@@ -230,6 +252,10 @@ public class BoardDAO {
 				req.setAttribute("r", "글쓰기실패(새로고침)");
 				return;
 			}
+			
+			Member lm = (Member) req.getSession().getAttribute("loginMember");
+			b.setTp_b_id(lm.getTp_m_id());
+			
 			String title = mr.getParameter("tp_b_title");
 			b.setTp_b_title(title);
 			b.setTp_b_writer(mr.getParameter("tp_b_writer"));
@@ -240,6 +266,9 @@ public class BoardDAO {
 //			System.out.println(b.getTp_b_imp());
 			String tp_b_photo = mr.getFilesystemName("tp_b_photo");
 			String tp_b_photo_kor = null;
+			
+			
+			
 //			System.out.println(b.getTp_b_title());
 //			System.out.println(b.getTp_b_txt());
 //			System.out.println(b.getTp_b_writer());
@@ -304,6 +333,9 @@ public class BoardDAO {
 		}
 		Board otk = (Board) req.getSession().getAttribute("boardManager");
 		String oldFile = otk.getTp_b_photo();
+		if (oldFile == null) {
+			oldFile = "";
+		}
 		String newFile = mr.getFilesystemName("tp_b_photo");
 //		System.out.println(oldFile);
 //		System.out.println(newFile);
@@ -410,9 +442,14 @@ public class BoardDAO {
 	// 게시글에 댓글 작성하는 method
 	public void writeReply(int tp_b_no, HttpServletRequest req, Reply r) {
 		try {
+			
+			Member lm = (Member) req.getSession().getAttribute("loginMember");
+			r.setTp_r_id(lm.getTp_m_id());
+			
 			r.setTp_r_writer(req.getParameter("tp_r_writer"));
 			r.setTp_r_text(req.getParameter("tp_r_text"));
 			r.setTp_r_b_no(tp_b_no);
+			
 			
 			String formerToken = (String) req.getSession().getAttribute("st");
 			String token = req.getParameter("token");
@@ -420,6 +457,20 @@ public class BoardDAO {
 			if (!token.equals(formerToken)) {
 				ss.getMapper(BoardMapper.class).writeReply(r);
 				req.setAttribute("r", "댓글 작성 성공");
+				//	해당 번호에 해당하는 게시글의 전체 댓글 수를 불러옴
+				int rCount = ss.getMapper(BoardMapper.class).getBoardRCount(tp_b_no);
+				
+				//	해당 no를 갖는 Board 전체의 정보 불러옴
+				List<Board> Boards = ss.getMapper(BoardMapper.class).getBoardbyNo(tp_b_no);
+				
+				//	no는 중복 없는 값이기 때문에 0번째 Board를 불러오면 해당 no를 갖는 Board임
+				Board b = Boards.get(0);
+				
+				//	b의 tp_b_rCount에 rCount를 적용
+				b.setTp_b_rCount(rCount);
+				
+				//	b의 rCount를 DB에 적용
+				ss.getMapper(BoardMapper.class).updateBoardRCount(b);
 				req.getSession().setAttribute("st", token);
 				
 //				System.out.println(formerToken);
@@ -440,6 +491,13 @@ public class BoardDAO {
 			ReplyNo rn = new ReplyNo(tp_r_b_no, tp_r_no);
 			if (ss.getMapper(BoardMapper.class).deleteReply(rn) == 1) {
 				req.setAttribute("r", "댓글삭제성공");
+				int rCount = ss.getMapper(BoardMapper.class).getBoardRCount(tp_r_b_no);
+
+				List<Board> Boards = ss.getMapper(BoardMapper.class).getBoardbyNo(tp_r_b_no);
+				Board b = Boards.get(0);
+				b.setTp_b_rCount(rCount);
+				
+				ss.getMapper(BoardMapper.class).updateBoardRCount(b);
 			}else {
 				req.setAttribute("r", "댓글삭제실패");
 			}

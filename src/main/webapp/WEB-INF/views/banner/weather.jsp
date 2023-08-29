@@ -12,18 +12,23 @@
 			url: "banner.weather.get",
 			success: function(asd) {
 				$(asd).find('item').each(function(i, w) {
+					// 변수 초기화
 					let w_category = $(w).find('category').text();
 					let w_temp = "-";
 					let w_wfKor = "-";
 					let td_te = "";
 					let td_teN = "";
 					let td_wf = "";
+					
+					// 기온
 					if (w_category == 'T1H') {
 						w_temp = $(w).find('obsrValue').text() + ' ℃';
 						td_teN = $('<div id="weatherTempNum"></div>').text(w_temp);
 						td_te = $('<td></td>');
 						td_te.append(td_teN);
 						td_te.attr('id', 'weatherTemp');
+						
+					// 맑음/눈/비 여부
 					} else if (w_category == 'PTY') {
 						w_wfKor = $(w).find('obsrValue').text();
 						if (w_wfKor == '0') {

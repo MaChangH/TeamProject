@@ -41,7 +41,7 @@
 			<tr>
 				<td class="infoIndex themeReplyWriter themeBackground-color themeBorderColor">닉네임</td>
 				<td class="infoContent themeBackground-colorGrey themeBorderColor"><input name="tp_m_nick" id="updateNick"
-					value="${sessionScope.loginMember.tp_m_name }"
+					value="${sessionScope.loginMember.tp_m_nick }"
 					class="infoInput" placeholder="2~12자" autocomplete="off">
 					<span id="updateNicknameChk" class="themeNotice">이미 가입된 닉네임입니다</span>
 				</td>

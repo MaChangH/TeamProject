@@ -7,6 +7,7 @@ public class Reply {
 
 	private BigDecimal tp_r_no;
 	private int tp_r_b_no;
+	private String tp_r_id;
 	private String tp_r_writer;
 	private String tp_r_text;
 	private Date tp_r_date;
@@ -16,11 +17,12 @@ public class Reply {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reply(BigDecimal tp_r_no, int tp_r_b_no, String tp_r_writer, String tp_r_text, Date tp_r_date,
-			String tp_r_edit) {
+	public Reply(BigDecimal tp_r_no, int tp_r_b_no, String tp_r_id, String tp_r_writer, String tp_r_text,
+			Date tp_r_date, String tp_r_edit) {
 		super();
 		this.tp_r_no = tp_r_no;
 		this.tp_r_b_no = tp_r_b_no;
+		this.tp_r_id = tp_r_id;
 		this.tp_r_writer = tp_r_writer;
 		this.tp_r_text = tp_r_text;
 		this.tp_r_date = tp_r_date;
@@ -41,6 +43,14 @@ public class Reply {
 
 	public void setTp_r_b_no(int tp_r_b_no) {
 		this.tp_r_b_no = tp_r_b_no;
+	}
+
+	public String getTp_r_id() {
+		return tp_r_id;
+	}
+
+	public void setTp_r_id(String tp_r_id) {
+		this.tp_r_id = tp_r_id;
 	}
 
 	public String getTp_r_writer() {
@@ -74,7 +84,7 @@ public class Reply {
 	public void setTp_r_edit(String tp_r_edit) {
 		this.tp_r_edit = tp_r_edit;
 	}
-
+	
 	
 	
 }

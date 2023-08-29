@@ -89,11 +89,11 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 0 order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
@@ -103,7 +103,7 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 0 order by
@@ -117,11 +117,11 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 0 order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
@@ -131,11 +131,11 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 1 order by
-		tp_b_when desc ))
+		tp_b_no desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
@@ -145,7 +145,7 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 1 order by
@@ -159,7 +159,7 @@
 		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 1 order by
@@ -185,12 +185,12 @@
 	
 	<!-- 게시글 작성하는 부분(사진X) -->
 	<insert id="writeBoard" parameterType="com.team.project.board.Board"> 
-		insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0) 
+		insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_id}, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0, 0) 
 	</insert>
 	
 	<!-- 게시글 작성하는 부분(사진O) -->
 	<insert id="writeBoardPhoto" parameterType="com.team.project.board.Board">
-		insert into tp_board values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0)
+		insert into tp_board values(tp_board_seq.nextval, #{tp_b_id}, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0, 0)
 	</insert>
 	
 	<!-- 게시글 삭제하는 부분 -->
@@ -220,7 +220,7 @@
 	
 	<!-- 댓글 작성하는 부분 -->
 	<insert id="writeReply" parameterType="com.team.project.board.Reply">
-		insert into tp_reply values (tp_reply_seq.nextval, #{tp_r_b_no}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
+		insert into tp_reply values (tp_reply_seq.nextval, #{tp_r_b_no}, #{tp_r_id}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
 	</insert>
 	
 	<!-- 댓글 삭제하는 부분 -->
@@ -232,6 +232,22 @@
 	<update id="updateReply" parameterType="com.team.project.board.Reply">
 		update tp_reply set tp_r_text = #{tp_r_text}, tp_r_edit = #{tp_r_edit} where tp_r_no = #{tp_r_no}
 	</update>
+	
+	<!-- 해당 번호의 게시글 정보 가져오는 부분 -->
+	<select id="getBoardbyNo" parameterType="java.lang.Integer" resultType="com.team.project.board.Board">
+		select * from tp_board where tp_b_no = #{tp_b_no}
+	</select>
+	
+	<!-- 해당 게시글 댓글수 가져오는 부분 -->
+	<select id="getBoardRCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from tp_reply where tp_r_b_no = #{tp_b_no}
+	</select>
+	
+	<!-- 해당 게시글 댓글수 board테이블에 반영하는 부분 -->
+	<update id="updateBoardRCount" parameterType="com.team.project.board.Board">
+		update tp_board set tp_b_rCount = #{tp_b_rCount} where tp_b_no = #{tp_b_no}
+	</update>
+	
 	
 	<!-- 해당 게시글 추천수 가져오는 부분 -->
 	<select id="getBoardLike" parameterType="com.team.project.board.Board" resultType="java.lang.Integer">

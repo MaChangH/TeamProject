@@ -46,6 +46,8 @@ function colorChange() {
 		colorRed();
 	} else if (color == 'Orange') {
 		colorOrange();
+	} else if (color == 'Green') {
+		colorGreen();
 	} else if (color == 'Silver') {
 		colorSilver();
 	} else if (color == 'Dark') {
@@ -63,6 +65,8 @@ function themePreview() {
 			colorPreviewRed();
 		} else if (color == 'Orange') {
 			colorPreviewOrange();
+		} else if (color == 'Green') {
+			colorPreviewGreen();
 		} else if (color == 'Silver') {
 			colorPreviewSilver();
 		} else if (color == 'Dark') {
@@ -85,6 +89,7 @@ function colorNormal() {
 	$('body').css('background-color', '#00AAFF10');
 	$('.themeColor').css('color', 'black');
 	$('.themeBackground-color').css('background-color', '#abd2ff');
+	$('.themeBackground-color').css('background', '#abd2ff');
 	$('.themeBackground-colorGrey').css('background-color', '#ddedff');
 	$('.themeNotice').css('color', 'red');
 	$('.themeReplyWriter').css('color', '#0000AA');
@@ -98,7 +103,8 @@ function colorRed() {
 	$('body').css('background-color', '#FF000020');
 	$('.themeColor').css('color', 'black');
 	$('.themeBackground-color').css('background-color', '#ffa9a9');
-	$('.themeBackground-colorGrey').css('background-color', '#ffdfdf');
+	$('.themeBackground-color').css('background', '#ffa9a9');
+	$('.themeBackground-colorGrey').css('background-color', '#ffd1d1');
 	$('.themeNotice').css('color', '#008888');
 	$('.themeReplyWriter').css('color', '#AA0000');
 	$('.themeBorderColor').css('border-color', 'black');
@@ -111,6 +117,7 @@ function colorOrange() {
 	$('body').css('background-color', '#FF6A0020');
 	$('.themeColor').css('color', 'black');
 	$('.themeBackground-color').css('background-color', '#ffc1a9');
+	$('.themeBackground-color').css('background', '#ffc1a9');
 	$('.themeBackground-colorGrey').css('background-color', '#ffe6db');
 	$('.themeNotice').css('color', '#0066AA');
 	$('.themeReplyWriter').css('color', '#e17122');
@@ -120,16 +127,30 @@ function colorOrange() {
 	$('.themeBtn').css('color', 'black');
 }
 
-function colorSilver() {
-	$('body').css('background-color', '#00000010');
+function colorGreen() {
+	$('body').css('background-color', '#00FF0015');
 	$('.themeColor').css('color', 'black');
-	$('.themeBackground-color').css('background-color', '#dddddd');
-	$('.themeBackground-colorGrey').css('background-color', '#ebebeb');
+	$('.themeBackground-color').css('background-color', '#8ceb94');
+	$('.themeBackground-color').css('background', '#8ceb94');
+	$('.themeBackground-colorGrey').css('background-color', '#e5ffe1');
+	$('.themeNotice').css('color', '#FF3300');
+	$('.themeReplyWriter').css('color', '#386450');
+	$('.themeBorderColor').css('border-color', 'black');
+	$('.themeBtn').css('border-color', 'black');
+	$('.themeBtn').css('background-color', '#d3f9cd');
+	$('.themeBtn').css('color', 'black');
+}
+
+function colorSilver() {
+	$('body').css('background', '#f8f8f8');
+	$('.themeColor').css('color', 'black');
+	$('.themeBackground-color').css('background', 'linear-gradient(to left, #dcdcdc, #fafafa)');
+	$('.themeBackground-colorGrey').css('background-color', '#f5f5f5');
 	$('.themeNotice').css('color', 'red');
 	$('.themeReplyWriter').css('color', '#0000AA');
 	$('.themeBorderColor').css('border-color', 'black');
 	$('.themeBtn').css('border-color', 'black');
-	$('.themeBtn').css('background-color', '#fcfcfc');
+	$('.themeBtn').css('background-color', '#efefef');
 	$('.themeBtn').css('color', 'black');
 }
 
@@ -137,6 +158,7 @@ function colorDark() {
 	$('body').css('background-color', '#101010');
 	$('.themeColor').css('color', 'white');
 	$('.themeBackground-color').css('background-color', 'black');
+	$('.themeBackground-color').css('background', 'black');
 	$('.themeBackground-colorGrey').css('background-color', '#202020');
 	$('.themeNotice').css('color', 'yellow');
 	$('.themeReplyWriter').css('color', 'yellow');
@@ -151,6 +173,7 @@ function colorDark() {
 function colorPreviewNormal() {
 	$('.themePreviewColor').css('color', 'black');
 	$('.themePreviewBackground-color').css('background-color', '#abd2ff');
+	$('.themePreviewBackground-color').css('background', '#abd2ff');
 	$('.themePreviewBackground-colorGrey').css('background-color', '#ddedff');
 	$('.themePreviewNotice').css('color', 'red');
 	$('.themePreviewReplyWriter').css('color', '#0000AA');
@@ -163,7 +186,8 @@ function colorPreviewNormal() {
 function colorPreviewRed() {
 	$('.themePreviewColor').css('color', 'black');
 	$('.themePreviewBackground-color').css('background-color', '#ffa9a9');
-	$('.themePreviewBackground-colorGrey').css('background-color', '#ffdfdf');
+	$('.themePreviewBackground-color').css('background', '#ffa9a9');
+	$('.themePreviewBackground-colorGrey').css('background-color', '#ffd1d1');
 	$('.themePreviewNotice').css('color', '#008888');
 	$('.themePreviewReplyWriter').css('color', '#AA0000');
 	$('.themePreviewBorderColor').css('border-color', 'black');
@@ -175,6 +199,7 @@ function colorPreviewRed() {
 function colorPreviewOrange() {
 	$('.themePreviewColor').css('color', 'black');
 	$('.themePreviewBackground-color').css('background-color', '#ffc1a9');
+	$('.themePreviewBackground-color').css('background', '#ffc1a9');
 	$('.themePreviewBackground-colorGrey').css('background-color', '#ffe6db');
 	$('.themePreviewNotice').css('color', '#0066AA');
 	$('.themePreviewReplyWriter').css('color', '#e17122');
@@ -184,21 +209,36 @@ function colorPreviewOrange() {
 	$('.themePreviewBtn').css('color', 'black');
 }
 
+function colorPreviewGreen() {
+	$('.themePreviewColor').css('color', 'black');
+	$('.themePreviewBackground-color').css('background-color', '#8ceb94');
+	$('.themePreviewBackground-color').css('background', '#8ceb94');
+	$('.themePreviewBackground-colorGrey').css('background-color', '#e5ffe1');
+	$('.themePreviewNotice').css('color', '#FF3300');
+	$('.themePreviewReplyWriter').css('color', '#386450');
+	$('.themePreviewBorderColor').css('border-color', 'black');
+	$('.themePreviewBtn').css('border-color', 'black');
+	$('.themePreviewBtn').css('background-color', '#d3f9cd');
+	$('.themePreviewBtn').css('color', 'black');
+	
+}
+
 function colorPreviewSilver() {
 	$('.themePreviewColor').css('color', 'black');
-	$('.themePreviewBackground-color').css('background-color', '#dddddd');
-	$('.themePreviewBackground-colorGrey').css('background-color', '#ebebeb');
+	$('.themePreviewBackground-color').css('background', 'linear-gradient(to left, #dcdcdc, #fafafa)');
+	$('.themePreviewBackground-colorGrey').css('background-color', '#f5f5f5');
 	$('.themePreviewNotice').css('color', 'red');
 	$('.themePreviewReplyWriter').css('color', '#0000AA');
 	$('.themePreviewBorderColor').css('border-color', 'black');
 	$('.themePreviewBtn').css('border-color', 'black');
-	$('.themePreviewBtn').css('background-color', '#fcfcfc');
+	$('.themePreviewBtn').css('background-color', '#efefef');
 	$('.themePreviewBtn').css('color', 'black');
 }
 
 function colorPreviewDark() {
 	$('.themePreviewColor').css('color', 'white');
 	$('.themePreviewBackground-color').css('background-color', 'black');
+	$('.themePreviewBackground-color').css('background', 'black');
 	$('.themePreviewBackground-colorGrey').css('background-color', '#202020');
 	$('.themePreviewNotice').css('color', 'yellow');
 	$('.themePreviewReplyWriter').css('color', 'yellow');

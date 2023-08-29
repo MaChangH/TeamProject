@@ -69,6 +69,7 @@
 					<option value="Blue">Blue(기본)</option>
 					<option value="Red">Red</option>
 					<option value="Orange">Orange</option>
+					<option value="Green">Green</option>
 					<option value="Silver">Silver</option>
 					<option value="Dark">Dark</option>
 				</select>

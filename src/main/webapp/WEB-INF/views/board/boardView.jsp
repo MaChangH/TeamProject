@@ -18,13 +18,16 @@
 					<span class="titleNotice themeNotice">[공지]</span>
 				</c:if>
 					${tki.tp_b_title }
+					<c:if test="${tki.tp_b_rCount > 0}">
+						<span class="themeNotice">[${tki.tp_b_rCount }]</span>
+					</c:if>
 				</td>
 				<td align="center" id="boardViewUD">
 					<c:if test="${sessionScope.loginMember.tp_m_nick == tki.tp_b_writer }">
 						<button onclick="boardUpdateGo(${tki.tp_b_no }, '${tki.tp_b_writer}');" class="themeBtn">수정</button>&nbsp;&nbsp;
 						<button onclick="boardDeleteGo(${tki.tp_b_no }, '${tki.tp_b_writer}' );" class="themeBtn">삭제</button>&nbsp;&nbsp;
 					</c:if>
-					<button onclick="boardGo();" class="themeBtn">목록</button>
+					<button onclick="boardBack(${sessionScope.nowPage},  ${sessionScope.boardPerPage }, '${sessionScope.searchNum }', '${sessionScope.search }');" class="themeBtn">목록</button>
 				</td>
 			</tr>
 			<tr>
@@ -131,7 +134,7 @@
 				<textarea id="replyWriteTextarea" class="replyarea" name="tp_r_text"></textarea>
 			</td>
 			<td align="center" id="replyWriteBtn">
-				<button>작성</button>
+				<button class="themeBtn">작성</button>
 			</td>
 		</tr>
 	</table>

@@ -181,6 +181,26 @@ function menuColorChange() {
 	colorChange();
 }
 
+// 새로고침 될 때 마다 랜덤 광고가 출력되게, 닫기 누르면 광고 없어지고 보기 누르면 다시 나오게
+function randomAd() {
+	let num = Math.round(Math.random() * 5) + 1;
+	$('#c').attr('src', 'resources/img/c/c' + num + '.webp');
+	
+	$('#cClose').click(function() {
+		$('#c').removeAttr('src');
+		$('#cClosd').css('display', 'none');
+		$('#cOpen').css('display', 'block');
+	});
+	
+	$('#cOpen').click(function() {
+		$('#c').removeAttr('src');
+		num = Math.round(Math.random() * 5) + 1;
+		$('#c').attr('src', 'resources/img/c/c' + num + '.webp');
+		$('#cClosd').css('display', 'block');
+		$('#cOpen').css('display', 'none');
+	});
+}
+
 $(function () {
 	notice();
 	leftBannerTop();
@@ -195,4 +215,5 @@ $(function () {
 	importantChk();
 	writerImgAppear();
 	menuColorChange();
+	randomAd();
 });

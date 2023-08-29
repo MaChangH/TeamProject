@@ -1,5 +1,6 @@
 create table tp_board (
 	tp_b_no number(7) primary key,
+	tp_b_id varchar2(10 char) not null,
 	tp_b_writer varchar2(10 char) not null,
 	tp_b_title varchar2(50 char) not null,
 	tp_b_txt varchar2(300 char) not null,
@@ -7,13 +8,14 @@ create table tp_board (
 	tp_b_when date not null,
 	tp_b_notice varchar2(1 char) not null,
 	tp_b_imp varchar2(1 char) not null, 
+	tp_b_rCount number(10) not null,
 	tp_b_view number(10) not null,
 	tp_b_like number(10) not null,
-	foreign key (tp_b_writer) references tp_member (tp_m_nick) on delete cascade
+	foreign key (tp_b_id) references tp_member (tp_m_id) on delete cascade
 );
 create sequence tp_board_seq;
 
-select * from TP_BOARD where tp_b_notice = 1;
+select * from TP_BOARD order by tp_b_no desc;
 --tp_b_notice : 해당 글이 공지인지 아닌지 (공지면 1, 아니면 0)
 -- 회원 탈퇴하면 작성했던 게시글 삭제되게
 
@@ -35,21 +37,30 @@ select * from (
 select count(*) from tp_board where tp_b_notice = 1
 select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '공지','항상 큰대회만 나가면 이러더라',  sysdate, 1, 0, 0, 0);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '그거는 니가','못해서 그래',  sysdate, 1, 0, 0, 0);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '킹치만...','나츄르로 우승하고 싶은걸',  sysdate, 1, 0, 0, 0);
-insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like)
-values (tp_board_seq.nextval, '관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...',  sysdate, 1, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '공지','항상 큰대회만 나가면 이러더라', sysdate, 1, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when,  tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '그거는 니가','못해서 그래', sysdate, 1, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '킹치만...','나츄르로 우승하고 싶은걸', sysdate, 1, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team','관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...', sysdate, 1, 0, 0, 0, 0);
+
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '공지','항상 큰대회만 나가면 이러더라', sysdate, 0, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when,  tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '그거는 니가','못해서 그래', sysdate, 0, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team', '관리자', '킹치만...','나츄르로 우승하고 싶은걸', sysdate, 0, 0, 0, 0, 0);
+insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like)
+values (tp_board_seq.nextval, 'team','관리자', '킹킹치만...','나츄르로는 티어권이 답이 없는걸...', sysdate, 0, 0, 0, 0, 0);
 
 
 
 drop table tp_board cascade constraint purge;
 drop sequence tp_board_seq ;
 
-select * from (
+select * from (`
 	select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_photo, tp_b_when, tp_b_notice, 
 	tp_b_imp, tp_b_view, tp_b_like from (
 		select * from tp_board 
@@ -59,11 +70,12 @@ select * from (
 create table tp_reply (
 	tp_r_no number(4) primary key,
 	tp_r_b_no number(4) not null,
+	tp_r_id varchar2(10 char) not null,
 	tp_r_writer varchar2(10 char) not null,
 	tp_r_text varchar2(256 char) not null,
 	tp_r_date date not null,
 	tp_r_edit varchar2(5 char),
-	foreign key (tp_r_writer) references tp_member (tp_m_nick) on delete cascade
+	foreign key (tp_r_id) references tp_member (tp_m_id) on delete cascade
 );
 create sequence tp_reply_seq;
 

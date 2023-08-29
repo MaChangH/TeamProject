@@ -1,28 +1,149 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/riot.css">
+<script type="text/javascript" src="resources/js/riotInfo.js"></script>
 </head>
 <body>
-	HI 
+	<table id="boardTitleTbl">
+		<tr>
+			<td class="boardName themeColor">League of Legends 전적검색 <span class="themeReplyWriter">(솔로랭크)</span></td>
+		</tr>
+	</table>
+	<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
+	<h3 class="themeNotice">API key의 유효기간을 확인해주세요 ( 하루 한 번 )</h3>
+	</c:if>
 	<div id = "SNinput">
-		<form action  = 'riot.summoners' name = SN_Form onsubmit = "riotSearchCheck();" >
-				<input placeholder = "소환사명" name ="SN"  id = "SN" > <br>
-				<input type="hidden" value ="${SNinfoURL}" readonly='readonly' id = 'info' name = 'info'><br>
-				<!--  input 타입에 hidden 넣기 -->
-				<button class="themeBtn">검색</button>
-			</form>
+		<input placeholder = "소환사명" name ="SN"  id = "SN" autocomplete="off" autofocus="autofocus" >
+		<button id = 'b1' class="themeBtn" onclick="return riotSearchCheck();">검색</button>
 			<!--  검색을 누른 뒤 페이지를 따로 summoners 로 넘어감. -->
 	</div>
-		
-		
-		<br><br>
-		
-	<br>
+	<table id="riotSummonerTbl1" class="riotSummonerTbl themeColor theme-BorderColor themeBackground-color">
+		<tr id="riotTr0">
+			<td id="riotTd0" rowspan="3" align="center">
+				<img id="riotIcon">
+			</td>
+			<td>
+				<table id="riotSummonerTbl2">
+					<tr id="riotTr1">
+						<td id="riotTd1" class="riotTd themeReplyWriter" align="left">
+						</td>
+					</tr>
+					<tr id="riotTr2">
+						<td id="riotTd2" class="riotTd" align="right">
+						</td>
+					</tr>
+					<tr id="riotTr3">
+						<td id="riotTd3" class="riotTd" align="right">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 	
-	<div class = 'SNcontent'> ${SN_input }</div>
+	<table id="riotSummonerTbl3" border="1" class="riotSummonerTbl themeBackground-colorGrey themeColor">
+		<tr id="riotTr4">
+			<td id="riotTd4" class="riotTd riotInfo" align="left">
+			</td>
+			<td id="riotTd5" class="riotTd riotInfo" align="left">
+			</td>
+			<td id="riotTd6" class="riotTd riotInfo" align="left">
+			</td>
+		</tr>
+	</table>
+	
+	 <table class  = "riotDetailInfoTbl themeColor theme-BorderColor themeBackground-color">
+		<!-- <tr>
+			<td>
+				<table>
+					<tr>
+						<td>솔랭</td>
+					</tr>
+					<tr>
+						<td>3일전</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+                <table>
+                    <tr>
+                    	<td>게임 끝날 때 레벨 !!!</td>
+                        <td>챔피언사진</td>
+                        <td>챔피언이름</td>
+                        <td>k/d/a :: / KDA</td>
+                    </tr>
+                </table>
+            </td>
+			<td rowspan="2">
+                <table>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>팀원1</td>
+                    </tr>
+                </table>
+            </td>
+			<td rowspan="2">
+                <table>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                    <tr>
+                        <td>2팀원1</td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+		
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>승리 패배</td>
+					</tr>
+					<tr>
+						<td>15분 게임</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+                <table >
+                    <tr>
+                        <td> <img src = ""> 아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                        <td>아이템1</td>
+                    </tr>
+                </table>
+            </td>
+		</tr> -->
+	</table>
 </body>
 </html>
