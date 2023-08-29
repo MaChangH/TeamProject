@@ -4,7 +4,7 @@ const head = "https://kr.api.riotgames.com";
 const headers = new Headers();
 headers.append("Origin", "http://localhost"); // 요청이 시작된 origin 설정 (CORS 정책을 만족시키기 위해 필요)
 headers.append("Accept", "application/json"); // 원하는 응답 데이터 타입
-
+let S_name;
 // fetch 요청 설정
 const requestOptions = {
   method: "GET",
@@ -85,8 +85,9 @@ async function leagueInfo(encID) {
       let losses = "";
       let tier = "통계가 부족합니다";
       let winrate = "";
-      console.log(tier, rank, lP, wins, losses, winrate);
-      arr = [tier, rank, lP, wins, losses, winrate];
+      let name = data[0].summonerName;
+      console.log(tier, rank, lP, wins, losses, winrate, name);
+      arr = [tier, rank, lP, wins, losses, winrate, name];
       return arr;
     } else {
       if (response.status != 200) {
@@ -105,7 +106,8 @@ async function leagueInfo(encID) {
           let tier = data[i].tier;
           let match = wins + losses;
           let winrate = Math.ceil((wins / match) * 100);
-          console.log(tier, rank, lP, wins, losses, winrate);
+          let name = data[0].summonerName;
+          console.log(tier, rank, lP, wins, losses, winrate, name);
           arr = [
             tier,
             rank,
@@ -113,6 +115,7 @@ async function leagueInfo(encID) {
             wins + " 승",
             losses + " 패",
             "승률 " + winrate + " %",
+            name,
           ];
           return arr;
         }
@@ -142,7 +145,7 @@ function onJsp(leagueInfo) {
     img = "empty";
   }
 
-  var tag1 = $("#SN").val();
+  var tag1 = leagueInfo[6];
   var tag2 = tier + "\t " + tierNum;
   var tag3 = leagueInfo[2];
   var tag4 = leagueInfo[3];
@@ -362,11 +365,13 @@ async function matchInfo(matchId, encpuuid) {
       "<table>" +
       "<tr>" +
       "<td>" +
+      "[" +
       jspC_level_endgame +
+      "]" +
       "</td>" +
       "<td> <img src =" +
       jspChampionSquarePhoto +
-      "> </img>챔피언사진</td>" +
+      "> </img></td>" +
       "<td>" +
       jspChampionName +
       "</td>" +
@@ -461,7 +466,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td>" +
       "</tr>";
     $(".riotDetailInfoTbl").append(DetailTag);
-    console.log(itemUrlArr[5]);
+    // console.log(itemUrlArr[5]);
 
     /**
      * 이거를 배열로 만들어서 리턴하면 다른함수에서 쓰기편하게 만들 수 있음.
