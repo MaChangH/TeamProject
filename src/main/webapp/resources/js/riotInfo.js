@@ -343,7 +343,7 @@ async function matchInfo(matchId, encpuuid) {
     // $("#Champion_level_endgame").append(jspC_level_endgame);
 
     // 여기서 부터 DetailTag 추가하고
-    /*let DetailTag;
+    let DetailTag;
     DetailTag =
       "<tr>" +
       "<td>" +
@@ -461,8 +461,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td>" +
       "</tr>";
     $(".riotDetailInfoTbl").append(DetailTag);
-    console.log(itemUrlArr[5]);
-*/
+    // console.log(itemUrlArr[5]);
     /**
      * 이거를 배열로 만들어서 리턴하면 다른함수에서 쓰기편하게 만들 수 있음.
      * jspWhenGameEnds,
@@ -479,23 +478,23 @@ async function matchInfo(matchId, encpuuid) {
      *jspgameDuration,
      *itemUrlArr
      */
-    let ReturnParam = [];
-    ReturnParam.push(
-      jspWhenGameEnds,
-      jspC_level_endgame,
-      jspChampionSquarePhoto,
-      jspChampionName,
-      kill,
-      death,
-      assist,
-      jsp_kda,
-      teamarr1,
-      teamarr2,
-      jspGameresult,
-      jspgameDuration,
-      itemUrlArr
-    );
-    return ReturnParam;
+    // let ReturnParam = [];
+    // ReturnParam.push(
+    //   jspWhenGameEnds,
+    //   jspC_level_endgame,
+    //   jspChampionSquarePhoto,
+    //   jspChampionName,
+    //   kill,
+    //   death,
+    //   assist,
+    //   jsp_kda,
+    //   teamarr1,
+    //   teamarr2,
+    //   jspGameresult,
+    //   jspgameDuration,
+    //   itemUrlArr
+    // );
+    // return ReturnParam;
   }
 }
 /** match파라미터 받아서 테이블 찍어내는 함수 */
@@ -578,10 +577,10 @@ function getOnClick() {
     let encId = InfoResult[1]; //encryptedSummonerId
     let encpuuid = InfoResult[3]; //encryptedSummonerId
     let LInfo = await leagueInfo(encId);
-    let matchId = await getMatch(encpuuid); //matchID 정보 array
+    getMatch(encpuuid); //matchID 정보 array
     onJsp(LInfo); // 단순실행 -> 화면에 띄우기
-    let onJspParam = await matchInfo(matchId);
-    onJsp2(onJspParam);
+    // let onJspParam = await matchInfo(matchId);
+    // onJsp2(onJspParam);
   });
 }
 // 매치는 puuid
@@ -592,14 +591,14 @@ $(document).ready(async function () {
   let name = await getSN();
   let url = getURL(name);
   let InfoResult = await getJson(url);
-  // let encAccId = InfoResult[0]; // encryptedAccountId
+  let encAccId = InfoResult[0]; // encryptedAccountId
   let encId = InfoResult[1]; //encryptedSummonerId
   let encpuuid = InfoResult[3]; //encryptedSummonerId
   let LInfo = await leagueInfo(encId);
-  let matchId = await getMatch(encpuuid); //matchID 정보 array
+  getMatch(encpuuid); //matchID 정보 array
   onJsp(LInfo); // 단순실행 -> 화면에 띄우기
-  let onJspParam = await matchInfo(matchId);
-  onJsp2(onJspParam);
+  // let onJspParam = await matchInfo(matchId);
+  // onJsp2(onJspParam);
 });
 
 /**  버튼을 눌러도 동작을 안해서 두번째 실행부터 필요한 코드 + 내용 추가X*/
