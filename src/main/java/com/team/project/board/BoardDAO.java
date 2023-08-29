@@ -64,6 +64,7 @@ public class BoardDAO {
 		int PerPage = 10;
 		int allPageCount = (int) Math.ceil(boardCount / (double) PerPage);
 		req.setAttribute("allPageCount", allPageCount);
+		req.getSession().setAttribute("APCSession", allPageCount);
 		int start = (PerPage * (page - 1)) + 1;
 		int end = (page == allPageCount) ? boardCount : (start + PerPage - 1);
 		BoardSelector bSel = new BoardSelector(search, start, end);
@@ -140,6 +141,7 @@ public class BoardDAO {
 			int PerPage = 10;
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
 			req.setAttribute("APCN", allPageCountNotice);
+			req.getSession().setAttribute("APCNSession", allPageCountNotice);
 			int start = (PerPage * (page - 1)) + 1;
 			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
 			BoardSelector bSel = new BoardSelector(search, start, end);
