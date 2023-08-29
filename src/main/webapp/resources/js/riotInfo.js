@@ -164,6 +164,7 @@ function onJsp(leagueInfo) {
 /** match id 가지고오기 */
 async function getMatch(encpuuid) {
   // console.log(encAccId);
+  let ReturnParam = [];
   let url =
     "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" +
     encpuuid +
