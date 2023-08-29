@@ -21,7 +21,38 @@ $(function() {
         $('#unfold').show(); 
     });
 });
-
+$(document).ready(function() {
+    // [...] 클릭 시 페이지 이동 처리
+    $("td.pageNum").click(function() {
+      var inputPageNum = prompt("이동할 페이지 번호를 입력하세요:", "");
+      
+    // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
+      if (inputPageNum > ${sessionScope.APCSession }) {
+     	 alert("페이지가 없습니다");
+ 	  }
+      // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
+      else if (inputPageNum !== null && !isNaN(inputPageNum)) {
+        var targetUrl = "board.page?p=" + inputPageNum;
+        
+        // 검색 조건이 있다면 URL에 추가합니다.
+        var searchNum = "${sessionScope.searchNum }";
+        if (searchNum !== '1') {
+          targetUrl += "&searchNum=" + searchNum;
+        }
+        
+        // 검색 조건이 있다면 URL에 추가합니다.
+        var search = "${empty sessionScope.search ? '1' : sessionScope.search }";
+        if (search !== '1') {
+          targetUrl += "&search=" + search;
+        }
+        
+        window.location.href = targetUrl;
+      } else {
+          // 숫자가 아닌 경우에 대한 처리를 여기에 추가하세요.
+          alert("유효한 숫자를 입력해주세요.");
+      }
+    });
+  });
 </script>
 </head>
 <body>
@@ -201,7 +232,7 @@ $(function() {
 					&search=${param.search }">[1] 
 					</a>
 				</td>
-				<td>...</td>
+				<td class="pageNum">...</td>
 			</c:if>
 			<td align="center">
 				<c:forEach var="p" begin="${startPage }" end="${endPage }">
@@ -219,7 +250,7 @@ $(function() {
 				</c:forEach>
 			</td>
 			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 }">
-				<td>...</td>
+				<td class="pageNum">...</td>
 				<td>
 					<a href="board.page?p=${allPageCount }
 					&b=${sessionScope.boardPerPage }

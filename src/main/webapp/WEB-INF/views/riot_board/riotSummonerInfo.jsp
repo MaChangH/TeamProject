@@ -58,7 +58,7 @@
 		</tr>
 	</table>
 	
-	 <table id="riotSo" class  = "riotDetailInfoTbl themeColor theme-BorderColor themeBackground-color">
+	 <table class  = "riotDetailInfoTbl themeColor theme-BorderColor themeBackground-color">
 		<!-- <tr>
 			<td>
 				<table>

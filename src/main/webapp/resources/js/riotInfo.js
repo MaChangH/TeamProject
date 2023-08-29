@@ -197,7 +197,7 @@ async function getMatch(encpuuid) {
 async function matchInfo(matchId, encpuuid) {
   // 검색하면 보이게 .
   $(".riotDetailInfoTbl").css("opacity", "100%");
-  // $(".riotDetailInfoTbl").empty();
+  $(".riotDetailInfoTbl").empty();
   // 이번에는 for 문안에서 url 을 만들어야함.
   let count = 0;
   for (let i = 0; i < matchId.length; i++) {
@@ -326,12 +326,28 @@ async function matchInfo(matchId, encpuuid) {
     for (let i = 0; i < howManyPlayed; i++) {
       let teamId = data.info.participants[i].teamId;
       if (teamId == ourTeam) {
-        teamarr1.push(data.info.participants[i].summonerName);
+    	  if (data.info.participants[i].summonerName ==  $("#riotTd1").text()) {
+    		teamarr1.push("<span class='themeNotice'>" + data.info.participants[i].summonerName + "</span>");
+		} else {
+			teamarr1.push(data.info.participants[i].summonerName);
+		}
       } else {
         teamarr2.push(data.info.participants[i].summonerName);
       }
       // const element = len[i];
       // console.log(element);
+    }
+    let team1Num = teamarr1.length;
+    let team2Num = teamarr2.length;
+    if (team1Num < 5) {
+		for (var j = 0; j < 5 - team1Num; j++) {
+			teamarr1.push("<span class='themeNotice'>(탈주한 플레이어)</span>");
+		}
+	}
+    if (team2Num < 5) {
+    	for (var j = 0; j < 5 - team2Num; j++) {
+    		teamarr2.push("<span class='themeNotice'>(탈주한 플레이어)</span>");
+    	}
     }
     // 팀 2개로 나눠서 배열만들기 성공
     console.log(teamarr1);
@@ -355,7 +371,7 @@ async function matchInfo(matchId, encpuuid) {
     let DetailTag;
     DetailTag =
       "<tr>" +
-      "<td>" +
+      "<td class='riotTimeTd themeBorderColor'>" +
       "<table>" +
       "<tr>" +
       "<td>솔랭</td>" +
@@ -367,31 +383,29 @@ async function matchInfo(matchId, encpuuid) {
       "</tr>" +
       "</table>" +
       "</td>" +
-      "<td>" +
+      "<td class='riotChampTd themeBackground-colorGrey themeBorderColor'>" +
       "<table>" +
       "<tr>" +
-      "<td>" +
-      jspC_level_endgame +
-      "</td>" +
-      "<td> <img src =" +
+      "<td><div class='riotLevel'>" + jspC_level_endgame + "</div>"
+      + "<img src =" +
       jspChampionSquarePhoto +
       "> </img></td>" +
       "<td>" +
       jspChampionName +
-      "</td>" +
-      "<td>" +
+      "</td></tr><tr>" +
+      "<td colspan='2'>" +
       kill +
-      "/" +
+      " / " +
       death +
-      "/" +
-      assist +
-      "KDA : " +
+      " / " +
+      assist + 
+      " KDA : " +
       jsp_kda +
       "</td>" +
       "</tr>" +
       "</table>" +
       "</td>" +
-      "<td rowspan='2'>" +
+      "<td rowspan='2' class='riotTeamTd themeBackground-colorGrey themeBorderColor'>" +
       "<table>" +
       "<tr><td>" +
       teamarr1[0] +
@@ -410,7 +424,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td></tr>" +
       "</table>" +
       "</td>" +
-      "<td rowspan='2'>" +
+      "<td rowspan='2' class='riotTeamTd themeBackground-colorGrey themeBorderColor'>" +
       "<table>" +
       "<tr><td>" +
       teamarr2[0] +
@@ -431,7 +445,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td>" +
       "</tr>" +
       "<tr>" +
-      "<td>" +
+      "<td class='riotResultTd themeBorderColor'>" +
       "<table>" +
       "<tr><td>" +
       jspGameresult +
@@ -441,7 +455,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td></tr>" +
       "</table>" +
       "</td>" +
-      "<td>" +
+      "<td class='riotItemTd themeBackground-colorGrey themeBorderColor'>" +
       "<table>" +
       "<tr>" +
       "<td><img src =" +
@@ -488,6 +502,7 @@ async function matchInfo(matchId, encpuuid) {
      * jspgameDuration
      * itemUrlArr
      */
+    colorChange();
   }
 }
 
@@ -559,16 +574,16 @@ function timeForToday(value) {
 /**버튼을 눌러도 동작을 안해서 두번째 실행부터 필요한 코드  + 코드추가 */
 function getOnClick() {
   $(document).ready(async function () {
-    let name = await getSN();
-    let url = getURL(name);
-    let InfoResult = await getJson(url);
-    let encAccId = InfoResult[0]; // encryptedAccountId
-    let encId = InfoResult[1]; //encryptedSummonerId
-    let encpuuid = InfoResult[3]; //encryptedSummonerId
-    let LInfo = await leagueInfo(encId);
-    let matchId = await getMatch(encpuuid); //matchID 정보 array
-    onJsp(LInfo); // 단순실행 -> 화면에 띄우기
-    matchInfo(matchId);
+	  let name = await getSN();
+	  let url = getURL(name);
+	  let InfoResult = await getJson(url);
+	  // let encAccId = InfoResult[0]; // encryptedAccountId
+	  let encId = InfoResult[1]; //encryptedSummonerId
+	  let encpuuid = InfoResult[3]; //encryptedSummonerId
+	  let LInfo = await leagueInfo(encId);
+	  let matchId = await getMatch(encpuuid); //matchID 정보 array
+	  onJsp(LInfo); // 단순실행 -> 화면에 띄우기
+	  matchInfo(matchId, encpuuid);
   });
 }
 // 매치는 puuid

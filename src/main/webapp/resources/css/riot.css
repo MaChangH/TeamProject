@@ -88,3 +88,51 @@
 	opacity: 0%;
 	font-family: "bJ";
 }
+
+.riotTimeTd {
+	border: 1px solid black;
+	top: 0px;
+	width: 75px;
+}
+
+.riotChampTd {
+	position: relative;
+	border: 1px solid black;
+	border-bottom: none;
+	top: 0px;
+}
+
+.riotLevel {
+	position: absolute;
+	top: 80%;
+	color: white;
+	font-size: 15pt;
+	border: 1px solid white;
+	background-color: black;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 5px;
+	transform: translate(0%, -100%);
+}
+
+.riotTeamTd {
+	border: 1px solid black;
+	top: 0px;
+	width: 150px;
+	padding-left: 10px;
+}
+
+.riotResultTd {
+	border: 1px solid black;
+	top: 0px;
+	width: 75px;
+}
+
+.riotItemTd {
+	border: 1px solid black;
+	border-top: none;
+	top: 0px;
+	width: 75px;
+}
+
