@@ -63,8 +63,7 @@
 							<table id="newsBannerTbl"
 								class="themeBackground-color themeBorderColor themeColor">
 								<tr>
-									<td align="center" class="themeBorderColor"
-										style="font-size: 16pt; font-weight: 900; border-bottom: 2px dashed black">
+									<td align="center" class="newsBannerTitle themeBorderColor">
 										뉴스</td>
 								</tr>
 								<tr>
@@ -73,8 +72,7 @@
 											<a href="${nLink[n] }" target="_blank">
 												<table class="newsTbl themeBorderColor">
 												<tr>
-													<td class="newsTitle" rowspan="2">${nTitle[n] }</td>
-													<td class="newsEmpty"></td>
+													<td class="newsTitle">${nTitle[n] }</td>
 												</tr>
 												<tr>
 													<td align="right" class="newsInfo">${nInfo[n] }</td>
