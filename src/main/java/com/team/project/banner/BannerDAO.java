@@ -1,16 +1,22 @@
 package com.team.project.banner;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -1011,4 +1017,71 @@ public class BannerDAO {
 		}
 	}
 
+	// 뉴스 크롤링
+	public void getNews(HttpServletRequest req) {
+
+		try {
+			String url = "https://news.daum.net/breakingnews/";	// Daum 실시간 뉴스 주소
+			Document doc = Jsoup.connect(url).get();	// Jsoup으로 뉴스 데이터 가져오기
+//			System.out.println(doc);
+			
+			Elements nTitle = doc.select(".tit_thumb").select(".link_txt");	// 뉴스 제목
+			Elements nInfo = doc.select(".tit_thumb").select(".info_news");	// 언론사, 시간
+			Elements nLink = doc.select(".tit_thumb").select("a");			// 해당 기사 링크
+			
+			
+			
+			ArrayList<String> newsTitle = new ArrayList<String>();
+			ArrayList<String> newsInfo = new ArrayList<String>();
+			ArrayList<String> newsLink = new ArrayList<String>();
+			
+			int i= 0;
+			int j= 0;
+			int k= 0;
+			
+			for( Element element : nTitle ) {
+				String title = element.text();
+				newsTitle.add(title);
+			    i ++;
+			    if (i >= 10) {
+					break;
+				}
+			}
+			
+			for( Element element : nInfo ) {
+				String info = element.text();
+				newsInfo.add(info);
+				j ++;
+				if (j >= 10) {
+					break;
+				}
+			}
+			
+			for( Element element : nLink ) {
+				String link = element.attr("href");
+				newsLink.add(link);
+				k ++;
+				if (k >= 10) {
+					break;
+				}
+			}
+			
+			
+			
+//			System.out.println(newsTitle);
+//			System.out.println(newsInfo);
+//			System.out.println(newsLink);
+//			System.out.println(newsPhoto);
+			
+			req.setAttribute("nTitle", newsTitle);
+			req.setAttribute("nInfo", newsInfo);
+			req.setAttribute("nLink", newsLink);
+			
+			
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
