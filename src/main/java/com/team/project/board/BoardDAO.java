@@ -33,7 +33,7 @@ public class BoardDAO {
 	// 전체 게시글 수 가져오는 method
 	public void countAllBoard() {
 		allBoardCount = ss.getMapper(BoardMapper.class).getAllBoardCount();
-		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount(); // 23
+		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount();
 	}
 	
 	// 검색어 초기화 method
