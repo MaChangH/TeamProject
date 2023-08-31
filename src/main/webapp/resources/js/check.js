@@ -198,6 +198,7 @@ function boardWriteCheck(){
 function boardUpdateCheck(){
 	let u_title = document.updateForm.tp_b_title;
 	let u_txt = document.updateForm.tp_b_txt;
+	let u_photo = document.updateForm.tp_b_photo;
 	
 	if (isEmpty(u_title)) {
 		alert('제목을 입력하세요');
@@ -206,6 +207,10 @@ function boardUpdateCheck(){
 	} else if (isEmpty(u_txt)) {
 		alert('내용을 입력하세요');
 		u_txt.focus();
+		return false;
+	} else if (!isEmpty(u_photo) && isNotType(u_photo, "png") && isNotType(u_photo, "jpg") && isNotType(u_photo, "jpeg") && isNotType(u_photo, "gif") && isNotType(u_photo, "PNG") && isNotType(u_photo, "JPG") && isNotType(u_photo, "JPEG") && isNotType(u_photo, "GIF")) {
+		alert('확장자는 png, jpg, jpeg, gif만 등록 가능합니다');
+		u_photo.value = "";
 		return false;
 	}
 }
