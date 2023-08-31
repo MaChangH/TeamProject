@@ -77,17 +77,17 @@ $(document).ready(function() {
 					class="boardMsg boardTitle themeBackground-colorGrey themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left"
 					class="boardMsg boardWriter themeBackground-colorGrey themeBorderColor">♛${n.tp_b_writer }</td>
-				<td align="right"
+				<td align="center"
 					class="boardMsg boardDate themeBackground-colorGrey themeBorderColor"
 					class="notice4">
 					<c:choose>
 								<c:when test="${sessionScope.sysdate > n.tp_b_when }">
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 						</td>
