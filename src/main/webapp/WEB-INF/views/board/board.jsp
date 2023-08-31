@@ -26,7 +26,6 @@ $(document).ready(function() {
     $("td.pageNum").click(function() {
       var inputPageNum = prompt("이동할 페이지 번호를 입력하세요:", "");
       
-    // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
       if (inputPageNum > ${sessionScope.APCSession }) {
      	 alert("페이지가 없습니다");
  	  }
@@ -56,6 +55,9 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<div id="imagePreview" style="display: none; position: absolute; background-color: white; border: 1px solid gray; padding: 5px;">
+    <img id="previewImage" style="max-width: 300px; max-height: 300px;">
+</div>
 	<%-- 공지사항 보이는 부분(최근 공지 5개까지만) --%>
 	<table id="boardNoticeTbl"
 		class="themeBackground-color themeColor themeBorderColor">
@@ -159,10 +161,10 @@ $(document).ready(function() {
 						<tr onclick="boardViewGo(${tm.tp_b_no })"
 							class="boardMsgHover themeBackground-colorGrey">
 							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
-							<td id ="boardTitle" class="boardTitle themeBorderColor">&nbsp; 
+							<td id ="boardTitle" class="boardTitle themeBorderColor" data-image="${tm.tp_b_photo}">&nbsp; 
 								<c:if test="${tm.tp_b_like >= 10 }">
 									<span class="titleNotice themeBorderColor">★</span>
-								</c:if> ${tm.tp_b_title }
+								</c:if> ${tm.tp_b_title } 
 							</td>
 							<td id="boardReplyCount" class="themeNotice themeBorderColor" align="center">
 								<c:if test="${tm.tp_b_rCount > 0}">
@@ -177,15 +179,15 @@ $(document).ready(function() {
 									<td align="left" class="boardMsg boardWriter themeBorderColor">${tm.tp_b_writer }</td>
 								</c:otherwise>
 							</c:choose>
-							<td align="right" class="boardMsg boardDate themeBorderColor">
+							<td align="center" class="boardMsg boardDate themeBorderColor">
 							<c:choose>
 								<c:when test="${sessionScope.sysdate > tm.tp_b_when }">
 								<fmt:formatDate value="${tm.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${tm.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 							</td>

@@ -1,4 +1,4 @@
-const api_key = "RGAPI-f74463b7-f619-450b-b23b-abd61742ddeb";
+const api_key = "RGAPI-b0d333c2-6768-47c5-b1a0-adc77716355c";
 const head = "https://kr.api.riotgames.com";
 // 설정할 헤더 객체
 const headers = new Headers();
