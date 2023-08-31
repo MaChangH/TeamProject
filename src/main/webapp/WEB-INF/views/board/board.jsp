@@ -26,7 +26,6 @@ $(document).ready(function() {
     $("td.pageNum").click(function() {
       var inputPageNum = prompt("이동할 페이지 번호를 입력하세요:", "");
       
-   // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
       if (inputPageNum > ${sessionScope.APCSession }) {
      	 alert("페이지가 없습니다");
  	  }
@@ -79,11 +78,11 @@ $(document).ready(function() {
 					<c:choose>
 								<c:when test="${sessionScope.sysdate > i.tp_b_when }">
 								<fmt:formatDate value="${i.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${i.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 				</td>
@@ -106,11 +105,11 @@ $(document).ready(function() {
 					<c:choose>
 								<c:when test="${sessionScope.sysdate > n.tp_b_when }">
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -177,11 +176,11 @@ $(document).ready(function() {
 							<c:choose>
 								<c:when test="${sessionScope.sysdate > tm.tp_b_when }">
 								<fmt:formatDate value="${tm.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${tm.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 							</td>
@@ -201,11 +200,11 @@ $(document).ready(function() {
 					onsubmit="return searchboard();">
 					<input value="1" name="p" type="hidden">
 					<input id="boardPerPageSearch" value="${param.b }" name="b" type="hidden">
-					<select name="searchNum">
+					<select name="searchNum" class="searchSelect">
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
 						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
 						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
-					</select> <input name="search" placeholder="검색어를 입력하세요" value="${sessionScope.search }">
+					</select> <input class="searchInput" name="search" placeholder="제목 검색" value="${sessionScope.search }">
 					<button id="boardSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<td align="right" id="writeButton" class="boardSoild"><form

@@ -70,7 +70,7 @@
 }
 
 .boardNo {
-	min-width: 50px;
+	width: 60px;
 }
 
 .boardTitle {
@@ -92,7 +92,8 @@
 }
 
 .boardWriter {
-	width: 100px;
+	width: 120px;
+	max-width: 120px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -100,8 +101,8 @@
 }
 
 .boardDate {
-	width: 180px;
-	padding-right: 10px;
+	width: 80px;
+	text-align: center;
 }
 
 .boardView {
@@ -406,7 +407,7 @@
 /* 공지사항 게시판의 css */
 
 .noticeNo {
-	width: 75px;
+	width: 60px;
 }
 
 /* 펼치기, 접기 */

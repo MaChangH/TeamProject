@@ -79,11 +79,11 @@ $(document).ready(function() {
 					<c:choose>
 								<c:when test="${sessionScope.sysdate > n.tp_b_when }">
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd" />
+									pattern="MM-dd" />
 								</c:when>
 								<c:otherwise>
 								<fmt:formatDate value="${n.tp_b_when }"
-									pattern="yyyy-MM-dd HH:mm" />
+									pattern="HH:mm" />
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -103,11 +103,11 @@ $(document).ready(function() {
 					onsubmit="return searchboard();">
 					<input value="1" name="p" type="hidden">
 					<input id="noticePerPageSearch" value="${param.b }" name="b" type="hidden">
-					<select name="searchNum">
+					<select name="searchNum" class="searchSelect">
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
 						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
 						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
-					</select> <input name="search" placeholder="제목 검색" value=${param.search }>
+					</select> <input class="searchInput" name="search" placeholder="제목 검색" value=${param.search }>
 					<button id="noticeSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">
