@@ -492,6 +492,7 @@ async function matchInfo(matchId, encpuuid) {
     $(".riotDetailInfoTd").append(DetailTag);
     console.log(itemUrlArr[5]);
     
+    /* 승패 색 구분 */
     if ($('#riotResultDiv' + i).text() == '승리') {
 		$('#riotInfoTbl' + i).attr('class', 'riotInfoTbl themeColor theme-BorderColor riotWin')
 	} else if ($('#riotResultDiv' + i).text() == '패배') {
