@@ -418,6 +418,6 @@
 	font-weight: 900;
 }
 
-/* 보드 당 게시글 수 선택하는 부분 */
-#boardPerPage {
+.pageNum {
+	cursor: pointer;
 }

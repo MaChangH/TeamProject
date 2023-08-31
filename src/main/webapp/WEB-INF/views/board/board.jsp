@@ -26,25 +26,21 @@ $(document).ready(function() {
     $("td.pageNum").click(function() {
       var inputPageNum = prompt("이동할 페이지 번호를 입력하세요:", "");
       
-    // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
+   // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
       if (inputPageNum > ${sessionScope.APCSession }) {
      	 alert("페이지가 없습니다");
  	  }
       // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
       else if (inputPageNum !== null && !isNaN(inputPageNum)) {
-        var targetUrl = "board.page?p=" + inputPageNum;
+        var targetUrl = "board.page?p=" + inputPageNum + "&b=" + ${param.b}; 
         
         // 검색 조건이 있다면 URL에 추가합니다.
         var searchNum = "${sessionScope.searchNum }";
-        if (searchNum !== '1') {
           targetUrl += "&searchNum=" + searchNum;
-        }
         
         // 검색 조건이 있다면 URL에 추가합니다.
-        var search = "${empty sessionScope.search ? '1' : sessionScope.search }";
-        if (search !== '1') {
+        var search = "${empty sessionScope.search ? '' : sessionScope.search }";
           targetUrl += "&search=" + search;
-        }
         
         window.location.href = targetUrl;
       } else {

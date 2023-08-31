@@ -25,6 +25,7 @@ public class HomeController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		req.getSession().setAttribute("currentPage", "home");
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
@@ -35,8 +36,8 @@ public class HomeController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.setAttribute("cp", "home.jsp");
 		req.getSession().setAttribute("currentPage", "home");
+		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	
@@ -46,8 +47,8 @@ public class HomeController {
 			mDAO.loginCheck(req);
 			baDAO.bannerEvent(req);
 			baDAO.getWeather(req);
-			req.setAttribute("cp", "teamMember.jsp");
 			req.getSession().setAttribute("currentPage", "member");
+			req.setAttribute("cp", "teamMember.jsp");
 			return "index";
 		}
 		

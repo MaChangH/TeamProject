@@ -42,10 +42,12 @@
 								<td colspan="3" id="boardUpdateText" class="themeBackground-colorGrey" align="center">
 									<c:if test="${tki.tp_b_photo != null }">
 										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
-										<input type="file" name="tp_b_photo"><br>
+										<input type="file" name="tp_b_photo">
+										<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
 									</c:if> 
 									<c:if test="${empty tki.tp_b_photo }">
-										<input type="file" name="tp_b_photo"><br>
+										<input type="file" name="tp_b_photo">
+										<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
 									</c:if> 
 									<textarea class="textarea" id="boardUpdateTextarea" name="tp_b_txt" style="resize: none;" maxlength="300" rows="10">${sessionScope.boardText }</textarea>
 								</td>

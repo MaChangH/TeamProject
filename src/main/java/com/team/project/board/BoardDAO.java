@@ -158,7 +158,6 @@ public class BoardDAO {
 			}
 			int PerPage = (Integer) req.getSession().getAttribute("boardPerPage");
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
-			System.out.println(allPageCountNotice);
 			req.setAttribute("APCN", allPageCountNotice);
 			req.getSession().setAttribute("APCNSession", allPageCountNotice);
 			int start = (PerPage * (page - 1)) + 1;

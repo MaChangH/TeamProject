@@ -83,16 +83,23 @@
 	margin-top: 20px;
 	width: 60%;
 	height: 150px;
-	border: 2px solid black;
 	border-spacing: 0px;
 	opacity: 0%;
 	font-family: "bJ";
 }
 
+.riotInfoTbl {
+	margin-top: 20px;
+	width: 100%;
+	height: 150px;
+	border: 2px solid black;
+	border-spacing: 0px;
+}
+
 .riotTimeTd {
 	border: 1px solid black;
 	top: 0px;
-	width: 75px;
+	width: 110px;
 }
 
 .riotChampTd {
@@ -120,19 +127,33 @@
 	border: 1px solid black;
 	top: 0px;
 	width: 150px;
+	max-width: 150px;
+	overflow: hidden;
 	padding-left: 10px;
 }
 
 .riotResultTd {
 	border: 1px solid black;
 	top: 0px;
-	width: 75px;
+	width: 90px;
 }
 
 .riotItemTd {
 	border: 1px solid black;
 	border-top: none;
 	top: 0px;
-	width: 75px;
 }
+
+.riotWin {
+	background-color: #abd2ff70;
+}
+
+.riotLose {
+	background-color: #ffa9a970;
+}
+
+.riotReplay {
+	background-color: #aaaaaa50;
+}
+
 
