@@ -517,6 +517,7 @@ async function matchInfo(matchId, encpuuid) {
      * jspgameDuration
      * itemUrlArr
      */
+    /* 테마 반영 */
     colorChange();
     
   }
