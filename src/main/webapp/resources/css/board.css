@@ -70,7 +70,7 @@
 }
 
 .boardNo {
-	min-width: 50px;
+	width: 60px;
 }
 
 .boardTitle {
@@ -99,7 +99,8 @@
 }
 
 .boardWriter {
-	width: 100px;
+	width: 120px;
+	max-width: 120px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -107,8 +108,8 @@
 }
 
 .boardDate {
-	width: 180px;
-	padding-right: 10px;
+	width: 80px;
+	text-align: center;
 }
 
 .boardView {
@@ -413,7 +414,7 @@
 /* 공지사항 게시판의 css */
 
 .noticeNo {
-	width: 75px;
+	width: 60px;
 }
 
 /* 펼치기, 접기 */
@@ -425,6 +426,23 @@
 	font-weight: 900;
 }
 
-/* 보드 당 게시글 수 선택하는 부분 */
-#boardPerPage {
+.pageNum {
+	cursor: pointer;
+}
+
+/* 이미지 미리보기 */
+#boardImgPreviewTbl {
+	position: fixed;
+	border: 2px solid black;
+	left: -100px;
+	top: -100px;
+	width: 100px;
+	height: 100px;
+	opacity: 0%;
+	transform: translate(-105%, 5%);
+}
+
+#boardImgPreview {
+	width: 80px;
+	height: 80px;
 }

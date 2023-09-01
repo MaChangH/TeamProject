@@ -43,6 +43,7 @@ public class MemberController {
 		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
 		return "index";
 	}
 	
@@ -62,6 +63,7 @@ public class MemberController {
 	public String memberLoginGo(Member m, HttpServletRequest req) {
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
 		if (mDAO.loginCheck(req)) {
 			req.setAttribute("cp", "home.jsp");
 		} else {
@@ -78,6 +80,7 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
 		return "index";
 	}
 	
@@ -88,6 +91,8 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
+		req.getSession().setAttribute("currentPage", "home");
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
@@ -98,21 +103,22 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.setAttribute("cp", "member/setting.jsp");
 		req.getSession().setAttribute("currentPage", "setting");
+		req.setAttribute("cp", "member/setting.jsp");
 		return "index";
 	}
 	
 	// 회원정보 확인하기 전 로그인 확인 페이지 이동 요청
 	@RequestMapping(value = "/member.infoCheck.go", method = RequestMethod.GET)
 	public String memberInfoCheckGo(HttpServletRequest req) {
+		baDAO.bannerEvent(req);
+		baDAO.getWeather(req);
+		baDAO.getNews(req);
 		if (mDAO.loginCheck(req)) {
 			req.setAttribute("cp", "member/infoCheck.jsp");
 		} else {
 			req.setAttribute("cp", "home.jsp");
 		}
-		baDAO.bannerEvent(req);
-		baDAO.getWeather(req);
 		req.getSession().setAttribute("currentPage", "info");
 		return "index";
 	}
@@ -123,6 +129,7 @@ public class MemberController {
 		mDAO.loginCheck(req);
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
 		if (mDAO.infoCheck(req)) {
 			mDAO.infoAddr(req);
 			req.setAttribute("cp", "member/info.jsp");
@@ -142,6 +149,8 @@ public class MemberController {
 		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
+		req.getSession().setAttribute("currentPage", "home");
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
@@ -149,29 +158,34 @@ public class MemberController {
 	// 회원정보 수정 페이지 이동 요청
 	@RequestMapping(value = "/member.update.go", method = RequestMethod.POST)
 	public String memberUpdateGo(Member m, HttpServletRequest req) {
-		if (mDAO.loginCheck(req)) {
-			mDAO.infoAddr(req);
-			req.setAttribute("cp", "member/infoUpdate.jsp");
-		} else {
-			req.setAttribute("cp", "home.jsp");
-		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
-		req.getSession().setAttribute("currentPage", "info");
+		baDAO.getNews(req);
+		if (mDAO.loginCheck(req)) {
+			mDAO.infoAddr(req);
+			req.getSession().setAttribute("currentPage", "info");
+			req.setAttribute("cp", "member/infoUpdate.jsp");
+		} else {
+			req.getSession().setAttribute("currentPage", "home");
+			req.setAttribute("cp", "home.jsp");
+		}
 		return "index";
 	}
 	
 	// 회원정보 수정 요청
 	@RequestMapping(value = "/member.update", method = RequestMethod.POST)
 	public String memberUpdate(Member m, HttpServletRequest req) {
-		if (mDAO.loginCheck(req)) {
-			mDAO.update(m, req);
-			req.setAttribute("cp", "home.jsp");
-		} else {
-			req.setAttribute("cp", "home.jsp");
-		}
 		baDAO.bannerEvent(req);
 		baDAO.getWeather(req);
+		baDAO.getNews(req);
+		if (mDAO.loginCheck(req)) {
+			mDAO.update(m, req);
+			req.getSession().setAttribute("currentPage", "home");
+			req.setAttribute("cp", "home.jsp");
+		} else {
+			req.getSession().setAttribute("currentPage", "home");
+			req.setAttribute("cp", "home.jsp");
+		}
 		return "index";
 	}
 	

@@ -55,7 +55,7 @@
 			</tr>
 			<tr>
 				<td class="infoIndex themeReplyWriter themeBackground-color themeBorderColor">주소</td>
-				<td id="signupInputAddr" class="infoContent themeBackground-colorGrey themeBorderColor">
+				<td id="signupInputAddr" class="infoContent themeBackground-colorGrey themeBorderColor"><p>
 					<input name="tp_m_addr1" id="joinAddr1" class="infoInput" autocomplete="off" placeholder="우편번호" readonly="readonly"  value="${addr[0] }"><p>
 					<input name="tp_m_addr2" id="joinAddr2" class="infoInput" autocomplete="off" placeholder="주소" readonly="readonly"  value="${addr[1] }"><p>
 					<input name="tp_m_addr3" class="infoInput" autocomplete="off" placeholder="상세주소"  value="${addr[2] }">
@@ -63,9 +63,10 @@
 			</tr>
 			<tr>
 				<td class="infoIndex themeReplyWriter themeBackground-color themeBorderColor">사진</td>
-				<td class="infoContent themeBackground-colorGrey themeBorderColor"><br>
-				<img src="resources/img/${sessionScope.loginMember.tp_m_photo }" class="infoImg"> <br>
-					<input name="tp_m_photo" type="file">
+				<td class="infoContent themeBackground-colorGrey themeBorderColor"><p>
+					<img src="resources/img/${sessionScope.loginMember.tp_m_photo }" class="infoImg"> 
+					<img id="photoPreview" class="photoPreview memberPhotoPreview themeBackground-color themeBorderColor" src="resources/img/photoPreview.png"><p>
+					<input class="imgUpload" id="imgUpload" name="tp_m_photo" type="file">
 				</td>
 			</tr>
 			<tr>

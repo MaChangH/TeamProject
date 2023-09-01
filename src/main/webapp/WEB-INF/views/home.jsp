@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +54,8 @@
 											class="bannerHotMsgLike themeBackground-colorGrey themeBorderColor">${wh.tp_b_like }</td>
 									</tr>
 								</c:forEach>
-							</table></td>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
@@ -62,15 +63,24 @@
 							<table id="newsBannerTbl"
 								class="themeBackground-color themeBorderColor themeColor">
 								<tr>
-									<td align="center" class="themeBorderColor"
-										style="font-size: 16pt; font-weight: 900; border-bottom: 2px dashed black">
+									<td align="center" class="newsBannerTitle themeBorderColor">
 										뉴스</td>
 								</tr>
 								<tr>
-									<td class="themeBorderColor themeBackground-colorGrey"><c:forEach
-											var="newsArticle" items="${newsArticles}">
-											<li><a href="${newsArticles.link}">${newsArticles.title}</a></li>
-										</c:forEach></td>
+									<td class="themeBackground-colorGrey">
+										<c:forEach var="n" begin="0" end="9">
+											<a href="${nLink[n] }" target="_blank">
+												<table class="newsTbl themeBorderColor">
+												<tr>
+													<td class="newsTitle">${nTitle[n] }</td>
+												</tr>
+												<tr>
+													<td align="right" class="newsInfo">${nInfo[n] }</td>
+												</tr>
+												</table>
+											</a>
+										</c:forEach>
+									</td>
 								</tr>
 							</table>
 						</td>

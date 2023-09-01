@@ -94,6 +94,16 @@
 	</table>
 	
 	
+	<%-- 글에 마우스 올리면 첨부 이미지 보여주는 테이블 --%>
+	<table id="boardImgPreviewTbl" class="themeBorderColor themeBackground-colorGrey">
+		<tr>
+			<td align="center">
+				<img id="boardImgPreview">
+			</td>
+		</tr>
+	</table>
+	
+	
 	<script type="text/javascript">
 		colorChange();
 	</script>
