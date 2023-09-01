@@ -57,7 +57,7 @@
 			</tr>
 			<tr>
 				<td class="infoIndex themeReplyWriter themeBorderColor">사진</td>
-				<td class="infoContent themeColor themeBackground-colorGrey themeBorderColor"">
+				<td class="infoContent themeColor themeBackground-colorGrey themeBorderColor"><p>
 				<img src="resources/img/${sessionScope.loginMember.tp_m_photo }" class="infoImg"> <br>
 				</td>
 			</tr>

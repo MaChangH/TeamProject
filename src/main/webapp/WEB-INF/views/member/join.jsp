@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<td class="joinIndex themeReplyWriter themeBackground-color themeBorderColor">주소</td>
-			<td id="signupInputAddr" class="joinContent themeBackground-colorGrey themeBorderColor">
+			<td id="signupInputAddr" class="joinContent themeBackground-colorGrey themeBorderColor"><p>
 				<input name="tp_m_addr1" id="joinAddr1" class="infoInput" autocomplete="off" placeholder="우편번호" readonly="readonly"><p>
 				<input name="tp_m_addr2" id="joinAddr2" class="infoInput" autocomplete="off" placeholder="주소" readonly="readonly"><p>
 				<input name="tp_m_addr3" class="infoInput" autocomplete="off" placeholder="상세주소">
@@ -48,8 +48,9 @@
 		</tr>
 		<tr>
 			<td class="joinIndex themeReplyWriter themeBackground-color themeBorderColor">사진</td>
-			<td class="joinContent themeBackground-colorGrey themeBorderColor">
-				<input class="imgUpload" id="signupPhoto" name="tp_m_photo" type="file"><p>
+			<td class="joinContent themeBackground-colorGrey themeBorderColor"><p>
+				<img id="photoPreview" class="photoPreview memberPhotoPreview themeBackground-color themeBorderColor" src="resources/img/photoPreview.png"><p>
+				<input class="imgUpload" id="imgUpload" name="tp_m_photo" type="file"><br>
 				<span id="photoNotice">png, jpg, jpeg, gif 등록가능</span>
 			</td>
 		</tr>

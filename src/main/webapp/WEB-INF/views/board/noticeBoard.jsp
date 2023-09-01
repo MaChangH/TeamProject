@@ -19,7 +19,7 @@ $(document).ready(function() {
  	  }
       // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
       else if (inputPageNum !== null && !isNaN(inputPageNum)) {
-        var targetUrl = "notice.page?p=" + inputPageNum + "&b=" + ${param.b};
+        var targetUrl = "notice.page?p=" + inputPageNum + "&b=" + ${sessionScope.boardPerPage};
         
         // 검색 조건이 있다면 URL에 추가합니다.
         var searchNum = "${param.searchNum }";
@@ -66,9 +66,11 @@ $(document).ready(function() {
 			<td align="center" class="boardMsgTitle themeBorderColor">좋아요</td>
 		</tr>
 		<c:forEach var="n" items="${notice }">
-			<tr onclick="boardViewGo(${n.tp_b_no })" class="boardMsgHover">
+			<tr id="board${n.tp_b_no }" onclick="boardViewGo(${n.tp_b_no })" class="boardTr boardMsgHover">
 				<td align="center"
-					class="boardMsg noticeNo themeBackground-colorGrey themeBorderColor themeNotice">[공지]</td>
+					class="boardMsg noticeNo themeBackground-colorGrey themeBorderColor themeNotice">[공지]
+					<input id="board${n.tp_b_no }Img" value="${n.tp_b_photo }" type="hidden">
+				</td>
 				<td
 					class="boardMsg boardTitle themeBackground-colorGrey themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left"
@@ -136,7 +138,7 @@ $(document).ready(function() {
 			</c:if>
 			<td align="center">
 				<c:forEach var="p" begin="${startPage }" end="${endPage }">
-					<c:if test="${p == param.p }" >
+					<c:if test="${p == sessionScope.nowPage }" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
 						<a href="notice.page?p=${p }
@@ -144,7 +146,7 @@ $(document).ready(function() {
 						&searchNum=${searchNum }
 						&search=${param.search }">[${p }] 
 					</a>
-					<c:if test="${p == param.p }" >
+					<c:if test="${p == sessionScope.nowPage }" >
 						</span>
 					</c:if>
 				</c:forEach>

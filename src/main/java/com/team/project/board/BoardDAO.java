@@ -39,6 +39,7 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", null);
 		req.getSession().setAttribute("searchNum", 1);
 		req.getSession().setAttribute("pageNum", 1);
+		req.getSession().setAttribute("nowPage", 1);
 		req.getSession().setAttribute("boardPerPage", 10);
 		req.getSession().setAttribute("p", 0); // 검색 초기화가 되면 값이 0이 되는 세션, 페이지 번호가 바뀌면 값이 변함
 	}

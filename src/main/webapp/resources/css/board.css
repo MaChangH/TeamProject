@@ -422,3 +422,20 @@
 .pageNum {
 	cursor: pointer;
 }
+
+/* 이미지 미리보기 */
+#boardImgPreviewTbl {
+	position: fixed;
+	border: 2px solid black;
+	left: -100px;
+	top: -100px;
+	width: 100px;
+	height: 100px;
+	opacity: 0%;
+	transform: translate(-105%, 5%);
+}
+
+#boardImgPreview {
+	width: 80px;
+	height: 80px;
+}

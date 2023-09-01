@@ -31,7 +31,7 @@ $(document).ready(function() {
  	  }
       // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
       else if (inputPageNum !== null && !isNaN(inputPageNum)) {
-        var targetUrl = "board.page?p=" + inputPageNum + "&b=" + ${param.b}; 
+        var targetUrl = "board.page?p=" + inputPageNum + "&b=" + ${sessionScope.boardPerPage}; 
         
         // 검색 조건이 있다면 URL에 추가합니다.
         var searchNum = "${sessionScope.searchNum }";
@@ -66,11 +66,13 @@ $(document).ready(function() {
 			<td align="center" class="boardMsgTitle themeBorderColor">좋아요</td>
 		</tr>
 		<c:forEach var="i" items="${imp }">
-			<tr onclick="boardViewGo(${i.tp_b_no })"
-				class="boardMsgHover themeBackground-colorGrey">
+			<tr id="board${i.tp_b_no }" onclick="boardViewGo(${i.tp_b_no })"
+				class="boardTr boardMsgHover themeBackground-colorGrey">
 				<td align="center"
 					class="boardMsg boardNo themeNotice themeBorderColor"
-					style="font-weight: bold; color: red;">[중요]</td>
+					style="font-weight: bold; color: red;">[중요]
+					<input id="board${i.tp_b_no }Img" value="${i.tp_b_photo }" type="hidden">
+				</td>
 				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${i.tp_b_title }</td>
 				<td align="left" class="boardMsg boardWriter themeBorderColor">♛${i.tp_b_writer }</td>
 				<td align="right" class="boardMsg boardDate themeBorderColor"
@@ -95,9 +97,11 @@ $(document).ready(function() {
 		</tr>
 		<c:forEach var="n" items="${notice }" end="2">
 			<tr onclick="boardViewGo(${n.tp_b_no })"
-				class="boardMsgHover themeBackground-colorGrey notice">
+				id="board${n.tp_b_no }" class="boardTr boardMsgHover themeBackground-colorGrey notice">
 				<td align="center"
-					class="boardMsg boardNo themeNotice themeBorderColor">[공지]</td>
+					class="boardMsg boardNo themeNotice themeBorderColor">[공지]
+					<input id="board${n.tp_b_no }Img" value="${n.tp_b_photo }" type="hidden">
+				</td>
 				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left" class="boardMsg boardWriter themeBorderColor">♛${n.tp_b_writer }</td>
 				<td align="right" class="boardMsg boardDate themeBorderColor"
@@ -152,8 +156,11 @@ $(document).ready(function() {
 					</tr>
 					<c:forEach var="tm" items="${boardMsg }">
 						<tr onclick="boardViewGo(${tm.tp_b_no })"
-							class="boardMsgHover themeBackground-colorGrey">
-							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
+							id="board${tm.tp_b_no }" class="boardTr boardMsgHover themeBackground-colorGrey">
+							<td align="left" class="boardMsg boardNo themeBorderColor">
+								&nbsp;${tm.tp_b_no }
+								<input id="board${tm.tp_b_no }Img" value="${tm.tp_b_photo }" type="hidden">
+							</td>
 							<td id ="boardTitle" class="boardTitle themeBorderColor">&nbsp; 
 								<c:if test="${tm.tp_b_like >= 10 }">
 									<span class="titleNotice themeBorderColor">★</span>
@@ -231,7 +238,7 @@ $(document).ready(function() {
 			</c:if>
 			<td align="center">
 				<c:forEach var="p" begin="${startPage }" end="${endPage }">
-					<c:if test="${p == param.p }" >
+					<c:if test="${p == sessionScope.nowPage}" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
 						<a href="board.page?p=${p }
@@ -239,7 +246,7 @@ $(document).ready(function() {
 						&searchNum=${searchNum }
 						&search=${param.search }">[${p }] 
 						</a>
-					<c:if test="${p == param.p }" >
+					<c:if test="${p == sessionScope.nowPage }" >
 						</span>
 					</c:if>
 				</c:forEach>
@@ -256,6 +263,7 @@ $(document).ready(function() {
 			</c:if>
 		</tr>
 	</table>
+	
 	
 	
 </body>

@@ -224,6 +224,79 @@ function changePlaceholder() {
 	});
 }
 
+
+// 이미지 미리보기
+function photoPreview() {
+	$('.imgUpload').change(function() {
+		
+		var input = document.getElementById("imgUpload");
+
+		var fReader = new FileReader();
+
+		var img = document.getElementById("photoPreview");
+		
+			
+			img.src = 'resources/img/photoPreview.png';
+			
+			
+			fReader.readAsDataURL(input.files[0]);
+			
+			fReader.onloadend = function(event){
+				
+				img.src = event.target.result;
+		}
+	});
+}
+
+// 이미지 수정 미리보기
+function photoUpdatePreview() {
+	$('.imgUpdate').change(function() {
+		
+		var input = document.getElementById("imgUpdate");
+		
+		var fReader = new FileReader();
+		
+		var img = document.getElementById("boardUpdateImg");
+		
+		
+		img.src = 'resources/img/' + $('#imgUpdateInput').val();
+		
+		
+		fReader.readAsDataURL(input.files[0]);
+		
+		fReader.onloadend = function(event){
+			
+			img.src = event.target.result;
+		}
+	});
+}
+
+// 게시판 제목 마우스 올리면 이미지 보이게
+function boardImgPreview() {
+	$('.boardTr').mouseenter(function(e) {
+		let id = $(this).attr('id');
+		let photo = $('#'+id+'Img').val();
+		let ix = e.pageX;
+		let iy = e.pageY;
+		
+		if (photo != '') {
+			$('#boardImgPreview').attr('src', 'resources/img/' + $('#'+id+'Img').val());
+			$('#boardImgPreviewTbl').css('top', iy + "px");
+			$('#boardImgPreviewTbl').css('left', ix + "px");
+			$('#boardImgPreviewTbl').css('opacity', '100%');
+		} else {
+			$('#boardImgPreview').attr('src', 'resources/img/photoPreview.png');
+		}
+	});
+	
+	$('.boardTr').mouseleave(function() {
+		$('#boardImgPreview').attr('src', 'resources/img/photoPreview.png');
+		$('#boardImgPreviewTbl').css('opacity', '0%');
+		$('#boardImgPreviewTbl').css('top', "-100px");
+		$('#boardImgPreviewTbl').css('left',"-100px");
+	})
+}
+
 $(function () {
 	notice();
 	leftBannerTop();
@@ -240,4 +313,7 @@ $(function () {
 	menuColorChange();
 	randomAd();
 	changePlaceholder();
+	photoPreview();
+	photoUpdatePreview();
+	boardImgPreview();
 });
