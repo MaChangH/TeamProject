@@ -84,9 +84,6 @@ public class BoardDAO {
 				req.setAttribute("startPage", allPageCount - 4);
 				req.setAttribute("endPage", allPageCount);					
 			}
-		}else if (page + 3 == allPageCount) {
-			req.setAttribute("startPage", page - 2);
-			req.setAttribute("endPage", allPageCount);
 		}else if (page == 1 || page == 2 || page == 3 || page == 4) {
 			if (page <= 4 && allPageCount <= 4) {
 				req.setAttribute("startPage", 1);					
@@ -99,6 +96,9 @@ public class BoardDAO {
 				req.setAttribute("startPage", page - 2);
 				req.setAttribute("endPage", page + 2);
 			}
+		}else if (page + 3 == allPageCount) {
+			req.setAttribute("startPage", page - 2);
+			req.setAttribute("endPage", allPageCount);
 		}else {
 			req.setAttribute("startPage", page - 2);
 			req.setAttribute("endPage", page + 2);
@@ -170,9 +170,6 @@ public class BoardDAO {
 					req.setAttribute("startPage", allPageCountNotice - 4);
 					req.setAttribute("endPage", allPageCountNotice);					
 				}
-			}else if (page + 3 == allPageCountNotice) {
-				req.setAttribute("startPage", page - 2);
-				req.setAttribute("endPage", allPageCountNotice);
 			}else if (page == 1 || page == 2 || page == 3 || page == 4) {
 				if (page <= 4 && allPageCountNotice <= 4) {
 					req.setAttribute("startPage", 1);					
@@ -185,6 +182,9 @@ public class BoardDAO {
 					req.setAttribute("startPage", page - 2);
 					req.setAttribute("endPage", page + 2);
 				}
+			}else if (page + 3 == allPageCountNotice) {
+				req.setAttribute("startPage", page - 2);
+				req.setAttribute("endPage", allPageCountNotice);
 			}else {
 				req.setAttribute("startPage", page - 2);
 				req.setAttribute("endPage", page + 2);
