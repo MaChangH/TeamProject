@@ -159,18 +159,12 @@ $(document).ready(function() {
 					</tr>
 					<c:forEach var="tm" items="${boardMsg }">
 						<tr onclick="boardViewGo(${tm.tp_b_no })"
-<<<<<<< HEAD
-							class="boardMsgHover themeBackground-colorGrey">
-							<td align="left" class="boardMsg boardNo themeBorderColor">&nbsp;${tm.tp_b_no }</td>
-							<td id ="boardTitle" class="boardTitle themeBorderColor" data-image="${tm.tp_b_photo}">&nbsp; 
-=======
 							id="board${tm.tp_b_no }" class="boardTr boardMsgHover themeBackground-colorGrey">
 							<td align="left" class="boardMsg boardNo themeBorderColor">
 								&nbsp;${tm.tp_b_no }
 								<input id="board${tm.tp_b_no }Img" value="${tm.tp_b_photo }" type="hidden">
 							</td>
 							<td id ="boardTitle" class="boardTitle themeBorderColor">&nbsp; 
->>>>>>> yang2
 								<c:if test="${tm.tp_b_like >= 10 }">
 									<span class="titleNotice themeBorderColor">★</span>
 								</c:if> ${tm.tp_b_title } 

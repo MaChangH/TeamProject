@@ -138,7 +138,7 @@ $(document).ready(function() {
 			</c:if>
 			<td align="center">
 				<c:forEach var="p" begin="${startPage }" end="${endPage }">
-					<c:if test="${p == sessionScope.nowPage }" >
+					<c:if test="${p == param.p }" >
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
 						<a href="notice.page?p=${p }
@@ -146,7 +146,7 @@ $(document).ready(function() {
 						&searchNum=${searchNum }
 						&search=${param.search }">[${p }] 
 					</a>
-					<c:if test="${p == sessionScope.nowPage }" >
+					<c:if test="${p == param.p }" >
 						</span>
 					</c:if>
 				</c:forEach>
