@@ -5,6 +5,16 @@
 	src: url("K.TTF");
 }
 
+@font-face {
+	font-family: "bJ";
+	src: url("blackJackFont.otf");
+}
+
+@font-face {
+	font-family: "d";
+	src: url("desperadoFont.ttf");
+}
+
 body {
 	margin: 0px;
 	padding: 0px;
@@ -13,13 +23,21 @@ body {
 }
 
 a {
-	color: black;
+	color: inherit;
 	text-decoration: none;
 	cursor: pointer;
 }
 
 button {
 	cursor: pointer;
+}
+
+.themeBtn {
+	font-weight: 900;
+}
+
+.themeNotice {
+	font-weight: 900;
 }
 
 #indexTitleTbl {
@@ -38,6 +56,8 @@ button {
 #indexMenuTbl {
 	margin-top: 20px; 
 	margin-botton: 20px; 
+	margin-left: auto;
+	margin-right: auto;
 	width: 600px;
 	top: 150px;
 }
@@ -63,41 +83,39 @@ button {
 	font-weight: 900;
 }
 
-#indexLoginTbl {
-	position: absolute;
-	border: 2px solid black;
-	border-radius: 20px;
-	background-color: white;
-	left: 10px;
-	top: 200px;
-}
-
-#indexContentTbl {
+#indexMainTbl {
+	position:relative;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 300px; 
+	margin-top: 225px; 
 	margin-botton: 20px; 
 	width: 75%;
 	min-width: 1200px;
 	height: 80%;
 }
 
+#indexLoginTbl {
+	position: absolute;
+	border: 2px solid black;
+	border-spacing: 0px;
+	z-index: 10;
+}
+
+#indexContentTbl {
+	position: absolute;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%, 0%);
+}
+
 #indexLeftBannerTbl {
 	position: absolute;
-	top: 470px;
-	left: 10px;
+	top: 200px;
 }
 
 #indexRightBannerTbl {
 	position: absolute;
-	left: 85%;
-	top: 200px;
-}
-
-#indexThemeTbl {
-	position: absolute;
-	left: 50px;
-	top: 50px;
+	left: 82%;
 }
 
 .boardTitleTbl {
@@ -110,10 +128,39 @@ button {
 	font-weight: 900;
 }
 
+#settingThemeTbl {
+	position: absolute;
+	border: 2px solid black;
+	left: 50%;
+	top: 50%;
+	opacity: 0%;
+	display: none;
+	transition: opacity 0.3s linear;
+	transform: translate(-50%, -50%);
+}
 
+#settingTbl {
+	width: 50%;
+}
 
+.settingTd {
+	height: 75px;
+}
 
+#teamMemberTbl {
+	font-family: "a";
+}
 
+.teamMemberName {
+	font-size: 25pt;
+	font-weight: 900;
+	padding-right: 30px;
+	height: 100px;
+}
+
+.teamMemberWork {
+	font-size: 15pt;
+}
 
 
 

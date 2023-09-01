@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teamproject.teamproject.board.BoardMapper">
+<mapper namespace="com.team.project.board.BoardMapper">
 	<!-- 게시글이 몇개인지 가져오는 부분 -->
 	<select id="getAllBoardCount" resultType="java.lang.Integer">
 		<!-- select count(*) from talks, member where tp_b_writer = m_nickname -->
@@ -15,7 +15,7 @@
 	
 	<!-- 해당 검색어(제목) 게시글 몇개인지 가져오는 부분 -->
 	<select id="getSearchTitleCount"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
+		parameterType="com.team.project.board.BoardSelector"
 		resultType="java.lang.Integer">
 		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
 		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
@@ -25,7 +25,7 @@
 	
 	<!-- 해당 검색어(내용) 게시글 몇개인지 가져오는 부분 -->
 	<select id="getSearchTxtCount"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
+		parameterType="com.team.project.board.BoardSelector"
 		resultType="java.lang.Integer">
 		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
 		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
@@ -35,7 +35,7 @@
 	
 	<!-- 해당 검색어(작성자) 게시글 몇개인지 가져오는 부분 -->
 	<select id="getSearchWriterCount"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
+		parameterType="com.team.project.board.BoardSelector"
 		resultType="java.lang.Integer">
 		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
 		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
@@ -43,9 +43,39 @@
 		select count(*) from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 0
 	</select>
 	
+	<!-- 해당 검색어(제목) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNTitleCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
+	<!-- 해당 검색어(내용) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNTxtCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
+	<!-- 해당 검색어(작성자) 공지글 몇개인지 가져오는 부분 -->
+	<select id="getSearchNWriterCount"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
+		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
+			(tp_b_title like '%'||#{search}||'%') -->
+		select count(*) from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 1
+	</select>
+	
 	<!-- 해당 검색어 공지글 몇개인지 가져오는 부분 -->
 	<select id="getSearchNoticeCount"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
+		parameterType="com.team.project.board.BoardSelector"
 		resultType="java.lang.Integer">
 		<!-- 나중에 member(tb)랑 talks(tb)랑 연결 시켜야 됨 -->
 		<!-- select count(*) from talks, member where tp_b_writer = m_nickname and 
@@ -55,153 +85,197 @@
 	
 	<!-- 해당 검색어(제목)의 전체 게시글 가져오는 부분 -->
 	<select id="getAllTitle"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
-		resultType="com.teamproject.teamproject.board.Board">
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
-		select * from tp_board where (tp_b_title like '%'||#{search}||'%') order by
-		tp_b_when desc ))
-		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
+		select * from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 0 order by
+		tp_b_no desc ))
+		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
 	<!-- 해당 검색어(내용)의 전체 게시글 가져오는 부분 -->
 	<select id="getAllTxt"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
-		resultType="com.teamproject.teamproject.board.Board">
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
-		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') order by
+		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 0 order by
 		tp_b_when desc ))
-		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
+		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
 	<!-- 해당 검색어(작성자)의 전체 게시글 가져오는 부분 -->
 	<select id="getAllWriter"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
-		resultType="com.teamproject.teamproject.board.Board">
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
-		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') order by
-		tp_b_when desc ))
-		where rn &gt;= #{start} and rn &lt;= #{end} and tp_b_notice = 0
+		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 0 order by
+		tp_b_no desc ))
+		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
-	<!-- 해당 검색어의 전체 공지글 가져오는 부분 -->
-	<select id="getAllNoticeBoard"
-		parameterType="com.teamproject.teamproject.board.BoardSelector"
-		resultType="com.teamproject.teamproject.board.Board">
+	<!-- 해당 검색어(제목)의 전체 공지글 가져오는 부분 -->
+	<select id="getAllNoticetitle"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
 		select * from (
 		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
-		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
 		from ( <!-- select * from member, talks where tp_b_writer = 
 			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
 		select * from tp_board where (tp_b_title like '%'||#{search}||'%') and tp_b_notice = 1 order by
+		tp_b_no desc ))
+		where rn &gt;= #{start} and rn &lt;= #{end}
+	</select>
+	
+	<!-- 해당 검색어(내용)의 전체 공지글 가져오는 부분 -->
+	<select id="getAllNoticeTxt"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
+		select * from (
+		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
+		from ( <!-- select * from member, talks where tp_b_writer = 
+			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
+		select * from tp_board where (tp_b_txt like '%'||#{search}||'%') and tp_b_notice = 1 order by
+		tp_b_when desc ))
+		where rn &gt;= #{start} and rn &lt;= #{end}
+	</select>
+	
+	<!-- 해당 검색어(작성자)의 전체 공지글 가져오는 부분 -->
+	<select id="getAllNoticeWriter"
+		parameterType="com.team.project.board.BoardSelector"
+		resultType="com.team.project.board.Board">
+		select * from (
+		select rownum as rn, tp_b_no, tp_b_writer, tp_b_title, tp_b_txt,
+		tp_b_photo, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like
+		from ( <!-- select * from member, talks where tp_b_writer = 
+			m_nickname and (tp_b_title like '%'||#{search}||'%') -->
+		select * from tp_board where (tp_b_writer like '%'||#{search}||'%') and tp_b_notice = 1 order by
 		tp_b_when desc ))
 		where rn &gt;= #{start} and rn &lt;= #{end}
 	</select>
 	
 	<!-- 공지에 해당하는 전체 게시글 가져오는 부분 -->
-	<select id="getAllNotice" resultType="com.teamproject.teamproject.board.Board">
+	<select id="getAllNotice" resultType="com.team.project.board.Board">
 		select * from tp_board where tp_b_notice = 1 order by tp_b_no desc 
 	</select>
 	
 	<!-- 중요표시가 있는 공지글 가져오는 부분 -->
-	<select id="getAllNoticeImp" resultType="com.teamproject.teamproject.board.Board">
+	<select id="getAllNoticeImp" resultType="com.team.project.board.Board">
 		select * from tp_board where tp_b_notice = 1 and tp_b_imp = 1 order by tp_b_no desc 
 	</select>
 	
 	<!-- 클릭한 게시글의 번호에 맞는 전체 내용 가져오기 -->
-	<select id="viewBoard" parameterType="com.teamproject.teamproject.board.BoardNo"
-		resultType="com.teamproject.teamproject.board.Board">
+	<select id="viewBoard" parameterType="com.team.project.board.BoardNo"
+		resultType="com.team.project.board.Board">
 		select * from tp_board where tp_b_no = #{tp_b_no}
 	</select>
 	
 	<!-- 게시글 작성하는 부분(사진X) -->
-	<insert id="writeBoard" parameterType="com.teamproject.teamproject.board.Board"> 
-		insert into tp_board (tp_b_no, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0) 
+	<insert id="writeBoard" parameterType="com.team.project.board.Board"> 
+		insert into tp_board (tp_b_no, tp_b_id, tp_b_writer, tp_b_title, tp_b_txt, tp_b_when, tp_b_notice, tp_b_imp, tp_b_rCount, tp_b_view, tp_b_like) values(tp_board_seq.nextval, #{tp_b_id}, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0, 0) 
 	</insert>
 	
 	<!-- 게시글 작성하는 부분(사진O) -->
-	<insert id="writeBoardPhoto" parameterType="com.teamproject.teamproject.board.Board">
-		insert into tp_board values(tp_board_seq.nextval, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0)
+	<insert id="writeBoardPhoto" parameterType="com.team.project.board.Board">
+		insert into tp_board values(tp_board_seq.nextval, #{tp_b_id}, #{tp_b_writer}, #{tp_b_title}, #{tp_b_txt}, #{tp_b_photo}, sysdate, #{tp_b_notice}, #{tp_b_imp}, 0, 0, 0)
 	</insert>
 	
 	<!-- 게시글 삭제하는 부분 -->
-	<delete id="deleteBoard" parameterType="com.teamproject.teamproject.board.BoardNo">
+	<delete id="deleteBoard" parameterType="com.team.project.board.BoardNo">
 		delete from tp_board where tp_b_no = #{tp_b_no}
 	</delete>
 	
 	<!-- 게시글 수정하는 부분(사진X) -->
-	<update id="updateBoard" parameterType="com.teamproject.teamproject.board.Board">
+	<update id="updateBoard" parameterType="com.team.project.board.Board">
 		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice}, tp_b_imp = #{tp_b_imp} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 게시글 수정하는 부분(사진O) -->
-	<update id="updateBoardPhoto" parameterType="com.teamproject.teamproject.board.Board">
+	<update id="updateBoardPhoto" parameterType="com.team.project.board.Board">
 		update tp_board set tp_b_title = #{tp_b_title}, tp_b_txt = #{tp_b_txt}, tp_b_notice = #{tp_b_notice}, tp_b_imp = #{tp_b_imp}, tp_b_photo = #{tp_b_photo} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 게시글 조회수 바꾸는 부분 -->
-	<update id="updateBoardView" parameterType="com.teamproject.teamproject.board.Board">
+	<update id="updateBoardView" parameterType="com.team.project.board.Board">
 	 	update tp_board set tp_b_view = #{tp_b_view} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 댓글 보여주는 부분 -->
-	<select id="getReply" parameterType="com.teamproject.teamproject.board.ReplyNo" resultType="com.teamproject.teamproject.board.Reply">
+	<select id="getReply" parameterType="com.team.project.board.ReplyNo" resultType="com.team.project.board.Reply">
 		select * from tp_reply where tp_r_b_no = #{tp_r_b_no} order by tp_r_no 
 	</select>
 	
 	<!-- 댓글 작성하는 부분 -->
-	<insert id="writeReply" parameterType="com.teamproject.teamproject.board.Reply">
-		insert into tp_reply values (tp_reply_seq.nextval, #{tp_r_b_no}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
+	<insert id="writeReply" parameterType="com.team.project.board.Reply">
+		insert into tp_reply values (tp_reply_seq.nextval, #{tp_r_b_no}, #{tp_r_id}, #{tp_r_writer}, #{tp_r_text}, sysdate, '')
 	</insert>
 	
 	<!-- 댓글 삭제하는 부분 -->
-	<delete id="deleteReply" parameterType="com.teamproject.teamproject.board.ReplyNo">
+	<delete id="deleteReply" parameterType="com.team.project.board.ReplyNo">
 		delete from tp_reply where tp_r_no = #{tp_r_no}
 	</delete>
 	
 	<!-- 댓글 수정하는 부분 -->
-	<update id="updateReply" parameterType="com.teamproject.teamproject.board.Reply">
+	<update id="updateReply" parameterType="com.team.project.board.Reply">
 		update tp_reply set tp_r_text = #{tp_r_text}, tp_r_edit = #{tp_r_edit} where tp_r_no = #{tp_r_no}
 	</update>
 	
+	<!-- 해당 번호의 게시글 정보 가져오는 부분 -->
+	<select id="getBoardbyNo" parameterType="java.lang.Integer" resultType="com.team.project.board.Board">
+		select * from tp_board where tp_b_no = #{tp_b_no}
+	</select>
+	
+	<!-- 해당 게시글 댓글수 가져오는 부분 -->
+	<select id="getBoardRCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from tp_reply where tp_r_b_no = #{tp_b_no}
+	</select>
+	
+	<!-- 해당 게시글 댓글수 board테이블에 반영하는 부분 -->
+	<update id="updateBoardRCount" parameterType="com.team.project.board.Board">
+		update tp_board set tp_b_rCount = #{tp_b_rCount} where tp_b_no = #{tp_b_no}
+	</update>
+	
+	
 	<!-- 해당 게시글 추천수 가져오는 부분 -->
-	<select id="getBoardLike" parameterType="com.teamproject.teamproject.board.Board" resultType="java.lang.Integer">
+	<select id="getBoardLike" parameterType="com.team.project.board.Board" resultType="java.lang.Integer">
 		select count(*) from tp_like where tp_l_b_no = #{tp_b_no}
 	</select>
 	
 	<!-- tp_board 테이블의 like에 적용하는 부분 -->
-	<update id="boardLike" parameterType="com.teamproject.teamproject.board.Board">
+	<update id="boardLike" parameterType="com.team.project.board.Board">
 		update tp_board set tp_b_like = #{tp_b_like} where tp_b_no = #{tp_b_no}
 	</update>
 	
 	<!-- 추천 누른 회원의 id를 기록하는 부분 -->
-	<insert id="boardLikeId" parameterType="com.teamproject.teamproject.board.Like">
+	<insert id="boardLikeId" parameterType="com.team.project.board.Like">
 		insert into tp_like values (tp_like_seq.nextval, #{tp_l_b_no}, #{tp_l_m_id})
 	</insert>
 	
 	<!-- 중복 추천 체크하는 부분 -->
-	<select id="boardLikeCheck" parameterType="com.teamproject.teamproject.board.Like" resultType="java.lang.Integer">
+	<select id="boardLikeCheck" parameterType="com.team.project.board.Like" resultType="java.lang.Integer">
 		select count(*) from tp_like where tp_l_b_no = #{tp_l_b_no} and tp_l_m_id = #{tp_l_m_id}
 	</select>
 	
 	<!-- 오늘의 핫 게시글 가져오는 부분 -->
-	<select id="todayHot" resultType="com.teamproject.teamproject.board.Board">
+	<select id="todayHot" resultType="com.team.project.board.Board">
 		select * from tp_board where tp_b_when &gt; sysdate-1 and tp_b_view &gt;= 10 order by tp_b_view desc
 	</select>
 	
 	<!-- 금주의 핫 게시글 가져오는 부분 -->
-	<select id="thisWeekHot" resultType="com.teamproject.teamproject.board.Board">
+	<select id="thisWeekHot" resultType="com.team.project.board.Board">
 		select * from tp_board where tp_b_when &gt; sysdate-7 and tp_b_like &gt;= 10 order by tp_b_like desc
 	</select>
 </mapper>

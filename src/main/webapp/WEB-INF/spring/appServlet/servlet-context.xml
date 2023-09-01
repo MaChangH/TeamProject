@@ -16,6 +16,7 @@
 	<context:annotation-config />
 	<tx:annotation-driven />
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/img/**" location="/resources/img/" /> 
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,13 +24,13 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.teamproject.teamproject" />
+	<context:component-scan base-package="com.team.project" />
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<beans:property name="url" value="jdbc:oracle:thin:@192.168.219.100:1521:xe" />
-		<beans:property name="username" value="uniqueguy" />
-		<beans:property name="password" value="1" />
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="username" value="yang" />
+		<beans:property name="password" value="4971" />
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -39,7 +40,7 @@
 
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="typeAliasesPackage" value="com.teamproject.teamproject" />
+		<beans:property name="typeAliasesPackage" value="com.team.project" />
 		<beans:property name="mapperLocations">
 			<beans:list>
 				<beans:value>classpath:boardMapper.xml</beans:value>

@@ -5,8 +5,28 @@ function homeGo () {
 }
 
 //BOARD로 이동하기
-function boardGo () {
-	location.href = "board.go";
+function boardGo (p, b) {
+	location.href = "board.go?p=" + p + "&b=" + b;
+}
+
+//검색어 유지한 채로 board로 돌아가기
+function boardBack (p, b, sn, s) {
+	location.href = "board.page?p=" + p + "&b=" + b + "&searchNum=" + sn + "&search=" + s;
+}
+
+// 페이지 당 게시글 수 변경하기
+function boardPerPage() {
+	$('#boardPerPageSelect').change(function() {
+		let bpp = $('#boardPerPageSelect').val();
+		$('#boardPerPageSearch').val(bpp);
+		$('#boardSearchBtn').trigger('click');
+	})
+	
+	$('#noticePerPageSelect').change(function() {
+		let bpp = $('#noticePerPageSelect').val();
+		$('#noticePerPageSearch').val(bpp);
+		$('#noticeSearchBtn').trigger('click');
+	})
 }
 
 
@@ -23,7 +43,8 @@ function boardDeleteGo(tp_b_no, tp_b_writer) {
 			   target: "_self",
 			   vals: [				//전달할 인수들
 			    ["tp_b_no", tp_b_no],
-			    ["tp_b_writer", tp_b_writer]
+			    ["tp_b_writer", tp_b_writer],
+			    ["p", 1]
 			]
 		});
 	}
@@ -59,6 +80,11 @@ function replyDeleteGo(tp_r_no) {
 	}
 }
 
+// 로그인 및 회원가입 하러하기
+function loginGo() {
+	location.href = "member.login.go";
+}
+
 // 회원 가입하기
 function goJoin() {
 	location.href = "member.join.go";
@@ -70,6 +96,11 @@ function logout() {
 	if (ok) {
 		location.href = "member.logout";
 	}
+}
+
+//설정 보러가기
+function settingGo() {
+	location.href = "member.setting";
 }
 
 // 회원 정보 보러가기
@@ -128,3 +159,7 @@ function desperadoGo() {
 }
 
 
+
+$(function() {
+	boardPerPage();
+});

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,6 @@
 <script type="text/javascript" src="resources/js/teamValidChecker.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript" src="resources/js/replyUpdate.js"></script>
-<script type="text/javascript" src="resources/js/riot.js"></script>
-<script type="text/javascript" src="resources/js/riotInfo.js"></script>
 <script type="text/javascript" src="resources/js/theme.js"></script>
 </head>
 <body>
@@ -33,67 +32,77 @@
 	</table>
 	<table id="indexMenuTbl" class="indexTitleMenu">
 		<tr>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="board.go">BOARD</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="notice.go">NOTICE</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="game.go">GAME</a></td>
-			<td class="indexMenu"><a class="indexMenuA themeColor" href="member.go">MEMBER</a></td>
+			<td class="indexMenu"><a id="menu1" class="indexMenuA themeColor" href="board.go?p=1&b=10">BOARD</a></td>
+			<td class="indexMenu"><a id="menu2" class="indexMenuA themeColor" href="notice.go?p=1&b=10">NOTICE</a></td>
+			<td class="indexMenu"><a id="menu3" class="indexMenuA themeColor" href="riot.go">RIOT</a></td>
+			<td class="indexMenu"><a id="menu4" class="indexMenuA themeColor" href="game.go">GAME</a></td>
+			<td class="indexMenu"><a id="menu5" class="indexMenuA themeColor" href="member.go">MEMBER</a></td>
 		</tr>
 	</table>
 	<input id="result" value="${r }" type="hidden">
 	
-	<table id="indexThemeTbl">
-		<tr>
-			<td>
-				<select id="indexTheme">
-					<option value="themeSelect">사이트 테마</option>
-					<option value="Blue">Blue(기본)</option>
-					<option value="Red">Red</option>
-					<option value="Orange">Orange</option>
-					<option value="Silver">Silver</option>
-					<option value="Dark">Dark</option>
-				</select>
-				<input id="indexThemeInput" value="${sessionScope.themeColor }" type="hidden">
-				<button id="indexThemeBtn">테마 변경</button>
-			</td>
-		</tr>
-	</table>
+	<%-- 사이트 테마 저장값 --%>
+	<input id="settingThemeInput" value="${sessionScope.themeColor }" type="hidden">
 	
-	<%-- 로그인 페이지 --%>
-	<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">
-		<tr>
-			<td>
-				<jsp:include page="${lp }" />
-			</td>
-		</tr>
-	</table>
+	<%-- 로그인 아이디 저장값 --%>
+	<input id="loginMember" value="${sessionScope.loginMember }" type="hidden">
 	
-	<%-- 메인 컨텐츠 --%>
-	<table id="indexContentTbl">
+	<%-- 현재 메뉴 저장값 --%>
+	<input id="currentPage" value="${sessionScope.currentPage }" type="hidden">
+	
+	
+	<table id="indexMainTbl">
 		<tr>
 			<td align="center">
-				<jsp:include page="${cp }"/>
-			</td>
-		</tr>
-	</table>
+	<%-- 로그인 페이지 --%>
+				<table id="indexLoginTbl" class="themeBackground-color themeBorderColor">
+					<tr>
+						<td>
+							<jsp:include page="${lp }" />
+						</td>
+					</tr>
+				</table>
+	
+	<%-- 메인 컨텐츠 --%>
+				<table id="indexContentTbl">
+					<tr>
+						<td align="center">
+							<jsp:include page="${cp }"/>
+						</td>
+					</tr>
+				</table>
 	
 	<%-- 왼쪽 배너 --%>
-	<table id="indexLeftBannerTbl">
-		<tr>
-			<td>
-				<jsp:include page="banner/leftBanner.jsp" />
+				<table id="indexLeftBannerTbl">
+					<tr>
+						<td>
+							<jsp:include page="banner/weather.jsp" />
+						</td>
+					</tr>
+				</table>
+	
+	<%-- 오른쪽 배너 --%>
+				<table id="indexRightBannerTbl">
+					<tr>
+						<td>
+							<jsp:include page="banner/rightBanner.jsp" />
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 	</table>
 	
-	<%-- 오른쪽 배너 --%>
-	<table id="indexRightBannerTbl">
+	
+	<%-- 글에 마우스 올리면 첨부 이미지 보여주는 테이블 --%>
+	<table id="boardImgPreviewTbl" class="themeBorderColor themeBackground-colorGrey">
 		<tr>
-			<td>
-				<jsp:include page="banner/weather.jsp" />
+			<td align="center">
+				<img id="boardImgPreview">
 			</td>
 		</tr>
 	</table>
+	
 	
 	<script type="text/javascript">
 		colorChange();

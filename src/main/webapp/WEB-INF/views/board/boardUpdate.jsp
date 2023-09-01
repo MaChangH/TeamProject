@@ -18,8 +18,8 @@
 		<c:forEach var="tki" items="${boards }">
 			<tr>
 				<td>
-					<form action="board.update" method="post" name="writeForm" enctype="multipart/form-data"
-						onsubmit="return writeCheck();">
+					<form action="board.update" method="post" name="updateForm" enctype="multipart/form-data"
+						onsubmit="return boardUpdateCheck();">
 						<input name="token" value="${token }" type="hidden">
 						<input id="updateNoticeResult" name="tp_b_notice" value="0" type="hidden">
 						<input id="updateImpResult" name="tp_b_imp" value="0" type="hidden">
@@ -41,8 +41,15 @@
 							<tr>
 								<td colspan="3" id="boardUpdateText" class="themeBackground-colorGrey" align="center">
 									<c:if test="${tki.tp_b_photo != null }">
-										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-width: 50%;">
-										<input type="file" name="tp_b_photo"><br>
+										<input id="imgUpdateInput" value="${tki.tp_b_photo }" type="hidden">
+										<img id="boardUpdateImg" src="resources/img/${tki.tp_b_photo }" style="max-height: 150px; max-width: 150px;">
+										<input class="imgUpdate" id="imgUpdate" type="file" name="tp_b_photo">
+										<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
+									</c:if> 
+									<c:if test="${empty tki.tp_b_photo }">
+										<img id="photoPreview" class="photoPreview" src="resources/img/photoPreview.png">
+										<input class="imgUpload" id="imgUpload" type="file" name="tp_b_photo">
+										<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
 									</c:if> 
 									<textarea class="textarea" id="boardUpdateTextarea" name="tp_b_txt" style="resize: none;" maxlength="300" rows="10">${sessionScope.boardText }</textarea>
 								</td>
@@ -52,9 +59,9 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="right">
-					<button>작성</button>
+					<button class="themeBtn">작성</button>
 				</form>
-					<button onclick="boardViewGo(${tki.tp_b_no});">취소</button>
+					<button onclick="boardViewGo(${tki.tp_b_no});" class="themeBtn">취소</button>
 					</td>
 			</tr>
 		</c:forEach>
@@ -66,6 +73,19 @@
 	if ($('#isUpdateImp').val() == 1) {
 		$('#updateImp').prop('checked', 'true');
 	}
+	
+const DEFAULT_HEIGHT = 180;
+	
+
+	const $textarea = document.querySelector('.textarea');
+	
+	$textarea.oninput = (event) => {
+		const $target = event.target;
+
+		$target.style.height = 0;
+		$target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
+	};
+	
 	</script>
 </body>
 </html>

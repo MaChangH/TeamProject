@@ -15,7 +15,6 @@
 
 #joinTbl {
 	border: 2px solid black;
-	border-radius: 20px;
 	width: 50%;
 	border-spacing: 0px;
 }
@@ -45,4 +44,15 @@
 	border: none;
 }
 
+.photoPreview {
+	trasnform: translate(100%, 100%);
+	margin-left: 20px;
+	max-width: 150px;
+	max-width: 150px;
+}
 
+.memberPhotoPreview {
+	border: 1px solid black;
+	width: 150px;
+	height: 150px;
+}

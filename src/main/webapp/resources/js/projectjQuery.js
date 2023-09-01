@@ -65,55 +65,56 @@ function nicknameCheck() {
 // 공지 체크 시 input 벨류값 0에서 1로 변경
 // 해당 게시글이 공지사항인지 아닌지 확인
 function noticeChk() {
-	setInterval(() => {
+	$('#noticeChk').change(function() {
 		if ($('#noticeChk').is(':checked')) {
 			$('#isNotice').val(1);
 		} else {
 			$('#isNotice').val(0);
 		}
-		
+	});
+}
+
+function noticeUpdateChk() {
+	$('#updateNotice').change(function() {
 		if ($('#updateNotice').is(':checked')) {
 			$('#updateNoticeResult').val(1);
 		} else {
 			$('#updateNoticeResult').val(0);
 		}
-		
-	}, 1);
+	});
 }
 
-
 function importantChk() {
-	setInterval(() => {
+	$('#importantChk').change(function() {
 		if ($('#importantChk').is(':checked')) {
 			$('#isImportant').val(1);
 		} else {
 			$('#isImportant').val(0);
 		}
-		
+	});
+}
+
+function importantUpdateChk() {
+	$('#updateImp').change(function() {
 		if ($('#updateImp').is(':checked')) {
 			$('#updateImpResult').val(1);
 		} else {
 			$('#updateImpResult').val(0);
 		}
-	}, 1);
+	});
 }
 
-
-// 텍스트 에어리어의 height가 엔터키를 입력하면 자동으로 늘어나게
-
-function textareaScroll() {
-	const DEFAULT_HEIGHT = 180;
+// 회원정보 창에서 PW보기에 마우스를 올리면 PW의 input type을 변경
+function showPW() {
+	$('#seePW').mouseenter(() => {
+		$('#infoPW').removeAttr("type");
+	});
 	
-
-	const $textarea = document.querySelector('.textarea');
-	
-	$textarea.oninput = (event) => {
-		const $target = event.target;
-
-		$target.style.height = 0;
-		$target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
-	};
+	$('#seePW').mouseleave(() => {
+		$('#infoPW').attr("type", "password");
+	});
 }
+
 
 // 뒤로가기 막기
 function stopBack() {
@@ -127,42 +128,192 @@ function stopBack() {
 	}
 }
 
-// 인터넷 창의 크기를 조절했을 때, 요소들의 위치를 조절하기 => 조절하지 않으면 창을 작게 했을 때 ContentPage와 겹치는 문제 발생
-function movePosition () {
-	$(window).resize(function () {
-		let wWidth = $(window).width();
-		if (wWidth < 1200) {
-			$('#indexRightBannerTbl').css('left', '1020px');
-			$('.indexTitleMenu').css('left', '600px');
-		} else {
-			$('#indexRightBannerTbl').css('left', '85%');
-			$('.indexTitleMenu').css('left', '50%');
+// 로그인/비로그인 상태일 때 왼쪽 배너의 높이 조절
+function leftBannerTop() {
+	let login = $('#loginMember').val();
+	if (login == "") {
+		$('#indexLeftBannerTbl').css('top', "100px");
+	} else {
+		$('#indexLeftBannerTbl').css('top', "350px");
+	}
+}
+
+// 게시글의 작성자 닉네임을 클릭하면 해당 작성자의 사진이 나오고, 닫기를 클릭하면 창이 사라지도록
+function writerImgAppear() {
+	$('#boardViewWriter').click(() => {
+		if ($('#boardViewWriterImg').css('opacity') == 0) {
+			$('#boardViewWriterImg').css('display', 'block');
+			setTimeout(() => {
+				$('#boardViewWriterImg').css('opacity', '100%');
+			}, 10);
+		}
+	});
+	
+	$('#boardViewWriterImgClose').click(() => {
+		if ($('#boardViewWriterImg').css('opacity') == 1) {
+			$('#boardViewWriterImg').css('opacity', '0%');
+			setTimeout(() => {
+				$('#boardViewWriterImg').css('display', 'none');
+			}, 300);
 		}
 	});
 }
 
-// 처음 인터넷 창을 켰을 때 요소들의 위치
-function position () {
-	let wWidth = $(window).width();
-	if (wWidth < 1200) {
-		$('#indexRightBannerTbl').css('left', '1020px');
-		$('.indexTitleMenu').css('left', '600px');
-	} else {
-		$('#indexRightBannerTbl').css('left', '85%');
-		$('.indexTitleMenu').css('left', '50%');
+// 메뉴 눌러서 페이지로 이동하면, 해당 메뉴 버튼 색 바뀌게 하는 함수
+function menuColorChange() {
+	let menu = $('#currentPage').val();
+	if (menu == 'board') {
+		$('#menu1').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu1').css('font-weight', '900');
+	} else if (menu == 'notice') {
+		$('#menu2').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu2').css('font-weight', '900');
+	} else if (menu == 'riot') {
+		$('#menu3').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu3').css('font-weight', '900');
+	} else if (menu == 'game') {
+		$('#menu4').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu4').css('font-weight', '900');
+	} else if (menu == 'member') {
+		$('#menu5').attr('class', 'indexMenuA themeColor themeNotice');
+		$('#menu5').css('font-weight', '900');
 	}
+	colorChange();
+}
+
+// 새로고침 될 때 마다 랜덤 광고가 출력되게, 닫기 누르면 광고 없어지고 보기 누르면 다시 나오게
+function randomAd() {
+	let num = Math.round(Math.random() * 5) + 1;
+	$('#c').attr('src', 'resources/img/c/c' + num + '.webp');
+	
+	$('#cClose').click(function() {
+		$('#c').removeAttr('src');
+		$('#cClosd').css('display', 'none');
+		$('#cOpen').css('display', 'block');
+	});
+	
+	$('#cOpen').click(function() {
+		$('#c').removeAttr('src');
+		num = Math.round(Math.random() * 5) + 1;
+		$('#c').attr('src', 'resources/img/c/c' + num + '.webp');
+		$('#cClosd').css('display', 'block');
+		$('#cOpen').css('display', 'none');
+	});
+}
+
+// 검색 기준 변경하면 placeholder 변경되게
+function changePlaceholder() {
+	let search = $('.searchSelect').val();
+	if (search == 1) {
+		$('.searchInput').attr('placeholder', '제목 검색');
+	} else if (search == 2) {
+		$('.searchInput').attr('placeholder', '내용 검색');
+	} else if (search == 3) {
+		$('.searchInput').attr('placeholder', '닉네임 검색');
+	}
+	
+	$('.searchSelect').change(function() {
+		let searchChange = $('.searchSelect').val();
+		if (searchChange == 1) {
+			$('.searchInput').attr('placeholder', '제목 검색');
+		} else if (searchChange == 2) {
+			$('.searchInput').attr('placeholder', '내용 검색');
+		} else if (searchChange == 3) {
+			$('.searchInput').attr('placeholder', '닉네임 검색');
+		}
+	});
 }
 
 
+// 이미지 미리보기
+function photoPreview() {
+	$('.imgUpload').change(function() {
+		
+		var input = document.getElementById("imgUpload");
+
+		var fReader = new FileReader();
+
+		var img = document.getElementById("photoPreview");
+		
+			
+			img.src = 'resources/img/photoPreview.png';
+			
+			
+			fReader.readAsDataURL(input.files[0]);
+			
+			fReader.onloadend = function(event){
+				
+				img.src = event.target.result;
+		}
+	});
+}
+
+// 이미지 수정 미리보기
+function photoUpdatePreview() {
+	$('.imgUpdate').change(function() {
+		
+		var input = document.getElementById("imgUpdate");
+		
+		var fReader = new FileReader();
+		
+		var img = document.getElementById("boardUpdateImg");
+		
+		
+		img.src = 'resources/img/' + $('#imgUpdateInput').val();
+		
+		
+		fReader.readAsDataURL(input.files[0]);
+		
+		fReader.onloadend = function(event){
+			
+			img.src = event.target.result;
+		}
+	});
+}
+
+// 게시판 제목 마우스 올리면 이미지 보이게
+function boardImgPreview() {
+	$('.boardTr').mouseenter(function(e) {
+		let id = $(this).attr('id');
+		let photo = $('#'+id+'Img').val();
+		let ix = e.pageX;
+		let iy = e.pageY;
+		
+		if (photo != '') {
+			$('#boardImgPreview').attr('src', 'resources/img/' + $('#'+id+'Img').val());
+			$('#boardImgPreviewTbl').css('top', iy + "px");
+			$('#boardImgPreviewTbl').css('left', ix + "px");
+			$('#boardImgPreviewTbl').css('opacity', '100%');
+		} else {
+			$('#boardImgPreview').attr('src', 'resources/img/photoPreview.png');
+		}
+	});
+	
+	$('.boardTr').mouseleave(function() {
+		$('#boardImgPreview').attr('src', 'resources/img/photoPreview.png');
+		$('#boardImgPreviewTbl').css('opacity', '0%');
+		$('#boardImgPreviewTbl').css('top', "-100px");
+		$('#boardImgPreviewTbl').css('left',"-100px");
+	})
+}
+
 $(function () {
 	notice();
-	position();
-	movePosition();
+	leftBannerTop();
 	searchAddr();
 	idCheck();
 	nicknameCheck();
+	showPW();
 	noticeChk();
+	noticeUpdateChk();
 	importantChk();
-	textareaScroll();
-	replyareaScroll();
+	importantUpdateChk();
+	importantChk();
+	writerImgAppear();
+	menuColorChange();
+	randomAd();
+	changePlaceholder();
+	photoPreview();
+	photoUpdatePreview();
+	boardImgPreview();
 });

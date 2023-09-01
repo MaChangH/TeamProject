@@ -15,7 +15,7 @@
 		</tr>
 	</table>
 		<table id="boardWriteTbl">
-	<form action="board.write" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return writeCheck();">
+	<form action="board.write" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return boardWriteCheck();">
 	<input name="token" value="${token }" type="hidden">
 			<tr>
 				<td>
@@ -46,10 +46,15 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" id="boardWriteImg">이미지 첨부 : <input id="boardWriteImgSelect" type="file" name="tp_b_photo"></td>
+							<td colspan="2" id="boardWriteImg">
+								이미지 첨부 : <input class="imgUpload" id="imgUpload" type="file" name="tp_b_photo">
+								<span class="themeReplyWriter">(jpg, jpeg, png, gif 첨부 가능)</span>
+							</td>
 						</tr>
 						<tr>
-							<td class="textarea themeBackground-colorGrey" id="boardWriteText" colspan="3" align="center"><textarea id="boardWriteTextarea" name="tp_b_txt"
+							<td class="textarea themeBackground-colorGrey" id="boardWriteText" colspan="3" align="center">
+								<img id="photoPreview" class="photoPreview" src="resources/img/photoPreview.png"><p>
+							<textarea id="boardWriteTextarea" name="tp_b_txt"
 									style="resize: none;" maxlength="300" rows="10"></textarea></td>
 						</tr>
 					</table>
@@ -57,11 +62,25 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="right" id="boardWriteBtn">
-					<button>작성</button>
+					<button class="themeBtn">작성</button>
 			</form>
-					<button onclick="boardGo()">취소</button>
+					<button onclick="boardGo(1, ${sessionScope.boardPerPage })" class="themeBtn">취소</button>
 				</td>
 			</tr>
 		</table>
+		
+	<script type="text/javascript">
+const DEFAULT_HEIGHT = 180;
+	
+
+	const $textarea = document.querySelector('.textarea');
+	
+	$textarea.oninput = (event) => {
+		const $target = event.target;
+
+		$target.style.height = 0;
+		$target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
+	};
+	</script>
 </body>
 </html>

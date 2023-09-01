@@ -224,9 +224,10 @@ function dShotBottle() {
 // 술병에 알맞은 키를 눌렀을 때의 효과를 출력하는 함수
 function dHitBottle(i, e) {
 	let bottleKey = Number($('#dBottle' + i + 'KeyNum').val());
+	let score = "";
 	if (e == bottleKey) {
 		dShotBottle();
-		let score = Number($('#dScore').val());
+		score = Number($('#dScore').val());
 		score ++;
 		$('#dScore').val(score);
 	}
