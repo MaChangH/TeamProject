@@ -254,7 +254,7 @@ $(document).ready(function() {
 					</c:if>
 				</c:forEach>
 			</td>
-			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 }">
+			<c:if test="${endPage != allPageCount && endPage != allPageCount - 1 && endPage != allPageCount - 2 }">
 				<td class="pageNum">...</td>
 				<td>
 					<a href="board.page?p=${allPageCount }
