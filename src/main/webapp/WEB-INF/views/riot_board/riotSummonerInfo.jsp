@@ -19,7 +19,7 @@
 	<h3 class="themeNotice">API key의 유효기간을 확인해주세요 ( 하루 한 번 )</h3>
 	</c:if>
 	<div id = "SNinput">
-		<input placeholder = "소환사명" name ="SN"  id = "SN" autocomplete="off" autofocus="autofocus" >
+		<input placeholder = "소환사명" name ="SN"  id = "SN" autocomplete="off" >
 		<button id = 'b1' class="themeBtn" onclick="return riotSearchCheck();">검색</button>
 			<!--  검색을 누른 뒤 페이지를 따로 summoners 로 넘어감. -->
 	</div>
@@ -58,7 +58,9 @@
 		</tr>
 	</table>
 	
-	 <table class  = "riotDetailInfoTbl themeColor theme-BorderColor themeBackground-color">
+	 <table class  = "riotDetailInfoTbl">
+	 	<tr>
+	 		<td class="riotDetailInfoTd">
 		<!-- <tr>
 			<td>
 				<table>
@@ -144,6 +146,8 @@
                 </table>
             </td>
 		</tr> -->
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

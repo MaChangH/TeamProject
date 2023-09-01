@@ -13,25 +13,21 @@ $(document).ready(function() {
     $("td.pageNum").click(function() {
       var inputPageNum = prompt("이동할 페이지 번호를 입력하세요:", "");
       
-    // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
+   // 페이지 넘버가 정해진 값을 넘어가면 없음 처리 근데 정상작동아 안됨
       if (inputPageNum > ${sessionScope.APCNSession }) {
      	 alert("페이지가 없습니다");
  	  }
       // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
       else if (inputPageNum !== null && !isNaN(inputPageNum)) {
-        var targetUrl = "notice.page?p=" + inputPageNum;
+        var targetUrl = "notice.page?p=" + inputPageNum + "&b=" + ${param.b};
         
         // 검색 조건이 있다면 URL에 추가합니다.
-        var searchNum = "${sessionScope.searchNum }";
-        if (searchNum !== '1') {
+        var searchNum = "${param.searchNum }";
           targetUrl += "&searchNum=" + searchNum;
-        }
         
         // 검색 조건이 있다면 URL에 추가합니다.
-        var search = "${empty sessionScope.search ? '1' : sessionScope.search }";
-        if (search !== '1') {
+        var search = "${empty sessionScope.search ? '' : param.search }";
           targetUrl += "&search=" + search;
-        }
         
         window.location.href = targetUrl;
       } else {
@@ -107,11 +103,11 @@ $(document).ready(function() {
 					onsubmit="return searchboard();">
 					<input value="1" name="p" type="hidden">
 					<input id="noticePerPageSearch" value="${param.b }" name="b" type="hidden">
-					<select name="searchNum">
+					<select name="searchNum" class="searchSelect">
 						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
 						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
 						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
-					</select> <input name="search" placeholder="제목 검색" value=${param.search }>
+					</select> <input class="searchInput" name="search" placeholder="제목 검색" value=${param.search }>
 					<button id="noticeSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<c:if test="${sessionScope.loginMember.tp_m_role eq 1 }">

@@ -31,19 +31,15 @@ $(document).ready(function() {
  	  }
       // 입력된 페이지 번호가 유효한 숫자라면 페이지 이동
       else if (inputPageNum !== null && !isNaN(inputPageNum)) {
-        var targetUrl = "board.page?p=" + inputPageNum;
+        var targetUrl = "board.page?p=" + inputPageNum + "&b=" + ${param.b}; 
         
         // 검색 조건이 있다면 URL에 추가
         var searchNum = "${sessionScope.searchNum }";
-        if (searchNum !== '1') {
           targetUrl += "&searchNum=" + searchNum;
-        }
         
         // 검색 조건이 있다면 URL에 추가
-        var search = "${empty sessionScope.search ? '1' : sessionScope.search }";
-        if (search !== '1') {
+        var search = "${empty sessionScope.search ? '' : sessionScope.search }";
           targetUrl += "&search=" + search;
-        }
         
         window.location.href = targetUrl;
       } else {
@@ -106,14 +102,18 @@ $(document).ready(function() {
 				<td class="boardMsg boardTitle themeBorderColor">&nbsp;${n.tp_b_title }</td>
 				<td align="left" class="boardMsg boardWriter themeBorderColor">♛${n.tp_b_writer }</td>
 				<td align="right" class="boardMsg boardDate themeBorderColor"
-					class="notice4"><c:choose>
-						<c:when test="${sessionScope.sysdate > n.tp_b_when }">
-							<fmt:formatDate value="${n.tp_b_when }" pattern="MM-dd" />
-						</c:when>
-						<c:otherwise>
-							<fmt:formatDate value="${n.tp_b_when }" pattern="HH:mm" />
-						</c:otherwise>
-					</c:choose></td>
+					class="notice4">
+					<c:choose>
+								<c:when test="${sessionScope.sysdate > n.tp_b_when }">
+								<fmt:formatDate value="${n.tp_b_when }"
+									pattern="MM-dd" />
+								</c:when>
+								<c:otherwise>
+								<fmt:formatDate value="${n.tp_b_when }"
+									pattern="HH:mm" />
+								</c:otherwise>
+							</c:choose>
+						</td>
 				<td align="center" class="boardMsg boardView themeBorderColor">${n.tp_b_view }</td>
 				<td align="center" class="boardMsg boardLike themeBorderColor">${n.tp_b_like }</td>
 			</tr>
@@ -177,15 +177,17 @@ $(document).ready(function() {
 									<td align="left" class="boardMsg boardWriter themeBorderColor">${tm.tp_b_writer }</td>
 								</c:otherwise>
 							</c:choose>
-							<td align="center" class="boardMsg boardDate themeBorderColor">
-								<c:choose>
-									<c:when test="${sessionScope.sysdate > tm.tp_b_when }">
-										<fmt:formatDate value="${tm.tp_b_when }" pattern="MM-dd" />
-									</c:when>
-									<c:otherwise>
-										<fmt:formatDate value="${tm.tp_b_when }" pattern="HH:mm" />
-									</c:otherwise>
-								</c:choose>
+							<td align="right" class="boardMsg boardDate themeBorderColor">
+							<c:choose>
+								<c:when test="${sessionScope.sysdate > tm.tp_b_when }">
+								<fmt:formatDate value="${tm.tp_b_when }"
+									pattern="MM-dd" />
+								</c:when>
+								<c:otherwise>
+								<fmt:formatDate value="${tm.tp_b_when }"
+									pattern="HH:mm" />
+								</c:otherwise>
+							</c:choose>
 							</td>
 							<td align="center" class="boardMsg boardView themeBorderColor">${tm.tp_b_view }</td>
 							<td align="center" class="boardMsg boardLike themeBorderColor">${tm.tp_b_like }</td>
@@ -201,20 +203,13 @@ $(document).ready(function() {
 
 			<td align="center"><form action="board.search" name="searchForm"
 					onsubmit="return searchboard();">
-					<input value="1" name="p" type="hidden"> <input
-						id="boardPerPageSearch" value="${param.b }" name="b" type="hidden">
-					<select name="searchNum">
-						<option value="1"
-							<c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>>
-							제목</option>
-						<option value="2"
-							<c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>>
-							내용</option>
-						<option value="3"
-							<c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>>
-							닉네임</option>
-					</select> <input name="search" placeholder="검색어를 입력하세요"
-						value="${sessionScope.search }">
+					<input value="1" name="p" type="hidden">
+					<input id="boardPerPageSearch" value="${param.b }" name="b" type="hidden">
+					<select name="searchNum" class="searchSelect">
+						<option value="1" <c:if test="${sessionScope.searchNum == 1 }">selected="selected"</c:if>> 제목</option>
+						<option value="2" <c:if test="${sessionScope.searchNum == 2 }">selected="selected"</c:if>> 내용</option>
+						<option value="3" <c:if test="${sessionScope.searchNum == 3 }">selected="selected"</c:if>> 닉네임</option>
+					</select> <input class="searchInput" name="search" placeholder="제목 검색" value="${sessionScope.search }">
 					<button id="boardSearchBtn" class="themeBtn">검색</button>
 				</form></td>
 			<td align="right" id="writeButton" class="boardSoild"><form
@@ -230,23 +225,18 @@ $(document).ready(function() {
 	<table class="themeColor">
 		<tr>
 			<c:if test="${startPage != 1 }">
-				<td><a
-					href="board.page?p=1
-					&b=${sessionScope.boardPerPage }
-					&searchNum=${searchNum }
+				<td>
+					<a href="board.page?p=1&b=${sessionScope.boardPerPage }&searchNum=${searchNum }
 					&search=${param.search }">[1]
-				</a></td>
+					</a>
+				</td>
 				<td class="pageNum">...</td>
 			</c:if>
-			<td align="center"><c:forEach var="p" begin="${startPage }"
-					end="${endPage }">
+			<td align="center"><c:forEach var="p" begin="${startPage }" end="${endPage }">
 					<c:if test="${p == param.p }">
 						<span class="themeNotice" style="font-weight: 900;">
 					</c:if>
-					<a
-						href="board.page?p=${p }
-						&b=${sessionScope.boardPerPage }
-						&searchNum=${searchNum }
+					<a href="board.page?p=${p }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }
 						&search=${param.search }">[${p }]
 					</a>
 					<c:if test="${p == param.p }">
@@ -254,18 +244,15 @@ $(document).ready(function() {
 					</c:if>
 				</c:forEach></td>
 			<c:if
-				test="${endPage != allPageCount && endPage != allPageCount - 1 }">
-				<td class="pageNum">...</td>
-				<td><a
-					href="board.page?p=${allPageCount }
-					&b=${sessionScope.boardPerPage }
-					&searchNum=${searchNum }
-					&search=${param.search }">[${allPageCount }]
-				</a></td>
+				test="${endPage != allPageCount && endPage != allPageCount - 1 && endPage != allPageCount - 2 }">
+			<td class="pageNum">...</td>
+			<td>
+				<a href="board.page?p=${allPageCount }&b=${sessionScope.boardPerPage }&searchNum=${searchNum }
+				&search=${param.search }">[${allPageCount }]
+				</a>
+			</td>
 			</c:if>
 		</tr>
 	</table>
-
-
 </body>
 </html>

@@ -1,4 +1,4 @@
-const api_key = "RGAPI-b0d333c2-6768-47c5-b1a0-adc77716355c";
+const api_key = "RGAPI-82e5f24d-f84c-4256-8dd8-a29f37754d04";
 const head = "https://kr.api.riotgames.com";
 // 설정할 헤더 객체
 const headers = new Headers();
@@ -197,7 +197,7 @@ async function getMatch(encpuuid) {
 async function matchInfo(matchId, encpuuid) {
   // 검색하면 보이게 .
   $(".riotDetailInfoTbl").css("opacity", "100%");
-  $(".riotDetailInfoTbl").empty();
+  $(".riotDetailInfoTd").empty();
   // 이번에는 for 문안에서 url 을 만들어야함.
   let count = 0;
   for (let i = 0; i < matchId.length; i++) {
@@ -296,14 +296,18 @@ async function matchInfo(matchId, encpuuid) {
     if (challenges) {
       // challenges 객체가 존재하는 경우
       // console.log(challenges);
-      jsp_kda = Math.round(challenges.kda) / 10;
+      jsp_kda = Math.round(challenges.kda * 10) / 10;
+      if (death == 0) {
+          jsp_kda = "<span class='themeNotice'>Perfect!!</span>";
+          console.log(jsp_kda);
+        }
       console.log("kda : " + jsp_kda);
     } else {
       // challenges 객체가 없는 경우
       console.log("challenges 오브젝트 없음");
-      let kda = Math.round(kill + assist / death) / 10;
+      let kda = Math.round(((kill + assist) / death) * 10) / 10;
       if (death == 0) {
-        jsp_kda = "Perfect!!  No Death";
+        jsp_kda = "<span class='themeNotice'>Perfect!!</span>";
         console.log(jsp_kda);
       } else {
         jsp_kda = kda;
@@ -341,12 +345,12 @@ async function matchInfo(matchId, encpuuid) {
     let team2Num = teamarr2.length;
     if (team1Num < 5) {
 		for (var j = 0; j < 5 - team1Num; j++) {
-			teamarr1.push("<span class='themeNotice'>(탈주한 플레이어)</span>");
+			teamarr1.push("<span class='riotDodge'>(탈주한 플레이어)</span>");
 		}
 	}
     if (team2Num < 5) {
     	for (var j = 0; j < 5 - team2Num; j++) {
-    		teamarr2.push("<span class='themeNotice'>(탈주한 플레이어)</span>");
+    		teamarr2.push("<span class='riotDodge'>(탈주한 플레이어)</span>");
     	}
     }
     // 팀 2개로 나눠서 배열만들기 성공
@@ -370,20 +374,21 @@ async function matchInfo(matchId, encpuuid) {
     // 여기서 부터 DetailTag 추가하고
     let DetailTag;
     DetailTag =
+    	"<table id='riotInfoTbl" + i + "' class='riotInfoTbl themeColor theme-BorderColor'>" + 
       "<tr>" +
-      "<td class='riotTimeTd themeBorderColor'>" +
+      "<td align='center' class='riotTimeTd themeBorderColor'>" +
       "<table>" +
       "<tr>" +
-      "<td>솔랭</td>" +
+      "<td align='center'>솔랭</td>" +
       "</tr>" +
       "<tr>" +
-      "<td>" +
+      "<td align='center'>" +
       jspWhenGameEnds +
       "</td>" +
       "</tr>" +
       "</table>" +
       "</td>" +
-      "<td class='riotChampTd themeBackground-colorGrey themeBorderColor'>" +
+      "<td class='riotChampTd themeBorderColor'>" +
       "<table>" +
       "<tr>" +
       "<td><div class='riotLevel'>" + jspC_level_endgame + "</div>"
@@ -399,13 +404,13 @@ async function matchInfo(matchId, encpuuid) {
       death +
       " / " +
       assist + 
-      " KDA : " +
+      "&nbsp;&nbsp;&nbsp; KDA : " +
       jsp_kda +
       "</td>" +
       "</tr>" +
       "</table>" +
       "</td>" +
-      "<td rowspan='2' class='riotTeamTd themeBackground-colorGrey themeBorderColor'>" +
+      "<td rowspan='2' class='riotTeamTd themeBorderColor'>" +
       "<table>" +
       "<tr><td>" +
       teamarr1[0] +
@@ -424,7 +429,7 @@ async function matchInfo(matchId, encpuuid) {
       "</td></tr>" +
       "</table>" +
       "</td>" +
-      "<td rowspan='2' class='riotTeamTd themeBackground-colorGrey themeBorderColor'>" +
+      "<td rowspan='2' class='riotTeamTd themeBorderColor'>" +
       "<table>" +
       "<tr><td>" +
       teamarr2[0] +
@@ -447,15 +452,15 @@ async function matchInfo(matchId, encpuuid) {
       "<tr>" +
       "<td class='riotResultTd themeBorderColor'>" +
       "<table>" +
-      "<tr><td>" +
+      "<tr><td><div id='riotResultDiv" + i + "'>" + 
       jspGameresult +
-      "</td></tr>" +
+      "</div></td></tr>" +
       "<tr><td>" +
       jspgameDuration +
       "</td></tr>" +
       "</table>" +
       "</td>" +
-      "<td class='riotItemTd themeBackground-colorGrey themeBorderColor'>" +
+      "<td class='riotItemTd themeBorderColor'>" +
       "<table>" +
       "<tr>" +
       "<td><img src =" +
@@ -482,9 +487,19 @@ async function matchInfo(matchId, encpuuid) {
       "</tr>" +
       "</table>" +
       "</td>" +
-      "</tr>";
-    $(".riotDetailInfoTbl").append(DetailTag);
+      "</tr>" +
+      "</table>";
+    $(".riotDetailInfoTd").append(DetailTag);
     console.log(itemUrlArr[5]);
+    
+    /* 승패 색 구분 */
+    if ($('#riotResultDiv' + i).text() == '승리') {
+		$('#riotInfoTbl' + i).attr('class', 'riotInfoTbl themeColor theme-BorderColor riotWin')
+	} else if ($('#riotResultDiv' + i).text() == '패배') {
+		$('#riotInfoTbl' + i).attr('class', 'riotInfoTbl themeColor theme-BorderColor riotLose')
+	} else {
+		$('#riotInfoTbl' + i).attr('class', 'riotInfoTbl themeColor theme-BorderColor riotReplay')
+	}
 
     /**
      * 이거를 배열로 만들어서 리턴하면 다른함수에서 쓰기편하게 만들 수 있음.
@@ -502,7 +517,9 @@ async function matchInfo(matchId, encpuuid) {
      * jspgameDuration
      * itemUrlArr
      */
+    /* 테마 반영 */
     colorChange();
+    
   }
 }
 
@@ -536,7 +553,7 @@ function humanReadable(seconds) {
   var mins = Math.floor((seconds - hours * 3600) / 60);
   var secs = seconds - hours * 3600 - mins * 60;
   if (hours == 0) {
-    return addZero(mins) + "분" + addZero(secs);
+    return addZero(mins) + "분 " + addZero(secs) + "초";
   }
   return addZero(hours) + "시" + addZero(mins) + "분" + addZero(secs) + "초";
 
@@ -619,20 +636,6 @@ function keydownEnter() {
 			return false;
 		}
 	});
-}
-
-$(function () {
-	keydownEnter();
-});
-
-// 엔터 치면 검색 버튼이 클릭되도록
-function keydownEnter() {
-  $(document).keydown((e) => {
-    if (e.keyCode == 13) {
-      $("#b1").trigger("click");
-      return false;
-    }
-  });
 }
 
 $(function () {

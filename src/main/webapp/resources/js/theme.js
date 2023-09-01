@@ -97,6 +97,8 @@ function colorNormal() {
 	$('.themeBtn').css('border-color', 'black');
 	$('.themeBtn').css('background-color', '#ddedff');
 	$('.themeBtn').css('color', 'black');
+	$('.riotDodge').css('color', '#00000050');
+
 }
 
 function colorRed() {
@@ -111,6 +113,7 @@ function colorRed() {
 	$('.themeBtn').css('border-color', 'black');
 	$('.themeBtn').css('background-color', '#ffcccc');
 	$('.themeBtn').css('color', 'black');
+	$('.riotDodge').css('color', '#00000050');
 }
 
 function colorOrange() {
@@ -125,6 +128,7 @@ function colorOrange() {
 	$('.themeBtn').css('border-color', 'black');
 	$('.themeBtn').css('background-color', '#ffe6db');
 	$('.themeBtn').css('color', 'black');
+	$('.riotDodge').css('color', '#00000050');
 }
 
 function colorGreen() {
@@ -139,6 +143,7 @@ function colorGreen() {
 	$('.themeBtn').css('border-color', 'black');
 	$('.themeBtn').css('background-color', '#d3f9cd');
 	$('.themeBtn').css('color', 'black');
+	$('.riotDodge').css('color', '#00000050');
 }
 
 function colorSilver() {
@@ -152,6 +157,7 @@ function colorSilver() {
 	$('.themeBtn').css('border-color', 'black');
 	$('.themeBtn').css('background-color', '#efefef');
 	$('.themeBtn').css('color', 'black');
+	$('.riotDodge').css('color', '#00000050');
 }
 
 function colorDark() {
@@ -166,6 +172,7 @@ function colorDark() {
 	$('.themeBtn').css('border-color', 'white');
 	$('.themeBtn').css('background-color', '#202020');
 	$('.themeBtn').css('color', 'white');
+	$('.riotDodge').css('color', '#ffffff50');
 }
 
 //////////////// 미리보기 설정

@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -33,7 +31,7 @@ public class BoardDAO {
 	// 전체 게시글 수 가져오는 method
 	public void countAllBoard() {
 		allBoardCount = ss.getMapper(BoardMapper.class).getAllBoardCount();
-		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount(); // 23
+		allNoticeCount = ss.getMapper(BoardMapper.class).getAllNoticeCount();
 	}
 	
 	// 검색어 초기화 method
@@ -78,23 +76,26 @@ public class BoardDAO {
 		int end = (page == allPageCount) ? boardCount : (start + PerPage - 1);
 		BoardSelector bSel = new BoardSelector(search, start, end);
 		if (page == allPageCount || page + 1 == allPageCount) {
-			if (page <= 4 && allPageCount <= 4) {
-				req.setAttribute("startPage", 1);
+			if (page <= 6 && allPageCount <= 6) {
+				req.setAttribute("startPage", 1);					
 				req.setAttribute("endPage", allPageCount);
 			}else {
 				req.setAttribute("startPage", allPageCount - 4);
-				req.setAttribute("endPage", allPageCount);					
-			}
-		}else if (page == 1 || page == 2 || page == 3 || page == 4) {
-			if (page <= 4 && allPageCount <= 4) {
-				req.setAttribute("startPage", 1);					
 				req.setAttribute("endPage", allPageCount);
-			}else if (page == 1 || page == 2) {
+			}					
+		}else if (page <= 6 && allPageCount <= 6) {
+			req.setAttribute("startPage", 1);					
+			req.setAttribute("endPage", allPageCount);
+		}else if (page == 1 || page == 2) {
 				page = 2;
 				req.setAttribute("startPage", page - 1);
 				req.setAttribute("endPage", page + 3);					
-			}else if (page == 3 || page == 4) { 
-				req.setAttribute("startPage", page - 2);
+		}else if (page == 4) {	
+			if (page + 3 == allPageCount) {
+				req.setAttribute("startPage", page - 1);
+				req.setAttribute("endPage", allPageCount);
+			}else {
+				req.setAttribute("startPage", page - 3);
 				req.setAttribute("endPage", page + 2);
 			}
 		}else if (page + 3 == allPageCount) {
@@ -158,35 +159,37 @@ public class BoardDAO {
 			}
 			int PerPage = (Integer) req.getSession().getAttribute("boardPerPage");
 			int allPageCountNotice = (int) Math.ceil(noticeCount / (double) PerPage);
-			System.out.println(allPageCountNotice);
 			req.setAttribute("APCN", allPageCountNotice);
 			req.getSession().setAttribute("APCNSession", allPageCountNotice);
 			int start = (PerPage * (page - 1)) + 1;
 			int end = (page == allPageCountNotice) ? noticeCount : (start + PerPage - 1);
 			BoardSelector bSel = new BoardSelector(search, start, end);
 			if (page == allPageCountNotice || page + 1 == allPageCountNotice) {
-				if (page <= 4 && allPageCountNotice <= 4) {
-					req.setAttribute("startPage", 1);
+				if (page <= 6 && allPageCountNotice <= 6) {
+					req.setAttribute("startPage", 1);					
 					req.setAttribute("endPage", allPageCountNotice);
 				}else {
 					req.setAttribute("startPage", allPageCountNotice - 4);
-					req.setAttribute("endPage", allPageCountNotice);					
+					req.setAttribute("endPage", allPageCountNotice);
+				}					
+			}else if (page <= 6 && allPageCountNotice <= 6) {
+				req.setAttribute("startPage", 1);					
+				req.setAttribute("endPage", allPageCountNotice);
+			}else if (page == 1 || page == 2) {
+					page = 2;
+					req.setAttribute("startPage", page - 1);
+					req.setAttribute("endPage", page + 3);					
+			}else if (page == 4) {	
+				if (page + 3 == allPageCountNotice) {
+					req.setAttribute("startPage", page - 1);
+					req.setAttribute("endPage", allPageCountNotice);
+				}else {
+					req.setAttribute("startPage", page - 3);
+					req.setAttribute("endPage", page + 2);
 				}
 			}else if (page + 3 == allPageCountNotice) {
 				req.setAttribute("startPage", page - 2);
 				req.setAttribute("endPage", allPageCountNotice);
-			}else if (page == 1 || page == 2 || page == 3 || page == 4) {
-				if (page <= 4 && allPageCountNotice <= 4) {
-					req.setAttribute("startPage", 1);					
-					req.setAttribute("endPage", allPageCountNotice);
-				}else if (page == 1 || page == 2) {
-					page = 2;
-					req.setAttribute("startPage", page - 1);
-					req.setAttribute("endPage", page + 3);					
-				}else if (page == 3 || page == 4) { 
-					req.setAttribute("startPage", page - 2);
-					req.setAttribute("endPage", page + 2);
-				}
 			}else {
 				req.setAttribute("startPage", page - 2);
 				req.setAttribute("endPage", page + 2);

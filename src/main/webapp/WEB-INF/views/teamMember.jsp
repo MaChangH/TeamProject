@@ -12,7 +12,6 @@
 			<td class="teamMemberName" valign="top" align="right">권진호</td>
 			<td class="teamMemberWork" valign="top">
 				- 로그인/회원가입 등 member 관련 기능<br>
-				- 뉴스 기능
 			</td>
 		</tr>
 		<tr>
@@ -24,7 +23,7 @@
 		<tr>
 			<td class="teamMemberName" valign="top" align="right">양현진</td>
 			<td class="teamMemberWork" valign="top">
-				- 미니게임/날씨 기능<br>
+				- 미니게임/날씨 기능, 뉴스 기능<br>
 				- 전반적인 CSS와 jQuery 작업
 			</td>
 		</tr>

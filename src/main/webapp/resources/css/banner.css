@@ -123,3 +123,34 @@
 	width: 604px;
 	
 }
+
+.newsBannerTitle {
+	text-align: center;
+	font-size: 14pt;
+	font-weight: 900;
+	border-bottom: 2px dashed black;
+	height: 45px;
+}
+
+.newsTbl {
+	border-bottom: 1px solid black;
+	border-spacing: 0px;
+	width: 600px;
+	height: 40px;
+}
+
+.newsTitle {
+	font-size: 13pt;
+	font-weight: 900;
+	max-width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 35px;
+	padding-left: 10px;
+}
+
+.newsInfo {
+	padding-right: 10px;
+	font-size: 11pt;
+}

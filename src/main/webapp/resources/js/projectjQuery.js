@@ -201,6 +201,29 @@ function randomAd() {
 	});
 }
 
+// 검색 기준 변경하면 placeholder 변경되게
+function changePlaceholder() {
+	let search = $('.searchSelect').val();
+	if (search == 1) {
+		$('.searchInput').attr('placeholder', '제목 검색');
+	} else if (search == 2) {
+		$('.searchInput').attr('placeholder', '내용 검색');
+	} else if (search == 3) {
+		$('.searchInput').attr('placeholder', '닉네임 검색');
+	}
+	
+	$('.searchSelect').change(function() {
+		let searchChange = $('.searchSelect').val();
+		if (searchChange == 1) {
+			$('.searchInput').attr('placeholder', '제목 검색');
+		} else if (searchChange == 2) {
+			$('.searchInput').attr('placeholder', '내용 검색');
+		} else if (searchChange == 3) {
+			$('.searchInput').attr('placeholder', '닉네임 검색');
+		}
+	});
+}
+
 $(function () {
 	notice();
 	leftBannerTop();
@@ -216,4 +239,5 @@ $(function () {
 	writerImgAppear();
 	menuColorChange();
 	randomAd();
+	changePlaceholder();
 });
